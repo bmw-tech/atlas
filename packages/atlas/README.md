@@ -3,11 +3,7 @@
 [![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=svg)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
 [![codecov](https://codecov.io/gh/bmw-tech/atlas/branch/master/graph/badge.svg)](https://codecov.io/gh/bmw-tech/atlas)
 
-A Extensible Map Abstraction for Flutter which currently supports:
-
-## Google Maps
-
-[![Google Maps](docs/assets/google_atlas.png)](packages/google_atlas/README.md)
+The core Flutter Atlas Map Abstraction.
 
 ## Quick Start
 

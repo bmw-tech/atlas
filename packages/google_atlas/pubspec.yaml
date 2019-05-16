@@ -1,0 +1,19 @@
+name: google_atlas
+description: Atlas Google Maps Provider
+
+version: 0.0.0
+
+environment:
+  sdk: ">=2.0.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  atlas:
+    path: ../atlas
+  google_maps_flutter: ^0.5.13
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.0.0
