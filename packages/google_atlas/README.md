@@ -1,13 +1,9 @@
-# atlas
+# google_atlas
 
 [![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=svg)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
 [![codecov](https://codecov.io/gh/bmw-tech/atlas/branch/master/graph/badge.svg)](https://codecov.io/gh/bmw-tech/atlas)
 
-A Extensible Map Abstraction for Flutter which currently supports:
-
-## Google Maps
-
-[![Google Maps](docs/assets/google_atlas.png)](packages/google_atlas/README.md)
+Google Maps Atlas Provider that is built to work with [atlas](../atlas/README.md).
 
 ## Quick Start
 
@@ -16,10 +12,10 @@ A Extensible Map Abstraction for Flutter which currently supports:
 ```dart
 import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
-import 'package:custom_atlas/custom_atlas.dart';
+import 'package:google_atlas/google_atlas.dart';
 
 void main() {
-  AtlasProvider.instance = CustomAtlas();
+  AtlasProvider.instance = GoogleAtlas();
   runApp(MyApp());
 }
 ```
@@ -60,13 +56,11 @@ class AtlasSample extends StatelessWidget {
 
 Project Lead(s):
 
-- [@tchabot22](https://github.com/tchabot22)
+- @tchabot22
 
 Main Maintainer(s):
 
-- [@felangel](https://github.com/felangel)
-- [@jorgecoca](https://github.com/jorgecoca)
-- [@noahmateen](https://github.com/noahmateen)
+- @felangel
 
 ## License
 

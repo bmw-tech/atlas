@@ -1,9 +1,33 @@
 version: 2.1
+executors:
+  flutter_sdk_image:
+    docker:
+      - image: cirrusci/flutter:v1.5.4-hotfix.2
 
 orbs:
-  hello: circleci/hello-build@0.0.7
+  codecov: codecov/codecov@1.0.4
+
+jobs:
+  build_atlas:
+    executor: flutter_sdk_image
+    environment:
+      - FLUTTER: true
+      - PACKAGE: atlas
+    steps:
+      - checkout
+      - run: scripts/run_ci.sh
+  build_google_atlas:
+    executor: flutter_sdk_image
+    environment:
+      - FLUTTER: true
+      - PACKAGE: google_atlas
+    steps:
+      - checkout
+      - run: scripts/run_ci.sh
 
 workflows:
-  "Hello Workflow":
+  version: 2.1
+  mobx_packages:
     jobs:
-      - hello/hello-build
+      - build_atlas
+      - build_google_atlas
