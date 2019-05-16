@@ -56,11 +56,13 @@ class AtlasSample extends StatelessWidget {
 
 Project Lead(s):
 
-- @tchabot22
+- [@tchabot22](https://github.com/tchabot22)
 
 Main Maintainer(s):
 
-- @felangel
+- [@felangel](https://github.com/felangel)
+- [@jorgecoca](https://github.com/jorgecoca)
+- [@noahmateen](https://github.com/noahmateen)
 
 ## License
 

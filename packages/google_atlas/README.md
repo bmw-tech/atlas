@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=svg)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
 [![codecov](https://codecov.io/gh/bmw-tech/atlas/branch/master/graph/badge.svg)](https://codecov.io/gh/bmw-tech/atlas)
 
-Google Maps Atlas Provider that is built to work with [atlas](../atlas/README.md).
+Google Maps Atlas Provider that is built to work with [atlas](https://pub.dev/packages/atlas).
 
 ## Quick Start
 
@@ -56,11 +56,13 @@ class AtlasSample extends StatelessWidget {
 
 Project Lead(s):
 
-- @tchabot22
+- [@tchabot22](https://github.com/tchabot22)
 
 Main Maintainer(s):
 
-- @felangel
+- [@felangel](https://github.com/felangel)
+- [@jorgecoca](https://github.com/jorgecoca)
+- [@noahmateen](https://github.com/noahmateen)
 
 ## License
 
