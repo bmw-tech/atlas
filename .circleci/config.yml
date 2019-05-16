@@ -10,16 +10,14 @@ orbs:
 jobs:
   build_atlas:
     executor: flutter_sdk_image
-    environment:
-      - FLUTTER: true
+    environment:      
       - PACKAGE: atlas
     steps:
       - checkout
       - run: scripts/run_ci.sh
   build_google_atlas:
     executor: flutter_sdk_image
-    environment:
-      - FLUTTER: true
+    environment:      
       - PACKAGE: google_atlas
     steps:
       - checkout
@@ -27,7 +25,7 @@ jobs:
 
 workflows:
   version: 2.1
-  mobx_packages:
+  atlas_packages:
     jobs:
       - build_atlas
       - build_google_atlas

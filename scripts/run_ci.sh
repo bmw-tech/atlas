@@ -8,7 +8,7 @@ cd packages/$PACKAGE
 
 dartfmt --set-exit-if-changed .
 
-if [[ "${FLUTTER}" == true ]]; then
+if grep -q 'sdk: flutter' "./pubspec.yaml"; then
   flutter packages get
   flutter analyze
   flutter test --coverage --coverage-path coverage/lcov.info
