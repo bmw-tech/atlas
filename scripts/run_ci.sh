@@ -6,8 +6,9 @@ set -o xtrace
 
 cd packages/$PACKAGE
 
-if [[ "${FLUTTER}" = true ]]
-then
+dartfmt --set-exit-if-changed .
+
+if [[ "${FLUTTER}" == true ]]; then
   flutter packages get
   flutter analyze
   flutter test --coverage --coverage-path coverage/lcov.info
