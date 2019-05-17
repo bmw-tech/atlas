@@ -6,6 +6,7 @@ Map Marker Integration and Documentation Updates
 
 - Marker Definition and Integration
 - Added Documentation to Atlas APIs
+- Renamed `CoordinatePair` to `LatLng`
 
 # v0.0.1 (2019-5-16)
 

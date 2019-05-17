@@ -5,8 +5,8 @@ import 'package:atlas/atlas.dart';
 /// the view point from which the world is shown in the map view.
 /// Aggregates the camera's `target` geographical location and the its `zoom` level.
 class CameraPosition {
-  /// The camera's `target` position as a `CoordinatePair`.
-  final CoordinatePair target;
+  /// The camera's `target` position as `LatLng`.
+  final LatLng target;
 
   /// The camera's zoom level as a `double`.
   final double zoom;

@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  atlas: ^0.0.1
+  atlas:
+    path: ../
 
 flutter:
   uses-material-design: true

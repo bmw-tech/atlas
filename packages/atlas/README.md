@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
 
 class AtlasSample extends StatelessWidget {
   final CameraPosition _initialCameraPosition = CameraPosition(
-    target: CoordinatePair(
+    target: LatLng(
       latitude: 37.42796133580664,
       longitude: -122.085749655962,
     ),

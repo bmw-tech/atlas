@@ -7,7 +7,7 @@ main() {
       try {
         Marker(
           id: null,
-          position: CoordinatePair(
+          position: LatLng(
             latitude: 37.42796133580664,
             longitude: -122.085749655962,
           ),
@@ -29,7 +29,7 @@ main() {
 
     test('should have correct properties when no onTap is provided', () {
       final expectedId = 'id';
-      final expectedPosition = CoordinatePair(
+      final expectedPosition = LatLng(
         latitude: 37.42796133580664,
         longitude: -122.085749655962,
       );
@@ -46,7 +46,7 @@ main() {
 
     test('should have correct properties when onTap is provided', () {
       final expectedId = 'id';
-      final expectedPosition = CoordinatePair(
+      final expectedPosition = LatLng(
         latitude: 37.42796133580664,
         longitude: -122.085749655962,
       );

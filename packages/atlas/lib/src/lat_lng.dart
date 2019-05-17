@@ -2,14 +2,14 @@ import 'package:meta/meta.dart';
 
 /// A pair of latitude and longitude coordinates.
 /// The `latitude` and `longitude` are stored as degrees.
-class CoordinatePair {
+class LatLng {
   /// The latitude in degrees between -90.0 and 90.0, both inclusive.
   final double latitude;
 
   /// The longitude in degrees between -180.0 (inclusive) and 180.0 (exclusive).
   final double longitude;
 
-  const CoordinatePair({
+  const LatLng({
     @required double latitude,
     @required double longitude,
   })  : assert(latitude != null),

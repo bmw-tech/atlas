@@ -36,7 +36,7 @@ main() {
         'should call provider build method with correct arguments when no map markers are provided',
         (WidgetTester tester) async {
       final CameraPosition initialCameraPosition = CameraPosition(
-        target: CoordinatePair(
+        target: LatLng(
           latitude: 37.42796133580664,
           longitude: -122.085749655962,
         ),
@@ -69,7 +69,7 @@ main() {
         'should call provider build method with correct arguments when map markers are provided',
         (WidgetTester tester) async {
       final CameraPosition initialCameraPosition = CameraPosition(
-        target: CoordinatePair(
+        target: LatLng(
           latitude: 37.42796133580664,
           longitude: -122.085749655962,
         ),
@@ -78,7 +78,7 @@ main() {
       final Set<Marker> markers = [
         Marker(
           id: '0',
-          position: CoordinatePair(
+          position: LatLng(
             latitude: 37.42796133580664,
             longitude: -122.085749655962,
           ),

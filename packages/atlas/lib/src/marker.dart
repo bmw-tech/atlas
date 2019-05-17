@@ -6,10 +6,10 @@ class Marker {
   /// Uniquely identifies a `Marker`.
   final String id;
 
-  /// The location where the `Marker` is drawn is represented as a `CoordinatePair`.
-  final CoordinatePair position;
+  /// The location where the `Marker` is drawn is represented as `LatLng`.
+  final LatLng position;
 
-  /// `void Function` which is called whenever a `Marker` is tapped.
+  /// A `void Function` which is called whenever a `Marker` is tapped.
   final void Function() onTap;
 
   const Marker({@required this.id, @required this.position, this.onTap})
