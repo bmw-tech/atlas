@@ -27,6 +27,10 @@ main() {
         (googleMap as GoogleMaps.GoogleMap).initialCameraPosition,
         expectedInitialGoogleCameraPosition,
       );
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).mapType,
+        GoogleMaps.MapType.normal,
+      );
     });
   });
 }

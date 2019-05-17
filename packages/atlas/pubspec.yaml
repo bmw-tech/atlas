@@ -1,7 +1,14 @@
 name: atlas
-description: A new Flutter project.
-
-version: 0.0.0
+description: An extensible map abstraction for Flutter with support for multiple map providers
+version: 0.0.1
+authors:
+  - Jorge Coca <jcocaramos@gmail.com>
+  - Felix Angelov <felangelov@gmail.com>
+  - Noah Mateen <noahmateen@gmail.com>
+  - Tim Chabot <tchabot22@gmail.com>
+repository: https://github.com/bmw-tech/atlas
+issue_tracker: https://github.com/bmw-tech/atlas/issues
+homepage: https://bmw-tech.github.io/atlas
 
 environment:
   sdk: ">=2.0.0 <3.0.0"
