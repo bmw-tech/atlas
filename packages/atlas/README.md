@@ -1,9 +1,10 @@
-# atlas
+# Atlas
 
-[![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=svg)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
+[![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=shield)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
 [![codecov](https://codecov.io/gh/bmw-tech/atlas/branch/master/graph/badge.svg)](https://codecov.io/gh/bmw-tech/atlas)
+[![pub package](https://img.shields.io/pub/v/atlas.svg)](https://pub.dev/packages/atlas)
 
-The core Flutter Atlas Map Abstraction.
+An extensible map abstraction for Flutter with support for multiple map providers
 
 ## Quick Start
 

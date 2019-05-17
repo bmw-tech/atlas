@@ -32,7 +32,8 @@ main() {
       }
     });
 
-    testWidgets('should call provider build method with correct arguments',
+    testWidgets(
+        'should call provider build method with correct arguments when no map markers are provided',
         (WidgetTester tester) async {
       final CameraPosition initialCameraPosition = CameraPosition(
         target: CoordinatePair(
@@ -42,8 +43,10 @@ main() {
         zoom: 14.4746,
       );
       final mapKey = Key('__atlas_map__');
-      when(provider.build(initialCameraPosition: initialCameraPosition))
-          .thenReturn(Container(key: mapKey));
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+      )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -54,8 +57,58 @@ main() {
         ),
       );
       expect(find.byKey(mapKey), findsOneWidget);
-      verify(provider.build(initialCameraPosition: initialCameraPosition))
-          .called(1);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when map markers are provided',
+        (WidgetTester tester) async {
+      final CameraPosition initialCameraPosition = CameraPosition(
+        target: CoordinatePair(
+          latitude: 37.42796133580664,
+          longitude: -122.085749655962,
+        ),
+        zoom: 14.4746,
+      );
+      final Set<Marker> markers = [
+        Marker(
+          id: '0',
+          position: CoordinatePair(
+            latitude: 37.42796133580664,
+            longitude: -122.085749655962,
+          ),
+          onTap: () {
+            print('tapped!');
+          },
+        ),
+      ].toSet();
+      final mapKey = Key('__atlas_map__');
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: markers,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              markers: markers,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: markers,
+        ),
+      ).called(1);
     });
   });
 }
