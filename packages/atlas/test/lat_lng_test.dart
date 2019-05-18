@@ -1,11 +1,11 @@
-import 'package:atlas/src/coordinate_pair.dart';
+import 'package:atlas/atlas.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
-  group('CoordinatePair', () {
+  group('LatLng', () {
     test('should throw AssertionError if latitude is null', () {
       try {
-        CoordinatePair(
+        LatLng(
           latitude: null,
           longitude: 0.0,
         );
@@ -17,7 +17,7 @@ main() {
 
     test('should throw AssertionError if longitude is null', () {
       try {
-        CoordinatePair(
+        LatLng(
           latitude: 0.0,
           longitude: null,
         );
@@ -28,41 +28,41 @@ main() {
     });
 
     test('should compute normalized latitude when latitude is < -90', () {
-      final pair = CoordinatePair(latitude: -100, longitude: 0.0);
+      final pair = LatLng(latitude: -100, longitude: 0.0);
       expect(pair.latitude, -90);
     });
 
     test('should compute normalized latitude when latitude is > 90', () {
-      final pair = CoordinatePair(latitude: 100, longitude: 0.0);
+      final pair = LatLng(latitude: 100, longitude: 0.0);
       expect(pair.latitude, 90);
     });
 
     test(
         'should compute normalized latitude when latitude is between -90 and 90',
         () {
-      final pair = CoordinatePair(latitude: 0.0, longitude: 0.0);
+      final pair = LatLng(latitude: 0.0, longitude: 0.0);
       expect(pair.latitude, 0.0);
     });
 
     test('should compute normalized longitude when longitude is < -180', () {
-      final pair = CoordinatePair(latitude: 0.0, longitude: -190.0);
+      final pair = LatLng(latitude: 0.0, longitude: -190.0);
       expect(pair.longitude, 170.0);
     });
 
     test('should compute normalized longitude when longitude is < -180', () {
-      final pair = CoordinatePair(latitude: 0.0, longitude: -190.0);
+      final pair = LatLng(latitude: 0.0, longitude: -190.0);
       expect(pair.longitude, 170.0);
     });
 
     test('should compute normalized longitude when longitude is > 180', () {
-      final pair = CoordinatePair(latitude: 0.0, longitude: 190.0);
+      final pair = LatLng(latitude: 0.0, longitude: 190.0);
       expect(pair.longitude, -170.0);
     });
 
     test(
         'should compute normalized longitude when longitude is between -180 and 180',
         () {
-      final pair = CoordinatePair(latitude: 0.0, longitude: 0.0);
+      final pair = LatLng(latitude: 0.0, longitude: 0.0);
       expect(pair.longitude, 0.0);
     });
   });

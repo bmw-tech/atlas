@@ -1,13 +1,14 @@
-# atlas
+# Atlas
 
-[![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=svg)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
+[![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=shield)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
 [![codecov](https://codecov.io/gh/bmw-tech/atlas/branch/master/graph/badge.svg)](https://codecov.io/gh/bmw-tech/atlas)
 
-A Extensible Map Abstraction for Flutter which currently supports:
+An extensible map abstraction for Flutter with support for multiple map providers
 
-## Google Maps
-
-[![Google Maps](docs/assets/google_atlas.png)](packages/google_atlas/README.md)
+| Package                                                                             | Pub                                                                                                    |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| [atlas](https://github.com/bmw-tech/atlas/tree/master/packages/atlas)               | [![pub package](https://img.shields.io/pub/v/atlas.svg)](https://pub.dev/packages/atlas)               |
+| [google_atlas](https://github.com/bmw-tech/atlas/tree/master/packages/google_atlas) | [![pub package](https://img.shields.io/pub/v/google_atlas.svg)](https://pub.dev/packages/google_atlas) |
 
 ## Quick Start
 
@@ -16,9 +17,11 @@ A Extensible Map Abstraction for Flutter which currently supports:
 ```dart
 import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
+/// import your `AtlasProvider` of choice
 import 'package:custom_atlas/custom_atlas.dart';
 
 void main() {
+  /// Set your `AtlasProvider` instance
   AtlasProvider.instance = CustomAtlas();
   runApp(MyApp());
 }
@@ -48,6 +51,7 @@ class AtlasSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /// Use `Atlas` as your Map Widget
       body: Atlas(
         initialCameraPosition: _initialCameraPosition,
       ),

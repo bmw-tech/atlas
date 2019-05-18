@@ -14,7 +14,7 @@ main() {
 
     test('should have correct target and zoom level when no zoom is provided',
         () {
-      final expectedTarget = CoordinatePair(
+      final expectedTarget = LatLng(
         latitude: 37.42796133580664,
         longitude: -122.085749655962,
       );
@@ -25,7 +25,7 @@ main() {
     });
 
     test('should have correct target and zoom level when zoom is provided', () {
-      final expectedTarget = CoordinatePair(
+      final expectedTarget = LatLng(
         latitude: 37.42796133580664,
         longitude: -122.085749655962,
       );
