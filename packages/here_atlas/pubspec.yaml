@@ -1,0 +1,27 @@
+name: here_atlas
+description: HERE Map Provider for Atlas, an extensible map abstraction for Flutter with support for multiple map providers
+version: 0.0.1
+authors:
+  - Jorge Coca <jcocaramos@gmail.com>
+  - Felix Angelov <felangelov@gmail.com>
+  - Noah Mateen <noahmateen@gmail.com>
+  - Tim Chabot <tchabot22@gmail.com>
+repository: https://github.com/bmw-tech/atlas
+issue_tracker: https://github.com/bmw-tech/atlas/issues
+homepage: https://bmw-tech.github.io/atlas
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    androidPackage: com.bmw.here_atlas
+    pluginClass: HereAtlasPlugin
