@@ -12,10 +12,15 @@ class Atlas extends StatelessWidget {
   /// The [Set] of `markers` which will be rendered on the map.
   final Set<Marker> markers;
 
+  /// `onTap` gets called when the map is tapped.
+  /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
+  final ArgumentCallback<LatLng> onTap;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
     Set<Marker> markers,
+    this.onTap,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         super(key: key);
@@ -25,6 +30,7 @@ class Atlas extends StatelessWidget {
     return AtlasProvider.instance.build(
       initialCameraPosition: initialCameraPosition,
       markers: markers,
+      onTap: onTap,
     );
   }
 }
