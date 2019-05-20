@@ -5,11 +5,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 class GoogleAtlas extends Provider {
   @override
   Widget build({
-    CameraPosition initialCameraPosition,
+    @required CameraPosition initialCameraPosition,
+    @required Set<Marker> markers,
   }) {
     return GoogleMaps.GoogleMap(
       mapType: GoogleMaps.MapType.normal,
       initialCameraPosition: _toGoogleCameraPosition(initialCameraPosition),
+      markers: markers.map((m) => _toGoogleMapsMarker(m)).toSet(),
     );
   }
 
@@ -22,6 +24,17 @@ class GoogleAtlas extends Provider {
         cameraPosition.target.longitude,
       ),
       zoom: cameraPosition.zoom,
+    );
+  }
+
+  GoogleMaps.Marker _toGoogleMapsMarker(Marker marker) {
+    return GoogleMaps.Marker(
+      markerId: GoogleMaps.MarkerId(marker.id),
+      position: GoogleMaps.LatLng(
+        marker.position.latitude,
+        marker.position.longitude,
+      ),
+      onTap: marker.onTap,
     );
   }
 }

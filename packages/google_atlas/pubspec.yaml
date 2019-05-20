@@ -16,7 +16,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  atlas: ^0.0.1
+  atlas: ^0.0.2
   google_maps_flutter: ^0.5.13
 
 dev_dependencies:
