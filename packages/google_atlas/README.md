@@ -41,11 +41,24 @@ class AtlasSample extends StatelessWidget {
     ),
     zoom: 14.4746,
   );
+  final Set<Marker> _markers = Set<Marker>.from([
+    Marker(
+      id: 'marker-1',
+      position: LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      ),
+      onTap: () {
+        print('tapped marker-1');
+      },
+    )
+  ]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Atlas(
         initialCameraPosition: _initialCameraPosition,
+        markers: _markers,
       ),
     );
   }

@@ -2,12 +2,12 @@
 # See https://www.dartlang.org/tools/pub/glossary#lockfile
 packages:
   atlas:
-    dependency: "direct main"
+    dependency: transitive
     description:
-      path: "../packages/atlas"
-      relative: true
-    source: path
-    version: "0.0.0"
+      name: atlas
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   collection:
     dependency: transitive
     description:
@@ -26,7 +26,7 @@ packages:
       path: "../packages/google_atlas"
       relative: true
     source: path
-    version: "0.0.0"
+    version: "0.0.1"
   google_maps_flutter:
     dependency: transitive
     description:
