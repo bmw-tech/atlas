@@ -82,5 +82,70 @@ main() {
         expectedGoogleMarkers,
       );
     });
+
+    test('should return correct GoogleMap when build is called without onTap',
+        () {
+      final initialCameraPosition = CameraPosition(
+        target: LatLng(latitude: 0.0, longitude: -190.0),
+        zoom: 10.0,
+      );
+      final expectedInitialGoogleCameraPosition = GoogleMaps.CameraPosition(
+        target: GoogleMaps.LatLng(0.0, -190.0),
+        zoom: 10.0,
+      );
+      final googleMap = googleAtlas.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+      );
+      expect(googleMap is GoogleMaps.GoogleMap, true);
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).initialCameraPosition,
+        expectedInitialGoogleCameraPosition,
+      );
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).mapType,
+        GoogleMaps.MapType.normal,
+      );
+      try {
+        (googleMap as GoogleMaps.GoogleMap).onTap(GoogleMaps.LatLng(0, 0));
+      } catch (_) {
+        fail('should not throw');
+      }
+    });
+
+    test('should return correct GoogleMap when build is called with onTap', () {
+      final initialCameraPosition = CameraPosition(
+        target: LatLng(latitude: 0.0, longitude: -190.0),
+        zoom: 10.0,
+      );
+      final expectedInitialGoogleCameraPosition = GoogleMaps.CameraPosition(
+        target: GoogleMaps.LatLng(0.0, -190.0),
+        zoom: 10.0,
+      );
+      int onTapCallCount = 0;
+      LatLng onTapPosition;
+      final onTap = (LatLng position) {
+        onTapCallCount++;
+        onTapPosition = position;
+      };
+      final googleMap = googleAtlas.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        onTap: onTap,
+      );
+      expect(googleMap is GoogleMaps.GoogleMap, true);
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).initialCameraPosition,
+        expectedInitialGoogleCameraPosition,
+      );
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).mapType,
+        GoogleMaps.MapType.normal,
+      );
+      (googleMap as GoogleMaps.GoogleMap).onTap(GoogleMaps.LatLng(0, 0));
+      expect(onTapCallCount, 1);
+      expect(onTapPosition.latitude, 0);
+      expect(onTapPosition.longitude, 0);
+    });
   });
 }

@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.0.3 (2019-5-20)
+
+- Google Maps Provider supports onTap (atlas `v0.0.3`)
+
 # v0.0.2 (2019-5-20)
 
 - Google Maps Provider supports Markers (atlas `v0.0.2`)

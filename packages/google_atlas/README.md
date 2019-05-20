@@ -1,6 +1,6 @@
 # google_atlas
 
-[![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=svg)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
+[![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=shield)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
 [![codecov](https://codecov.io/gh/bmw-tech/atlas/branch/master/graph/badge.svg)](https://codecov.io/gh/bmw-tech/atlas)
 
 Google Maps Atlas Provider that is built to work with [atlas](https://pub.dev/packages/atlas).

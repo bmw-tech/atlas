@@ -43,6 +43,9 @@ class AtlasSample extends StatelessWidget {
       body: Atlas(
         initialCameraPosition: _initialCameraPosition,
         markers: _markers,
+        onTap: (LatLng position) {
+          print('map tapped: ${position.latitude}, ${position.longitude}');
+        },
       ),
     );
   }

@@ -1,5 +1,9 @@
 # atlas
 
+# v0.0.3 (2019-5-20)
+
+- `onTap` callback added to Atlas Map
+
 # v0.0.2 (2019-5-17)
 
 Map Marker Integration and Documentation Updates
