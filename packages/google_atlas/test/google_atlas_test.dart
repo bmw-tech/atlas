@@ -25,6 +25,7 @@ main() {
       final googleMap = googleAtlas.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        showMyLocation: false,
       );
       expect(googleMap is GoogleMaps.GoogleMap, true);
       expect(
@@ -67,6 +68,7 @@ main() {
             position: LatLng(latitude: 0.0, longitude: -190.0),
           ),
         ]),
+        showMyLocation: false,
       );
       expect(googleMap is GoogleMaps.GoogleMap, true);
       expect(
@@ -96,6 +98,7 @@ main() {
       final googleMap = googleAtlas.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        showMyLocation: false,
       );
       expect(googleMap is GoogleMaps.GoogleMap, true);
       expect(
@@ -131,6 +134,7 @@ main() {
       final googleMap = googleAtlas.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        showMyLocation: false,
         onTap: onTap,
       );
       expect(googleMap is GoogleMaps.GoogleMap, true);
@@ -146,6 +150,70 @@ main() {
       expect(onTapCallCount, 1);
       expect(onTapPosition.latitude, 0);
       expect(onTapPosition.longitude, 0);
+    });
+
+    test(
+        'should return correct GoogleMap when build is called with showMyLocation = false',
+        () {
+      final initialCameraPosition = CameraPosition(
+        target: LatLng(latitude: 0.0, longitude: -190.0),
+        zoom: 10.0,
+      );
+      final expectedInitialGoogleCameraPosition = GoogleMaps.CameraPosition(
+        target: GoogleMaps.LatLng(0.0, -190.0),
+        zoom: 10.0,
+      );
+      final expectedMyLocationEnabled = false;
+      final googleMap = googleAtlas.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        showMyLocation: expectedMyLocationEnabled,
+      );
+      expect(googleMap is GoogleMaps.GoogleMap, true);
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).initialCameraPosition,
+        expectedInitialGoogleCameraPosition,
+      );
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).mapType,
+        GoogleMaps.MapType.normal,
+      );
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).myLocationEnabled,
+        expectedMyLocationEnabled,
+      );
+    });
+
+    test(
+        'should return correct GoogleMap when build is called with showMyLocation = true',
+        () {
+      final initialCameraPosition = CameraPosition(
+        target: LatLng(latitude: 0.0, longitude: -190.0),
+        zoom: 10.0,
+      );
+      final expectedInitialGoogleCameraPosition = GoogleMaps.CameraPosition(
+        target: GoogleMaps.LatLng(0.0, -190.0),
+        zoom: 10.0,
+      );
+      final expectedMyLocationEnabled = true;
+      final googleMap = googleAtlas.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        showMyLocation: expectedMyLocationEnabled,
+      );
+      expect(googleMap is GoogleMaps.GoogleMap, true);
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).initialCameraPosition,
+        expectedInitialGoogleCameraPosition,
+      );
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).mapType,
+        GoogleMaps.MapType.normal,
+      );
+      expect(
+        (googleMap as GoogleMaps.GoogleMap).myLocationEnabled,
+        expectedMyLocationEnabled,
+      );
     });
   });
 }

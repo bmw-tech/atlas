@@ -8,9 +8,11 @@ class GoogleAtlas extends Provider {
   Widget build({
     @required CameraPosition initialCameraPosition,
     @required Set<Marker> markers,
+    @required bool showMyLocation,
     ArgumentCallback<LatLng> onTap,
   }) {
     return GoogleMaps.GoogleMap(
+      myLocationEnabled: showMyLocation,
       mapType: GoogleMaps.MapType.normal,
       initialCameraPosition: _toGoogleCameraPosition(initialCameraPosition),
       markers: markers.map((m) => _toGoogleMarker(m)).toSet(),
