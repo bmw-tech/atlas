@@ -12,5 +12,6 @@ abstract class Provider {
     final CameraPosition initialCameraPosition,
     final Set<Marker> markers,
     final ArgumentCallback<LatLng> onTap,
+    final bool showMyLocation,
   });
 }
