@@ -6,4 +6,3 @@ export 'src/camera_position.dart';
 export 'src/lat_lng.dart';
 export 'src/marker.dart';
 export 'src/provider.dart';
-export 'src/action.dart';

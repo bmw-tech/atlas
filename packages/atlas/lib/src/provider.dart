@@ -9,7 +9,7 @@ typedef void ArgumentCallback<T>(T argument);
 /// and set your `AtlasProvider.instance` to the instance of your custom `Provider`.
 abstract class Provider {
   Widget build({
-    final CameraPosition initialCameraPosition,
+    final CameraPosition cameraPosition,
     final Set<Marker> markers,
     final ArgumentCallback<LatLng> onTap,
     final bool showMyLocation,

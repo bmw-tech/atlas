@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 /// The underlying map provider that will be used must be specified as the
 /// `AtlasProvider.instance` before the `Atlas` widget is rendered.
 class Atlas extends StatelessWidget {
-  /// The `CameraPosition` which the map will initially be focused on.
-  final CameraPosition initialCameraPosition;
+  /// The `CameraPosition` which the map will be focused on
+  final CameraPosition cameraPosition;
 
   /// The [Set] of `markers` which will be rendered on the map.
   final Set<Marker> markers;
@@ -47,87 +47,30 @@ class Atlas extends StatelessWidget {
   /// my-location layer is enabled).
   ///
   /// See also:
-  ///   * [showMyLocation] parameter. 
+  ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
-
-  // List of actions that will be represented as buttons on the right side of the map
-  final List<Action> actions;
 
   Atlas({
     Key key,
-    @required this.initialCameraPosition,
+    @required this.cameraPosition,
     Set<Marker> markers,
     bool showMyLocation,
     bool showMyLocationButton,
-    List<Action> actions,
     this.onTap,
-  })  : assert(initialCameraPosition != null),
+  })  : assert(cameraPosition != null),
         markers = markers ?? Set<Marker>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
-        actions = actions ?? List<Action>(),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        AtlasProvider.instance.build(
-          initialCameraPosition: initialCameraPosition,
-          markers: markers,
-          onTap: onTap,
-          showMyLocation: showMyLocation,
-          showMyLocationButton: showMyLocationButton,
-        ),
-        Container(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: EdgeInsets.only(
-              top:250, 
-              right: 15,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children:
-                actions.map((action) => _createMapButton(action)).toList(),
-            ),
-          ),
-        ),
-      ],
+    return AtlasProvider.instance.build(
+      cameraPosition: cameraPosition,
+      markers: markers,
+      onTap: onTap,
+      showMyLocation: showMyLocation,
+      showMyLocationButton: showMyLocationButton,
     );
-  }
-
-  Widget _createMapButton(
-    Action action,
-  ) {
-    return Material(
-      key: action.key,
-      child: Ink(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey, width: 1.0),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(0x1E, 0x00, 0x00, 0x00),
-              offset: Offset(0.0, 0.0),
-              blurRadius: 2.0,
-            )
-          ],
-          color: Colors.white,
-          shape: BoxShape.rectangle,
-        ),
-        child: InkWell(
-          onTap: action.onTap,
-          child: Padding(
-            padding:EdgeInsets.all(7.0),
-            child: Icon(
-              action.iconData,
-              size: 28.0,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ),
-    ); 
   }
 }

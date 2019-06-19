@@ -17,16 +17,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AtlasSample extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return AtlasSampleState();
-  }
-
-}
-
-class AtlasSampleState extends State<AtlasSample> {
-  CameraPosition _initialCameraPosition = CameraPosition(
+class AtlasSample extends StatelessWidget {
+  final CameraPosition _cameraPosition = CameraPosition(
     target: LatLng(
       //latitude: 37.42796133580664,
       //longitude: -122.085749655962,
@@ -54,37 +46,13 @@ class AtlasSampleState extends State<AtlasSample> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Atlas(
-        initialCameraPosition: _initialCameraPosition,
+        cameraPosition: _cameraPosition,
         markers: _markers,
         onTap: (LatLng position) {
           print('map tapped: ${position.latitude}, ${position.longitude}');
         },
         showMyLocation: true,
         showMyLocationButton: true,
-        actions: [ 
-          Action(
-            key: Key('userAction'),
-            iconData: Icons.location_on,
-            onTap: () {
-              setState( () {
-                _initialCameraPosition = CameraPosition(
-                  target: LatLng(
-                    latitude: 41.8661,
-                    longitude: -88.1070,
-                  ),
-                  zoom: 12,
-                );
-              });
-            },
-          ),
-          Action(
-            key: Key('vehicleAction'),
-            iconData: Icons.location_searching,
-            onTap: () {
-              print('vehicle action tapped');
-            }
-          ),
-        ],
       ),
     );
   }
