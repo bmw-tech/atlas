@@ -6,15 +6,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 class GoogleAtlas extends Provider {
   @override
   Widget build({
-    @required CameraPosition initialCameraPosition,
+    @required CameraPosition cameraPosition,
     @required Set<Marker> markers,
     @required bool showMyLocation,
+    @required bool showMyLocationButton,
     ArgumentCallback<LatLng> onTap,
   }) {
     return GoogleMaps.GoogleMap(
       myLocationEnabled: showMyLocation,
+      myLocationButtonEnabled: showMyLocationButton,
       mapType: GoogleMaps.MapType.normal,
-      initialCameraPosition: _toGoogleCameraPosition(initialCameraPosition),
+      initialCameraPosition: _toGoogleCameraPosition(cameraPosition),
       markers: markers.map((m) => _toGoogleMarker(m)).toSet(),
       onTap: _toGoogleOnTap(onTap),
     );

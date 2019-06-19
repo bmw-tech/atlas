@@ -1,4 +1,8 @@
 # google_atlas
+# v0.0.5 (2019-6-19)
+
+- `showMyLocationButton` added to GoogleAtlas 
+- `initialCameraPosition` renamed to `cameraPosition`
 
 # v0.0.4 (2019-5-22)
 
