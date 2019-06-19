@@ -1,5 +1,10 @@
 # atlas
 
+# v0.0.5 (2019-6-19)
+
+- `showLocationButton` added to Atlas Map
+- `initialCameraPosition` renamed to `cameraPosition`
+
 # v0.0.4 (2019-5-22)
 
 - `showMyLocation` added to Atlas Map
