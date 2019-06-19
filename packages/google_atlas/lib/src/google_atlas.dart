@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
@@ -9,10 +10,13 @@ class GoogleAtlas extends Provider {
     @required CameraPosition initialCameraPosition,
     @required Set<Marker> markers,
     @required bool showMyLocation,
+    @required bool showMyLocationButton,
+    
     ArgumentCallback<LatLng> onTap,
   }) {
     return GoogleMaps.GoogleMap(
       myLocationEnabled: showMyLocation,
+      myLocationButtonEnabled: showMyLocationButton,
       mapType: GoogleMaps.MapType.normal,
       initialCameraPosition: _toGoogleCameraPosition(initialCameraPosition),
       markers: markers.map((m) => _toGoogleMarker(m)).toSet(),

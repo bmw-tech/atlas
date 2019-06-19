@@ -13,5 +13,6 @@ abstract class Provider {
     final Set<Marker> markers,
     final ArgumentCallback<LatLng> onTap,
     final bool showMyLocation,
+    final bool showMyLocationButton,
   });
 }

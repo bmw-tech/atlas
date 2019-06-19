@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Flutter",
+        "program": "example/lib/main.dart",
+        "request": "launch",
+        "type": "dart",
+        "args": ["--enable-software-rendering"]
+      }
+    ]
+  }

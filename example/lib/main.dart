@@ -17,26 +17,39 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AtlasSample extends StatelessWidget {
-  final CameraPosition _initialCameraPosition = CameraPosition(
+class AtlasSample extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return AtlasSampleState();
+  }
+
+}
+
+class AtlasSampleState extends State<AtlasSample> {
+  CameraPosition _initialCameraPosition = CameraPosition(
     target: LatLng(
-      latitude: 37.42796133580664,
-      longitude: -122.085749655962,
+      //latitude: 37.42796133580664,
+      //longitude: -122.085749655962,
+      latitude: 41.8781,
+      longitude: -87.6298,
     ),
-    zoom: 14.4746,
+    zoom: 12,
   );
   final Set<Marker> _markers = Set<Marker>.from([
     Marker(
       id: 'marker-1',
       position: LatLng(
-        latitude: 37.42796133580664,
-        longitude: -122.085749655962,
+        //latitude: 37.42796133580664,
+        //longitude: -122.085749655962,
+        latitude: 41.8781,
+        longitude: -87.6298
       ),
       onTap: () {
         print('tapped marker-1');
       },
     )
   ]);
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +59,32 @@ class AtlasSample extends StatelessWidget {
         onTap: (LatLng position) {
           print('map tapped: ${position.latitude}, ${position.longitude}');
         },
+        showMyLocation: true,
+        showMyLocationButton: true,
+        actions: [ 
+          Action(
+            key: Key('userAction'),
+            iconData: Icons.location_on,
+            onTap: () {
+              setState( () {
+                _initialCameraPosition = CameraPosition(
+                  target: LatLng(
+                    latitude: 41.8661,
+                    longitude: -88.1070,
+                  ),
+                  zoom: 12,
+                );
+              });
+            },
+          ),
+          Action(
+            key: Key('vehicleAction'),
+            iconData: Icons.location_searching,
+            onTap: () {
+              print('vehicle action tapped');
+            }
+          ),
+        ],
       ),
     );
   }
