@@ -6,8 +6,8 @@ import 'package:atlas/atlas.dart';
 /// The underlying map provider that will be used must be specified as the
 /// `AtlasProvider.instance` before the `Atlas` widget is rendered.
 class Atlas extends StatelessWidget {
-  /// The `CameraPosition` which the map will initially be focused on.
-  final CameraPosition initialCameraPosition;
+  /// The `CameraPosition` which the map will be focused on.
+  final CameraPosition cameraPosition;
 
   /// The [Set] of `markers` which will be rendered on the map.
   final Set<Marker> markers;
@@ -36,24 +36,40 @@ class Atlas extends StatelessWidget {
   /// when the map is loaded.
   final bool showMyLocation;
 
+  /// Enables or disables the my-location button.
+  ///
+  /// The my-location button causes the camera to move such that the user's
+  /// location is in the center of the map. If the button is enabled, it is
+  /// only shown when the my-location layer is enabled.
+  ///
+  /// By default, the my-location button is enabled (and hence shown when the
+  /// my-location layer is enabled).
+  ///
+  /// See also:
+  ///   * [showMyLocation] parameter.
+  final bool showMyLocationButton;
+
   Atlas({
     Key key,
-    @required this.initialCameraPosition,
+    @required this.cameraPosition,
     Set<Marker> markers,
     bool showMyLocation,
+    bool showMyLocationButton,
     this.onTap,
-  })  : assert(initialCameraPosition != null),
+  })  : assert(cameraPosition != null),
         markers = markers ?? Set<Marker>(),
         showMyLocation = showMyLocation ?? false,
+        showMyLocationButton = showMyLocationButton ?? false,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AtlasProvider.instance.build(
-      initialCameraPosition: initialCameraPosition,
+      cameraPosition: cameraPosition,
       markers: markers,
       onTap: onTap,
       showMyLocation: showMyLocation,
+      showMyLocationButton: showMyLocationButton,
     );
   }
 }
