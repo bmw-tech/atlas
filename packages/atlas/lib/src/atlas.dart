@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
-import 'package:flutter/material.dart';
 
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider
 /// and exposes a developer-friendly, declarative API for working with a map.
