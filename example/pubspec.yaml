@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_atlas: ^0.0.6
+  google_atlas:
+    path: ../packages/google_atlas
 
 flutter:
   uses-material-design: true
