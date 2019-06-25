@@ -37,31 +37,17 @@ class GoogleMapsProvider extends StatefulWidget {
     this.onTap,
   });
 
-  State<GoogleMapsProvider> createState() => _GoogleMapsProviderState(
-        cameraPosition: cameraPosition,
-        markers: markers,
-        showMyLocation: showMyLocation,
-        showMyLocationButton: showMyLocationButton,
-        onTap: onTap,
-      );
+  State<GoogleMapsProvider> createState() => _GoogleMapsProviderState();
 }
 
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
-  CameraPosition cameraPosition;
+  CameraPosition get cameraPosition => widget.cameraPosition;
   CameraPosition currentPosition;
-  Set<Marker> markers;
-  bool showMyLocation;
-  bool showMyLocationButton;
-  ArgumentCallback<LatLng> onTap;
+  Set<Marker> get markers => widget.markers;
+  bool get showMyLocation => widget.showMyLocation;
+  bool get showMyLocationButton => widget.showMyLocationButton;
+  ArgumentCallback<LatLng> get onTap => widget.onTap;
   GoogleMaps.GoogleMapController mapController;
-
-  _GoogleMapsProviderState({
-    @required this.cameraPosition,
-    @required this.markers,
-    @required this.showMyLocation,
-    @required this.showMyLocationButton,
-    this.onTap,
-  });
 
   void initState() {
     super.initState();
@@ -73,16 +59,16 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   @override
   Widget build(BuildContext context) {
-    this._onPositionUpdate();
+    _onPositionUpdate();
 
     return GoogleMaps.GoogleMap(
       key: Key("GoogleMap"),
-      myLocationEnabled: this.showMyLocation,
-      myLocationButtonEnabled: this.showMyLocationButton,
+      myLocationEnabled: showMyLocation,
+      myLocationButtonEnabled: showMyLocationButton,
       mapType: GoogleMaps.MapType.normal,
-      initialCameraPosition: _toGoogleCameraPosition(this.cameraPosition),
+      initialCameraPosition: _toGoogleCameraPosition(cameraPosition),
       markers: this.markers.map((m) => _toGoogleMarker(m)).toSet(),
-      onTap: _toGoogleOnTap(this.onTap),
+      onTap: _toGoogleOnTap(onTap),
       onMapCreated: _onMapCreated,
     );
   }
@@ -137,14 +123,13 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   /// If widget position has changed, then update the current position
   /// and move the camera.
   void _onPositionUpdate() {
-    if (this.mapController != null &&
-        this.currentPosition != this.widget.cameraPosition) {
-      currentPosition = this.widget.cameraPosition;
-      this.mapController.moveCamera(
-            GoogleMaps.CameraUpdate.newCameraPosition(
-              _toGoogleCameraPosition(this.currentPosition),
-            ),
-          );
+    if (mapController != null && currentPosition != widget.cameraPosition) {
+      currentPosition = widget.cameraPosition;
+      mapController.moveCamera(
+        GoogleMaps.CameraUpdate.newCameraPosition(
+          _toGoogleCameraPosition(currentPosition),
+        ),
+      );
     }
   }
 }
