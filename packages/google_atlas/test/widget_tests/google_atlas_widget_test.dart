@@ -322,7 +322,6 @@ main() {
   });
 }
 
-/// Atlas Test Sample Widget
 class AtlasTestSample extends StatefulWidget {
   final CameraPosition cameraPosition;
   final Set<Marker> markers;

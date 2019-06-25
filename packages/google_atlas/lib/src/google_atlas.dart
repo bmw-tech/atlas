@@ -42,16 +42,16 @@ class GoogleMapsProvider extends StatefulWidget {
 
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   CameraPosition get cameraPosition => widget.cameraPosition;
-  CameraPosition currentPosition;
   Set<Marker> get markers => widget.markers;
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
-  GoogleMaps.GoogleMapController mapController;
+  CameraPosition _currentPosition;
+  GoogleMaps.GoogleMapController _mapController;
 
   void initState() {
     super.initState();
-    currentPosition = CameraPosition(
+    _currentPosition = CameraPosition(
       target: LatLng(latitude: 0.0, longitude: 0.0),
       zoom: 10,
     );
@@ -62,12 +62,11 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     _onPositionUpdate();
 
     return GoogleMaps.GoogleMap(
-      key: Key("GoogleMap"),
       myLocationEnabled: showMyLocation,
       myLocationButtonEnabled: showMyLocationButton,
       mapType: GoogleMaps.MapType.normal,
       initialCameraPosition: _toGoogleCameraPosition(cameraPosition),
-      markers: this.markers.map((m) => _toGoogleMarker(m)).toSet(),
+      markers: markers.map((m) => _toGoogleMarker(m)).toSet(),
       onTap: _toGoogleOnTap(onTap),
       onMapCreated: _onMapCreated,
     );
@@ -117,17 +116,17 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   /// Callback method where GoogleMaps passes the map controller
   void _onMapCreated(GoogleMaps.GoogleMapController controller) {
-    mapController = controller;
+    _mapController = controller;
   }
 
   /// If widget position has changed, then update the current position
   /// and move the camera.
   void _onPositionUpdate() {
-    if (mapController != null && currentPosition != widget.cameraPosition) {
-      currentPosition = widget.cameraPosition;
-      mapController.moveCamera(
+    if (_mapController != null && _currentPosition != widget.cameraPosition) {
+      _currentPosition = widget.cameraPosition;
+      _mapController.moveCamera(
         GoogleMaps.CameraUpdate.newCameraPosition(
-          _toGoogleCameraPosition(currentPosition),
+          _toGoogleCameraPosition(_currentPosition),
         ),
       );
     }
