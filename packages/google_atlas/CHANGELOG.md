@@ -1,4 +1,10 @@
 # google_atlas
+# v0.0.6 (2019-6-25)
+
+- Changed GoogleAtlas to StatefulWidget in order to track position and provide map position updates when camera position changes
+- FakeMapController added to assist with testing GoogleAtlas map more accurately
+- Transitioned GoogleAtlas unit tests to widget tests to better evaluate functionality
+
 # v0.0.5 (2019-6-19)
 
 - `showMyLocationButton` added to GoogleAtlas 
