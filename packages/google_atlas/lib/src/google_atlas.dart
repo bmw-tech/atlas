@@ -12,6 +12,55 @@ class GoogleAtlas extends Provider {
     @required bool showMyLocationButton,
     ArgumentCallback<LatLng> onTap,
   }) {
+    return GoogleMapsProvider(
+      cameraPosition: cameraPosition,
+      markers: markers,
+      showMyLocation: showMyLocation,
+      showMyLocationButton: showMyLocationButton,
+      onTap: onTap,
+    );
+  }
+}
+
+class GoogleMapsProvider extends StatefulWidget {
+  final CameraPosition cameraPosition;
+  final Set<Marker> markers;
+  final bool showMyLocation;
+  final bool showMyLocationButton;
+  final ArgumentCallback<LatLng> onTap;
+
+  GoogleMapsProvider({
+    @required this.cameraPosition,
+    @required this.markers,
+    @required this.showMyLocation,
+    @required this.showMyLocationButton,
+    this.onTap,
+  });
+
+  State<GoogleMapsProvider> createState() => _GoogleMapsProviderState();
+}
+
+class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
+  CameraPosition get cameraPosition => widget.cameraPosition;
+  Set<Marker> get markers => widget.markers;
+  bool get showMyLocation => widget.showMyLocation;
+  bool get showMyLocationButton => widget.showMyLocationButton;
+  ArgumentCallback<LatLng> get onTap => widget.onTap;
+  CameraPosition _currentPosition;
+  GoogleMaps.GoogleMapController _mapController;
+
+  void initState() {
+    super.initState();
+    _currentPosition = CameraPosition(
+      target: LatLng(latitude: 0.0, longitude: 0.0),
+      zoom: 10,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _onPositionUpdate();
+
     return GoogleMaps.GoogleMap(
       myLocationEnabled: showMyLocation,
       myLocationButtonEnabled: showMyLocationButton,
@@ -19,6 +68,7 @@ class GoogleAtlas extends Provider {
       initialCameraPosition: _toGoogleCameraPosition(cameraPosition),
       markers: markers.map((m) => _toGoogleMarker(m)).toSet(),
       onTap: _toGoogleOnTap(onTap),
+      onMapCreated: _onMapCreated,
     );
   }
 
@@ -62,5 +112,23 @@ class GoogleAtlas extends Provider {
       latitude: position.latitude,
       longitude: position.longitude,
     );
+  }
+
+  /// Callback method where GoogleMaps passes the map controller
+  void _onMapCreated(GoogleMaps.GoogleMapController controller) {
+    _mapController = controller;
+  }
+
+  /// If widget position has changed, then update the current position
+  /// and move the camera.
+  void _onPositionUpdate() {
+    if (_mapController != null && _currentPosition != widget.cameraPosition) {
+      _currentPosition = widget.cameraPosition;
+      _mapController.moveCamera(
+        GoogleMaps.CameraUpdate.newCameraPosition(
+          _toGoogleCameraPosition(_currentPosition),
+        ),
+      );
+    }
   }
 }
