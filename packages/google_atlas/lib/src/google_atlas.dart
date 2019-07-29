@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
@@ -85,6 +87,47 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     );
   }
 
+  /// Converts an `Atlas.Markers` set to a `GoogleMaps.CameraUpdate`
+  GoogleMaps.CameraUpdate _toGoogleCameraUpdate(
+    CameraPosition cameraPosition,
+    Set<Marker> markers,
+  ) {
+    if (markers.isEmpty) {
+      return GoogleMaps.CameraUpdate.newCameraPosition(
+        _toGoogleCameraPosition(cameraPosition),
+      );
+    }
+
+    double maxNorth = double.negativeInfinity;
+    double maxEast = double.negativeInfinity;
+
+    double minSouth = double.infinity;
+    double minWest = double.infinity;
+
+    markers.forEach((marker) {
+      if (marker.position.latitude >= maxNorth) {
+        maxNorth = marker.position.latitude;
+      }
+      if (marker.position.latitude <= minSouth) {
+        minSouth = marker.position.latitude;
+      }
+      if (marker.position.longitude >= maxEast) {
+        maxEast = marker.position.longitude;
+      }
+      if (marker.position.longitude <= minWest) {
+        minWest = marker.position.longitude;
+      }
+    });
+
+    return GoogleMaps.CameraUpdate.newLatLngBounds(
+      GoogleMaps.LatLngBounds(
+        northeast: GoogleMaps.LatLng(maxNorth, maxEast),
+        southwest: GoogleMaps.LatLng(minSouth, minWest),
+      ),
+      120,
+    );
+  }
+
   /// Converts an `Atlas.Marker` to a `GoogleMaps.Marker`
   GoogleMaps.Marker _toGoogleMarker(Marker marker) {
     return GoogleMaps.Marker(
@@ -115,8 +158,14 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   }
 
   /// Callback method where GoogleMaps passes the map controller
-  void _onMapCreated(GoogleMaps.GoogleMapController controller) {
+  void _onMapCreated(GoogleMaps.GoogleMapController controller) async {
     _mapController = controller;
+    // Need to wait one tick before calling move camera
+    // https://github.com/flutter/flutter/issues/37185
+    await Future<void>.delayed(Duration(seconds: 0));
+    await _mapController.moveCamera(
+      _toGoogleCameraUpdate(cameraPosition, markers),
+    );
   }
 
   /// If widget position has changed, then update the current position
