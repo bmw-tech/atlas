@@ -1,4 +1,9 @@
 # google_atlas
+
+# v0.0.7 (2019-6-25)
+
+- Set camera bounds based on markers
+
 # v0.0.6 (2019-6-25)
 
 - Changed GoogleAtlas to StatefulWidget in order to track position and provide map position updates when camera position changes
@@ -7,7 +12,7 @@
 
 # v0.0.5 (2019-6-19)
 
-- `showMyLocationButton` added to GoogleAtlas 
+- `showMyLocationButton` added to GoogleAtlas
 - `initialCameraPosition` renamed to `cameraPosition`
 
 # v0.0.4 (2019-5-22)
