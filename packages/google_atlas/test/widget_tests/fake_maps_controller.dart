@@ -85,27 +85,36 @@ class FakePlatformGoogleMap {
     if (cameraUpdate == null && cameraUpdate.length < 2) {
       return;
     }
+    if (cameraUpdate[0] == 'newCameraPosition') {
+      final Map newPositionElements = cameraUpdate[1];
+      if (newPositionElements.length < 4) {
+        return;
+      }
 
-    final Map newPositionElements = cameraUpdate[1];
-    if (newPositionElements.length < 4) {
-      return;
+      final List targetCoords = newPositionElements['target'];
+      if (targetCoords.length < 2) {
+        return;
+      }
+
+      final zoom = newPositionElements['zoom'];
+      final newCameraPosition = CameraPosition(
+        target: LatLng(
+          targetCoords[0],
+          targetCoords[1],
+        ),
+        zoom: zoom,
+      );
+
+      cameraPosition = newCameraPosition;
     }
-
-    final List targetCoords = newPositionElements['target'];
-    if (targetCoords.length < 2) {
-      return;
+    if (cameraUpdate[0] == 'newLatLngBounds') {
+      cameraTargetBounds = CameraTargetBounds(
+        LatLngBounds(
+          northeast: LatLng(cameraUpdate[1][1][0], cameraUpdate[1][1][1]),
+          southwest: LatLng(cameraUpdate[1][0][0], cameraUpdate[1][0][1]),
+        ),
+      );
     }
-
-    final zoom = newPositionElements['zoom'];
-    final newCameraPosition = CameraPosition(
-      target: LatLng(
-        targetCoords[0],
-        targetCoords[1],
-      ),
-      zoom: zoom,
-    );
-
-    cameraPosition = newCameraPosition;
   }
 
   void updateMarkers(Map<dynamic, dynamic> markerUpdates) {

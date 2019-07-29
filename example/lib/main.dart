@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
 }
 
 class AtlasSample extends StatefulWidget {
-
   State<AtlasSample> createState() => _AtlasSampleState();
 }
 
@@ -34,11 +33,31 @@ class _AtlasSampleState extends State<AtlasSample> {
     Marker(
       id: 'marker-1',
       position: LatLng(
-        latitude: 37.42796133580664,
-        longitude: -122.085749655962,
+        latitude: 41.878113,
+        longitude: -87.629799,
       ),
       onTap: () {
         print('tapped marker-1');
+      },
+    ),
+    Marker(
+      id: 'marker-2',
+      position: LatLng(
+        latitude: 42.878113,
+        longitude: -87.629799,
+      ),
+      onTap: () {
+        print('tapped marker-2');
+      },
+    ),
+    Marker(
+      id: 'marker-3',
+      position: LatLng(
+        latitude: 40.878113,
+        longitude: -86.629799,
+      ),
+      onTap: () {
+        print('tapped marker-3');
       },
     )
   ]);
@@ -79,7 +98,7 @@ class _AtlasSampleState extends State<AtlasSample> {
                           zoom: 12.0,
                         );
                       });
-                    }
+                    },
                   ),
                 ],
               ),

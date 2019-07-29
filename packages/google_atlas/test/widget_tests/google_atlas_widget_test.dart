@@ -50,6 +50,8 @@ main() {
         ),
       ));
 
+      await tester.pumpAndSettle();
+
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
@@ -59,7 +61,7 @@ main() {
     });
 
     testWidgets(
-        'should return correct GoogleMap when build is called with markers',
+        'should return correct GoogleMap when build is called one marker',
         (WidgetTester tester) async {
       final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
@@ -83,18 +85,100 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-            cameraPosition: cameraPosition, markers: mockMarker),
+          cameraPosition: cameraPosition,
+          markers: mockMarker,
+        ),
       ));
+
+      await tester.pumpAndSettle();
 
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 1);
+      expect(
+        platformGoogleMap.cameraTargetBounds.bounds,
+        GoogleMaps.LatLngBounds(
+          northeast: GoogleMaps.LatLng(41.8781, -87.6298),
+          southwest: GoogleMaps.LatLng(41.8781, -87.6298),
+        ),
+      );
 
       final GoogleMaps.Marker actualMarker =
           platformGoogleMap.markersToAdd.first;
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
+    });
+
+    testWidgets(
+        'should return correct GoogleMap when build is called with multiple markers',
+        (WidgetTester tester) async {
+      final GoogleMaps.Marker expectedFirstMarker = GoogleMaps.Marker(
+        markerId: GoogleMaps.MarkerId('marker-1'),
+        onTap: () {},
+        position: GoogleMaps.LatLng(41.8781, -87.6298),
+      );
+
+      final GoogleMaps.Marker expectedSecondMarker = GoogleMaps.Marker(
+        markerId: GoogleMaps.MarkerId('marker-2'),
+        onTap: () {},
+        position: GoogleMaps.LatLng(44.8781, -83.6298),
+      );
+
+      final Set<Marker> mockMarker = Set<Marker>.from([
+        Marker(
+          id: 'marker-1',
+          position: LatLng(
+            latitude: 41.8781,
+            longitude: -87.6298,
+          ),
+          onTap: () {
+            print('tapped marker-1');
+          },
+        ),
+        Marker(
+          id: 'marker-2',
+          position: LatLng(
+            latitude: 44.8781,
+            longitude: -83.6298,
+          ),
+          onTap: () {
+            print('tapped marker-2');
+          },
+        )
+      ]);
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          cameraPosition: cameraPosition,
+          markers: mockMarker,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.markersToAdd.length, 2);
+      expect(
+        platformGoogleMap.cameraTargetBounds.bounds,
+        GoogleMaps.LatLngBounds(
+          northeast: GoogleMaps.LatLng(44.8781, -83.6298),
+          southwest: GoogleMaps.LatLng(41.8781, -87.6298),
+        ),
+      );
+
+      final GoogleMaps.Marker firstActualMarker =
+          platformGoogleMap.markersToAdd.first;
+      expect(firstActualMarker, equals(expectedFirstMarker));
+
+      final GoogleMaps.Marker secondActualMarker =
+          platformGoogleMap.markersToAdd.last;
+      expect(secondActualMarker, equals(expectedSecondMarker));
+
+      expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
     });
 
     /* Track Google Maps Flutter Plugin Issue on better interactive testing.  
@@ -112,6 +196,7 @@ main() {
         ));
 
         await tester.pumpAndSettle();
+
         final googleMap =
             find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
         (googleMap as GoogleMaps.GoogleMap).onTap(GoogleMaps.LatLng(0, 0));
@@ -171,6 +256,8 @@ main() {
         ),
       ));
 
+      await tester.pumpAndSettle();
+
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
@@ -195,6 +282,8 @@ main() {
         ),
       ));
 
+      await tester.pumpAndSettle();
+
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
@@ -217,6 +306,8 @@ main() {
           cameraPosition: cameraPosition,
         ),
       ));
+
+      await tester.pumpAndSettle();
 
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
@@ -242,6 +333,8 @@ main() {
         ),
       ));
 
+      await tester.pumpAndSettle();
+
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
@@ -266,6 +359,8 @@ main() {
         ),
       ));
 
+      await tester.pumpAndSettle();
+
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
@@ -289,6 +384,8 @@ main() {
         ),
       ));
 
+      await tester.pumpAndSettle();
+
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
@@ -310,6 +407,8 @@ main() {
           cameraPosition: cameraPosition,
         ),
       ));
+
+      await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(Key('TestButton')));
       await tester.pumpAndSettle();
