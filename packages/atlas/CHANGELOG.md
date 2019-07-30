@@ -1,5 +1,9 @@
 # atlas
 
+# v0.0.6 (2019-7-30)
+
+- Remove `CameraPosition` (replaced with `LatLng` position)
+
 # v0.0.5 (2019-6-19)
 
 - `showLocationButton` added to Atlas Map

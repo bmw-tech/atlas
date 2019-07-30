@@ -60,5 +60,25 @@ main() {
       expect(marker.position, expectedPosition);
       expect(marker.onTap, expectedOnTap);
     });
+
+    test('different instances with same properties should be equal', () {
+      final marker1 = Marker(
+        id: 'id',
+        position: LatLng(
+          latitude: 37.42796133580664,
+          longitude: -122.085749655962,
+        ),
+        onTap: () {},
+      );
+      final marker2 = Marker(
+        id: 'id',
+        position: LatLng(
+          latitude: 37.42796133580664,
+          longitude: -122.085749655962,
+        ),
+        onTap: () {},
+      );
+      expect(marker1, marker2);
+    });
   });
 }

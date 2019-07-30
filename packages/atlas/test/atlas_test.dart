@@ -14,14 +14,14 @@ main() {
       AtlasProvider.instance = provider;
     });
 
-    testWidgets('should throw exception if cameraPosition is null',
+    testWidgets('should throw exception if position is null',
         (WidgetTester tester) async {
       try {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
               body: Atlas(
-                cameraPosition: null,
+                position: null,
               ),
             ),
           ),
@@ -35,16 +35,13 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when no map markers are provided',
         (WidgetTester tester) async {
-      final CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 14.4746,
+      final LatLng position = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
       );
       final mapKey = Key('__atlas_map__');
       when(provider.build(
-        cameraPosition: cameraPosition,
+        position: position,
         markers: Set<Marker>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -53,7 +50,7 @@ main() {
         MaterialApp(
           home: Scaffold(
             body: Atlas(
-              cameraPosition: cameraPosition,
+              position: position,
             ),
           ),
         ),
@@ -61,7 +58,7 @@ main() {
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
         provider.build(
-          cameraPosition: cameraPosition,
+          position: position,
           markers: Set<Marker>(),
           showMyLocation: false,
           showMyLocationButton: false,
@@ -72,12 +69,9 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when map markers are provided',
         (WidgetTester tester) async {
-      final CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 14.4746,
+      final LatLng position = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
       );
       final Set<Marker> markers = [
         Marker(
@@ -93,7 +87,7 @@ main() {
       ].toSet();
       final mapKey = Key('__atlas_map__');
       when(provider.build(
-        cameraPosition: cameraPosition,
+        position: position,
         markers: markers,
         showMyLocation: false,
         showMyLocationButton: false,
@@ -102,7 +96,7 @@ main() {
         MaterialApp(
           home: Scaffold(
             body: Atlas(
-              cameraPosition: cameraPosition,
+              position: position,
               markers: markers,
             ),
           ),
@@ -111,7 +105,7 @@ main() {
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
         provider.build(
-          cameraPosition: cameraPosition,
+          position: position,
           markers: markers,
           showMyLocation: false,
           showMyLocationButton: false,
@@ -122,19 +116,16 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when onTap is provided',
         (WidgetTester tester) async {
-      final CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 14.4746,
+      final LatLng position = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
       );
       final Function(LatLng) onTap = (LatLng position) {
         print('onTap ${position.latitude}, ${position.latitude}');
       };
       final mapKey = Key('__atlas_map__');
       when(provider.build(
-        cameraPosition: cameraPosition,
+        position: position,
         markers: Set<Marker>(),
         onTap: onTap,
         showMyLocation: false,
@@ -144,7 +135,7 @@ main() {
         MaterialApp(
           home: Scaffold(
             body: Atlas(
-              cameraPosition: cameraPosition,
+              position: position,
               onTap: onTap,
             ),
           ),
@@ -153,7 +144,7 @@ main() {
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
         provider.build(
-          cameraPosition: cameraPosition,
+          position: position,
           markers: Set<Marker>(),
           onTap: onTap,
           showMyLocation: false,
@@ -165,16 +156,13 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocation is enabled',
         (WidgetTester tester) async {
-      final CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 14.4746,
+      final LatLng position = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
       );
       final mapKey = Key('__atlas_map__');
       when(provider.build(
-        cameraPosition: cameraPosition,
+        position: position,
         markers: Set<Marker>(),
         showMyLocation: true,
         showMyLocationButton: false,
@@ -183,7 +171,7 @@ main() {
         MaterialApp(
           home: Scaffold(
             body: Atlas(
-              cameraPosition: cameraPosition,
+              position: position,
               showMyLocation: true,
             ),
           ),
@@ -192,7 +180,7 @@ main() {
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
         provider.build(
-          cameraPosition: cameraPosition,
+          position: position,
           markers: Set<Marker>(),
           showMyLocation: true,
           showMyLocationButton: false,
@@ -203,16 +191,13 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocation is not provided',
         (WidgetTester tester) async {
-      final CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 14.4746,
+      final LatLng position = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
       );
       final mapKey = Key('__atlas_map__');
       when(provider.build(
-        cameraPosition: cameraPosition,
+        position: position,
         markers: Set<Marker>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -221,7 +206,7 @@ main() {
         MaterialApp(
           home: Scaffold(
             body: Atlas(
-              cameraPosition: cameraPosition,
+              position: position,
             ),
           ),
         ),
@@ -229,7 +214,7 @@ main() {
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
         provider.build(
-          cameraPosition: cameraPosition,
+          position: position,
           markers: Set<Marker>(),
           showMyLocation: false,
           showMyLocationButton: false,
@@ -240,16 +225,13 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocationButton is enabled',
         (WidgetTester tester) async {
-      final CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 14.4746,
+      final LatLng position = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
       );
       final mapKey = Key('__atlas_map__');
       when(provider.build(
-        cameraPosition: cameraPosition,
+        position: position,
         markers: Set<Marker>(),
         showMyLocation: false,
         showMyLocationButton: true,
@@ -258,7 +240,7 @@ main() {
         MaterialApp(
           home: Scaffold(
             body: Atlas(
-              cameraPosition: cameraPosition,
+              position: position,
               showMyLocation: false,
               showMyLocationButton: true,
             ),
@@ -268,7 +250,7 @@ main() {
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
         provider.build(
-          cameraPosition: cameraPosition,
+          position: position,
           markers: Set<Marker>(),
           showMyLocation: false,
           showMyLocationButton: true,
@@ -279,16 +261,13 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocationButton is not provided',
         (WidgetTester tester) async {
-      final CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 14.4746,
+      final LatLng position = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
       );
       final mapKey = Key('__atlas_map__');
       when(provider.build(
-        cameraPosition: cameraPosition,
+        position: position,
         markers: Set<Marker>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -297,7 +276,7 @@ main() {
         MaterialApp(
           home: Scaffold(
             body: Atlas(
-              cameraPosition: cameraPosition,
+              position: position,
             ),
           ),
         ),
@@ -305,7 +284,7 @@ main() {
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
         provider.build(
-          cameraPosition: cameraPosition,
+          position: position,
           markers: Set<Marker>(),
           showMyLocation: false,
           showMyLocationButton: false,
