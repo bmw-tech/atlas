@@ -15,4 +15,15 @@ class Marker {
   const Marker({@required this.id, @required this.position, this.onTap})
       : assert(id != null),
         assert(position != null);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final Marker typedOther = other;
+    return id == typedOther.id && position == typedOther.position;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ position.hashCode;
 }

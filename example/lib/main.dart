@@ -22,12 +22,9 @@ class AtlasSample extends StatefulWidget {
 }
 
 class _AtlasSampleState extends State<AtlasSample> {
-  CameraPosition _cameraPosition = CameraPosition(
-    target: LatLng(
-      latitude: 37.42796133580664,
-      longitude: -122.085749655962,
-    ),
-    zoom: 14.4746,
+  final _position = LatLng(
+    latitude: 37.42796133580664,
+    longitude: -122.085749655962,
   );
   final Set<Marker> _markers = Set<Marker>.from([
     Marker(
@@ -67,7 +64,7 @@ class _AtlasSampleState extends State<AtlasSample> {
       body: Stack(
         children: [
           Atlas(
-            cameraPosition: _cameraPosition,
+            position: _position,
             markers: _markers,
             showMyLocation: true,
             showMyLocationButton: false,
@@ -90,12 +87,9 @@ class _AtlasSampleState extends State<AtlasSample> {
                     child: Icon(Icons.location_on),
                     onPressed: () {
                       setState(() {
-                        _cameraPosition = CameraPosition(
-                          target: LatLng(
-                            latitude: 41.8661,
-                            longitude: -90.1070,
-                          ),
-                          zoom: 12.0,
+                        _position = LatLng(
+                          latitude: 41.8661,
+                          longitude: -90.1070,
                         );
                       });
                     },
