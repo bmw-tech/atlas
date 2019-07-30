@@ -8,14 +8,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 class GoogleAtlas extends Provider {
   @override
   Widget build({
-    @required CameraPosition cameraPosition,
+    @required LatLng position,
     @required Set<Marker> markers,
     @required bool showMyLocation,
     @required bool showMyLocationButton,
     ArgumentCallback<LatLng> onTap,
   }) {
     return GoogleMapsProvider(
-      cameraPosition: cameraPosition,
+      position: position,
       markers: markers,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
@@ -25,14 +25,14 @@ class GoogleAtlas extends Provider {
 }
 
 class GoogleMapsProvider extends StatefulWidget {
-  final CameraPosition cameraPosition;
+  final LatLng position;
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
 
   GoogleMapsProvider({
-    @required this.cameraPosition,
+    @required this.position,
     @required this.markers,
     @required this.showMyLocation,
     @required this.showMyLocationButton,
@@ -43,21 +43,13 @@ class GoogleMapsProvider extends StatefulWidget {
 }
 
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
-  CameraPosition get cameraPosition => widget.cameraPosition;
+  LatLng get position => widget.position;
   Set<Marker> get markers => widget.markers;
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
-  CameraPosition _currentPosition;
+  Set<Marker> _markers = Set.from([]);
   GoogleMaps.GoogleMapController _mapController;
-
-  void initState() {
-    super.initState();
-    _currentPosition = CameraPosition(
-      target: LatLng(latitude: 0.0, longitude: 0.0),
-      zoom: 10,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,34 +59,37 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
       myLocationEnabled: showMyLocation,
       myLocationButtonEnabled: showMyLocationButton,
       mapType: GoogleMaps.MapType.normal,
-      initialCameraPosition: _toGoogleCameraPosition(cameraPosition),
+      initialCameraPosition: _toGoogleCameraPosition(position),
       markers: markers.map((m) => _toGoogleMarker(m)).toSet(),
       onTap: _toGoogleOnTap(onTap),
       onMapCreated: _onMapCreated,
     );
   }
 
-  /// Converts an `Atlas.CameraPosition` to a `GoogleMaps.CameraPosition`
+  /// Converts an `Atlas.LatLng` to a `GoogleMaps.CameraPosition`
   GoogleMaps.CameraPosition _toGoogleCameraPosition(
-    CameraPosition cameraPosition,
+    LatLng position,
   ) {
     return GoogleMaps.CameraPosition(
       target: GoogleMaps.LatLng(
-        cameraPosition.target.latitude,
-        cameraPosition.target.longitude,
+        position.latitude,
+        position.longitude,
       ),
-      zoom: cameraPosition.zoom,
+      zoom: 17,
     );
   }
 
   /// Converts an `Atlas.Markers` set to a `GoogleMaps.CameraUpdate`
   GoogleMaps.CameraUpdate _toGoogleCameraUpdate(
-    CameraPosition cameraPosition,
+    LatLng position,
     Set<Marker> markers,
   ) {
-    if (markers.isEmpty) {
-      return GoogleMaps.CameraUpdate.newCameraPosition(
-        _toGoogleCameraPosition(cameraPosition),
+    if (markers.isEmpty || _markers.containsAll(markers)) {
+      return GoogleMaps.CameraUpdate.newLatLng(
+        GoogleMaps.LatLng(
+          position.latitude,
+          position.longitude,
+        ),
       );
     }
 
@@ -118,6 +113,21 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
         minWest = marker.position.longitude;
       }
     });
+
+    if (position.latitude >= maxNorth) {
+      maxNorth = position.latitude;
+    }
+    if (position.latitude <= minSouth) {
+      minSouth = position.latitude;
+    }
+    if (position.longitude >= maxEast) {
+      maxEast = position.longitude;
+    }
+    if (position.longitude <= minWest) {
+      minWest = position.longitude;
+    }
+
+    _markers = markers;
 
     return GoogleMaps.CameraUpdate.newLatLngBounds(
       GoogleMaps.LatLngBounds(
@@ -164,20 +174,18 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     // https://github.com/flutter/flutter/issues/37185
     await Future<void>.delayed(Duration(seconds: 0));
     await _mapController.moveCamera(
-      _toGoogleCameraUpdate(cameraPosition, markers),
+      GoogleMaps.CameraUpdate.zoomTo(15),
+    );
+    await _mapController.moveCamera(
+      _toGoogleCameraUpdate(position, markers),
     );
   }
 
   /// If widget position has changed, then update the current position
   /// and move the camera.
   void _onPositionUpdate() {
-    if (_mapController != null && _currentPosition != widget.cameraPosition) {
-      _currentPosition = widget.cameraPosition;
-      _mapController.moveCamera(
-        GoogleMaps.CameraUpdate.newCameraPosition(
-          _toGoogleCameraPosition(_currentPosition),
-        ),
-      );
-    }
+    _mapController?.moveCamera(
+      _toGoogleCameraUpdate(position, markers),
+    );
   }
 }

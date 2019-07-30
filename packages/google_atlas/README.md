@@ -34,12 +34,9 @@ class MyApp extends StatelessWidget {
 }
 
 class AtlasSample extends StatelessWidget {
-  final CameraPosition cameraPosition = CameraPosition(
-    target: CoordinatePair(
-      latitude: 37.42796133580664,
-      longitude: -122.085749655962,
-    ),
-    zoom: 14.4746,
+  final LatLng position = LatLng(
+    latitude: 37.42796133580664,
+    longitude: -122.085749655962,
   );
   final Set<Marker> _markers = Set<Marker>.from([
     Marker(
@@ -57,7 +54,7 @@ class AtlasSample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Atlas(
-        initialCameraPosition: cameraPosition,
+        position: position,
         markers: _markers,
       ),
     );
