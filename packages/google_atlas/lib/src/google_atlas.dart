@@ -75,7 +75,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
         position.latitude,
         position.longitude,
       ),
-      zoom: 17,
+      zoom: 15,
     );
   }
 

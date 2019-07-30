@@ -1,5 +1,10 @@
 # google_atlas
 
+# v0.0.8 (2019-7-30)
+
+- Remove `CameraPosition`
+- Map Bounding Improvements
+
 # v0.0.7 (2019-6-25)
 
 - Set camera bounds based on markers
