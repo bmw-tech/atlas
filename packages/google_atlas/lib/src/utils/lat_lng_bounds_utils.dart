@@ -7,7 +7,7 @@ class LatLngBoundsUtils {
     final maxNorth = -90.0;
     final maxEast = -180;
     final minSouth = 90.0;
-    double minWest = 180.0;
+    final minWest = 180.0;
 
     if (markers == null || markers.isEmpty) {
       return null;
