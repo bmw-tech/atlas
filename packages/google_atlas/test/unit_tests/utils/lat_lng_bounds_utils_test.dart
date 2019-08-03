@@ -5,7 +5,6 @@ import 'package:atlas/atlas.dart';
 
 void main() {
   group('LatLngBoundsUtils', () {
-    setUp(() {});
 
     group('formLatLngBoundsFromMarkers', () {
       test('should return null if markers is null', () {
