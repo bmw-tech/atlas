@@ -27,7 +27,7 @@ class LatLngBoundsUtils {
       }
     });
 
-    //take the shorter half around the globe
+    // take the shorter half around the globe
     if ((maxEast - minWest) > 180.0) {
       final temp = maxEast;
       maxEast = minWest;
