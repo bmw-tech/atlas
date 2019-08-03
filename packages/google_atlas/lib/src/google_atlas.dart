@@ -96,7 +96,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     _markers = markers;
 
     GoogleMaps.LatLngBounds latLngBounds =
-        LatLngBoundsUtils.formLatLngBoundsFromMarkers(markers);
+        LatLngBoundsUtils.mapMarkersToLatLngBounds(markers);
 
     return GoogleMaps.CameraUpdate.newLatLngBounds(
       LatLngBoundsUtils.newLatLngBoundsFromPosition(latLngBounds, position),

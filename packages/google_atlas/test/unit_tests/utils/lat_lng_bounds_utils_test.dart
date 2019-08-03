@@ -5,15 +5,13 @@ import 'package:atlas/atlas.dart';
 
 void main() {
   group('LatLngBoundsUtils', () {
-
-    group('formLatLngBoundsFromMarkers', () {
+    group('mapMarkersToLatLngBounds', () {
       test('should return null if markers is null', () {
-        expect(LatLngBoundsUtils.formLatLngBoundsFromMarkers(null), null);
+        expect(LatLngBoundsUtils.mapMarkersToLatLngBounds(null), null);
       });
 
       test('should return null if markers is empty', () {
-        expect(
-            LatLngBoundsUtils.formLatLngBoundsFromMarkers(Set.from([])), null);
+        expect(LatLngBoundsUtils.mapMarkersToLatLngBounds(Set.from([])), null);
       });
 
       test('should return correct bounding box if markers is not empty', () {
@@ -40,7 +38,7 @@ void main() {
           ),
         ].toSet();
         GoogleMaps.LatLngBounds results =
-            LatLngBoundsUtils.formLatLngBoundsFromMarkers(markers);
+            LatLngBoundsUtils.mapMarkersToLatLngBounds(markers);
         expect(results.northeast.latitude, moreOrLessEquals(lat2));
         expect(results.northeast.longitude, moreOrLessEquals(lng1));
         expect(results.southwest.latitude, moreOrLessEquals(lat1));
@@ -71,7 +69,7 @@ void main() {
           ),
         ].toSet();
         GoogleMaps.LatLngBounds results =
-            LatLngBoundsUtils.formLatLngBoundsFromMarkers(markers);
+            LatLngBoundsUtils.mapMarkersToLatLngBounds(markers);
         expect(results.northeast.latitude, moreOrLessEquals(lat2));
         expect(results.northeast.longitude, moreOrLessEquals(lng2));
         expect(results.southwest.latitude, moreOrLessEquals(lat1));
@@ -102,7 +100,7 @@ void main() {
           ),
         ].toSet();
         GoogleMaps.LatLngBounds results =
-            LatLngBoundsUtils.formLatLngBoundsFromMarkers(markers);
+            LatLngBoundsUtils.mapMarkersToLatLngBounds(markers);
         expect(results.northeast.latitude, moreOrLessEquals(lat1));
         expect(results.northeast.longitude, moreOrLessEquals(lng2));
         expect(results.southwest.latitude, moreOrLessEquals(lat2));
@@ -133,7 +131,7 @@ void main() {
           ),
         ].toSet();
         GoogleMaps.LatLngBounds results =
-            LatLngBoundsUtils.formLatLngBoundsFromMarkers(markers);
+            LatLngBoundsUtils.mapMarkersToLatLngBounds(markers);
         expect(results.northeast.latitude, moreOrLessEquals(lat1));
         expect(results.northeast.longitude, moreOrLessEquals(lng1));
         expect(results.southwest.latitude, moreOrLessEquals(lat2));
@@ -164,7 +162,7 @@ void main() {
           ),
         ].toSet();
         GoogleMaps.LatLngBounds results =
-            LatLngBoundsUtils.formLatLngBoundsFromMarkers(markers);
+            LatLngBoundsUtils.mapMarkersToLatLngBounds(markers);
         expect(results.northeast.latitude, moreOrLessEquals(lat1));
         expect(results.northeast.longitude, moreOrLessEquals(lng1));
         expect(results.southwest.latitude, moreOrLessEquals(lat2));
