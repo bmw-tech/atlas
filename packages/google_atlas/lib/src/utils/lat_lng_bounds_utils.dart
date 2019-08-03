@@ -42,7 +42,9 @@ class LatLngBoundsUtils {
   }
 
   static GoogleMaps.LatLngBounds newLatLngBoundsFromPosition(
-      GoogleMaps.LatLngBounds origBounds, LatLng position) {
+      GoogleMaps.LatLngBounds originalBounds,
+      LatLng position,
+  ) {
     if (origBounds == null) {
       return null;
     } else if (position == null) {
