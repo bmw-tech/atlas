@@ -87,7 +87,7 @@ class LatLngBoundsUtils {
 
       //take the shorter half around the globe
       if ((maxEast - minWest) > 180.0) {
-        final double temp = maxEast;
+        final temp = maxEast;
         maxEast = minWest;
         minWest = temp;
       }
