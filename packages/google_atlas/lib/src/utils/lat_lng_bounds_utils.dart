@@ -5,7 +5,7 @@ class LatLngBoundsUtils {
   static GoogleMaps.LatLngBounds formLatLngBoundsFromMarkers(
       Set<Marker> markers) {
     final maxNorth = -90.0;
-    double maxEast = -180;
+    final maxEast = -180;
     double minSouth = 90.0;
     double minWest = 180.0;
 
