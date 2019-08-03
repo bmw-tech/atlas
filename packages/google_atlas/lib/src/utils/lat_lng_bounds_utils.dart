@@ -47,7 +47,8 @@ class LatLngBoundsUtils {
   ) {
     if (origBounds == null) {
       return null;
-    } else if (position == null) {
+    }
+    if (position == null) {
       return origBounds;
     } else {
       double maxNorth = origBounds.northeast.latitude;
