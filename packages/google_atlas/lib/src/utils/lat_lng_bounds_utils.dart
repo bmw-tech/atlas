@@ -2,7 +2,7 @@ import 'package:atlas/atlas.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 class LatLngBoundsUtils {
-  static GoogleMaps.LatLngBounds formLatLngBoundsFromMarkers(
+  static GoogleMaps.LatLngBounds mapMarkersToLatLngBounds(
       Set<Marker> markers) {
     final maxNorth = -90.0;
     final maxEast = -180;
