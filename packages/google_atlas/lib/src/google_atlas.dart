@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
-import './utils/lat_lng_bounds_utils.dart';
+import 'package:google_atlas/google_atlas.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 /// `Atlas` Provider for Google Maps

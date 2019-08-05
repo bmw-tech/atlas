@@ -2,11 +2,18 @@ import 'package:atlas/atlas.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 class LatLngBoundsUtils {
+  static const double _MAX_LATITUDE = 90.0;
+  static const double _MIN_LATITUDE = -90.0;
+  static const double _MAX_LONGITUDE = 180.0;
+  static const double _MIN_LONGITUDE = -180.0;
+
+  /// return a [GoogleMaps.LatLngBounds] based on a set of markers's latitude and longitude
+  /// null is returned when [makers] is null or set is empty.
   static GoogleMaps.LatLngBounds mapMarkersToLatLngBounds(Set<Marker> markers) {
-    double maxNorth = -90.0;
-    double maxEast = -180;
-    double minSouth = 90.0;
-    double minWest = 180.0;
+    var maxNorth = _MIN_LATITUDE;
+    var maxEast = _MIN_LONGITUDE;
+    var minSouth = _MAX_LATITUDE;
+    var minWest = _MAX_LONGITUDE;
 
     if (markers == null || markers.isEmpty) {
       return null;
@@ -28,7 +35,7 @@ class LatLngBoundsUtils {
     });
 
     //take the shorter half around the globe
-    if ((maxEast - minWest) > 180.0) {
+    if ((maxEast - minWest) > _MAX_LONGITUDE) {
       final temp = maxEast;
       maxEast = minWest;
       minWest = temp;
@@ -40,6 +47,9 @@ class LatLngBoundsUtils {
     );
   }
 
+  /// return a new [GoogleMaps.LatLngBounds] based on an original bounding box and
+  /// a position.  The newly generated bounding box is centered on the position
+  /// and contains the orignal bounding box.
   static GoogleMaps.LatLngBounds newLatLngBoundsFromPosition(
     GoogleMaps.LatLngBounds originalBounds,
     LatLng position,
@@ -50,10 +60,10 @@ class LatLngBoundsUtils {
     if (position == null) {
       return originalBounds;
     }
-    double maxNorth = originalBounds.northeast.latitude;
-    double maxEast = originalBounds.northeast.longitude;
-    double minSouth = originalBounds.southwest.latitude;
-    double minWest = originalBounds.southwest.longitude;
+    var maxNorth = originalBounds.northeast.latitude;
+    var maxEast = originalBounds.northeast.longitude;
+    var minSouth = originalBounds.southwest.latitude;
+    var minWest = originalBounds.southwest.longitude;
 
     if (position.latitude < minSouth) {
       minSouth = position.latitude * 2.0 - maxNorth;
@@ -85,7 +95,7 @@ class LatLngBoundsUtils {
     maxEast = _normalizeLongitude(maxEast);
 
     // take the shorter half around the globe
-    if ((maxEast - minWest) > 180.0) {
+    if ((maxEast - minWest) > _MAX_LONGITUDE) {
       final temp = maxEast;
       maxEast = minWest;
       minWest = temp;
@@ -98,10 +108,13 @@ class LatLngBoundsUtils {
   }
 
   static double _normalizeLatitude(double value) {
-    return (value < -90.0 ? -90.0 : (90.0 < value ? 90.0 : value));
+    return (value < _MIN_LATITUDE
+        ? _MIN_LATITUDE
+        : (_MAX_LATITUDE < value ? _MAX_LATITUDE : value));
   }
 
   static double _normalizeLongitude(double value) {
-    return (value + 180.0) % 360.0 - 180.0;
+    return (value + _MAX_LONGITUDE) % (_MAX_LONGITUDE - _MIN_LONGITUDE) +
+        _MIN_LONGITUDE;
   }
 }
