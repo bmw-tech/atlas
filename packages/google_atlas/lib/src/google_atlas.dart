@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
+import 'package:google_atlas/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 /// `Atlas` Provider for Google Maps
@@ -92,49 +93,14 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
         ),
       );
     }
-
-    double maxNorth = double.negativeInfinity;
-    double maxEast = double.negativeInfinity;
-
-    double minSouth = double.infinity;
-    double minWest = double.infinity;
-
-    markers.forEach((marker) {
-      if (marker.position.latitude >= maxNorth) {
-        maxNorth = marker.position.latitude;
-      }
-      if (marker.position.latitude <= minSouth) {
-        minSouth = marker.position.latitude;
-      }
-      if (marker.position.longitude >= maxEast) {
-        maxEast = marker.position.longitude;
-      }
-      if (marker.position.longitude <= minWest) {
-        minWest = marker.position.longitude;
-      }
-    });
-
-    if (position.latitude >= maxNorth) {
-      maxNorth = position.latitude;
-    }
-    if (position.latitude <= minSouth) {
-      minSouth = position.latitude;
-    }
-    if (position.longitude >= maxEast) {
-      maxEast = position.longitude;
-    }
-    if (position.longitude <= minWest) {
-      minWest = position.longitude;
-    }
-
     _markers = markers;
 
+    GoogleMaps.LatLngBounds latLngBounds =
+        LatLngBoundsUtils.mapMarkersToLatLngBounds(markers);
+
     return GoogleMaps.CameraUpdate.newLatLngBounds(
-      GoogleMaps.LatLngBounds(
-        northeast: GoogleMaps.LatLng(maxNorth, maxEast),
-        southwest: GoogleMaps.LatLng(minSouth, minWest),
-      ),
-      120,
+      LatLngBoundsUtils.newLatLngBoundsFromPosition(latLngBounds, position),
+      20,
     );
   }
 

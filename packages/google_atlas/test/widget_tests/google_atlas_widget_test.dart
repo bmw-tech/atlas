@@ -159,7 +159,7 @@ main() {
         platformGoogleMap.cameraTargetBounds.bounds,
         GoogleMaps.LatLngBounds(
           northeast: GoogleMaps.LatLng(44.8781, -83.6298),
-          southwest: GoogleMaps.LatLng(41.8781, -87.6298),
+          southwest: GoogleMaps.LatLng(38.8781, -91.6298),
         ),
       );
 
