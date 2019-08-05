@@ -22,7 +22,7 @@ class AtlasSample extends StatefulWidget {
 }
 
 class _AtlasSampleState extends State<AtlasSample> {
-  final _position = LatLng(
+  var _position = LatLng(
     latitude: 37.42796133580664,
     longitude: -122.085749655962,
   );

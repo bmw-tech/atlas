@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.0.9 (2019-8-5)
+
+- Additional Map Bounding Improvements
+
 # v0.0.8 (2019-7-30)
 
 - Remove `CameraPosition`
