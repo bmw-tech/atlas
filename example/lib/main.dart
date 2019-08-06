@@ -56,6 +56,10 @@ class _AtlasSampleState extends State<AtlasSample> {
       onTap: () {
         print('tapped marker-3');
       },
+      icon: MapIcon(
+        assetName: 'assets/butterfly.png',
+        devicePixelRatio: 10,
+      ),
     )
   ]);
   @override

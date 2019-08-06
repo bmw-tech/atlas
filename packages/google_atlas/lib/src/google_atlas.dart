@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
 import 'package:google_atlas/src/utils/utils.dart';
@@ -129,7 +130,8 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           marker.position.longitude,
         ),
         onTap: marker.onTap,
-        icon: await _toBitmapDescriptor(marker.icon),
+        icon:
+            marker.icon == null ? null : await _toBitmapDescriptor(marker.icon),
       ));
     }
 
@@ -139,9 +141,14 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   /// Converts `Atlas.MapIcon` to `GoogleMaps.BitmapDescriptor`
   Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
       MapIcon mapIcon) async {
-    ImageConfiguration imageConfiguration = ImageConfiguration();
-    return GoogleMaps.BitmapDescriptor.fromAssetImage(
-        imageConfiguration, mapIcon.assetName);
+    ImageConfiguration imageConfiguration = ImageConfiguration(
+      devicePixelRatio: mapIcon.devicePixelRatio,
+    );
+    final bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromAssetImage(
+      imageConfiguration,
+      mapIcon.assetName,
+    );
+    return bitmapDescriptor;
   }
 
   /// Converts a `GoogleMaps.onTap` to an `Atlas.onTap` callback.
