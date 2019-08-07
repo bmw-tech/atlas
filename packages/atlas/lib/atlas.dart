@@ -5,4 +5,4 @@ export 'src/atlas.dart';
 export 'src/lat_lng.dart';
 export 'src/marker.dart';
 export 'src/provider.dart';
-export 'src/map_icon.dart';
+export 'src/marker_icon.dart';

@@ -10,7 +10,7 @@ class Marker {
   final LatLng position;
 
   /// Optional MapIcon used to replace default icon
-  final MapIcon icon;
+  final MarkerIcon icon;
 
   /// A `void Function` which is called whenever a `Marker` is tapped.
   final void Function() onTap;

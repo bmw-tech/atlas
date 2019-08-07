@@ -5,7 +5,7 @@ main() {
   group('Map Icon', () {
     test('should throw assertion error if assetName is null', () {
       try {
-        MapIcon(
+        MarkerIcon(
           assetName: null,
           devicePixelRatio: 1,
         );
@@ -17,7 +17,7 @@ main() {
 
     test('should throw assertion error if devicePixelRatio is null', () {
       try {
-        MapIcon(
+        MarkerIcon(
           assetName: '',
           devicePixelRatio: null,
         );
