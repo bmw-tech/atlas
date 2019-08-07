@@ -7,7 +7,6 @@ main() {
       try {
         MarkerIcon(
           assetName: null,
-          devicePixelRatio: 1,
         );
         fail('should throw assertion error');
       } catch (error) {
@@ -19,7 +18,6 @@ main() {
       try {
         MarkerIcon(
           assetName: '',
-          devicePixelRatio: null,
         );
         fail('should throw assertion error');
       } catch (error) {
