@@ -9,11 +9,18 @@ class Marker {
   /// The location where the `Marker` is drawn is represented as `LatLng`.
   final LatLng position;
 
+  /// Optional MarkerIcon used to replace default icon
+  final MarkerIcon icon;
+
   /// A `void Function` which is called whenever a `Marker` is tapped.
   final void Function() onTap;
 
-  const Marker({@required this.id, @required this.position, this.onTap})
-      : assert(id != null),
+  const Marker({
+    @required this.id,
+    @required this.position,
+    this.onTap,
+    this.icon,
+  })  : assert(id != null),
         assert(position != null);
 
   @override
