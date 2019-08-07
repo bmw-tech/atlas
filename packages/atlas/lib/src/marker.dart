@@ -9,7 +9,7 @@ class Marker {
   /// The location where the `Marker` is drawn is represented as `LatLng`.
   final LatLng position;
 
-  /// Optional MapIcon used to replace default icon
+  /// Optional MarkerIcon used to replace default icon
   final MarkerIcon icon;
 
   /// A `void Function` which is called whenever a `Marker` is tapped.
