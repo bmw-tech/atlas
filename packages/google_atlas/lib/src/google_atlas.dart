@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
 import 'package:google_atlas/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
@@ -56,14 +56,26 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Widget build(BuildContext context) {
     _onPositionUpdate();
 
-    return GoogleMaps.GoogleMap(
-      myLocationEnabled: showMyLocation,
-      myLocationButtonEnabled: showMyLocationButton,
-      mapType: GoogleMaps.MapType.normal,
-      initialCameraPosition: _toGoogleCameraPosition(position),
-      markers: markers.map((m) => _toGoogleMarker(m)).toSet(),
-      onTap: _toGoogleOnTap(onTap),
-      onMapCreated: _onMapCreated,
+    return FutureBuilder(
+      future: _toGoogleMarkers(markers),
+      builder: (
+        BuildContext context,
+        AsyncSnapshot<Set<GoogleMaps.Marker>> snapshot,
+      ) {
+        if (snapshot.data == null) {
+          return Container();
+        } else {
+          return GoogleMaps.GoogleMap(
+            myLocationEnabled: showMyLocation,
+            myLocationButtonEnabled: showMyLocationButton,
+            mapType: GoogleMaps.MapType.normal,
+            initialCameraPosition: _toGoogleCameraPosition(position),
+            markers: snapshot.data,
+            onTap: _toGoogleOnTap(onTap),
+            onMapCreated: _onMapCreated,
+          );
+        }
+      },
     );
   }
 
@@ -105,15 +117,36 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   }
 
   /// Converts an `Atlas.Marker` to a `GoogleMaps.Marker`
-  GoogleMaps.Marker _toGoogleMarker(Marker marker) {
-    return GoogleMaps.Marker(
-      markerId: GoogleMaps.MarkerId(marker.id),
-      position: GoogleMaps.LatLng(
-        marker.position.latitude,
-        marker.position.longitude,
-      ),
-      onTap: marker.onTap,
+  Future<Set<GoogleMaps.Marker>> _toGoogleMarkers(Set<Marker> markers) async {
+    Set<GoogleMaps.Marker> googleMarkers = Set();
+
+    for (Marker marker in markers) {
+      googleMarkers.add(GoogleMaps.Marker(
+        markerId: GoogleMaps.MarkerId(marker.id),
+        position: GoogleMaps.LatLng(
+          marker.position.latitude,
+          marker.position.longitude,
+        ),
+        onTap: marker.onTap,
+        icon:
+            marker.icon == null ? null : await _toBitmapDescriptor(marker.icon),
+      ));
+    }
+    return googleMarkers;
+  }
+
+  /// Converts `Atlas.MapIcon` to `GoogleMaps.BitmapDescriptor`
+  Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
+    MarkerIcon mapIcon,
+  ) async {
+    final ImageConfiguration imageConfiguration = ImageConfiguration(
+      devicePixelRatio: mapIcon.devicePixelRatio,
     );
+    final bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromAssetImage(
+      imageConfiguration,
+      mapIcon.assetName,
+    );
+    return bitmapDescriptor;
   }
 
   /// Converts a `GoogleMaps.onTap` to an `Atlas.onTap` callback.
