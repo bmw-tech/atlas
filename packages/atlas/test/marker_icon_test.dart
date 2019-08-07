@@ -13,16 +13,5 @@ main() {
         expect(error, isAssertionError);
       }
     });
-
-    test('should throw assertion error if devicePixelRatio is null', () {
-      try {
-        MarkerIcon(
-          assetName: '',
-        );
-        fail('should throw assertion error');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
   });
 }
