@@ -122,7 +122,6 @@ main() {
             },
             icon: MarkerIcon(
               assetName: 'assets/butterfly.png',
-              devicePixelRatio: 1,
             ))
       ]);
 

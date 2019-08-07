@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
@@ -137,14 +138,14 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   /// Converts `Atlas.MapIcon` to `GoogleMaps.BitmapDescriptor`
   Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
-    MarkerIcon mapIcon,
+    MarkerIcon markerIcon,
   ) async {
     final ImageConfiguration imageConfiguration = ImageConfiguration(
-      devicePixelRatio: mapIcon.devicePixelRatio,
+      devicePixelRatio: window.devicePixelRatio,
     );
     final bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromAssetImage(
       imageConfiguration,
-      mapIcon.assetName,
+      markerIcon.assetName,
     );
     return bitmapDescriptor;
   }
