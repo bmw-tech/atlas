@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
 
 main() {
-  group('Map Icon', () {
+  group('Marker Icon', () {
     test('should throw assertion error if assetName is null', () {
       try {
         MarkerIcon(
