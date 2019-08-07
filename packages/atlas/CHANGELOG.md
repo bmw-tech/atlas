@@ -1,5 +1,9 @@
 # atlas
 
+# v0.0.7 (2019-8-7)
+
+- Optional Map Marker Icon
+
 # v0.0.6 (2019-7-30)
 
 - Remove `CameraPosition` (replaced with `LatLng` position)
