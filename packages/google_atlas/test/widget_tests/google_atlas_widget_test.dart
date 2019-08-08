@@ -89,13 +89,6 @@ main() {
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 1);
-      expect(
-        platformGoogleMap.cameraTargetBounds.bounds,
-        GoogleMaps.LatLngBounds(
-          northeast: GoogleMaps.LatLng(41.8781, -87.6298),
-          southwest: GoogleMaps.LatLng(41.8781, -87.6298),
-        ),
-      );
 
       final GoogleMaps.Marker actualMarker =
           platformGoogleMap.markersToAdd.first;
@@ -139,13 +132,6 @@ main() {
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 1);
-      expect(
-        platformGoogleMap.cameraTargetBounds.bounds,
-        GoogleMaps.LatLngBounds(
-          northeast: GoogleMaps.LatLng(41.8781, -87.6298),
-          southwest: GoogleMaps.LatLng(41.8781, -87.6298),
-        ),
-      );
 
       final GoogleMaps.Marker actualMarker =
           platformGoogleMap.markersToAdd.first;
@@ -205,13 +191,6 @@ main() {
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 2);
-      expect(
-        platformGoogleMap.cameraTargetBounds.bounds,
-        GoogleMaps.LatLngBounds(
-          northeast: GoogleMaps.LatLng(44.8781, -83.6298),
-          southwest: GoogleMaps.LatLng(38.8781, -91.6298),
-        ),
-      );
 
       final GoogleMaps.Marker firstActualMarker =
           platformGoogleMap.markersToAdd.first;

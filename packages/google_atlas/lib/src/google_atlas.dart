@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
 import 'package:google_atlas/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
@@ -57,25 +57,22 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Widget build(BuildContext context) {
     _onPositionUpdate();
 
-    return FutureBuilder(
+    return FutureBuilder<Set<GoogleMaps.Marker>>(
       future: _toGoogleMarkers(markers),
+      initialData: Set<GoogleMaps.Marker>(),
       builder: (
         BuildContext context,
         AsyncSnapshot<Set<GoogleMaps.Marker>> snapshot,
       ) {
-        if (snapshot.data == null) {
-          return Container();
-        } else {
-          return GoogleMaps.GoogleMap(
-            myLocationEnabled: showMyLocation,
-            myLocationButtonEnabled: showMyLocationButton,
-            mapType: GoogleMaps.MapType.normal,
-            initialCameraPosition: _toGoogleCameraPosition(position),
-            markers: snapshot.data,
-            onTap: _toGoogleOnTap(onTap),
-            onMapCreated: _onMapCreated,
-          );
-        }
+        return GoogleMaps.GoogleMap(
+          myLocationEnabled: showMyLocation,
+          myLocationButtonEnabled: showMyLocationButton,
+          mapType: GoogleMaps.MapType.normal,
+          initialCameraPosition: _toGoogleCameraPosition(position),
+          markers: snapshot.data,
+          onTap: _toGoogleOnTap(onTap),
+          onMapCreated: _onMapCreated,
+        );
       },
     );
   }
@@ -122,16 +119,19 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     Set<GoogleMaps.Marker> googleMarkers = Set();
 
     for (Marker marker in markers) {
-      googleMarkers.add(GoogleMaps.Marker(
-        markerId: GoogleMaps.MarkerId(marker.id),
-        position: GoogleMaps.LatLng(
-          marker.position.latitude,
-          marker.position.longitude,
+      googleMarkers.add(
+        GoogleMaps.Marker(
+          markerId: GoogleMaps.MarkerId(marker.id),
+          position: GoogleMaps.LatLng(
+            marker.position.latitude,
+            marker.position.longitude,
+          ),
+          onTap: marker.onTap,
+          icon: marker.icon == null
+              ? null
+              : await _toBitmapDescriptor(marker.icon),
         ),
-        onTap: marker.onTap,
-        icon:
-            marker.icon == null ? null : await _toBitmapDescriptor(marker.icon),
-      ));
+      );
     }
     return googleMarkers;
   }
@@ -143,10 +143,13 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     final ImageConfiguration imageConfiguration = ImageConfiguration(
       devicePixelRatio: window.devicePixelRatio,
     );
-    final bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromAssetImage(
-      imageConfiguration,
-      markerIcon.assetName,
-    );
+    GoogleMaps.BitmapDescriptor bitmapDescriptor;
+    try {
+      bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromAssetImage(
+        imageConfiguration,
+        markerIcon.assetName,
+      );
+    } catch (_) {}
     return bitmapDescriptor;
   }
 
