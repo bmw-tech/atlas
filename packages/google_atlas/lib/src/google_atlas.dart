@@ -136,7 +136,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     return googleMarkers;
   }
 
-  /// Converts `Atlas.MapIcon` to `GoogleMaps.BitmapDescriptor`
+  /// Converts an `Atlas.MapIcon` to an `GoogleMaps.BitmapDescriptor`
   Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
     MarkerIcon markerIcon,
   ) async {
