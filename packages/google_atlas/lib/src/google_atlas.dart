@@ -69,7 +69,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           myLocationButtonEnabled: showMyLocationButton,
           mapType: GoogleMaps.MapType.normal,
           initialCameraPosition: _toGoogleCameraPosition(position),
-          markers: snapshot.data,
+          markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,
           onTap: _toGoogleOnTap(onTap),
           onMapCreated: _onMapCreated,
         );

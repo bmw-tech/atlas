@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.1.0 (2019-8-8)
+
+- Optional Marker Icon
+
 # v0.0.9 (2019-8-5)
 
 - Additional Map Bounding Improvements
