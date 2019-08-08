@@ -26,38 +26,43 @@ class _AtlasSampleState extends State<AtlasSample> {
     latitude: 37.42796133580664,
     longitude: -122.085749655962,
   );
-  final Set<Marker> _markers = Set<Marker>.from([
-    Marker(
-      id: 'marker-1',
-      position: LatLng(
-        latitude: 41.878113,
-        longitude: -87.629799,
+  final Set<Marker> _markers = Set<Marker>.from(
+    [
+      Marker(
+        id: 'marker-1',
+        position: LatLng(
+          latitude: 41.878113,
+          longitude: -87.629799,
+        ),
+        onTap: () {
+          print('tapped marker-1');
+        },
       ),
-      onTap: () {
-        print('tapped marker-1');
-      },
-    ),
-    Marker(
-      id: 'marker-2',
-      position: LatLng(
-        latitude: 42.878113,
-        longitude: -87.629799,
+      Marker(
+        id: 'marker-2',
+        position: LatLng(
+          latitude: 42.878113,
+          longitude: -87.629799,
+        ),
+        onTap: () {
+          print('tapped marker-2');
+        },
       ),
-      onTap: () {
-        print('tapped marker-2');
-      },
-    ),
-    Marker(
-      id: 'marker-3',
-      position: LatLng(
-        latitude: 40.878113,
-        longitude: -86.629799,
-      ),
-      onTap: () {
-        print('tapped marker-3');
-      },
-    )
-  ]);
+      Marker(
+        id: 'marker-3',
+        position: LatLng(
+          latitude: 40.878113,
+          longitude: -100.629799,
+        ),
+        onTap: () {
+          print('tapped marker-3');
+        },
+        icon: MarkerIcon(
+          assetName: 'assets/mario.png',
+        ),
+      )
+    ],
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(

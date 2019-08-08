@@ -89,13 +89,49 @@ main() {
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 1);
-      expect(
-        platformGoogleMap.cameraTargetBounds.bounds,
-        GoogleMaps.LatLngBounds(
-          northeast: GoogleMaps.LatLng(41.8781, -87.6298),
-          southwest: GoogleMaps.LatLng(41.8781, -87.6298),
-        ),
+
+      final GoogleMaps.Marker actualMarker =
+          platformGoogleMap.markersToAdd.first;
+      expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
+      expect(actualMarker, equals(expectedMarker));
+    });
+
+    testWidgets('able to give a Marker a MapIcon', (WidgetTester tester) async {
+      final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
+        markerId: GoogleMaps.MarkerId('marker-1'),
+        onTap: () {},
+        position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
+
+      final Set<Marker> mockMarker = Set<Marker>.from([
+        Marker(
+            id: 'marker-1',
+            position: LatLng(
+              latitude: 41.8781,
+              longitude: -87.6298,
+            ),
+            onTap: () {
+              print('tapped marker-1');
+            },
+            icon: MarkerIcon(
+              assetName: 'assets/butterfly.png',
+            ))
+      ]);
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          position: position,
+          markers: mockMarker,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.markersToAdd.length, 1);
 
       final GoogleMaps.Marker actualMarker =
           platformGoogleMap.markersToAdd.first;
@@ -155,13 +191,6 @@ main() {
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 2);
-      expect(
-        platformGoogleMap.cameraTargetBounds.bounds,
-        GoogleMaps.LatLngBounds(
-          northeast: GoogleMaps.LatLng(44.8781, -83.6298),
-          southwest: GoogleMaps.LatLng(38.8781, -91.6298),
-        ),
-      );
 
       final GoogleMaps.Marker firstActualMarker =
           platformGoogleMap.markersToAdd.first;

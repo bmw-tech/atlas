@@ -28,6 +28,33 @@ class AtlasSample extends StatelessWidget {
     return Scaffold(
       body: Atlas(
         position: position,
+        markers: Set<Marker>.from(
+          [
+            Marker(
+              id: 'marker-1',
+              position: LatLng(
+                latitude: 41.878113,
+                longitude: -87.629799,
+              ),
+              onTap: () {
+                print('tapped marker-1');
+              },
+            ),
+            Marker(
+              id: 'marker-3',
+              position: LatLng(
+                latitude: 40.878113,
+                longitude: -100.629799,
+              ),
+              onTap: () {
+                print('tapped marker-3');
+              },
+              icon: MarkerIcon(
+                assetName: 'assets/mario.png',
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
