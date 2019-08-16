@@ -35,6 +35,7 @@ main() {
         'should return correct GoogleMap with initial camera position and no markers',
         (WidgetTester tester) async {
       final expectedPosition = GoogleMaps.LatLng(41.8781, -87.6298);
+      final expectedZoom = 12;
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
@@ -49,6 +50,7 @@ main() {
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition.zoom, expectedZoom);
       expect(platformGoogleMap.markersToAdd.length, 0);
       expect(platformGoogleMap.mapType, GoogleMaps.MapType.normal);
     });

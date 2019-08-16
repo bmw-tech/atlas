@@ -115,6 +115,12 @@ class FakePlatformGoogleMap {
         ),
       );
     }
+    if (cameraUpdate[0] == 'zoomTo') {
+      cameraPosition = CameraPosition(
+        target: cameraPosition.target,
+        zoom: cameraUpdate[1],
+      );
+    }
   }
 
   void updateMarkers(Map<dynamic, dynamic> markerUpdates) {

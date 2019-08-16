@@ -177,7 +177,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     // https://github.com/flutter/flutter/issues/37185
     await Future<void>.delayed(Duration(seconds: 0));
     await _mapController.moveCamera(
-      GoogleMaps.CameraUpdate.zoomTo(15),
+      GoogleMaps.CameraUpdate.zoomTo(12),
     );
     await _mapController.moveCamera(
       _toGoogleCameraUpdate(position, markers),
