@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.1.1 (2019-8-16)
+
+- Update default zoom level
+
 # v0.1.0 (2019-8-8)
 
 - Optional Marker Icon
