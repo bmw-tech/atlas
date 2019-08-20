@@ -413,6 +413,35 @@ main() {
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
     });
+
+    testWidgets('should only change current position if position changes',
+        (WidgetTester tester) async {
+      final expectedPosition = GoogleMaps.LatLng(41.8781, -87.6298);
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          position: position,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(Key('TestButton')));
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.updatePositionCallCount, 3);
+
+      await tester.tap(find.byKey(Key('TestButton')));
+      await tester.pumpAndSettle();
+
+      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.updatePositionCallCount, 3);
+    });
   });
 }
 

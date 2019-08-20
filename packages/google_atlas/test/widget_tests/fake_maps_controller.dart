@@ -59,6 +59,8 @@ class FakePlatformGoogleMap {
 
   ArgumentCallback<LatLng> onTap;
 
+  int updatePositionCallCount = 0;
+
   Future<dynamic> onMethodCall(MethodCall call) {
     switch (call.method) {
       case 'camera#move':
@@ -82,6 +84,7 @@ class FakePlatformGoogleMap {
   }
 
   void updatePosition(List<dynamic> cameraUpdate) {
+    updatePositionCallCount++;
     if (cameraUpdate == null && cameraUpdate.length < 2) {
       return;
     }

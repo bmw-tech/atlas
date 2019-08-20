@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.1.2 (2019-8-20)
+
+- Only update camera position on position changes
+
 # v0.1.1 (2019-8-16)
 
 - Update default zoom level

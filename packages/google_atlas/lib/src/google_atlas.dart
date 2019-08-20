@@ -52,6 +52,13 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   ArgumentCallback<LatLng> get onTap => widget.onTap;
   Set<Marker> _markers = Set.from([]);
   GoogleMaps.GoogleMapController _mapController;
+  LatLng _position;
+
+  @override
+  void initState() {
+    super.initState();
+    _position = position;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -187,8 +194,11 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   /// If widget position has changed, then update the current position
   /// and move the camera.
   void _onPositionUpdate() {
-    _mapController?.moveCamera(
-      _toGoogleCameraUpdate(position, markers),
-    );
+    if (_position != position) {
+      _mapController?.moveCamera(
+        _toGoogleCameraUpdate(position, markers),
+      );
+      _position = position;
+    }
   }
 }
