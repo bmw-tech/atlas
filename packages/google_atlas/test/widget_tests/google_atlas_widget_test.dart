@@ -19,14 +19,17 @@ main() {
 
   group('GoogleAtlas Widget Test', () {
     GoogleAtlas googleAtlas;
-    LatLng position;
+    CameraPosition initialCameraPosition;
 
     setUp(() {
       googleAtlas = GoogleAtlas();
       AtlasProvider.instance = googleAtlas;
-      position = LatLng(
-        latitude: 41.8781,
-        longitude: -87.6298,
+      initialCameraPosition = CameraPosition(
+        target: LatLng(
+          latitude: 41.8781,
+          longitude: -87.6298,
+        ),
+        zoom: 12,
       );
       fakePlatformViewsController.reset();
     });
@@ -40,7 +43,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
         ),
       ));
 
@@ -80,7 +83,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
           markers: mockMarker,
         ),
       ));
@@ -123,7 +126,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
           markers: mockMarker,
         ),
       ));
@@ -182,7 +185,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
           markers: mockMarker,
         ),
       ));
@@ -215,7 +218,7 @@ main() {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
           home: AtlasTestSample(
-            position: position,
+            initialCameraPosition: initialCameraPosition,
           ),
         ));
 
@@ -245,7 +248,8 @@ main() {
       try {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
-          home: AtlasTestSample(position: position, onTap: mockOnTap),
+          home: AtlasTestSample(
+              initialCameraPosition: initialCameraPosition, onTap: mockOnTap),
         ));
 
         await tester.pumpAndSettle();
@@ -270,7 +274,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
           showMyLocation: false,
         ),
       ));
@@ -292,7 +296,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
           showMyLocation: true,
         ),
       ));
@@ -314,7 +318,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
         ),
       ));
 
@@ -335,7 +339,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
           showMyLocationButton: false,
         ),
       ));
@@ -357,7 +361,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
           showMyLocationButton: true,
         ),
       ));
@@ -379,7 +383,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
         ),
       ));
 
@@ -394,12 +398,12 @@ main() {
 
     testWidgets('should change current position when camera position changes',
         (WidgetTester tester) async {
-      final expectedPosition = GoogleMaps.LatLng(41.8781, -87.6298);
+      final expectedPosition = GoogleMaps.LatLng(41.8661, -90.1070);
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          position: position,
+          initialCameraPosition: initialCameraPosition,
         ),
       ));
 
@@ -412,48 +416,19 @@ main() {
           fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
-    });
-
-    testWidgets('should only change current position if position changes',
-        (WidgetTester tester) async {
-      final expectedPosition = GoogleMaps.LatLng(41.8781, -87.6298);
-
-      await tester.pumpWidget(MaterialApp(
-        title: 'Atlas Test Sample with Google Provider',
-        home: AtlasTestSample(
-          position: position,
-        ),
-      ));
-
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byKey(Key('TestButton')));
-      await tester.pumpAndSettle();
-
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
-
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
-      expect(platformGoogleMap.updatePositionCallCount, 3);
-
-      await tester.tap(find.byKey(Key('TestButton')));
-      await tester.pumpAndSettle();
-
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
-      expect(platformGoogleMap.updatePositionCallCount, 3);
     });
   });
 }
 
 class AtlasTestSample extends StatefulWidget {
-  final LatLng position;
+  final CameraPosition initialCameraPosition;
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
 
   AtlasTestSample({
-    @required this.position,
+    @required this.initialCameraPosition,
     this.markers,
     this.showMyLocation,
     this.showMyLocationButton,
@@ -461,7 +436,7 @@ class AtlasTestSample extends StatefulWidget {
   });
 
   State<AtlasTestSample> createState() => _AtlasTestSampleState(
-        position: this.position,
+        initialCameraPosition: this.initialCameraPosition,
         markers: this.markers,
         showMyLocation: this.showMyLocation,
         showMyLocationButton: this.showMyLocationButton,
@@ -470,14 +445,15 @@ class AtlasTestSample extends StatefulWidget {
 }
 
 class _AtlasTestSampleState extends State<AtlasTestSample> {
-  LatLng position;
+  final CameraPosition initialCameraPosition;
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
+  AtlasController _controller;
 
   _AtlasTestSampleState({
-    @required this.position,
+    @required this.initialCameraPosition,
     this.markers,
     this.showMyLocation,
     this.showMyLocationButton,
@@ -491,11 +467,14 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
         children: [
           Atlas(
             key: Key('TestAtlas'),
-            position: position,
+            initialCameraPosition: initialCameraPosition,
             markers: this.markers ?? Set(),
             showMyLocation: this.showMyLocation ?? false,
             showMyLocationButton: this.showMyLocationButton ?? false,
             onTap: this.onTap ?? null,
+            onMapCreated: (controller) {
+              _controller = controller;
+            },
           ),
           Container(
             alignment: Alignment.centerRight,
@@ -512,12 +491,15 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
                     key: Key("TestButton"),
                     child: Icon(Icons.location_on),
                     onPressed: () {
-                      setState(() {
-                        position = LatLng(
-                          latitude: 41.8661,
-                          longitude: -90.1070,
-                        );
-                      });
+                      _controller?.moveCamera(
+                        CameraPosition(
+                          target: LatLng(
+                            latitude: 41.8661,
+                            longitude: -90.1070,
+                          ),
+                          zoom: 12,
+                        ),
+                      );
                     },
                   ),
                 ],

@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.2.0 (2019-8-22)
+
+- Update to use `atlas v0.0.8`
+
 # v0.1.2 (2019-8-20)
 
 - Only update camera position on position changes
