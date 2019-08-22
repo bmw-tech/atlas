@@ -1,5 +1,9 @@
 # atlas
 
+# v0.0.8 (2019-8-22)
+
+- Refactor to include `AtlasController`
+
 # v0.0.7 (2019-8-7)
 
 - Optional Map Marker Icon

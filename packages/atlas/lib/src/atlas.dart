@@ -6,8 +6,8 @@ import 'package:atlas/atlas.dart';
 /// The underlying map provider that will be used must be specified as the
 /// `AtlasProvider.instance` before the `Atlas` widget is rendered.
 class Atlas extends StatelessWidget {
-  /// The `LatLng` which the map will be focused on.
-  final LatLng position;
+  /// The `CameraPosition` which the map will initially be focused on.
+  final CameraPosition initialCameraPosition;
 
   /// The [Set] of `markers` which will be rendered on the map.
   final Set<Marker> markers;
@@ -15,6 +15,10 @@ class Atlas extends StatelessWidget {
   /// `onTap` gets called when the map is tapped.
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng> onTap;
+
+  /// `onMapCreated` gets called when the map is initialized and provides an `AtlasController`
+  /// which can be used to manipulate the map.
+  final ArgumentCallback<AtlasController> onMapCreated;
 
   /// `showMyLocation` determines whether or not the current device location
   /// should be displayed on the map. It will default to false if not specified.
@@ -51,12 +55,13 @@ class Atlas extends StatelessWidget {
 
   Atlas({
     Key key,
-    @required this.position,
+    @required this.initialCameraPosition,
     Set<Marker> markers,
     bool showMyLocation,
     bool showMyLocationButton,
     this.onTap,
-  })  : assert(position != null),
+    this.onMapCreated,
+  })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
@@ -65,11 +70,12 @@ class Atlas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AtlasProvider.instance.build(
-      position: position,
+      initialCameraPosition: initialCameraPosition,
       markers: markers,
       onTap: onTap,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
+      onMapCreated: onMapCreated,
     );
   }
 }
