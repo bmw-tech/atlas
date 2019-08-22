@@ -22,10 +22,14 @@ class AtlasSample extends StatefulWidget {
 }
 
 class _AtlasSampleState extends State<AtlasSample> {
-  var _position = LatLng(
-    latitude: 37.42796133580664,
-    longitude: -122.085749655962,
+  final CameraPosition _initialCameraPosition = CameraPosition(
+    target: LatLng(
+      latitude: 37.42796133580664,
+      longitude: -122.085749655962,
+    ),
+    zoom: 12,
   );
+  AtlasController _controller;
   final Set<Marker> _markers = Set<Marker>.from(
     [
       Marker(
@@ -69,12 +73,15 @@ class _AtlasSampleState extends State<AtlasSample> {
       body: Stack(
         children: [
           Atlas(
-            position: _position,
+            initialCameraPosition: _initialCameraPosition,
             markers: _markers,
             showMyLocation: true,
             showMyLocationButton: false,
             onTap: (LatLng position) {
               print('map tapped: ${position.latitude}, ${position.longitude}');
+            },
+            onMapCreated: (controller) {
+              _controller = controller;
             },
           ),
           Container(
@@ -91,12 +98,14 @@ class _AtlasSampleState extends State<AtlasSample> {
                   FloatingActionButton(
                     child: Icon(Icons.location_on),
                     onPressed: () {
-                      setState(() {
-                        _position = LatLng(
-                          latitude: 41.8661,
-                          longitude: -90.1070,
-                        );
-                      });
+                      _controller?.moveCamera(
+                        CameraPosition(
+                          target: LatLng(
+                            latitude: 41.8661,
+                            longitude: -90.1070,
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ],
