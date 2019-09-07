@@ -20,6 +20,51 @@ void main() {
 }
 ```
 
+
+##### Additional setup for Android:
+- Specify your Google Maps API key in the application manifest `android/app/src/main/AndroidManifest.xml`:
+```
+<manifest ...
+  <application ...
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="YOUR KEY HERE"/>
+```
+
+
+##### Additional setup for iOS:
+- Specify your Google Maps API key in the application delegate `ios/Runner/AppDelegate.swift`:
+```swift
+import UIKit
+import Flutter
+import GoogleMaps
+
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate {
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+  ) -> Bool {
+  	GMSServices.provideAPIKey("YOUR KEY HERE")
+    GeneratedPluginRegistrant.register(with: self)
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+}
+```
+- Enable `io.flutter.embedded_views_preview` in `ios/Runner/Info.plist`:
+```plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    ...
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
+    ...
+</dict>
+</plist>
+```
+
+
 ### Usage
 
 ```dart
