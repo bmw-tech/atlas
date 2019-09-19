@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.2.1 (2019-9-19)
+
+- Fix `myLocationButton` bug in iOS
+
 # v0.2.0 (2019-8-22)
 
 - Update to use `atlas v0.0.8`
