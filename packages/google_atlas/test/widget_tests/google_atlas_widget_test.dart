@@ -63,7 +63,6 @@ main() {
         (WidgetTester tester) async {
       final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
-        onTap: () {},
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
@@ -74,9 +73,6 @@ main() {
             latitude: 41.8781,
             longitude: -87.6298,
           ),
-          onTap: () {
-            print('tapped marker-1');
-          },
         )
       ]);
 
@@ -104,7 +100,6 @@ main() {
     testWidgets('able to give a Marker a MapIcon', (WidgetTester tester) async {
       final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
-        onTap: () {},
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
@@ -115,9 +110,6 @@ main() {
               latitude: 41.8781,
               longitude: -87.6298,
             ),
-            onTap: () {
-              print('tapped marker-1');
-            },
             icon: MarkerIcon(
               assetName: 'assets/butterfly.png',
             ))
@@ -149,13 +141,11 @@ main() {
         (WidgetTester tester) async {
       final GoogleMaps.Marker expectedFirstMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
-        onTap: () {},
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
       final GoogleMaps.Marker expectedSecondMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-2'),
-        onTap: () {},
         position: GoogleMaps.LatLng(44.8781, -83.6298),
       );
 
@@ -166,9 +156,6 @@ main() {
             latitude: 41.8781,
             longitude: -87.6298,
           ),
-          onTap: () {
-            print('tapped marker-1');
-          },
         ),
         Marker(
           id: 'marker-2',
@@ -176,9 +163,6 @@ main() {
             latitude: 44.8781,
             longitude: -83.6298,
           ),
-          onTap: () {
-            print('tapped marker-2');
-          },
         )
       ]);
 
