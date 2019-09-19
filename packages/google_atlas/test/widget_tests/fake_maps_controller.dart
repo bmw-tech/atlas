@@ -153,6 +153,7 @@ class FakePlatformGoogleMap {
       final String markerId = markerData['markerId'];
       final bool draggable = markerData['draggable'];
       final bool visible = markerData['visible'];
+      final position = markerData['position'];
 
       final dynamic infoWindowData = markerData['infoWindow'];
       InfoWindow infoWindow = InfoWindow.noText;
@@ -169,6 +170,7 @@ class FakePlatformGoogleMap {
         draggable: draggable,
         visible: visible,
         infoWindow: infoWindow,
+        position: LatLng(position[0], position[1]),
       ));
     }
 
