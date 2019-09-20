@@ -17,11 +17,7 @@ dependencies:
   flutter:
     sdk: flutter
   atlas: ^0.0.8
-  google_maps_flutter:
-    git:
-      url: https://github.com/felangel/plugins
-      path: packages/google_maps_flutter
-      ref: bug/ios-gmaps-myLocationButton
+  google_maps_flutter: ^0.5.21+3
 
 dev_dependencies:
   flutter_test:
