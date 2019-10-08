@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 /// A pair of latitude and longitude coordinates.
 /// The `latitude` and `longitude` are stored as degrees.

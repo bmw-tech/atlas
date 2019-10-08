@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/foundation.dart';
 
 /// The `CameraPosition` represents the position of the map "camera",
 /// the view point from which the world is shown in the map view.
