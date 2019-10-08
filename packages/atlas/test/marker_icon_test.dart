@@ -13,5 +13,26 @@ main() {
         expect(error, isAssertionError);
       }
     });
+
+    test('should override == properly', () {
+      expect(
+        MarkerIcon(
+          assetName: 'my-asset',
+        ),
+        MarkerIcon(
+          assetName: 'my-asset',
+        ),
+      );
+    });
+
+    test('should override hashCode properly', () {
+      final markerIcon = MarkerIcon(
+        assetName: 'my-asset',
+      );
+      expect(
+        markerIcon.hashCode,
+        markerIcon.runtimeType.hashCode ^ markerIcon.assetName.hashCode,
+      );
+    });
   });
 }

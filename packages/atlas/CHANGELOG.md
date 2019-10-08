@@ -1,5 +1,11 @@
 # atlas
 
+# v0.1.0 (2019-10-08)
+
+- Add `zIndex` to `Marker`
+- Remove dependency on `meta`
+- Add `==` and `hashCode` overrides to `MarkerIcon`
+
 # v0.0.8 (2019-8-22)
 
 - Refactor to include `AtlasController`

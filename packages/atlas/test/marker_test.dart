@@ -44,6 +44,45 @@ main() {
       expect(marker.onTap, expectedOnTap);
     });
 
+    test('should have correct properties when no zIndex is provided', () {
+      final expectedId = 'id';
+      final expectedPosition = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      );
+      final expectedOnTap = null;
+      final expectedZIndex = 0.0;
+      final marker = Marker(
+        id: expectedId,
+        position: expectedPosition,
+        onTap: expectedOnTap,
+      );
+      expect(marker.id, expectedId);
+      expect(marker.position, expectedPosition);
+      expect(marker.onTap, expectedOnTap);
+      expect(marker.zIndex, expectedZIndex);
+    });
+
+    test('should have correct properties when zIndex is provided', () {
+      final expectedId = 'id';
+      final expectedPosition = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      );
+      final expectedOnTap = null;
+      final expectedZIndex = 1.0;
+      final marker = Marker(
+        id: expectedId,
+        position: expectedPosition,
+        onTap: expectedOnTap,
+        zIndex: 1.0,
+      );
+      expect(marker.id, expectedId);
+      expect(marker.position, expectedPosition);
+      expect(marker.onTap, expectedOnTap);
+      expect(marker.zIndex, expectedZIndex);
+    });
+
     test('should have correct properties when onTap is provided', () {
       final expectedId = 'id';
       final expectedPosition = LatLng(
@@ -69,6 +108,7 @@ main() {
           longitude: -122.085749655962,
         ),
         onTap: () {},
+        zIndex: 1.0,
       );
       final marker2 = Marker(
         id: 'id',
@@ -77,6 +117,7 @@ main() {
           longitude: -122.085749655962,
         ),
         onTap: () {},
+        zIndex: 1.0,
       );
       expect(marker1, marker2);
     });
