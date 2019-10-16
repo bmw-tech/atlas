@@ -147,6 +147,41 @@ main() {
     });
 
     testWidgets(
+        'should call provider build method with correct arguments when onLongPress is provided',
+        (WidgetTester tester) async {
+      final Function(LatLng) onLongPress = (LatLng position) {
+        print('onLongPress ${position.latitude}, ${position.latitude}');
+      };
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        onLongPress: onLongPress,
+        showMyLocation: false,
+        showMyLocationButton: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              onLongPress: onLongPress,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          onLongPress: onLongPress,
+          showMyLocation: false,
+          showMyLocationButton: false,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
         'should call provider build method with correct arguments when showMyLocation is enabled',
         (WidgetTester tester) async {
       when(provider.build(

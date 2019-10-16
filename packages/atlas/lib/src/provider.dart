@@ -12,6 +12,7 @@ abstract class Provider {
     final CameraPosition initialCameraPosition,
     final Set<Marker> markers,
     final ArgumentCallback<LatLng> onTap,
+    final ArgumentCallback<LatLng> onLongPress,
     final ArgumentCallback<AtlasController> onMapCreated,
     final bool showMyLocation,
     final bool showMyLocationButton,

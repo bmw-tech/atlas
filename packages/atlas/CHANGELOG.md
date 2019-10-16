@@ -1,5 +1,9 @@
 # atlas
 
+# v0.2.0 (2019-10-16)
+
+- `onLongPress` callback added to Atlas Map
+
 # v0.1.0 (2019-10-08)
 
 - Add `zIndex` to `Marker`
