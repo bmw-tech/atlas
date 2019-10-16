@@ -16,6 +16,10 @@ class Atlas extends StatelessWidget {
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng> onTap;
 
+  /// `onLongPress` gets call when the map is long pressed
+  /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
+  final ArgumentCallback<LatLng> onLongPress;
+
   /// `onMapCreated` gets called when the map is initialized and provides an `AtlasController`
   /// which can be used to manipulate the map.
   final ArgumentCallback<AtlasController> onMapCreated;
@@ -60,6 +64,7 @@ class Atlas extends StatelessWidget {
     bool showMyLocation,
     bool showMyLocationButton,
     this.onTap,
+    this.onLongPress,
     this.onMapCreated,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
@@ -73,6 +78,7 @@ class Atlas extends StatelessWidget {
       initialCameraPosition: initialCameraPosition,
       markers: markers,
       onTap: onTap,
+      onLongPress: onLongPress,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
       onMapCreated: onMapCreated,
