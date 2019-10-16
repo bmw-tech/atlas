@@ -16,7 +16,7 @@ class Atlas extends StatelessWidget {
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng> onTap;
 
-  /// `onLongPress` gets call when the map is long pressed
+  /// `onLongPress` gets called when the map is long pressed
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng> onLongPress;
 
