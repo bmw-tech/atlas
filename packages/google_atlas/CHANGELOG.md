@@ -1,5 +1,9 @@
 # google_atlas
 
+# v0.3.0 (2019-10-17)
+
+- Google Maps Provider supports onLongPress (atlas `v0.2.0`)
+
 # v0.2.1 (2019-9-19)
 
 - Fix `myLocationButton` bug in iOS

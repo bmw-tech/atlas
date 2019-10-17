@@ -192,17 +192,22 @@ main() {
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
     });
 
-    /* Track Google Maps Flutter Plugin Issue on better interactive testing.  
-       Had to test this way due to existing limitations.
+    /* Track Google Maps Flutter Plugin Issue on better interactive testing.
+      Had to test this way due to existing limitations.
     */
     testWidgets(
         'should return correct GoogleMap when build is called without onTap',
         (WidgetTester tester) async {
+      final ArgumentCallback<LatLng> mockOnLongPress = (LatLng position) {
+        print('hello');
+      };
+
       try {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
           home: AtlasTestSample(
             initialCameraPosition: initialCameraPosition,
+            onLongPress: mockOnLongPress,
           ),
         ));
 
@@ -216,8 +221,37 @@ main() {
       }
     });
 
-    /* Track Google Maps Flutter Plugin Issue on better interactive testing.  
-       Had to test this way due to existing limitations.
+    /* Track Google Maps Flutter Plugin Issue on better interactive testing.
+      Had to test this way due to existing limitations.
+    */
+    testWidgets(
+        'should return correct GoogleMap when build is called without onLongPress',
+        (WidgetTester tester) async {
+      final ArgumentCallback<LatLng> mockOnTap = (LatLng position) {
+        print('hello');
+      };
+
+      try {
+        await tester.pumpWidget(MaterialApp(
+          title: 'Atlas Test Sample with Google Provider',
+          home: AtlasTestSample(
+            initialCameraPosition: initialCameraPosition,
+            onTap: mockOnTap,
+          ),
+        ));
+
+        await tester.pumpAndSettle();
+
+        final googleMap =
+            find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
+        (googleMap as GoogleMaps.GoogleMap).onTap(GoogleMaps.LatLng(0, 0));
+      } catch (_) {
+        fail('should not throw');
+      }
+    });
+
+    /* Track Google Maps Flutter Plugin Issue on better interactive testing.
+      Had to test this way due to existing limitations.
     */
     testWidgets(
         'should return correct GoogleMap when build is called with onTap',
@@ -233,7 +267,9 @@ main() {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
           home: AtlasTestSample(
-              initialCameraPosition: initialCameraPosition, onTap: mockOnTap),
+            initialCameraPosition: initialCameraPosition,
+            onTap: mockOnTap,
+          ),
         ));
 
         await tester.pumpAndSettle();
@@ -245,6 +281,43 @@ main() {
         expect(onTapCallCount, 1);
         expect(onTapPosition.latitude, 0.0);
         expect(onTapPosition.longitude, 0.0);
+      } catch (_) {
+        fail("should not throw");
+      }
+    });
+
+    /* Track Google Maps Flutter Plugin Issue on better interactive testing.
+      Had to test this way due to existing limitations.
+    */
+    testWidgets(
+        'should return correct GoogleMap when build is called with onLongPress',
+        (WidgetTester tester) async {
+      int onLongPressCallCount = 0;
+      LatLng onLongPressPosition;
+      final ArgumentCallback<LatLng> mockOnLongPress = (LatLng position) {
+        onLongPressCallCount++;
+        onLongPressPosition = position;
+      };
+
+      try {
+        await tester.pumpWidget(MaterialApp(
+          title: 'Atlas Test Sample with Google Provider',
+          home: AtlasTestSample(
+            initialCameraPosition: initialCameraPosition,
+            onLongPress: mockOnLongPress,
+          ),
+        ));
+
+        await tester.pumpAndSettle();
+
+        final googleMap =
+            find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
+        (googleMap as GoogleMaps.GoogleMap)
+            .onLongPress(GoogleMaps.LatLng(0, 0));
+
+        expect(onLongPressCallCount, 1);
+        expect(onLongPressPosition.latitude, 0.0);
+        expect(onLongPressPosition.longitude, 0.0);
       } catch (_) {
         fail("should not throw");
       }
@@ -410,6 +483,7 @@ class AtlasTestSample extends StatefulWidget {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
+  final ArgumentCallback<LatLng> onLongPress;
 
   AtlasTestSample({
     @required this.initialCameraPosition,
@@ -417,6 +491,7 @@ class AtlasTestSample extends StatefulWidget {
     this.showMyLocation,
     this.showMyLocationButton,
     this.onTap,
+    this.onLongPress,
   });
 
   State<AtlasTestSample> createState() => _AtlasTestSampleState(
@@ -425,6 +500,7 @@ class AtlasTestSample extends StatefulWidget {
         showMyLocation: this.showMyLocation,
         showMyLocationButton: this.showMyLocationButton,
         onTap: this.onTap,
+        onLongPress: this.onLongPress,
       );
 }
 
@@ -434,6 +510,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
+  final ArgumentCallback<LatLng> onLongPress;
   AtlasController _controller;
 
   _AtlasTestSampleState({
@@ -442,6 +519,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
     this.showMyLocation,
     this.showMyLocationButton,
     this.onTap,
+    this.onLongPress,
   });
 
   @override
@@ -456,6 +534,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             showMyLocation: this.showMyLocation ?? false,
             showMyLocationButton: this.showMyLocationButton ?? false,
             onTap: this.onTap ?? null,
+            onLongPress: this.onLongPress ?? null,
             onMapCreated: (controller) {
               _controller = controller;
             },

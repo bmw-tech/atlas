@@ -59,6 +59,8 @@ class FakePlatformGoogleMap {
 
   ArgumentCallback<LatLng> onTap;
 
+  ArgumentCallback<LatLng> onLongPress;
+
   int updatePositionCallCount = 0;
 
   Future<dynamic> onMethodCall(MethodCall call) {
@@ -67,7 +69,8 @@ class FakePlatformGoogleMap {
         updatePosition(call.arguments['cameraUpdate']);
         return Future<void>.sync(() {});
       case 'map#onTap':
-        print('hello');
+        return Future<void>.sync(() {});
+      case 'map#onLongPress':
         return Future<void>.sync(() {});
       case 'map#update':
         updateOptions(call.arguments['options']);
