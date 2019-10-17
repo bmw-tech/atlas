@@ -16,6 +16,7 @@ class GoogleAtlas extends Provider {
     @required bool showMyLocation,
     @required bool showMyLocationButton,
     ArgumentCallback<LatLng> onTap,
+    ArgumentCallback<LatLng> onLongPress,
     ArgumentCallback<AtlasController> onMapCreated,
   }) {
     return GoogleMapsProvider(
@@ -24,6 +25,7 @@ class GoogleAtlas extends Provider {
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
       onTap: onTap,
+      onLongPress: onLongPress,
       onMapCreated: onMapCreated,
     );
   }
@@ -35,6 +37,7 @@ class GoogleMapsProvider extends StatefulWidget {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
+  final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<AtlasController> onMapCreated;
 
   GoogleMapsProvider({
@@ -43,6 +46,7 @@ class GoogleMapsProvider extends StatefulWidget {
     @required this.showMyLocation,
     @required this.showMyLocationButton,
     this.onTap,
+    this.onLongPress,
     this.onMapCreated,
   });
 
@@ -55,6 +59,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
+  ArgumentCallback<LatLng> get onLongPress => widget.onLongPress;
   ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
 
   @override
@@ -71,6 +76,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
               CameraUtils.toGoogleCameraPosition(initialCameraPosition),
           markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,
           onTap: _toGoogleOnTap(onTap),
+          onLongPress: _toGoogleOnLongPress(onLongPress),
           onMapCreated: _onMapCreated,
         );
       },
@@ -122,6 +128,15 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   ) {
     return (GoogleMaps.LatLng position) {
       onTap?.call(LatLngUtils.fromGoogleLatLng(position));
+    };
+  }
+
+  /// Converts a `GoogleMaps.onLongPress` to an `Atlas.onLongPress` callback.
+  void Function(GoogleMaps.LatLng) _toGoogleOnLongPress(
+    ArgumentCallback<LatLng> onLongPress,
+  ) {
+    return (GoogleMaps.LatLng position) {
+      onLongPress?.call(LatLngUtils.fromGoogleLatLng(position));
     };
   }
 

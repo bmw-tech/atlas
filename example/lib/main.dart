@@ -80,6 +80,10 @@ class _AtlasSampleState extends State<AtlasSample> {
             onTap: (LatLng position) {
               print('map tapped: ${position.latitude}, ${position.longitude}');
             },
+            onLongPress: (LatLng position) {
+              print(
+                  'map long pressed: ${position.latitude}, ${position.longitude}');
+            },
             onMapCreated: (controller) {
               _controller = controller;
             },
