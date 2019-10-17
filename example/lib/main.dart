@@ -82,9 +82,6 @@ class _AtlasSampleState extends State<AtlasSample> {
                 'map tapped: ${position.latitude}, ${position.longitude}',
               );
             },
-            onMapCreated: (controller) {
-              _controller = controller;
-            },
             onLongPress: (LatLng position) {
               print('long press ${position.latitude}, ${position.longitude}');
               setState(() {
@@ -98,6 +95,9 @@ class _AtlasSampleState extends State<AtlasSample> {
                   ),
                 );
               });
+            },
+            onMapCreated: (controller) {
+              _controller = controller;
             },
           ),
           Container(
