@@ -69,10 +69,8 @@ class FakePlatformGoogleMap {
         updatePosition(call.arguments['cameraUpdate']);
         return Future<void>.sync(() {});
       case 'map#onTap':
-        print('hello');
         return Future<void>.sync(() {});
       case 'map#onLongPress':
-        print('hello');
         return Future<void>.sync(() {});
       case 'map#update':
         updateOptions(call.arguments['options']);
