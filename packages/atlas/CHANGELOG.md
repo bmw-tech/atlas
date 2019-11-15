@@ -2,7 +2,7 @@
 
 ## v0.3.0 (2019-11-15)
 
-Map Circle Definition
+- Map `Circle` Definition
 
 ## v0.2.0 (2019-10-16)
 
