@@ -11,6 +11,7 @@ abstract class Provider {
   Widget build({
     final CameraPosition initialCameraPosition,
     final Set<Marker> markers,
+    final Set<Circle> circles,
     final ArgumentCallback<LatLng> onTap,
     final ArgumentCallback<LatLng> onLongPress,
     final ArgumentCallback<AtlasController> onMapCreated,
