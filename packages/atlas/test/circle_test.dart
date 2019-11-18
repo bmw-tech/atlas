@@ -12,7 +12,7 @@ main() {
             latitude: 38.7439498,
             longitude: -9.1490721,
           ),
-          radius: 0.0,
+          radiusInMeters: 0.0,
         );
 
         fail('should throw AssertionError');
@@ -26,7 +26,7 @@ main() {
         Circle(
           id: 'id',
           center: null,
-          radius: 0.0,
+          radiusInMeters: 0.0,
         );
 
         fail('should throw AssertionError');
@@ -43,7 +43,7 @@ main() {
             latitude: 38.7439498,
             longitude: -9.1490721,
           ),
-          radius: null,
+          radiusInMeters: null,
         );
 
         fail('should throw AssertionError');
@@ -64,13 +64,13 @@ main() {
       final circle = Circle(
         id: expectedId,
         center: expectedCenter,
-        radius: expectedRadius,
+        radiusInMeters: expectedRadius,
         fillColor: expectedFillColor,
       );
 
       expect(circle.id, expectedId);
       expect(circle.center, expectedCenter);
-      expect(circle.radius, expectedRadius);
+      expect(circle.radiusInMeters, expectedRadius);
       expect(circle.fillColor, expectedFillColor);
     });
 
@@ -86,13 +86,13 @@ main() {
       final circle = Circle(
         id: expectedId,
         center: expectedCenter,
-        radius: expectedRadius,
+        radiusInMeters: expectedRadius,
         fillColor: expectedFillColor,
       );
 
       expect(circle.id, expectedId);
       expect(circle.center, expectedCenter);
-      expect(circle.radius, expectedRadius);
+      expect(circle.radiusInMeters, expectedRadius);
       expect(circle.fillColor, expectedFillColor);
     });
 
@@ -108,13 +108,13 @@ main() {
       final circle = Circle(
         id: expectedId,
         center: expectedCenter,
-        radius: expectedRadius,
+        radiusInMeters: expectedRadius,
         strokeColor: expectedStrokeColor,
       );
 
       expect(circle.id, expectedId);
       expect(circle.center, expectedCenter);
-      expect(circle.radius, expectedRadius);
+      expect(circle.radiusInMeters, expectedRadius);
       expect(circle.strokeColor, expectedStrokeColor);
     });
 
@@ -130,13 +130,13 @@ main() {
       final circle = Circle(
         id: expectedId,
         center: expectedCenter,
-        radius: expectedRadius,
+        radiusInMeters: expectedRadius,
         strokeColor: expectedStrokeColor,
       );
 
       expect(circle.id, expectedId);
       expect(circle.center, expectedCenter);
-      expect(circle.radius, expectedRadius);
+      expect(circle.radiusInMeters, expectedRadius);
       expect(circle.strokeColor, expectedStrokeColor);
     });
 
@@ -152,13 +152,13 @@ main() {
       final circle = Circle(
         id: expectedId,
         center: expectedCenter,
-        radius: expectedRadius,
+        radiusInMeters: expectedRadius,
         zIndex: expectedZIndex,
       );
 
       expect(circle.id, expectedId);
       expect(circle.center, expectedCenter);
-      expect(circle.radius, expectedRadius);
+      expect(circle.radiusInMeters, expectedRadius);
       expect(circle.zIndex, expectedZIndex);
     });
 
@@ -174,13 +174,13 @@ main() {
       final circle = Circle(
         id: expectedId,
         center: expectedCenter,
-        radius: expectedRadius,
+        radiusInMeters: expectedRadius,
         zIndex: expectedZIndex,
       );
 
       expect(circle.id, expectedId);
       expect(circle.center, expectedCenter);
-      expect(circle.radius, expectedRadius);
+      expect(circle.radiusInMeters, expectedRadius);
       expect(circle.zIndex, expectedZIndex);
     });
 
@@ -191,7 +191,7 @@ main() {
           latitude: 38.7439498,
           longitude: -9.1490721,
         ),
-        radius: 10.0,
+        radiusInMeters: 10.0,
         fillColor: Colors.green,
         strokeColor: Colors.orange,
         zIndex: 1.0,
@@ -202,7 +202,7 @@ main() {
           latitude: 38.7439498,
           longitude: -9.1490721,
         ),
-        radius: 10.0,
+        radiusInMeters: 10.0,
         fillColor: Colors.green,
         strokeColor: Colors.orange,
         zIndex: 1.0,

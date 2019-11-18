@@ -11,7 +11,7 @@ class Circle {
   final LatLng center;
 
   /// The radius of the `Circle`.
-  final double radius;
+  final double radiusInMeters;
 
   /// Optional FillColor used to color the area inside the `Circle`.
   final Color fillColor;
@@ -28,13 +28,13 @@ class Circle {
   const Circle({
     @required this.id,
     @required this.center,
-    @required this.radius,
+    @required this.radiusInMeters,
     this.fillColor,
     this.strokeColor,
     this.zIndex = 0.0,
   })  : assert(id != null),
         assert(center != null),
-        assert(radius != null);
+        assert(radiusInMeters != null);
 
   @override
   bool operator ==(Object other) {
@@ -43,7 +43,7 @@ class Circle {
     final Circle typedOther = other;
     return id == typedOther.id &&
         center == typedOther.center &&
-        radius == typedOther.radius &&
+        radiusInMeters == typedOther.radiusInMeters &&
         fillColor == typedOther.fillColor &&
         strokeColor == typedOther.strokeColor &&
         zIndex == typedOther.zIndex;
@@ -53,7 +53,7 @@ class Circle {
   int get hashCode =>
       id.hashCode ^
       center.hashCode ^
-      radius.hashCode ^
+      radiusInMeters.hashCode ^
       fillColor.hashCode ^
       strokeColor.hashCode ^
       zIndex.hashCode;

@@ -157,7 +157,7 @@ main() {
             latitude: 38.7439498,
             longitude: -9.1490721,
           ),
-          radius: 10.0,
+          radiusInMeters: 10.0,
         ),
       ].toSet();
 
