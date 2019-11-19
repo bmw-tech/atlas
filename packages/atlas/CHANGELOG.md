@@ -1,5 +1,9 @@
 # atlas
 
+## v0.3.0 (2019-11-15)
+
+- Added support for `Circle` on a Map
+
 ## v0.2.0 (2019-10-16)
 
 - `onLongPress` callback added to Atlas Map

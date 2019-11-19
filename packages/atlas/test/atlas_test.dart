@@ -46,6 +46,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
       )).thenReturn(Container(key: mapKey));
@@ -63,6 +64,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
         ),
@@ -84,9 +86,11 @@ main() {
           },
         ),
       ].toSet();
+
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: markers,
+        circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
       )).thenReturn(Container(key: mapKey));
@@ -105,6 +109,81 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: markers,
+          circles: Set<Circle>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when no map circles are provided',
+        (WidgetTester tester) async {
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when map circles are provided',
+        (WidgetTester tester) async {
+      final Set<Circle> circles = [
+        Circle(
+          id: '0',
+          center: LatLng(
+            latitude: 38.7439498,
+            longitude: -9.1490721,
+          ),
+          radiusInMeters: 10.0,
+        ),
+      ].toSet();
+
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: circles,
+        showMyLocation: false,
+        showMyLocationButton: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              circles: circles,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: circles,
           showMyLocation: false,
           showMyLocationButton: false,
         ),
@@ -120,6 +199,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        circles: Set<Circle>(),
         onTap: onTap,
         showMyLocation: false,
         showMyLocationButton: false,
@@ -139,6 +219,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          circles: Set<Circle>(),
           onTap: onTap,
           showMyLocation: false,
           showMyLocationButton: false,
@@ -155,6 +236,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        circles: Set<Circle>(),
         onLongPress: onLongPress,
         showMyLocation: false,
         showMyLocationButton: false,
@@ -174,6 +256,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          circles: Set<Circle>(),
           onLongPress: onLongPress,
           showMyLocation: false,
           showMyLocationButton: false,
@@ -187,6 +270,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        circles: Set<Circle>(),
         showMyLocation: true,
         showMyLocationButton: false,
       )).thenReturn(Container(key: mapKey));
@@ -205,6 +289,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          circles: Set<Circle>(),
           showMyLocation: true,
           showMyLocationButton: false,
         ),
@@ -217,6 +302,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
       )).thenReturn(Container(key: mapKey));
@@ -234,6 +320,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
         ),
@@ -246,6 +333,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: true,
       )).thenReturn(Container(key: mapKey));
@@ -265,6 +353,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: true,
         ),
@@ -277,6 +366,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
       )).thenReturn(Container(key: mapKey));
@@ -294,6 +384,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
         ),
