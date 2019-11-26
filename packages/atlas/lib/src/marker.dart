@@ -21,12 +21,15 @@ class Marker {
   /// Lower values means drawn earlier, and thus appearing to be closer to the surface of the Earth.
   final double zIndex;
 
+  final Anchor anchor;
+
   const Marker({
     @required this.id,
     @required this.position,
     this.onTap,
     this.icon,
     this.zIndex = 0.0,
+    this.anchor,
   })  : assert(id != null),
         assert(position != null);
 
@@ -44,4 +47,15 @@ class Marker {
   @override
   int get hashCode =>
       id.hashCode ^ position.hashCode ^ icon.hashCode ^ zIndex.hashCode;
+}
+
+class Anchor {
+  /// u-coordinate of the anchor, as a ratio of the image width (in the range [0, 1])
+  final double u;
+
+  /// v-coordinate of the anchor, as a ratio of the image height (in the range [0, 1])
+  final double v;
+
+  /// {@macro anchor}
+  const Anchor({this.u = 0.5, this.v = 0.5});
 }
