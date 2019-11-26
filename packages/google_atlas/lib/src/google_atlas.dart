@@ -13,6 +13,7 @@ class GoogleAtlas extends Provider {
   Widget build({
     @required CameraPosition initialCameraPosition,
     @required Set<Marker> markers,
+    @required Set<Circle> circles,
     @required bool showMyLocation,
     @required bool showMyLocationButton,
     ArgumentCallback<LatLng> onTap,
@@ -22,6 +23,7 @@ class GoogleAtlas extends Provider {
     return GoogleMapsProvider(
       initialCameraPosition: initialCameraPosition,
       markers: markers,
+      circles: circles,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
       onTap: onTap,
@@ -34,6 +36,7 @@ class GoogleAtlas extends Provider {
 class GoogleMapsProvider extends StatefulWidget {
   final CameraPosition initialCameraPosition;
   final Set<Marker> markers;
+  final Set<Circle> circles;
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
@@ -43,6 +46,7 @@ class GoogleMapsProvider extends StatefulWidget {
   GoogleMapsProvider({
     @required this.initialCameraPosition,
     @required this.markers,
+    @required this.circles,
     @required this.showMyLocation,
     @required this.showMyLocationButton,
     this.onTap,
@@ -56,6 +60,7 @@ class GoogleMapsProvider extends StatefulWidget {
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   CameraPosition get initialCameraPosition => widget.initialCameraPosition;
   Set<Marker> get markers => widget.markers;
+  Set<Circle> get circles => widget.circles;
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
@@ -64,9 +69,16 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Set<GoogleMaps.Marker>>(
-      future: _toGoogleMarkers(markers),
-      initialData: Set<GoogleMaps.Marker>(),
+    return FutureBuilder(
+      future:
+          Future.wait([_toGoogleMarkers(markers), _toGoogleCircles(circles)])
+              .then(
+        (response) => new GoogleAtlasDrawings(
+          markers: response[0],
+          circles: response[1],
+        ),
+      ),
+      initialData: GoogleAtlasDrawings(),
       builder: (context, snapshot) {
         return GoogleMaps.GoogleMap(
           myLocationEnabled: showMyLocation,
@@ -74,7 +86,12 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           mapType: GoogleMaps.MapType.normal,
           initialCameraPosition:
               CameraUtils.toGoogleCameraPosition(initialCameraPosition),
-          markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,
+          markers: snapshot.hasError
+              ? Set<GoogleMaps.Marker>()
+              : snapshot.data.markers,
+          circles: snapshot.hasError
+              ? Set<GoogleMaps.Circle>()
+              : snapshot.data.circles,
           onTap: _toGoogleOnTap(onTap),
           onLongPress: _toGoogleOnLongPress(onLongPress),
           onMapCreated: _onMapCreated,
@@ -103,6 +120,28 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
       );
     }
     return googleMarkers;
+  }
+
+  /// Converts an `Atlas.Circle` to a `GoogleMaps.Circle`
+  Future<Set<GoogleMaps.Circle>> _toGoogleCircles(Set<Circle> circles) async {
+    Set<GoogleMaps.Circle> googleCircles = Set();
+
+    for (Circle circle in circles) {
+      googleCircles.add(
+        GoogleMaps.Circle(
+          circleId: GoogleMaps.CircleId(circle.id),
+          center: GoogleMaps.LatLng(
+            circle.center.latitude,
+            circle.center.longitude,
+          ),
+          radius: circle.radiusInMeters,
+          fillColor: circle.fillColor,
+          strokeColor: circle.strokeColor,
+          zIndex: circle.zIndex.round(),
+        ),
+      );
+    }
+    return googleCircles;
   }
 
   /// Converts an `Atlas.MapIcon` to an `GoogleMaps.BitmapDescriptor`
@@ -146,4 +185,11 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
       GoogleAtlasController(controller: controller),
     );
   }
+}
+
+class GoogleAtlasDrawings {
+  final Set<GoogleMaps.Marker> markers;
+  final Set<GoogleMaps.Circle> circles;
+
+  GoogleAtlasDrawings({this.markers, this.circles});
 }
