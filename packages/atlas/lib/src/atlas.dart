@@ -37,6 +37,9 @@ class Atlas extends StatelessWidget {
   /// The updated `CameraPosition ` is passed as an argument.
   final ArgumentCallback<CameraPosition> onCameraPositionChanged;
 
+  /// `onLocationChanged` callback which receives a position when the user moves
+  final ArgumentCallback<LatLng> onLocationChanged;
+
   /// `showMyLocation` determines whether or not the current device location
   /// should be displayed on the map. It will default to false if not specified.
   ///
@@ -96,6 +99,7 @@ class Atlas extends StatelessWidget {
     this.onLongPress,
     this.onMapCreated,
     this.onCameraPositionChanged,
+    this.onLocationChanged,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
@@ -117,6 +121,7 @@ class Atlas extends StatelessWidget {
       polylines: polylines,
       onTap: onTap,
       onLongPress: onLongPress,
+      onLocationChanged: onLocationChanged,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
       mapType: mapType,

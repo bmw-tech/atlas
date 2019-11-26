@@ -29,6 +29,7 @@ class GoogleAtlas extends Provider {
     @required bool showTraffic,
     ArgumentCallback<LatLng> onTap,
     ArgumentCallback<LatLng> onLongPress,
+    ArgumentCallback<LatLng> onLocationChanged,
     ArgumentCallback<AtlasController> onMapCreated,
     ArgumentCallback<CameraPosition> onCameraPositionChanged,
   }) {
