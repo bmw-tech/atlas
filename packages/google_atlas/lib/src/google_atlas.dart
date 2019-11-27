@@ -95,11 +95,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   /// Converts an `Atlas.Marker` to a `GoogleMaps.Marker`
   Future<Set<GoogleMaps.Marker>> _toGoogleMarkers(Set<Marker> markers) async {
-    Set<GoogleMaps.Marker> googleMarkers = Set();
-
-    for (Marker marker in markers) {
-      googleMarkers.add(
-        GoogleMaps.Marker(
+    final result = markers.map((Marker marker) async => GoogleMaps.Marker(
           markerId: GoogleMaps.MarkerId(marker.id),
           position: GoogleMaps.LatLng(
             marker.position.latitude,
@@ -109,32 +105,26 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           icon: marker.icon == null
               ? null
               : await _toBitmapDescriptor(marker.icon),
-        ),
-      );
-    }
-    return googleMarkers;
+        ));
+
+    return Future.wait(result).then((value) => value.toSet());
   }
 
   /// Converts an `Atlas.Circle` to a `GoogleMaps.Circle`
   Future<Set<GoogleMaps.Circle>> _toGoogleCircles(Set<Circle> circles) async {
-    Set<GoogleMaps.Circle> googleCircles = Set();
-
-    for (Circle circle in circles) {
-      googleCircles.add(
-        GoogleMaps.Circle(
-          circleId: GoogleMaps.CircleId(circle.id),
-          center: GoogleMaps.LatLng(
-            circle.center.latitude,
-            circle.center.longitude,
-          ),
-          radius: circle.radiusInMeters,
-          fillColor: circle.fillColor,
-          strokeColor: circle.strokeColor,
-          zIndex: circle.zIndex.round(),
-        ),
-      );
-    }
-    return googleCircles;
+    return circles
+        .map((Circle circle) => GoogleMaps.Circle(
+              circleId: GoogleMaps.CircleId(circle.id),
+              center: GoogleMaps.LatLng(
+                circle.center.latitude,
+                circle.center.longitude,
+              ),
+              radius: circle.radiusInMeters,
+              fillColor: circle.fillColor,
+              strokeColor: circle.strokeColor,
+              zIndex: circle.zIndex.round(),
+            ))
+        .toSet();
   }
 
   /// Converts an `Atlas.MapIcon` to an `GoogleMaps.BitmapDescriptor`
