@@ -131,7 +131,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
     MarkerIcon markerIcon,
   ) async {
-    final ImageConfiguration imageConfiguration = ImageConfiguration(
+    final imageConfiguration = ImageConfiguration(
       devicePixelRatio: window.devicePixelRatio,
     );
     GoogleMaps.BitmapDescriptor bitmapDescriptor;

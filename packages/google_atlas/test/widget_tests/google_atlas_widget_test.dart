@@ -62,12 +62,12 @@ main() {
     testWidgets(
         'should return correct GoogleMap when build is called one marker',
         (WidgetTester tester) async {
-      final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
+      final expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
-      final Set<Marker> mockMarker = Set<Marker>.from([
+      final mockMarker = Set<Marker>.from([
         Marker(
           id: 'marker-1',
           position: LatLng(
@@ -87,13 +87,11 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 1);
 
-      final GoogleMaps.Marker actualMarker =
-          platformGoogleMap.markersToAdd.first;
+      final actualMarker = platformGoogleMap.markersToAdd.first;
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
     });
@@ -101,13 +99,13 @@ main() {
     testWidgets(
         'should return correct GoogleMap when build is called with one circle',
         (WidgetTester tester) async {
-      final GoogleMaps.Circle expectedCircle = GoogleMaps.Circle(
+      final expectedCircle = GoogleMaps.Circle(
         circleId: GoogleMaps.CircleId('circle-1'),
         center: GoogleMaps.LatLng(38.7439498, -9.1490721),
         radius: 10.0,
       );
 
-      final Set<Circle> mockCircle = Set<Circle>.from([
+      final mockCircle = Set<Circle>.from([
         Circle(
           id: 'circle-1',
           center: LatLng(
@@ -128,24 +126,22 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.circlesToAdd.length, 1);
 
-      final GoogleMaps.Circle actualCircle =
-          platformGoogleMap.circlesToAdd.first;
+      final actualCircle = platformGoogleMap.circlesToAdd.first;
       expect(platformGoogleMap.circleIdsToRemove.isEmpty, true);
       expect(actualCircle, equals(expectedCircle));
     });
 
     testWidgets('able to give a Marker a MapIcon', (WidgetTester tester) async {
-      final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
+      final expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
-      final Set<Marker> mockMarker = Set<Marker>.from([
+      final mockMarker = Set<Marker>.from([
         Marker(
             id: 'marker-1',
             position: LatLng(
@@ -167,27 +163,25 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 1);
 
-      final GoogleMaps.Marker actualMarker =
-          platformGoogleMap.markersToAdd.first;
+      final actualMarker = platformGoogleMap.markersToAdd.first;
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
     });
 
     testWidgets('able to give a Circle a fillColor',
         (WidgetTester tester) async {
-      final GoogleMaps.Circle expectedCircle = GoogleMaps.Circle(
+      final expectedCircle = GoogleMaps.Circle(
         circleId: GoogleMaps.CircleId('circle-1'),
         center: GoogleMaps.LatLng(38.7439498, -9.1490721),
         radius: 10.0,
         fillColor: Colors.black,
       );
 
-      final Set<Circle> mockCircle = Set<Circle>.from([
+      final mockCircle = Set<Circle>.from([
         Circle(
           id: 'circle-1',
           center: LatLng(
@@ -209,13 +203,11 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.circlesToAdd.length, 1);
 
-      final GoogleMaps.Circle actualCircle =
-          platformGoogleMap.circlesToAdd.first;
+      final actualCircle = platformGoogleMap.circlesToAdd.first;
       expect(platformGoogleMap.circleIdsToRemove.isEmpty, true);
       expect(actualCircle, equals(expectedCircle));
     });
@@ -223,17 +215,17 @@ main() {
     testWidgets(
         'should return correct GoogleMap when build is called with multiple markers',
         (WidgetTester tester) async {
-      final GoogleMaps.Marker expectedFirstMarker = GoogleMaps.Marker(
+      final expectedFirstMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
-      final GoogleMaps.Marker expectedSecondMarker = GoogleMaps.Marker(
+      final expectedSecondMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-2'),
         position: GoogleMaps.LatLng(44.8781, -83.6298),
       );
 
-      final Set<Marker> mockMarker = Set<Marker>.from([
+      final mockMarker = Set<Marker>.from([
         Marker(
           id: 'marker-1',
           position: LatLng(
@@ -260,17 +252,14 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.markersToAdd.length, 2);
 
-      final GoogleMaps.Marker firstActualMarker =
-          platformGoogleMap.markersToAdd.first;
+      final firstActualMarker = platformGoogleMap.markersToAdd.first;
       expect(firstActualMarker, equals(expectedFirstMarker));
 
-      final GoogleMaps.Marker secondActualMarker =
-          platformGoogleMap.markersToAdd.last;
+      final secondActualMarker = platformGoogleMap.markersToAdd.last;
       expect(secondActualMarker, equals(expectedSecondMarker));
 
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
@@ -279,19 +268,19 @@ main() {
     testWidgets(
         'should return correct GoogleMap when build is called with multiple circles',
         (WidgetTester tester) async {
-      final GoogleMaps.Circle expectedFirstCircle = GoogleMaps.Circle(
+      final expectedFirstCircle = GoogleMaps.Circle(
         circleId: GoogleMaps.CircleId('circle-1'),
         center: GoogleMaps.LatLng(38.7439498, -9.1490721),
         radius: 10.0,
       );
 
-      final GoogleMaps.Circle expectedSecondCircle = GoogleMaps.Circle(
+      final expectedSecondCircle = GoogleMaps.Circle(
         circleId: GoogleMaps.CircleId('circle-2'),
         center: GoogleMaps.LatLng(41.1496708, -8.6117829),
         radius: 20.0,
       );
 
-      final Set<Circle> mockCircle = Set<Circle>.from([
+      final mockCircle = Set<Circle>.from([
         Circle(
           id: 'circle-1',
           center: LatLng(
@@ -320,17 +309,14 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.circlesToAdd.length, 2);
 
-      final GoogleMaps.Circle firstActualCircle =
-          platformGoogleMap.circlesToAdd.first;
+      final firstActualCircle = platformGoogleMap.circlesToAdd.first;
       expect(firstActualCircle, equals(expectedFirstCircle));
 
-      final GoogleMaps.Circle secondActualCircle =
-          platformGoogleMap.circlesToAdd.last;
+      final secondActualCircle = platformGoogleMap.circlesToAdd.last;
       expect(secondActualCircle, equals(expectedSecondCircle));
 
       expect(platformGoogleMap.circleIdsToRemove.isEmpty, true);
@@ -342,7 +328,7 @@ main() {
     testWidgets(
         'should return correct GoogleMap when build is called without onTap',
         (WidgetTester tester) async {
-      final ArgumentCallback<LatLng> mockOnLongPress = (LatLng position) {
+      final mockOnLongPress = (LatLng position) {
         print('hello');
       };
 
@@ -371,7 +357,7 @@ main() {
     testWidgets(
         'should return correct GoogleMap when build is called without onLongPress',
         (WidgetTester tester) async {
-      final ArgumentCallback<LatLng> mockOnTap = (LatLng position) {
+      final mockOnTap = (LatLng position) {
         print('hello');
       };
 
@@ -402,7 +388,7 @@ main() {
         (WidgetTester tester) async {
       int onTapCallCount = 0;
       LatLng onTapPosition;
-      final ArgumentCallback<LatLng> mockOnTap = (LatLng position) {
+      final mockOnTap = (LatLng position) {
         onTapCallCount++;
         onTapPosition = position;
       };
@@ -438,7 +424,7 @@ main() {
         (WidgetTester tester) async {
       int onLongPressCallCount = 0;
       LatLng onLongPressPosition;
-      final ArgumentCallback<LatLng> mockOnLongPress = (LatLng position) {
+      final mockOnLongPress = (LatLng position) {
         onLongPressCallCount++;
         onLongPressPosition = position;
       };
@@ -482,8 +468,7 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
       expect(platformGoogleMap.myLocationEnabled, false);
@@ -504,8 +489,7 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
       expect(platformGoogleMap.myLocationEnabled, true);
@@ -525,8 +509,7 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
       expect(platformGoogleMap.myLocationEnabled, false);
@@ -547,8 +530,7 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
       expect(platformGoogleMap.myLocationButtonEnabled, false);
@@ -569,8 +551,7 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
       expect(platformGoogleMap.myLocationButtonEnabled, true);
@@ -590,8 +571,7 @@ main() {
 
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
       expect(platformGoogleMap.myLocationButtonEnabled, false);
@@ -613,8 +593,7 @@ main() {
       await tester.tap(find.byKey(Key('TestButton')));
       await tester.pumpAndSettle();
 
-      final FakePlatformGoogleMap platformGoogleMap =
-          fakePlatformViewsController.lastCreatedView;
+      final platformGoogleMap = fakePlatformViewsController.lastCreatedView;
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
     });
