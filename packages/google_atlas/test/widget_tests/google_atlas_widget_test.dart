@@ -35,7 +35,7 @@ main() {
     });
 
     testWidgets(
-        'should return correct GoogleMap with initial camera position and no markers',
+        'should return correct GoogleMap with initial camera position and no markers and no circles',
         (WidgetTester tester) async {
       final expectedPosition = GoogleMaps.LatLng(41.8781, -87.6298);
       final expectedZoom = 12;
@@ -55,6 +55,7 @@ main() {
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
       expect(platformGoogleMap.cameraPosition.zoom, expectedZoom);
       expect(platformGoogleMap.markersToAdd.length, 0);
+      expect(platformGoogleMap.circlesToAdd.length, 0);
       expect(platformGoogleMap.mapType, GoogleMaps.MapType.normal);
     });
 
@@ -97,6 +98,47 @@ main() {
       expect(actualMarker, equals(expectedMarker));
     });
 
+    testWidgets(
+        'should return correct GoogleMap when build is called with one circle',
+        (WidgetTester tester) async {
+      final GoogleMaps.Circle expectedCircle = GoogleMaps.Circle(
+        circleId: GoogleMaps.CircleId('circle-1'),
+        center: GoogleMaps.LatLng(38.7439498, -9.1490721),
+        radius: 10.0,
+      );
+
+      final Set<Circle> mockCircle = Set<Circle>.from([
+        Circle(
+          id: 'circle-1',
+          center: LatLng(
+            latitude: 38.7439498,
+            longitude: -9.1490721,
+          ),
+          radiusInMeters: 10.0,
+        )
+      ]);
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          circles: mockCircle,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.circlesToAdd.length, 1);
+
+      final GoogleMaps.Circle actualCircle =
+          platformGoogleMap.circlesToAdd.first;
+      expect(platformGoogleMap.circleIdsToRemove.isEmpty, true);
+      expect(actualCircle, equals(expectedCircle));
+    });
+
     testWidgets('able to give a Marker a MapIcon', (WidgetTester tester) async {
       final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
@@ -134,6 +176,48 @@ main() {
           platformGoogleMap.markersToAdd.first;
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
+    });
+
+    testWidgets('able to give a Circle a fillColor',
+        (WidgetTester tester) async {
+      final GoogleMaps.Circle expectedCircle = GoogleMaps.Circle(
+        circleId: GoogleMaps.CircleId('circle-1'),
+        center: GoogleMaps.LatLng(38.7439498, -9.1490721),
+        radius: 10.0,
+        fillColor: Colors.black,
+      );
+
+      final Set<Circle> mockCircle = Set<Circle>.from([
+        Circle(
+          id: 'circle-1',
+          center: LatLng(
+            latitude: 38.7439498,
+            longitude: -9.1490721,
+          ),
+          radiusInMeters: 10.0,
+          fillColor: Colors.black,
+        )
+      ]);
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          circles: mockCircle,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.circlesToAdd.length, 1);
+
+      final GoogleMaps.Circle actualCircle =
+          platformGoogleMap.circlesToAdd.first;
+      expect(platformGoogleMap.circleIdsToRemove.isEmpty, true);
+      expect(actualCircle, equals(expectedCircle));
     });
 
     testWidgets(
@@ -190,6 +274,66 @@ main() {
       expect(secondActualMarker, equals(expectedSecondMarker));
 
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
+    });
+
+    testWidgets(
+        'should return correct GoogleMap when build is called with multiple circles',
+        (WidgetTester tester) async {
+      final GoogleMaps.Circle expectedFirstCircle = GoogleMaps.Circle(
+        circleId: GoogleMaps.CircleId('circle-1'),
+        center: GoogleMaps.LatLng(38.7439498, -9.1490721),
+        radius: 10.0,
+      );
+
+      final GoogleMaps.Circle expectedSecondCircle = GoogleMaps.Circle(
+        circleId: GoogleMaps.CircleId('circle-2'),
+        center: GoogleMaps.LatLng(41.1496708, -8.6117829),
+        radius: 20.0,
+      );
+
+      final Set<Circle> mockCircle = Set<Circle>.from([
+        Circle(
+          id: 'circle-1',
+          center: LatLng(
+            latitude: 38.7439498,
+            longitude: -9.1490721,
+          ),
+          radiusInMeters: 10.0,
+        ),
+        Circle(
+          id: 'circle-2',
+          center: LatLng(
+            latitude: 41.1496708,
+            longitude: -8.6117829,
+          ),
+          radiusInMeters: 20.0,
+        ),
+      ]);
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          circles: mockCircle,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.circlesToAdd.length, 2);
+
+      final GoogleMaps.Circle firstActualCircle =
+          platformGoogleMap.circlesToAdd.first;
+      expect(firstActualCircle, equals(expectedFirstCircle));
+
+      final GoogleMaps.Circle secondActualCircle =
+          platformGoogleMap.circlesToAdd.last;
+      expect(secondActualCircle, equals(expectedSecondCircle));
+
+      expect(platformGoogleMap.circleIdsToRemove.isEmpty, true);
     });
 
     /* Track Google Maps Flutter Plugin Issue on better interactive testing.
@@ -480,6 +624,7 @@ main() {
 class AtlasTestSample extends StatefulWidget {
   final CameraPosition initialCameraPosition;
   final Set<Marker> markers;
+  final Set<Circle> circles;
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
@@ -488,6 +633,7 @@ class AtlasTestSample extends StatefulWidget {
   AtlasTestSample({
     @required this.initialCameraPosition,
     this.markers,
+    this.circles,
     this.showMyLocation,
     this.showMyLocationButton,
     this.onTap,
@@ -497,6 +643,7 @@ class AtlasTestSample extends StatefulWidget {
   State<AtlasTestSample> createState() => _AtlasTestSampleState(
         initialCameraPosition: this.initialCameraPosition,
         markers: this.markers,
+        circles: this.circles,
         showMyLocation: this.showMyLocation,
         showMyLocationButton: this.showMyLocationButton,
         onTap: this.onTap,
@@ -507,6 +654,7 @@ class AtlasTestSample extends StatefulWidget {
 class _AtlasTestSampleState extends State<AtlasTestSample> {
   final CameraPosition initialCameraPosition;
   final Set<Marker> markers;
+  final Set<Circle> circles;
   final bool showMyLocation;
   final bool showMyLocationButton;
   final ArgumentCallback<LatLng> onTap;
@@ -516,6 +664,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   _AtlasTestSampleState({
     @required this.initialCameraPosition,
     this.markers,
+    this.circles,
     this.showMyLocation,
     this.showMyLocationButton,
     this.onTap,
@@ -531,6 +680,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             key: Key('TestAtlas'),
             initialCameraPosition: initialCameraPosition,
             markers: this.markers ?? Set(),
+            circles: this.circles ?? Set(),
             showMyLocation: this.showMyLocation ?? false,
             showMyLocationButton: this.showMyLocationButton ?? false,
             onTap: this.onTap ?? null,

@@ -4,6 +4,7 @@
 
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -16,6 +17,7 @@ class FakePlatformGoogleMap {
     channel.setMockMethodCallHandler(onMethodCall);
     updateOptions(params['options']);
     updateMarkers(params);
+    updateCircles(params);
     updatePolylines(params);
   }
 
@@ -51,6 +53,12 @@ class FakePlatformGoogleMap {
 
   Set<Marker> markersToChange;
 
+  Set<CircleId> circleIdsToRemove;
+
+  Set<Circle> circlesToAdd;
+
+  Set<Circle> circlesToChange;
+
   Set<PolylineId> polylineIdsToRemove;
 
   Set<Polyline> polylinesToAdd;
@@ -77,6 +85,9 @@ class FakePlatformGoogleMap {
         return Future<void>.sync(() {});
       case 'markers#update':
         updateMarkers(call.arguments);
+        return Future<void>.sync(() {});
+      case 'circles#update':
+        updateCircles(call.arguments);
         return Future<void>.sync(() {});
       case 'polylines#update':
         updatePolylines(call.arguments);
@@ -174,6 +185,50 @@ class FakePlatformGoogleMap {
         visible: visible,
         infoWindow: infoWindow,
         position: LatLng(position[0], position[1]),
+      ));
+    }
+
+    return result;
+  }
+
+  void updateCircles(Map<dynamic, dynamic> circlesUpdates) {
+    if (circlesUpdates == null) {
+      return;
+    }
+    circlesToAdd = _deserializeCircles(circlesUpdates['circlesToAdd']);
+    circleIdsToRemove =
+        _deserializeCirclesIds(circlesUpdates['circlesIdsToRemove']);
+    circlesToChange = _deserializeCircles(circlesUpdates['circlesToChange']);
+  }
+
+  Set<CircleId> _deserializeCirclesIds(List<dynamic> circleIds) {
+    if (circleIds == null) {
+      return Set<CircleId>();
+    }
+    return circleIds.map((dynamic circleId) => CircleId(circleId)).toSet();
+  }
+
+  Set<Circle> _deserializeCircles(dynamic circles) {
+    if (circles == null) {
+      return Set<Circle>();
+    }
+    final List<dynamic> circlesData = circles;
+    final Set<Circle> result = Set<Circle>();
+    for (Map<dynamic, dynamic> circleData in circlesData) {
+      final String circleId = circleData['circleId'];
+      final center = circleData['center'];
+      final double radius = circleData['radius'];
+      final int fillColor = circleData['fillColor'];
+      final int strokeColor = circleData['strokeColor'];
+      final int zIndex = circleData['zIndex'];
+
+      result.add(Circle(
+        circleId: CircleId(circleId),
+        center: LatLng(center[0], center[1]),
+        radius: radius,
+        fillColor: Color(fillColor),
+        strokeColor: Color(strokeColor),
+        zIndex: zIndex,
       ));
     }
 
