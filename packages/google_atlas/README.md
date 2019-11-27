@@ -79,14 +79,14 @@ class MyApp extends StatelessWidget {
 }
 
 class AtlasSample extends StatelessWidget {
-  final CameraPosition initialCameraPosition = CameraPosition(
+  final initialCameraPosition = CameraPosition(
     target: LatLng(
       latitude: 37.42796133580664,
       longitude: -122.085749655962,
     ),
     zoom: 12,
   );
-  final Set<Marker> _markers = Set<Marker>.from([
+  final _markers = Set<Marker>.from([
     Marker(
       id: 'marker-1',
       position: LatLng(
@@ -98,7 +98,7 @@ class AtlasSample extends StatelessWidget {
       },
     )
   ]);
-  final Set<Circle> _circles = Set<Circle>.from([
+  final _circles = Set<Circle>.from([
     Circle(
       id: 'circle-1',
       center: LatLng(

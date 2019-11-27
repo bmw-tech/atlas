@@ -22,7 +22,7 @@ class AtlasSample extends StatefulWidget {
 }
 
 class _AtlasSampleState extends State<AtlasSample> {
-  final CameraPosition _initialCameraPosition = CameraPosition(
+  final _initialCameraPosition = CameraPosition(
     target: LatLng(
       latitude: 37.42796133580664,
       longitude: -122.085749655962,
@@ -30,7 +30,7 @@ class _AtlasSampleState extends State<AtlasSample> {
     zoom: 12,
   );
   AtlasController _controller;
-  final Set<Marker> _markers = Set<Marker>.from(
+  final _markers = Set<Marker>.from(
     [
       Marker(
         id: 'marker-1',
@@ -67,7 +67,7 @@ class _AtlasSampleState extends State<AtlasSample> {
       )
     ],
   );
-  final Set<Circle> _circles = Set<Circle>.from(
+  final _circles = Set<Circle>.from(
     [
       Circle(
         id: 'circle-1',

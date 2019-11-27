@@ -45,7 +45,7 @@ class AtlasSample extends StatelessWidget {
     latitude: 37.42796133580664,
     longitude: -122.085749655962,
   );
-  final Set<Marker> _markers = Set<Marker>.from([
+  final _markers = Set<Marker>.from([
     Marker(
       id: 'marker-1',
       position: LatLng(
@@ -57,6 +57,16 @@ class AtlasSample extends StatelessWidget {
       },
     )
   ]);
+  final _circles = Set<Circle>.from([
+    Circle(
+      id: 'circle-1',
+      center: LatLng(
+        latitude: 38.7439498,
+        longitude: -9.1490721,
+      ),
+      radiusInMeters: 10.0,
+    )
+  ]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +74,7 @@ class AtlasSample extends StatelessWidget {
       body: Atlas(
         position: position,
         markers: _markers,
+        circles: _circles,
       ),
     );
   }
