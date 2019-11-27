@@ -71,7 +71,10 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _getGoogleAtlasDrawings(),
-      initialData: GoogleAtlasDrawings(),
+      initialData: GoogleAtlasDrawings(
+        markers: {},
+        circles: {},
+      ),
       builder: (context, snapshot) {
         return GoogleMaps.GoogleMap(
           myLocationEnabled: showMyLocation,
@@ -184,5 +187,5 @@ class GoogleAtlasDrawings {
   final Set<GoogleMaps.Marker> markers;
   final Set<GoogleMaps.Circle> circles;
 
-  GoogleAtlasDrawings({this.markers, this.circles});
+  const GoogleAtlasDrawings({@required this.markers, @required this.circles});
 }
