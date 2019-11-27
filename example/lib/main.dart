@@ -30,55 +30,51 @@ class _AtlasSampleState extends State<AtlasSample> {
     zoom: 12,
   );
   AtlasController _controller;
-  final _markers = Set<Marker>.from(
-    [
-      Marker(
-        id: 'marker-1',
-        position: LatLng(
-          latitude: 41.878113,
-          longitude: -87.629799,
-        ),
-        onTap: () {
-          print('tapped marker-1');
-        },
+  final _markers = <Marker>{
+    Marker(
+      id: 'marker-1',
+      position: LatLng(
+        latitude: 41.878113,
+        longitude: -87.629799,
       ),
-      Marker(
-        id: 'marker-2',
-        position: LatLng(
-          latitude: 42.878113,
-          longitude: -87.629799,
-        ),
-        onTap: () {
-          print('tapped marker-2');
-        },
+      onTap: () {
+        print('tapped marker-1');
+      },
+    ),
+    Marker(
+      id: 'marker-2',
+      position: LatLng(
+        latitude: 42.878113,
+        longitude: -87.629799,
       ),
-      Marker(
-        id: 'marker-3',
-        position: LatLng(
-          latitude: 40.878113,
-          longitude: -100.629799,
-        ),
-        onTap: () {
-          print('tapped marker-3');
-        },
-        icon: MarkerIcon(
-          assetName: 'assets/mario.png',
-        ),
-      )
-    ],
-  );
-  final _circles = Set<Circle>.from(
-    [
-      Circle(
-        id: 'circle-1',
-        center: LatLng(
-          latitude: 38.7439498,
-          longitude: -9.1490721,
-        ),
-        radiusInMeters: 10.0,
+      onTap: () {
+        print('tapped marker-2');
+      },
+    ),
+    Marker(
+      id: 'marker-3',
+      position: LatLng(
+        latitude: 40.878113,
+        longitude: -100.629799,
       ),
-    ],
-  );
+      onTap: () {
+        print('tapped marker-3');
+      },
+      icon: MarkerIcon(
+        assetName: 'assets/mario.png',
+      ),
+    )
+  };
+  final _circles = <Circle>{
+    Circle(
+      id: 'circle-1',
+      center: LatLng(
+        latitude: 38.7439498,
+        longitude: -9.1490721,
+      ),
+      radiusInMeters: 10.0,
+    ),
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(

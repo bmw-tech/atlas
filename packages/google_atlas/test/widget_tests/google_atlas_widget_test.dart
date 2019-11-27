@@ -67,7 +67,7 @@ main() {
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
-      final mockMarker = Set<Marker>.from([
+      final mockMarker = <Marker>{
         Marker(
           id: 'marker-1',
           position: LatLng(
@@ -75,7 +75,7 @@ main() {
             longitude: -87.6298,
           ),
         )
-      ]);
+      };
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
@@ -105,7 +105,7 @@ main() {
         radius: 10.0,
       );
 
-      final mockCircle = Set<Circle>.from([
+      final mockCircle = <Circle>{
         Circle(
           id: 'circle-1',
           center: LatLng(
@@ -114,7 +114,7 @@ main() {
           ),
           radiusInMeters: 10.0,
         )
-      ]);
+      };
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
@@ -141,7 +141,7 @@ main() {
         position: GoogleMaps.LatLng(41.8781, -87.6298),
       );
 
-      final mockMarker = Set<Marker>.from([
+      final mockMarker = <Marker>{
         Marker(
             id: 'marker-1',
             position: LatLng(
@@ -151,7 +151,7 @@ main() {
             icon: MarkerIcon(
               assetName: 'assets/butterfly.png',
             ))
-      ]);
+      };
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
@@ -181,7 +181,7 @@ main() {
         fillColor: Colors.black,
       );
 
-      final mockCircle = Set<Circle>.from([
+      final mockCircle = <Circle>{
         Circle(
           id: 'circle-1',
           center: LatLng(
@@ -191,7 +191,7 @@ main() {
           radiusInMeters: 10.0,
           fillColor: Colors.black,
         )
-      ]);
+      };
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
@@ -225,7 +225,7 @@ main() {
         position: GoogleMaps.LatLng(44.8781, -83.6298),
       );
 
-      final mockMarker = Set<Marker>.from([
+      final mockMarker = <Marker>{
         Marker(
           id: 'marker-1',
           position: LatLng(
@@ -240,7 +240,7 @@ main() {
             longitude: -83.6298,
           ),
         )
-      ]);
+      };
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
@@ -280,7 +280,7 @@ main() {
         radius: 20.0,
       );
 
-      final mockCircle = Set<Circle>.from([
+      final mockCircle = <Circle>{
         Circle(
           id: 'circle-1',
           center: LatLng(
@@ -297,7 +297,7 @@ main() {
           ),
           radiusInMeters: 20.0,
         ),
-      ]);
+      };
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',

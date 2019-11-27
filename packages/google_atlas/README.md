@@ -86,7 +86,7 @@ class AtlasSample extends StatelessWidget {
     ),
     zoom: 12,
   );
-  final _markers = Set<Marker>.from([
+  final _markers = <Marker>{
     Marker(
       id: 'marker-1',
       position: LatLng(
@@ -97,8 +97,8 @@ class AtlasSample extends StatelessWidget {
         print('tapped marker-1');
       },
     )
-  ]);
-  final _circles = Set<Circle>.from([
+  };
+  final _circles = <Circle>{
     Circle(
       id: 'circle-1',
       center: LatLng(
@@ -106,8 +106,7 @@ class AtlasSample extends StatelessWidget {
         longitude: -9.1490721,
       ),
       radiusInMeters: 10.0,
-    )
-  ]);
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
