@@ -58,6 +58,18 @@ class AtlasSample extends StatelessWidget {
             )
           ],
         ),
+        circles: Set<Circle>.from(
+          [
+            Circle(
+              id: 'circle-1',
+              center: LatLng(
+                latitude: 38.7439498,
+                longitude: -9.1490721,
+              ),
+              radiusInMeters: 10.0,
+            ),
+          ],
+        ),
       ),
     );
   }

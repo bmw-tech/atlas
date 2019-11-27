@@ -67,6 +67,18 @@ class _AtlasSampleState extends State<AtlasSample> {
       )
     ],
   );
+  final Set<Circle> _circles = Set<Circle>.from(
+    [
+      Circle(
+        id: 'circle-1',
+        center: LatLng(
+          latitude: 38.7439498,
+          longitude: -9.1490721,
+        ),
+        radiusInMeters: 10.0,
+      ),
+    ],
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +87,7 @@ class _AtlasSampleState extends State<AtlasSample> {
           Atlas(
             initialCameraPosition: _initialCameraPosition,
             markers: _markers,
+            circles: _circles,
             showMyLocation: true,
             showMyLocationButton: false,
             onTap: (LatLng position) {
