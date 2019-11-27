@@ -172,7 +172,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Future _getGoogleAtlasDrawings() {
     return Future.wait([_toGoogleMarkers(markers), _toGoogleCircles(circles)])
         .then(
-      (response) => new GoogleAtlasDrawings(
+      (response) => GoogleAtlasDrawings(
         markers: response[0],
         circles: response[1],
       ),
