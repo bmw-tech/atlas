@@ -70,14 +70,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future:
-          Future.wait([_toGoogleMarkers(markers), _toGoogleCircles(circles)])
-              .then(
-        (response) => new GoogleAtlasDrawings(
-          markers: response[0],
-          circles: response[1],
-        ),
-      ),
+      future: _getGoogleAtlasDrawings(),
       initialData: GoogleAtlasDrawings(),
       builder: (context, snapshot) {
         return GoogleMaps.GoogleMap(
@@ -183,6 +176,16 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   void _onMapCreated(GoogleMaps.GoogleMapController controller) async {
     onMapCreated?.call(
       GoogleAtlasController(controller: controller),
+    );
+  }
+
+  Future _getGoogleAtlasDrawings() {
+    return Future.wait([_toGoogleMarkers(markers), _toGoogleCircles(circles)])
+        .then(
+      (response) => new GoogleAtlasDrawings(
+        markers: response[0],
+        circles: response[1],
+      ),
     );
   }
 }
