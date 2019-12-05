@@ -120,7 +120,7 @@ main() {
         zIndex: 1.0,
       );
 
-      final anchor = new Anchor();
+      final anchor =  Anchor();
       final marker3 = Marker(
         id: 'id',
         position: LatLng(

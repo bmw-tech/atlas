@@ -46,7 +46,7 @@ class Marker {
 
   @override
   int get hashCode =>
-      id.hashCode ^ position.hashCode ^ icon.hashCode ^ zIndex.hashCode;
+      id.hashCode ^ position.hashCode ^ icon.hashCode ^ zIndex.hashCode ^ anchor.hashCode;
 }
 
 class Anchor {
