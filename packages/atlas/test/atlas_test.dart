@@ -47,8 +47,10 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -65,8 +67,10 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -91,8 +95,10 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: markers,
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -110,8 +116,10 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: markers,
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -123,8 +131,10 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -141,8 +151,10 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -164,9 +176,11 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        polylines: Set<Polyline>(),
         circles: circles,
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -183,9 +197,63 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          polylines: Set<Polyline>(),
           circles: circles,
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when map polyline are provided',
+        (WidgetTester tester) async {
+      final Set<Polyline> polylines = [
+        Polyline(
+          id: '0',
+          points: [
+            LatLng(
+              latitude: 38.7439498,
+              longitude: -9.1490721,
+            ),
+            LatLng(
+              latitude: 36.7439498,
+              longitude: 126.1490721,
+            )
+          ],
+        ),
+      ].toSet();
+
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        polylines: polylines,
+        circles: Set<Circle>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+        showTraffic: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              polylines: polylines,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          polylines: polylines,
+          circles: Set<Circle>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -200,9 +268,11 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         onTap: onTap,
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -220,9 +290,11 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           onTap: onTap,
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -237,9 +309,11 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         onLongPress: onLongPress,
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -257,9 +331,11 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           onLongPress: onLongPress,
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -271,8 +347,10 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         showMyLocation: true,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -290,8 +368,10 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           showMyLocation: true,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -303,8 +383,10 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -321,8 +403,10 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -334,8 +418,10 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: true,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -354,8 +440,10 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: true,
+          showTraffic: false,
         ),
       ).called(1);
     });
@@ -367,8 +455,10 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -385,8 +475,10 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          showTraffic: false,
         ),
       ).called(1);
     });

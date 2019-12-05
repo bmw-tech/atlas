@@ -52,6 +52,13 @@ class AtlasSample extends StatelessWidget {
         latitude: 37.42796133580664,
         longitude: -122.085749655962,
       ),
+      icon: MarkerIcon(
+        assetName: 'assets/marker.png',
+      ),
+      anchor: Anchor(
+        x: 0.5,
+        y: 1.0,
+      )
       onTap: () {
         print('tapped marker-1');
       },
