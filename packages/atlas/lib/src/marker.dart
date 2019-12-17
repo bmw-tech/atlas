@@ -68,11 +68,11 @@ class Marker {
 /// {@endtemplate}
 class Anchor {
   /// u-coordinate of the anchor, as a ratio of the image width (in the range [0, 1])
-  final double u;
+  final double x;
 
   /// v-coordinate of the anchor, as a ratio of the image height (in the range [0, 1])
-  final double v;
+  final double y;
 
   /// {@macro anchor}
-  const Anchor({this.u = 0.5, this.v = 0.5});
+  const Anchor({this.x = 0.5, this.y = 0.5});
 }
