@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd42877e-8617-477e-9d36-eed49be84843" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/packages/atlas/test/marker_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/atlas/test/marker_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/atlas/lib/src/marker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/atlas/lib/src/marker.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/packages/atlas/lib/src/marker.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="441">
+              <caret line="76" column="45" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/atlas/test/marker_test.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="123" column="6" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="6" />
+            <state relative-caret-position="1845">
+              <caret line="123" selection-start-line="123" selection-end-line="123" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -167,8 +167,8 @@
         <option value="$PROJECT_DIR$/packages/atlas/lib/src/atlas.dart" />
         <option value="$PROJECT_DIR$/packages/atlas/test/atlas_test.dart" />
         <option value="$PROJECT_DIR$/packages/atlas/lib/src/polyline.dart" />
-        <option value="$PROJECT_DIR$/packages/atlas/lib/src/marker.dart" />
         <option value="$PROJECT_DIR$/packages/atlas/test/marker_test.dart" />
+        <option value="$PROJECT_DIR$/packages/atlas/lib/src/marker.dart" />
       </list>
     </option>
   </component>
@@ -814,22 +814,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/atlas/lib/src/marker.dart">
+    <entry file="file://$PROJECT_DIR$/packages/atlas/test/marker_test.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="1845">
+          <caret line="123" selection-start-line="123" selection-end-line="123" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/atlas/test/marker_test.dart">
+    <entry file="file://$PROJECT_DIR$/packages/atlas/lib/src/marker.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="123" column="6" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="6" />
+        <state relative-caret-position="441">
+          <caret line="76" column="45" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
