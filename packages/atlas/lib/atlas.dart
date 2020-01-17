@@ -10,3 +10,4 @@ export 'src/lat_lng.dart';
 export 'src/marker.dart';
 export 'src/provider.dart';
 export 'src/marker_icon.dart';
+export 'src/map_type.dart';

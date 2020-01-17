@@ -60,6 +60,8 @@ class Atlas extends StatelessWidget {
   ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
 
+  final MapType currentMapType;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -67,6 +69,7 @@ class Atlas extends StatelessWidget {
     Set<Circle> circles,
     bool showMyLocation,
     bool showMyLocationButton,
+    MapType currentMapType,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
@@ -75,6 +78,7 @@ class Atlas extends StatelessWidget {
         circles = circles ?? Set<Circle>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
+        currentMapType = currentMapType ?? MapType.normal,
         super(key: key);
 
   @override
@@ -87,6 +91,7 @@ class Atlas extends StatelessWidget {
       onLongPress: onLongPress,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
+      currentMapType: currentMapType,
       onMapCreated: onMapCreated,
     );
   }

@@ -390,5 +390,38 @@ main() {
         ),
       ).called(1);
     });
+
+    testWidgets(
+        'should call provider build method with correct arguments when currentMapType is supplied',
+        (WidgetTester tester) async {
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+        currentMapType: MapType.normal,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          currentMapType: MapType.normal,
+        ),
+      ).called(1);
+    });
   });
 }

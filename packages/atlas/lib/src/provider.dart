@@ -8,6 +8,8 @@ typedef void ArgumentCallback<T>(T argument);
 /// In order to implement a custom `AtlasProvider` you must simply implement `Provider`
 /// and set your `AtlasProvider.instance` to the instance of your custom `Provider`.
 abstract class Provider {
+  Set<MapType> supportedMapTypes;
+
   Widget build({
     final CameraPosition initialCameraPosition,
     final Set<Marker> markers,
@@ -17,5 +19,6 @@ abstract class Provider {
     final ArgumentCallback<AtlasController> onMapCreated,
     final bool showMyLocation,
     final bool showMyLocationButton,
+    final MapType currentMapType,
   });
 }
