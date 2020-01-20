@@ -49,6 +49,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -67,6 +68,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -93,6 +95,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -112,6 +115,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -125,6 +129,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -143,6 +148,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -167,6 +173,7 @@ main() {
         circles: circles,
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -186,6 +193,7 @@ main() {
           circles: circles,
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -203,6 +211,7 @@ main() {
         onTap: onTap,
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -223,6 +232,7 @@ main() {
           onTap: onTap,
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -240,6 +250,7 @@ main() {
         onLongPress: onLongPress,
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -260,6 +271,7 @@ main() {
           onLongPress: onLongPress,
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -273,6 +285,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: true,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -292,6 +305,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: true,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -305,6 +319,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -323,6 +338,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -336,6 +352,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: true,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -356,6 +373,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: true,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -369,6 +387,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        currentMapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -387,6 +406,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          currentMapType: MapType.normal,
         ),
       ).called(1);
     });
