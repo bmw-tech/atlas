@@ -60,6 +60,12 @@ class Atlas extends StatelessWidget {
   ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
 
+  /// Sets the underlying map type to be displayed.
+  ///
+  /// Defaults to [MapType.normal].
+  ///
+  /// See also:
+  ///   * [Provider.supportedMapTypes] parameter.
   final MapType currentMapType;
 
   Atlas({

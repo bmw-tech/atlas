@@ -8,6 +8,13 @@ typedef void ArgumentCallback<T>(T argument);
 /// In order to implement a custom `AtlasProvider` you must simply implement `Provider`
 /// and set your `AtlasProvider.instance` to the instance of your custom `Provider`.
 abstract class Provider {
+
+  /// Allows the respective map provider to declare
+  /// what underlying map types are supported. 
+  /// 
+  /// This info can then be used to either cycle through
+  /// MapTypes with a button on the GUI, or to set the initial
+  /// [Atlas.currentMapType] property. 
   Set<MapType> supportedMapTypes;
 
   Widget build({
