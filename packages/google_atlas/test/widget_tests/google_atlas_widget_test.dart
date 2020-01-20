@@ -61,7 +61,6 @@ main() {
     testWidgets(
         'should return correct GoogleMap with currentMapType set to normal type',
         (WidgetTester tester) async {
-
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
@@ -77,11 +76,10 @@ main() {
 
       expect(platformGoogleMap.mapType, GoogleMaps.MapType.normal);
     });
-    
+
     testWidgets(
         'should return correct GoogleMap with currentMapType set to satellite type',
         (WidgetTester tester) async {
-
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
@@ -101,7 +99,6 @@ main() {
     testWidgets(
         'should return correct GoogleMap with currentMapType set to terrain type',
         (WidgetTester tester) async {
-
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
@@ -121,7 +118,6 @@ main() {
     testWidgets(
         'should return correct GoogleMap with currentMapType set to hybrid type',
         (WidgetTester tester) async {
-
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
@@ -591,7 +587,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
-  final MapType currentMapType; 
+  final MapType currentMapType;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   AtlasController _controller;

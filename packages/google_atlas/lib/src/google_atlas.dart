@@ -9,12 +9,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 /// `Atlas` Provider for Google Maps
 class GoogleAtlas extends Provider {
-
   @override
   Set<MapType> get supportedMapTypes => {
-      MapType.normal, 
-      MapType.satellite,
-  };
+        MapType.normal,
+        MapType.satellite,
+      };
 
   @override
   Widget build({
@@ -36,7 +35,7 @@ class GoogleAtlas extends Provider {
       currentMapType: currentMapType,
       onTap: onTap,
       onLongPress: onLongPress,
-      onMapCreated: onMapCreated, 
+      onMapCreated: onMapCreated,
     );
   }
 }
@@ -154,9 +153,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   }
 
   /// Converts an `Atlas.MapType` enum to a `GoogleMaps.MapType` enum.
-  GoogleMaps.MapType _toGoogleMapType(
-    MapType atlasMapType
-  ) {
+  GoogleMaps.MapType _toGoogleMapType(MapType atlasMapType) {
     switch (atlasMapType) {
       case MapType.normal:
         return GoogleMaps.MapType.normal;

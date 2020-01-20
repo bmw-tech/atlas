@@ -130,17 +130,17 @@ class _AtlasSampleState extends State<AtlasSample> {
                   Visibility(
                     visible: _shouldShowMapTypeButton(),
                     child: FloatingActionButton(
-                            child: Icon(Icons.map),
-                            onPressed: () {
-                              setState(() {
-                                if (currentMapType == MapType.normal) {
-                                  currentMapType = MapType.satellite;
-                                } else {
-                                  currentMapType = MapType.normal;
-                                }
-                              });
-                            },
-                          ),
+                      child: Icon(Icons.map),
+                      onPressed: () {
+                        setState(() {
+                          if (currentMapType == MapType.normal) {
+                            currentMapType = MapType.satellite;
+                          } else {
+                            currentMapType = MapType.normal;
+                          }
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
