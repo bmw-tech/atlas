@@ -13,6 +13,7 @@ class GoogleAtlas extends Provider {
   Set<MapType> get supportedMapTypes => {
         MapType.normal,
         MapType.satellite,
+        MapType.terrain,
       };
 
   @override
@@ -22,7 +23,7 @@ class GoogleAtlas extends Provider {
     @required Set<Circle> circles,
     @required bool showMyLocation,
     @required bool showMyLocationButton,
-    @required MapType currentMapType,
+    @required MapType mapType,
     ArgumentCallback<LatLng> onTap,
     ArgumentCallback<LatLng> onLongPress,
     ArgumentCallback<AtlasController> onMapCreated,
@@ -32,7 +33,7 @@ class GoogleAtlas extends Provider {
       markers: markers,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
-      currentMapType: currentMapType,
+      mapType: mapType,
       onTap: onTap,
       onLongPress: onLongPress,
       onMapCreated: onMapCreated,
@@ -45,7 +46,7 @@ class GoogleMapsProvider extends StatefulWidget {
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
-  final MapType currentMapType;
+  final MapType mapType;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<AtlasController> onMapCreated;
@@ -55,7 +56,7 @@ class GoogleMapsProvider extends StatefulWidget {
     @required this.markers,
     @required this.showMyLocation,
     @required this.showMyLocationButton,
-    @required this.currentMapType,
+    @required this.mapType,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
@@ -69,7 +70,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Set<Marker> get markers => widget.markers;
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
-  MapType get currentMapType => widget.currentMapType;
+  MapType get mapType => widget.mapType;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
   ArgumentCallback<LatLng> get onLongPress => widget.onLongPress;
   ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
@@ -83,7 +84,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
         return GoogleMaps.GoogleMap(
           myLocationEnabled: showMyLocation,
           myLocationButtonEnabled: showMyLocationButton,
-          mapType: _toGoogleMapType(currentMapType),
+          mapType: _toGoogleMapType(mapType),
           initialCameraPosition:
               CameraUtils.toGoogleCameraPosition(initialCameraPosition),
           markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,

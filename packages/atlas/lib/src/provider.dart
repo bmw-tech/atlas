@@ -13,7 +13,7 @@ abstract class Provider {
   ///
   /// This info can then be used to either cycle through
   /// MapTypes with a button on the GUI, or to set the initial
-  /// [Atlas.currentMapType] property.
+  /// [Atlas.mapType] property.
   Set<MapType> supportedMapTypes;
 
   Widget build({
@@ -25,6 +25,6 @@ abstract class Provider {
     final ArgumentCallback<AtlasController> onMapCreated,
     final bool showMyLocation,
     final bool showMyLocationButton,
-    final MapType currentMapType,
+    final MapType mapType,
   });
 }

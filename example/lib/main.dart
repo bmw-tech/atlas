@@ -22,7 +22,7 @@ class AtlasSample extends StatefulWidget {
 }
 
 class _AtlasSampleState extends State<AtlasSample> {
-  MapType currentMapType = MapType.normal;
+  MapType mapType = MapType.normal;
 
   final CameraPosition _initialCameraPosition = CameraPosition(
     target: LatLng(
@@ -79,7 +79,7 @@ class _AtlasSampleState extends State<AtlasSample> {
             markers: _markers,
             showMyLocation: true,
             showMyLocationButton: false,
-            currentMapType: currentMapType,
+            mapType: mapType,
             onTap: (LatLng position) {
               print(
                 'map tapped: ${position.latitude}, ${position.longitude}',
@@ -133,10 +133,10 @@ class _AtlasSampleState extends State<AtlasSample> {
                       child: Icon(Icons.map),
                       onPressed: () {
                         setState(() {
-                          if (currentMapType == MapType.normal) {
-                            currentMapType = MapType.satellite;
+                          if (mapType == MapType.normal) {
+                            mapType = MapType.satellite;
                           } else {
-                            currentMapType = MapType.normal;
+                            mapType = MapType.normal;
                           }
                         });
                       },
@@ -152,6 +152,6 @@ class _AtlasSampleState extends State<AtlasSample> {
   }
 
   bool _shouldShowMapTypeButton() {
-    return (AtlasProvider.instance.supportedMapTypes.length > 1);
+    return AtlasProvider.instance.supportedMapTypes.length > 1;
   }
 }
