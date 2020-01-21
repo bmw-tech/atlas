@@ -68,6 +68,7 @@ class Atlas extends StatelessWidget {
     @required this.initialCameraPosition,
     Set<Marker> markers,
     Set<Circle> circles,
+    Set<Polygon> polygons,
     bool showMyLocation,
     bool showMyLocationButton,
     this.onTap,
@@ -76,6 +77,7 @@ class Atlas extends StatelessWidget {
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
+        polygons = polygons ?? Set<Polygon>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
         super(key: key);
@@ -86,6 +88,7 @@ class Atlas extends StatelessWidget {
       initialCameraPosition: initialCameraPosition,
       markers: markers,
       circles: circles,
+      polygons: polygons,
       onTap: onTap,
       onLongPress: onLongPress,
       showMyLocation: showMyLocation,
