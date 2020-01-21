@@ -7,13 +7,17 @@ class Polygon {
 
   final List<LatLng> points;
 
+  final int strokeWidth;
+
   final Color strokeColor;
 
   final Color fillColor;
 
+
   const Polygon({
     @required this.id,
     @required this.points,
+    this.strokeWidth = 1,
     this.strokeColor = Colors.blue,
     this.fillColor = Colors.blue,
   })  : assert(id != null),
@@ -26,11 +30,12 @@ class Polygon {
     final Polygon typedOther = other;
     return id == typedOther.id &&
         points == typedOther.points &&
+        strokeWidth == typedOther.strokeWidth &&
         strokeColor == typedOther.strokeColor &&
         fillColor == typedOther.fillColor;
   }
 
   @override
   int get hashCode =>
-      id.hashCode ^ points.hashCode ^ strokeColor.hashCode ^ fillColor.hashCode;
+      id.hashCode ^ points.hashCode ^ strokeColor.hashCode ^ fillColor.hashCode ^ strokeWidth.hashCode;
 }
