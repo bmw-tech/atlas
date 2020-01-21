@@ -9,11 +9,14 @@ class Atlas extends StatelessWidget {
   /// The `CameraPosition` which the map will initially be focused on.
   final CameraPosition initialCameraPosition;
 
-  /// The [Set] of `markers` which will be rendered on the map.
+  /// The [Set] of `Marker` objects which will be rendered on the map.
   final Set<Marker> markers;
 
-  /// The [Set] of `Circle` which will be rendered on the map.
+  /// The [Set] of `Circle` objects which will be rendered on the map.
   final Set<Circle> circles;
+
+  /// The [Set] of `Polygon` objects which will be rendered on the map.
+  final Set<Polygon> polygons;
 
   /// `onTap` gets called when the map is tapped.
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.

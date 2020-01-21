@@ -12,6 +12,7 @@ abstract class Provider {
     final CameraPosition initialCameraPosition,
     final Set<Marker> markers,
     final Set<Circle> circles,
+    final Set<Polygon> polygons,
     final ArgumentCallback<LatLng> onTap,
     final ArgumentCallback<LatLng> onLongPress,
     final ArgumentCallback<AtlasController> onMapCreated,
