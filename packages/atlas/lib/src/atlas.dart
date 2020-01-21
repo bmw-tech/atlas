@@ -62,8 +62,6 @@ class Atlas extends StatelessWidget {
   ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
 
-  final bool showTraffic;
-
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -71,7 +69,6 @@ class Atlas extends StatelessWidget {
     Set<Circle> circles,
     Set<Polyline> polylines,
     bool showMyLocation,
-    bool showTraffic,
     bool showMyLocationButton,
     this.onTap,
     this.onLongPress,
@@ -82,7 +79,6 @@ class Atlas extends StatelessWidget {
         polylines = polylines ?? Set<Polyline>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
-        showTraffic = showTraffic ?? false,
         super(key: key);
 
   @override
@@ -96,7 +92,6 @@ class Atlas extends StatelessWidget {
       onLongPress: onLongPress,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
-      showTraffic: showTraffic,
       onMapCreated: onMapCreated,
     );
   }
