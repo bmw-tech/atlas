@@ -119,7 +119,31 @@ main() {
         onTap: () {},
         zIndex: 1.0,
       );
+
+      final anchor = Anchor();
+      final marker3 = Marker(
+        id: 'id',
+        position: LatLng(
+          latitude: 37.42796133580664,
+          longitude: -122.085749655962,
+        ),
+        onTap: () {},
+        zIndex: 1.0,
+        anchor: anchor,
+      );
+
+      final marker4 = Marker(
+        id: 'id',
+        position: LatLng(
+          latitude: 37.42796133580664,
+          longitude: -122.085749655962,
+        ),
+        onTap: () {},
+        zIndex: 1.0,
+        anchor: anchor,
+      );
       expect(marker1, marker2);
+      expect(marker3, marker4);
     });
   });
 }

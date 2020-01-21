@@ -13,7 +13,6 @@ class Polygon {
 
   final Color fillColor;
 
-
   const Polygon({
     @required this.id,
     @required this.points,
@@ -37,5 +36,9 @@ class Polygon {
 
   @override
   int get hashCode =>
-      id.hashCode ^ points.hashCode ^ strokeColor.hashCode ^ fillColor.hashCode ^ strokeWidth.hashCode;
+      id.hashCode ^
+      points.hashCode ^
+      strokeColor.hashCode ^
+      fillColor.hashCode ^
+      strokeWidth.hashCode;
 }

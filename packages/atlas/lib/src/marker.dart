@@ -21,12 +21,15 @@ class Marker {
   /// Lower values means drawn earlier, and thus appearing to be closer to the surface of the Earth.
   final double zIndex;
 
+  final Anchor anchor;
+
   const Marker({
     @required this.id,
     @required this.position,
     this.onTap,
     this.icon,
     this.zIndex = 0.0,
+    this.anchor,
   })  : assert(id != null),
         assert(position != null);
 
@@ -43,5 +46,33 @@ class Marker {
 
   @override
   int get hashCode =>
-      id.hashCode ^ position.hashCode ^ icon.hashCode ^ zIndex.hashCode;
+      id.hashCode ^
+      position.hashCode ^
+      icon.hashCode ^
+      zIndex.hashCode ^
+      anchor.hashCode;
+}
+
+/// {@template anchor}
+/// Specifies the anchor to be at a particular point in the marker image.
+///
+/// The anchor specifies the point in the icon image that is anchored
+/// to the marker's position on the Earth's surface.
+///
+/// The anchor point is specified in the continuous space [0.0, 1.0] x [0.0, 1.0],
+/// where (0, 0) is the top-left corner of the image, and (1, 1) is the bottom-right corner.
+/// The anchoring point in a W x H image is the nearest discrete grid point in a
+/// (W + 1) x (H + 1) grid, obtained by scaling the then rounding.
+/// For example, in a 4 x 2 image, the anchor point (0.7, 0.6) resolves
+/// to the grid point at (3, 1).
+/// {@endtemplate}
+class Anchor {
+  /// u-coordinate of the anchor, as a ratio of the image width (in the range [0, 1])
+  final double x;
+
+  /// v-coordinate of the anchor, as a ratio of the image height (in the range [0, 1])
+  final double y;
+
+  /// {@macro anchor}
+  const Anchor({this.x = 0.5, this.y = 0.5});
 }

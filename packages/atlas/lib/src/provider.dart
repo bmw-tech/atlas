@@ -13,6 +13,7 @@ abstract class Provider {
     final Set<Marker> markers,
     final Set<Circle> circles,
     final Set<Polygon> polygons,
+    final Set<Polyline> polylines,
     final ArgumentCallback<LatLng> onTap,
     final ArgumentCallback<LatLng> onLongPress,
     final ArgumentCallback<AtlasController> onMapCreated,
