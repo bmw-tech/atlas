@@ -47,6 +47,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -66,6 +67,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
@@ -93,6 +95,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: markers,
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -113,6 +116,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: markers,
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
@@ -127,6 +131,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -146,6 +151,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
@@ -170,6 +176,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         circles: circles,
         showMyLocation: false,
@@ -190,6 +197,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           circles: circles,
           showMyLocation: false,
@@ -198,6 +206,64 @@ main() {
       ).called(1);
     });
 
+    testWidgets(
+        'should call provider build method with correct arguments when map polygons are provided',
+        (WidgetTester tester) async {
+      final Set<Polygon> polygons = [
+        Polygon(
+          id: "polygon_1",
+          points: [
+            LatLng(
+              latitude: 48.133,
+              longitude: 11.5888,
+            ),
+            LatLng(
+              latitude: 48.233,
+              longitude: 11.5888,
+            ),
+            LatLng(
+              latitude: 48.333,
+              longitude: 11.4888,
+            ),
+          ],
+          fillColor: Colors.red,
+          strokeColor: Colors.red,
+          strokeWidth: 1,
+        ),
+      ].toSet();
+
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        polygons: polygons,
+        polylines: Set<Polyline>(),
+        circles: Set<Circle>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              polygons: polygons,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          polygons: polygons,
+          polylines: Set<Polyline>(),
+          circles: Set<Circle>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+        ),
+      ).called(1);
+    });
     testWidgets(
         'should call provider build method with correct arguments when map polyline are provided',
         (WidgetTester tester) async {
@@ -220,6 +286,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        polygons: Set<Polygon>(),
         polylines: polylines,
         circles: Set<Circle>(),
         showMyLocation: false,
@@ -240,6 +307,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          polygons: Set<Polygon>(),
           polylines: polylines,
           circles: Set<Circle>(),
           showMyLocation: false,
@@ -258,6 +326,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         onTap: onTap,
         showMyLocation: false,
@@ -279,6 +348,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           onTap: onTap,
           showMyLocation: false,
@@ -297,6 +367,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         onLongPress: onLongPress,
         showMyLocation: false,
@@ -318,6 +389,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           onLongPress: onLongPress,
           showMyLocation: false,
@@ -333,6 +405,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         showMyLocation: true,
         showMyLocationButton: false,
@@ -353,6 +426,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           showMyLocation: true,
           showMyLocationButton: false,
@@ -367,6 +441,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -386,6 +461,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
@@ -400,6 +476,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: true,
@@ -421,6 +498,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: true,
@@ -435,6 +513,7 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
@@ -454,6 +533,7 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
