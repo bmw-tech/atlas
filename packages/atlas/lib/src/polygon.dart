@@ -1,16 +1,21 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
 
+/// `Polygon` made up of mulitple points on the map
 class Polygon {
-  /// Uniquely identifies a `Polygon`.
+  /// Uniquely identifies a `Polygon`
   final String id;
 
+  /// A `List` of `LatLng` points that make up the polygon's shape
   final List<LatLng> points;
 
+  /// Defines the width of the stroke surrounding the polygon's shape
   final int strokeWidth;
 
+  /// Defines the `Color` of the stroke surrounding the polygon's shape
   final Color strokeColor;
 
+  /// Defines the fill `Color` within the polygon's shape
   final Color fillColor;
 
   const Polygon({
