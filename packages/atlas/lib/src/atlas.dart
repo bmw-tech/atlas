@@ -9,12 +9,16 @@ class Atlas extends StatelessWidget {
   /// The `CameraPosition` which the map will initially be focused on.
   final CameraPosition initialCameraPosition;
 
-  /// The [Set] of `markers` which will be rendered on the map.
+  /// The [Set] of `Marker` objects which will be rendered on the map.
   final Set<Marker> markers;
 
-  /// The [Set] of `Circle` which will be rendered on the map.
+  /// The [Set] of `Circle` objects which will be rendered on the map.
   final Set<Circle> circles;
 
+  /// The [Set] of `Polygon` objects which will be rendered on the map.
+  final Set<Polygon> polygons;
+
+  /// The [Set] of `Polyline` objects which will be rendered on the map.
   final Set<Polyline> polylines;
 
   /// `onTap` gets called when the map is tapped.
@@ -67,6 +71,7 @@ class Atlas extends StatelessWidget {
     @required this.initialCameraPosition,
     Set<Marker> markers,
     Set<Circle> circles,
+    Set<Polygon> polygons,
     Set<Polyline> polylines,
     bool showMyLocation,
     bool showMyLocationButton,
@@ -76,6 +81,7 @@ class Atlas extends StatelessWidget {
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
+        polygons = polygons ?? Set<Polygon>(),
         polylines = polylines ?? Set<Polyline>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
@@ -87,6 +93,7 @@ class Atlas extends StatelessWidget {
       initialCameraPosition: initialCameraPosition,
       markers: markers,
       circles: circles,
+      polygons: polygons,
       polylines: polylines,
       onTap: onTap,
       onLongPress: onLongPress,

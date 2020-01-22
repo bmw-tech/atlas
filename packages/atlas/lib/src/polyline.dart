@@ -2,12 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
 
+/// A `Polyline` made up of multiple points on the map
 class Polyline {
   /// Uniquely identifies a `Polyline`.
   final String id;
 
+  /// A `List` of `LatLng` points that make up the polyline's shape.
   final List<LatLng> points;
 
+  /// The `Color` of the line
   final Color color;
 
   const Polyline({
