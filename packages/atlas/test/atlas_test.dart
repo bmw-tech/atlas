@@ -248,6 +248,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        mapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -269,6 +270,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          mapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -299,6 +301,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        mapType: MapType.normal,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -320,6 +323,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          mapType: MapType.normal,
         ),
       ).called(1);
     });
@@ -568,6 +572,8 @@ main() {
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
         mapType: MapType.normal,
@@ -587,6 +593,8 @@ main() {
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
           mapType: MapType.normal,
