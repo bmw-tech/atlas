@@ -9,7 +9,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 /// `Atlas` Provider for Google Maps
 class GoogleAtlas extends Provider {
-  @override
   Set<MapType> get supportedMapTypes => {
         MapType.normal,
         MapType.satellite,
@@ -21,6 +20,8 @@ class GoogleAtlas extends Provider {
     @required CameraPosition initialCameraPosition,
     @required Set<Marker> markers,
     @required Set<Circle> circles,
+    @required Set<Polygon> polygons,
+    @required Set<Polyline> polylines,
     @required bool showMyLocation,
     @required bool showMyLocationButton,
     @required MapType mapType,
