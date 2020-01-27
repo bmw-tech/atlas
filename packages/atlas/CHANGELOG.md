@@ -1,5 +1,11 @@
 # atlas
 
+## v0.4.0 (2020-01-22)
+
+- Added support for `Polyline` on a Map
+- Added support for `Polygon` on a Map
+- Added ability to supply an `Anchor` on a `Marker`
+
 ## v0.3.0 (2019-11-15)
 
 - Added support for `Circle` on a Map
