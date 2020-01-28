@@ -16,7 +16,7 @@ class Polyline {
     @required this.id,
     @required this.points,
     this.color = Colors.black,
-    this.width = 5,
+    this.width = 10,
   })  : assert(id != null),
         assert(points != null);
 
@@ -32,5 +32,6 @@ class Polyline {
   }
 
   @override
-  int get hashCode => id.hashCode ^ points.hashCode ^ color.hashCode ^ width.hashCode;
+  int get hashCode =>
+      id.hashCode ^ points.hashCode ^ color.hashCode ^ width.hashCode;
 }
