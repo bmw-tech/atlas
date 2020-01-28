@@ -10,10 +10,13 @@ class Polyline {
 
   final Color color;
 
+  final int width;
+
   const Polyline({
     @required this.id,
     @required this.points,
     this.color = Colors.black,
+    this.width = 5,
   })  : assert(id != null),
         assert(points != null);
 
@@ -24,9 +27,10 @@ class Polyline {
     final Polyline typedOther = other;
     return id == typedOther.id &&
         points == typedOther.points &&
-        color == typedOther.color;
+        color == typedOther.color &&
+        width == typedOther.width;
   }
 
   @override
-  int get hashCode => id.hashCode ^ points.hashCode ^ color.hashCode;
+  int get hashCode => id.hashCode ^ points.hashCode ^ color.hashCode ^ width.hashCode;
 }
