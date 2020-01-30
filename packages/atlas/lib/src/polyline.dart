@@ -13,6 +13,10 @@ class Polyline {
   /// The `Color` of the line
   final Color color;
 
+  /// Width of the polyline, used to define the width of the line segment to be drawn.
+  ///
+  /// The width is constant and independent of the camera's zoom level.
+  /// The default value is 10.
   final int width;
 
   const Polyline({
