@@ -90,6 +90,61 @@ main() {
       expect(polyline.color, expectedColor);
     });
 
+    test('should have correct properties when width is provided', () {
+      final expectedId = 'id';
+      final expectedPoints = [
+        LatLng(
+          latitude: 38.7439498,
+          longitude: -9.1490721,
+        ),
+        LatLng(
+          latitude: 36.7439498,
+          longitude: 126.1490721,
+        )
+      ];
+
+      final expectedColor = Colors.orange;
+
+      final polyline = Polyline(
+        id: expectedId,
+        points: expectedPoints,
+        color: expectedColor,
+        width: 5,
+      );
+
+      expect(polyline.id, expectedId);
+      expect(polyline.points, expectedPoints);
+      expect(polyline.color, expectedColor);
+      expect(polyline.width, 5);
+    });
+
+    test('should have correct properties when width is NOT provided', () {
+      final expectedId = 'id';
+      final expectedPoints = [
+        LatLng(
+          latitude: 38.7439498,
+          longitude: -9.1490721,
+        ),
+        LatLng(
+          latitude: 36.7439498,
+          longitude: 126.1490721,
+        )
+      ];
+
+      final expectedColor = Colors.orange;
+
+      final polyline = Polyline(
+        id: expectedId,
+        points: expectedPoints,
+        color: expectedColor,
+      );
+
+      expect(polyline.id, expectedId);
+      expect(polyline.points, expectedPoints);
+      expect(polyline.color, expectedColor);
+      expect(polyline.width, 10);
+    });
+
     test('different instances with same properties should be equal', () {
       final expectedPoints = [
         LatLng(
