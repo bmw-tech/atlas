@@ -66,7 +66,7 @@ class Atlas extends StatelessWidget {
   ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
 
-  /// Enable Real-time traffic information status
+  /// Enable real-time traffic information status
   final bool showTraffic;
 
   Atlas({
