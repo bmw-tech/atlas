@@ -17,11 +17,10 @@ class ScreenCoordinate {
 
   @override
   bool operator ==(Object o) {
-    if(identical(this, o)) return true;
-    if(o.runtimeType != runtimeType) return false;
+    if (identical(this, o)) return true;
+    if (o.runtimeType != runtimeType) return false;
     final ScreenCoordinate typedOther = o;
-    return x == typedOther.x &&
-        y == typedOther.y;
+    return x == typedOther.x && y == typedOther.y;
   }
 
   @override
