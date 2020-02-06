@@ -20,5 +20,6 @@ class ScreenCoordinate {
     return o is ScreenCoordinate && o.x == x && o.y == y;
   }
 
+  @override
   int get hashcode => runtimeType.hashCode ^ x.hashCode ^ y.hashCode;
 }
