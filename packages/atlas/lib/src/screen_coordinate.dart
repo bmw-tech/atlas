@@ -17,9 +17,13 @@ class ScreenCoordinate {
 
   @override
   bool operator ==(Object o) {
-    return o is ScreenCoordinate && o.x == x && o.y == y;
+    if(identical(this, o)) return true;
+    if(o.runtimeType != runtimeType) return false;
+    final ScreenCoordinate typedOther = o;
+    return x == typedOther.x &&
+        y == typedOther.y;
   }
 
   @override
-  int get hashcode => runtimeType.hashCode ^ x.hashCode ^ y.hashCode;
+  int get hashCode => runtimeType.hashCode ^ x.hashCode ^ y.hashCode;
 }
