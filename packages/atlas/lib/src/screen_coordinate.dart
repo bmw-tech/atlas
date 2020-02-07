@@ -13,16 +13,6 @@ class ScreenCoordinate {
   const ScreenCoordinate({
     @required this.x,
     @required this.y,
-  });
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-    if (o.runtimeType != runtimeType) return false;
-    final ScreenCoordinate typedOther = o;
-    return x == typedOther.x && y == typedOther.y;
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode ^ x.hashCode ^ y.hashCode;
+  })  : assert(x != null),
+        assert(y != null);
 }
