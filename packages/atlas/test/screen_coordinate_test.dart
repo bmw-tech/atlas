@@ -28,22 +28,18 @@ void main() {
     });
 
     test('different instances with same properties should be equal', () {
-      final screenCoord1 =
-          ScreenCoordinates(x: 1, y: 2);
-      final screenCoord2 =
-          ScreenCoordinates(x: 1, y: 2);
+      final screenCoord1 = ScreenCoordinates(x: 1, y: 2);
+      final screenCoord2 = ScreenCoordinates(x: 1, y: 2);
 
       expect(screenCoord1, screenCoord2);
     });
 
-    test('different instances with different properties should NOT be equal', () {
-      final screenCoord1 =
-          ScreenCoordinates(x: 1, y: 2);
-      final screenCoord2 =
-          ScreenCoordinates(x: 1, y: 3);
+    test('different instances with different properties should NOT be equal',
+        () {
+      final screenCoord1 = ScreenCoordinates(x: 1, y: 2);
+      final screenCoord2 = ScreenCoordinates(x: 1, y: 3);
 
       expect(screenCoord1, isNot(equals(screenCoord2)));
     });
-    
   });
 }
