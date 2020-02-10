@@ -44,8 +44,7 @@ void main() {
 
     test('should override hashCode', () {
       final screenCoord = ScreenCoordinates(x: 1, y: 2);
-      expect(1.hashCode, screenCoord.x.hashCode);
-      expect(2.hashCode, screenCoord.y.hashCode);
+      expect(1.hashCode ^ 2.hashCode, screenCoord.hashCode);
     });
   });
 }
