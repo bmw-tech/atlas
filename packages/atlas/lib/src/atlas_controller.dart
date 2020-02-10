@@ -12,8 +12,8 @@ abstract class AtlasController {
   Future<void> updateBounds(LatLngBounds bounds, double padding);
 
   /// Return a [ScreenCoordinate] corresponding to the [LatLng] in the map view.
-  Future<LatLng> getLatLng(ScreenCoordinate screenCoordinates);
+  Future<LatLng> getLatLng(ScreenCoordinates screenCoordinates);
 
   /// Returns a [LatLng] corresponding to the [ScreenCoordinate] in the map view.
-  Future<ScreenCoordinate> getScreenCoordinate(LatLng latLng);
+  Future<ScreenCoordinates> getScreenCoordinate(LatLng latLng);
 }

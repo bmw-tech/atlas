@@ -5,7 +5,7 @@ main() {
   group('ScreenCoordinate', () {
     test('should thow AssertionError if x is null', () {
       try {
-        ScreenCoordinate(
+        ScreenCoordinates(
           x: null,
           y: 1,
         );
@@ -17,7 +17,7 @@ main() {
 
     test('should throw AssertionError if y is null', () {
       try {
-        ScreenCoordinate(
+        ScreenCoordinates(
           x: 1,
           y: null,
         );
