@@ -1,7 +1,7 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-main() {
+void main() {
   group('ScreenCoordinate', () {
     test('should thow AssertionError if x is null', () {
       try {
