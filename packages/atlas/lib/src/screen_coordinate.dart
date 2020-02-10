@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 
 /// A pair of x and y coordinates.
 /// The `x` and `y` coordinates are stored as screen pixels (not display pixels)
