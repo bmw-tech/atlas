@@ -58,6 +58,23 @@ main() {
       expect(platformGoogleMap.mapType, GoogleMaps.MapType.normal);
     });
 
+    testWidgets('should return correct GoogleMap with showTraffic set to true',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          showTraffic: true,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.trafficEnabled, true);
+    });
     testWidgets(
         'should return correct GoogleMap with mapType set to normal type',
         (WidgetTester tester) async {
@@ -558,6 +575,7 @@ class AtlasTestSample extends StatefulWidget {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final MapType mapType;
+  final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
 
@@ -567,6 +585,7 @@ class AtlasTestSample extends StatefulWidget {
     this.showMyLocation,
     this.showMyLocationButton,
     this.mapType,
+    this.showTraffic,
     this.onTap,
     this.onLongPress,
   });
@@ -577,6 +596,7 @@ class AtlasTestSample extends StatefulWidget {
         showMyLocation: this.showMyLocation,
         showMyLocationButton: this.showMyLocationButton,
         mapType: this.mapType,
+        showTraffic: this.showTraffic,
         onTap: this.onTap,
         onLongPress: this.onLongPress,
       );
@@ -588,6 +608,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final MapType mapType;
+  final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   AtlasController _controller;
@@ -598,6 +619,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
     this.showMyLocation,
     this.showMyLocationButton,
     this.mapType,
+    this.showTraffic,
     this.onTap,
     this.onLongPress,
   });
@@ -614,6 +636,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             showMyLocation: this.showMyLocation ?? false,
             showMyLocationButton: this.showMyLocationButton ?? false,
             mapType: this.mapType ?? MapType.normal,
+            showTraffic: this.showTraffic ?? false,
             onTap: this.onTap ?? null,
             onLongPress: this.onLongPress ?? null,
             onMapCreated: (controller) {

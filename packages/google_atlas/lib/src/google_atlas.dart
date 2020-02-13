@@ -92,6 +92,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           myLocationEnabled: showMyLocation,
           myLocationButtonEnabled: showMyLocationButton,
           mapType: _toGoogleMapType(mapType),
+          trafficEnabled: showTraffic,
           initialCameraPosition:
               CameraUtils.toGoogleCameraPosition(initialCameraPosition),
           markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,

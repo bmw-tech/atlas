@@ -29,6 +29,8 @@ class FakePlatformGoogleMap {
 
   MapType mapType;
 
+  bool trafficEnabled;
+
   MinMaxZoomPreference minMaxZoomPreference;
 
   bool rotateGesturesEnabled;
@@ -224,6 +226,9 @@ class FakePlatformGoogleMap {
   void updateOptions(Map<dynamic, dynamic> options) {
     if (options.containsKey('compassEnabled')) {
       compassEnabled = options['compassEnabled'];
+    }
+    if (options.containsKey('trafficEnabled')) {
+      trafficEnabled = options['trafficEnabled'];
     }
     if (options.containsKey('cameraTargetBounds')) {
       final List<dynamic> boundsList = options['cameraTargetBounds'];
