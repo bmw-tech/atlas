@@ -1,5 +1,12 @@
 # atlas
 
+## v0.5.0 (2020-02-13)
+
+- Added support for `MapType`
+- Added `showTraffic` boolean
+- Added `getScreenCoordinate` to translate from `LatLng`
+- Added `getLatLng` to translate from `ScreenCoordinates`
+
 ## v0.4.0 (2020-01-22)
 
 - Added support for `Polyline` on a Map
