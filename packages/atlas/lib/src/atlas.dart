@@ -73,7 +73,7 @@ class Atlas extends StatelessWidget {
   /// See also:
   ///   * [Provider.supportedMapTypes] parameter.
   final MapType mapType;
-  
+
   /// Enable real-time traffic information status
   final bool showTraffic;
 
