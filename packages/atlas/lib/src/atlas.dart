@@ -73,6 +73,9 @@ class Atlas extends StatelessWidget {
   /// See also:
   ///   * [Provider.supportedMapTypes] parameter.
   final MapType mapType;
+  
+  /// Enable real-time traffic information status
+  final bool showTraffic;
 
   Atlas({
     Key key,
@@ -84,6 +87,7 @@ class Atlas extends StatelessWidget {
     bool showMyLocation,
     bool showMyLocationButton,
     MapType mapType,
+    bool showTraffic,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
@@ -95,6 +99,7 @@ class Atlas extends StatelessWidget {
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
         mapType = mapType ?? MapType.normal,
+        showTraffic = showTraffic ?? false,
         super(key: key);
 
   @override
@@ -110,6 +115,7 @@ class Atlas extends StatelessWidget {
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
       mapType: mapType,
+      showTraffic: showTraffic,
       onMapCreated: onMapCreated,
     );
   }

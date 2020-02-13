@@ -28,5 +28,6 @@ abstract class Provider {
     final bool showMyLocation,
     final bool showMyLocationButton,
     final MapType mapType,
+    final bool showTraffic,
   });
 }
