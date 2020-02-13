@@ -17,6 +17,19 @@ main() {
         fakePlatformViewsController.fakePlatformViewsMethodHandler);
   });
 
+  group('GoogleAtlasProvider Test', () {
+    Provider provider;
+
+    setUp(() {
+      provider = GoogleAtlasProviderSample();
+    });
+
+    test('provider creates and supplies maptypes', () {
+      expect(provider.supportedMapTypes,
+          {MapType.normal, MapType.satellite, MapType.terrain});
+    });
+  });
+
   group('GoogleAtlas Widget Test', () {
     GoogleAtlas googleAtlas;
     CameraPosition initialCameraPosition;
@@ -567,6 +580,40 @@ main() {
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
     });
   });
+}
+
+class GoogleAtlasProviderSample extends Provider {
+  @override
+  Set<MapType> get supportedMapTypes => {
+        MapType.normal,
+        MapType.satellite,
+        MapType.terrain,
+      };
+  @override
+  Widget build(
+      {CameraPosition initialCameraPosition,
+      Set<Marker> markers,
+      Set<Circle> circles,
+      Set<Polygon> polygons,
+      Set<Polyline> polylines,
+      ArgumentCallback<LatLng> onTap,
+      ArgumentCallback<LatLng> onLongPress,
+      ArgumentCallback<AtlasController> onMapCreated,
+      bool showMyLocation,
+      bool showMyLocationButton,
+      MapType mapType,
+      bool showTraffic}) {
+    return AtlasTestSample(
+      initialCameraPosition: initialCameraPosition,
+      markers: markers,
+      showMyLocation: showMyLocation,
+      showMyLocationButton: showMyLocationButton,
+      mapType: mapType,
+      showTraffic: showTraffic,
+      onTap: onTap,
+      onLongPress: onLongPress,
+    );
+  }
 }
 
 class AtlasTestSample extends StatefulWidget {
