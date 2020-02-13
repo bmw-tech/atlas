@@ -26,6 +26,7 @@ class GoogleAtlas extends Provider {
     @required bool showMyLocation,
     @required bool showMyLocationButton,
     @required MapType mapType,
+    @required bool showTraffic,
     ArgumentCallback<LatLng> onTap,
     ArgumentCallback<LatLng> onLongPress,
     ArgumentCallback<AtlasController> onMapCreated,
@@ -36,6 +37,7 @@ class GoogleAtlas extends Provider {
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
       mapType: mapType,
+      showTraffic: showTraffic,
       onTap: onTap,
       onLongPress: onLongPress,
       onMapCreated: onMapCreated,
@@ -49,6 +51,7 @@ class GoogleMapsProvider extends StatefulWidget {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final MapType mapType;
+  final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<AtlasController> onMapCreated;
@@ -59,6 +62,7 @@ class GoogleMapsProvider extends StatefulWidget {
     @required this.showMyLocation,
     @required this.showMyLocationButton,
     @required this.mapType,
+    @required this.showTraffic,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
@@ -73,6 +77,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
   MapType get mapType => widget.mapType;
+  bool get showTraffic => widget.showTraffic;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
   ArgumentCallback<LatLng> get onLongPress => widget.onLongPress;
   ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
