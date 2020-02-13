@@ -600,7 +600,8 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
-        mapType: MapType.satellite,
+        mapType: MapType.normal,
+        showTraffic: false,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -621,14 +622,39 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
-          mapType: MapType.satellite,
+          mapType: MapType.normal,
+          showTraffic: false,
         ),
       ).called(1);
+    });
 
-      testWidgets(
-          'should call provider build method with correct arguments when showTraffic is enabled',
-          (WidgetTester tester) async {
-        when(provider.build(
+    testWidgets(
+        'should call provider build method with correct arguments when showTraffic is enabled',
+        (WidgetTester tester) async {
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+        mapType: MapType.normal,
+        showTraffic: true,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              showTraffic: true,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
@@ -638,32 +664,8 @@ main() {
           showMyLocationButton: false,
           mapType: MapType.normal,
           showTraffic: true,
-        )).thenReturn(Container(key: mapKey));
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: Atlas(
-                initialCameraPosition: initialCameraPosition,
-                showTraffic: true,
-              ),
-            ),
-          ),
-        );
-        expect(find.byKey(mapKey), findsOneWidget);
-        verify(
-          provider.build(
-            initialCameraPosition: initialCameraPosition,
-            markers: Set<Marker>(),
-            circles: Set<Circle>(),
-            polygons: Set<Polygon>(),
-            polylines: Set<Polyline>(),
-            showMyLocation: false,
-            showMyLocationButton: false,
-            mapType: MapType.normal,
-            showTraffic: true,
-          ),
-        ).called(1);
-      });
+        ),
+      ).called(1);
     });
   });
 }
