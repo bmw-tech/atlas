@@ -38,5 +38,28 @@ main() {
         expect(result.longitude, -80.0);
       });
     });
+
+    group('toGoogleScreenCoordinate', () {
+      test('returns correct Google Screen Coordinate', () {
+        final result = LatLngUtils.toGoogleScreenCoordinate(ScreenCoordinates(
+          x: 1,
+          y: 2,
+        ));
+        expect(result.x, 1);
+        expect(result.y, 2);
+      });
+    });
+
+    group('fromGoogleScreenCoordinate', () {
+      test('returns correct Atlas Screen Coordinates', () {
+        final result =
+            LatLngUtils.fromGoogleScreenCoordinate(GoogleMaps.ScreenCoordinate(
+          x: 1,
+          y: 2,
+        ));
+        expect(result.x, 1);
+        expect(result.y, 2);
+      });
+    });
   });
 }

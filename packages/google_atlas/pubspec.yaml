@@ -11,12 +11,13 @@ issue_tracker: https://github.com/bmw-tech/atlas/issues
 homepage: https://bmw-tech.github.io/atlas
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  atlas: ^0.2.0
+  atlas: 
+    path: "../atlas"
   google_maps_flutter: ^0.5.21+3
 
 dev_dependencies:

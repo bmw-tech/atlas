@@ -20,4 +20,22 @@ class LatLngUtils {
       longitude: position.longitude,
     );
   }
+
+  /// Converts an `Atlas.ScreenCoordinates` to a `GoogleMaps.ScreenCoordinate`.
+  static GoogleMaps.ScreenCoordinate toGoogleScreenCoordinate(
+      ScreenCoordinates atlasCoordinates) {
+    return GoogleMaps.ScreenCoordinate(
+      x: atlasCoordinates.x,
+      y: atlasCoordinates.y,
+    );
+  }
+
+  /// Converts a `GoogleMaps.ScreenCoordinate` to an `Atlas.ScreenCoordinates`.
+  static ScreenCoordinates fromGoogleScreenCoordinate(
+      GoogleMaps.ScreenCoordinate googleCoordinate) {
+    return ScreenCoordinates(
+      x: googleCoordinate.x,
+      y: googleCoordinate.y,
+    );
+  }
 }
