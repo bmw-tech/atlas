@@ -1,6 +1,6 @@
 # atlas
 
-## v0.6.0 (2020-02-26)
+## v0.5.1 (2020-02-27)
 
 - Added night as `MapType` enum
 
