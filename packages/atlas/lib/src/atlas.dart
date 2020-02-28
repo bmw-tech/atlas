@@ -66,6 +66,17 @@ class Atlas extends StatelessWidget {
   ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
 
+  /// Sets the underlying map type to be displayed.
+  ///
+  /// Defaults to [MapType.normal].
+  ///
+  /// See also:
+  ///   * [Provider.supportedMapTypes] parameter.
+  final MapType mapType;
+
+  /// Enable real-time traffic information status
+  final bool showTraffic;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -75,6 +86,8 @@ class Atlas extends StatelessWidget {
     Set<Polyline> polylines,
     bool showMyLocation,
     bool showMyLocationButton,
+    MapType mapType,
+    bool showTraffic,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
@@ -85,6 +98,8 @@ class Atlas extends StatelessWidget {
         polylines = polylines ?? Set<Polyline>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
+        mapType = mapType ?? MapType.normal,
+        showTraffic = showTraffic ?? false,
         super(key: key);
 
   @override
@@ -99,6 +114,8 @@ class Atlas extends StatelessWidget {
       onLongPress: onLongPress,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
+      mapType: mapType,
+      showTraffic: showTraffic,
       onMapCreated: onMapCreated,
     );
   }

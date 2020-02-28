@@ -30,4 +30,18 @@ class GoogleAtlasController implements AtlasController {
       ),
     );
   }
+
+  @override
+  Future<LatLng> getLatLng(ScreenCoordinates screenCoordinates) async {
+    var googleLatLng = await _controller
+        .getLatLng(LatLngUtils.toGoogleScreenCoordinate(screenCoordinates));
+    return LatLngUtils.fromGoogleLatLng(googleLatLng);
+  }
+
+  @override
+  Future<ScreenCoordinates> getScreenCoordinate(LatLng latLng) async {
+    var googleScreenCoordinate = await _controller
+        .getScreenCoordinate(LatLngUtils.toGoogleLatLng(latLng));
+    return LatLngUtils.fromGoogleScreenCoordinate(googleScreenCoordinate);
+  }
 }

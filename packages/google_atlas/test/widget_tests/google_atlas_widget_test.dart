@@ -17,6 +17,19 @@ main() {
         fakePlatformViewsController.fakePlatformViewsMethodHandler);
   });
 
+  group('GoogleAtlasProvider Test', () {
+    Provider provider;
+
+    setUp(() {
+      provider = GoogleAtlasProviderSample();
+    });
+
+    test('provider creates and supplies maptypes', () {
+      expect(provider.supportedMapTypes,
+          {MapType.normal, MapType.satellite, MapType.terrain});
+    });
+  });
+
   group('GoogleAtlas Widget Test', () {
     GoogleAtlas googleAtlas;
     CameraPosition initialCameraPosition;
@@ -58,6 +71,98 @@ main() {
       expect(platformGoogleMap.mapType, GoogleMaps.MapType.normal);
     });
 
+    testWidgets('should return correct GoogleMap with showTraffic set to true',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          showTraffic: true,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.trafficEnabled, true);
+    });
+    testWidgets(
+        'should return correct GoogleMap with mapType set to normal type',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          mapType: MapType.normal,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.mapType, GoogleMaps.MapType.normal);
+    });
+
+    testWidgets(
+        'should return correct GoogleMap with mapType set to satellite type',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          mapType: MapType.satellite,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.mapType, GoogleMaps.MapType.satellite);
+    });
+
+    testWidgets(
+        'should return correct GoogleMap with mapType set to terrain type',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          mapType: MapType.terrain,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.mapType, GoogleMaps.MapType.terrain);
+    });
+
+    testWidgets(
+        'should return correct GoogleMap with mapType set to hybrid type',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          mapType: MapType.hybrid,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+
+      expect(platformGoogleMap.mapType, GoogleMaps.MapType.hybrid);
+    });
     testWidgets(
         'should return correct GoogleMap when build is called one marker',
         (WidgetTester tester) async {
@@ -477,11 +582,47 @@ main() {
   });
 }
 
+class GoogleAtlasProviderSample extends Provider {
+  @override
+  Set<MapType> get supportedMapTypes => {
+        MapType.normal,
+        MapType.satellite,
+        MapType.terrain,
+      };
+  @override
+  Widget build(
+      {CameraPosition initialCameraPosition,
+      Set<Marker> markers,
+      Set<Circle> circles,
+      Set<Polygon> polygons,
+      Set<Polyline> polylines,
+      ArgumentCallback<LatLng> onTap,
+      ArgumentCallback<LatLng> onLongPress,
+      ArgumentCallback<AtlasController> onMapCreated,
+      bool showMyLocation,
+      bool showMyLocationButton,
+      MapType mapType,
+      bool showTraffic}) {
+    return AtlasTestSample(
+      initialCameraPosition: initialCameraPosition,
+      markers: markers,
+      showMyLocation: showMyLocation,
+      showMyLocationButton: showMyLocationButton,
+      mapType: mapType,
+      showTraffic: showTraffic,
+      onTap: onTap,
+      onLongPress: onLongPress,
+    );
+  }
+}
+
 class AtlasTestSample extends StatefulWidget {
   final CameraPosition initialCameraPosition;
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
+  final MapType mapType;
+  final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
 
@@ -490,6 +631,8 @@ class AtlasTestSample extends StatefulWidget {
     this.markers,
     this.showMyLocation,
     this.showMyLocationButton,
+    this.mapType,
+    this.showTraffic,
     this.onTap,
     this.onLongPress,
   });
@@ -499,6 +642,8 @@ class AtlasTestSample extends StatefulWidget {
         markers: this.markers,
         showMyLocation: this.showMyLocation,
         showMyLocationButton: this.showMyLocationButton,
+        mapType: this.mapType,
+        showTraffic: this.showTraffic,
         onTap: this.onTap,
         onLongPress: this.onLongPress,
       );
@@ -509,6 +654,8 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
+  final MapType mapType;
+  final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   AtlasController _controller;
@@ -518,6 +665,8 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
     this.markers,
     this.showMyLocation,
     this.showMyLocationButton,
+    this.mapType,
+    this.showTraffic,
     this.onTap,
     this.onLongPress,
   });
@@ -533,6 +682,8 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             markers: this.markers ?? Set(),
             showMyLocation: this.showMyLocation ?? false,
             showMyLocationButton: this.showMyLocationButton ?? false,
+            mapType: this.mapType ?? MapType.normal,
+            showTraffic: this.showTraffic ?? false,
             onTap: this.onTap ?? null,
             onLongPress: this.onLongPress ?? null,
             onMapCreated: (controller) {

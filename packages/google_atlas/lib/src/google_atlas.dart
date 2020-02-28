@@ -10,11 +10,23 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 /// `Atlas` Provider for Google Maps
 class GoogleAtlas extends Provider {
   @override
+  Set<MapType> get supportedMapTypes => {
+        MapType.normal,
+        MapType.satellite,
+        MapType.terrain,
+      };
+
+  @override
   Widget build({
     @required CameraPosition initialCameraPosition,
     @required Set<Marker> markers,
+    @required Set<Circle> circles,
+    @required Set<Polygon> polygons,
+    @required Set<Polyline> polylines,
     @required bool showMyLocation,
     @required bool showMyLocationButton,
+    @required MapType mapType,
+    @required bool showTraffic,
     ArgumentCallback<LatLng> onTap,
     ArgumentCallback<LatLng> onLongPress,
     ArgumentCallback<AtlasController> onMapCreated,
@@ -24,6 +36,8 @@ class GoogleAtlas extends Provider {
       markers: markers,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
+      mapType: mapType,
+      showTraffic: showTraffic,
       onTap: onTap,
       onLongPress: onLongPress,
       onMapCreated: onMapCreated,
@@ -36,6 +50,8 @@ class GoogleMapsProvider extends StatefulWidget {
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
+  final MapType mapType;
+  final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<AtlasController> onMapCreated;
@@ -45,6 +61,8 @@ class GoogleMapsProvider extends StatefulWidget {
     @required this.markers,
     @required this.showMyLocation,
     @required this.showMyLocationButton,
+    @required this.mapType,
+    @required this.showTraffic,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
@@ -58,6 +76,8 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Set<Marker> get markers => widget.markers;
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
+  MapType get mapType => widget.mapType;
+  bool get showTraffic => widget.showTraffic;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
   ArgumentCallback<LatLng> get onLongPress => widget.onLongPress;
   ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
@@ -71,7 +91,8 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
         return GoogleMaps.GoogleMap(
           myLocationEnabled: showMyLocation,
           myLocationButtonEnabled: showMyLocationButton,
-          mapType: GoogleMaps.MapType.normal,
+          mapType: _toGoogleMapType(mapType),
+          trafficEnabled: showTraffic,
           initialCameraPosition:
               CameraUtils.toGoogleCameraPosition(initialCameraPosition),
           markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,
@@ -138,6 +159,26 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     return (GoogleMaps.LatLng position) {
       onLongPress?.call(LatLngUtils.fromGoogleLatLng(position));
     };
+  }
+
+  /// Converts an `Atlas.MapType` enum to a `GoogleMaps.MapType` enum.
+  GoogleMaps.MapType _toGoogleMapType(MapType atlasMapType) {
+    switch (atlasMapType) {
+      case MapType.normal:
+        return GoogleMaps.MapType.normal;
+        break;
+      case MapType.satellite:
+        return GoogleMaps.MapType.satellite;
+        break;
+      case MapType.hybrid:
+        return GoogleMaps.MapType.hybrid;
+        break;
+      case MapType.terrain:
+        return GoogleMaps.MapType.terrain;
+        break;
+      default:
+        return GoogleMaps.MapType.normal;
+    }
   }
 
   /// Callback method where GoogleMaps passes the map controller

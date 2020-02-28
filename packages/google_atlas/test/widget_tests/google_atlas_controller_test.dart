@@ -49,5 +49,48 @@ main() {
         verify(googleMapController.moveCamera(any)).called(1);
       });
     });
+
+    group('getLatLng', () {
+      test('invokes getLatLng', () async {
+        final ScreenCoordinates coordinates = ScreenCoordinates(
+          x: 1,
+          y: 2,
+        );
+        var googleLatLng = GoogleMaps.LatLng(1.1, 2.2);
+
+        when(googleMapController.getLatLng(any))
+            .thenAnswer((_) => Future.value(googleLatLng));
+
+        await googleAtlasController.getLatLng(coordinates);
+        List<dynamic> results =
+            verify(googleMapController.getLatLng(captureAny)).captured;
+        GoogleMaps.ScreenCoordinate resultingScreenCoordinate = results.first;
+        expect(coordinates.x, resultingScreenCoordinate.x);
+        expect(coordinates.y, resultingScreenCoordinate.y);
+      });
+    });
+
+    group('getScreenCoordinate', () {
+      test('invokes getScreenCoordinate', () async {
+        final LatLng inputLatLng = LatLng(
+          latitude: 1.1,
+          longitude: 2.2,
+        );
+        var returnedGoogleScreenCoordinate = GoogleMaps.ScreenCoordinate(
+          x: 1,
+          y: 2,
+        );
+        when(googleMapController.getScreenCoordinate(any))
+            .thenAnswer((_) => Future.value(returnedGoogleScreenCoordinate));
+
+        await googleAtlasController.getScreenCoordinate(inputLatLng);
+        List<dynamic> results =
+            verify(googleMapController.getScreenCoordinate(captureAny))
+                .captured;
+        GoogleMaps.LatLng resultingLatLng = results.first;
+        expect(inputLatLng.latitude, resultingLatLng.latitude);
+        expect(inputLatLng.longitude, resultingLatLng.longitude);
+      });
+    });
   });
 }
