@@ -33,9 +33,8 @@ class Atlas extends StatelessWidget {
   /// which can be used to manipulate the map.
   final ArgumentCallback<AtlasController> onMapCreated;
 
-  /// When the camera position is changed
-  /// Callback Receiving Camera Location
-  /// Recall during map manipulation
+  /// `onCameraPositionChanged ` gets called when the map's camera position is changed.
+  /// The updated `CameraPosition ` is passed as an argument.
   final ArgumentCallback<CameraPosition> onCameraPositionChanged;
 
   /// `showMyLocation` determines whether or not the current device location
