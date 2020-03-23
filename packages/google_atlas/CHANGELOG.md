@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.3.1 (2019-3-16)
+
+- Added support for mapTypes
+
 ## v0.3.0 (2019-10-17)
 
 - Google Maps Provider supports onLongPress (atlas `v0.2.0`)
