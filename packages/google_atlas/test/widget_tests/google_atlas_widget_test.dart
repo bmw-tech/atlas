@@ -590,19 +590,21 @@ class GoogleAtlasProviderSample extends Provider {
         MapType.terrain,
       };
   @override
-  Widget build(
-      {CameraPosition initialCameraPosition,
-      Set<Marker> markers,
-      Set<Circle> circles,
-      Set<Polygon> polygons,
-      Set<Polyline> polylines,
-      ArgumentCallback<LatLng> onTap,
-      ArgumentCallback<LatLng> onLongPress,
-      ArgumentCallback<AtlasController> onMapCreated,
-      bool showMyLocation,
-      bool showMyLocationButton,
-      MapType mapType,
-      bool showTraffic}) {
+  Widget build({
+    CameraPosition initialCameraPosition,
+    Set<Marker> markers,
+    Set<Circle> circles,
+    Set<Polygon> polygons,
+    Set<Polyline> polylines,
+    ArgumentCallback<LatLng> onTap,
+    ArgumentCallback<LatLng> onLongPress,
+    ArgumentCallback<AtlasController> onMapCreated,
+    ArgumentCallback<CameraPosition> onCameraPositionChanged,
+    bool showMyLocation,
+    bool showMyLocationButton,
+    MapType mapType,
+    bool showTraffic,
+  }) {
     return AtlasTestSample(
       initialCameraPosition: initialCameraPosition,
       markers: markers,
