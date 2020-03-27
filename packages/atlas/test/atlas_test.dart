@@ -667,5 +667,60 @@ main() {
         ),
       ).called(1);
     });
+
+    testWidgets(
+        'should call provider build method with correct arguments when map markers calllOut are provided',
+        (WidgetTester tester) async {
+      final Set<Marker> markers = [
+        Marker(
+            id: '0',
+            position: LatLng(
+              latitude: 37.42796133580664,
+              longitude: -122.085749655962,
+            ),
+            annotation: Annotation(
+              title: 'title',
+              onTap: () {
+                print('MarkerAnnotation tapped!');
+              },
+            )),
+      ].toSet();
+
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: markers,
+        circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+        mapType: MapType.normal,
+        showTraffic: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              markers: markers,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: markers,
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+        ),
+      ).called(1);
+    });
   });
 }
