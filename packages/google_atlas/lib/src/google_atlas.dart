@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'dart:ui';
 import 'dart:ui' as ui;
 
 import 'package:atlas/atlas.dart';
@@ -136,7 +135,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   ) async {
     GoogleMaps.BitmapDescriptor bitmapDescriptor;
     try {
-      bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromBytes(
+      bitmapDescriptor = GoogleMaps.BitmapDescriptor.fromBytes(
         await _getBytesFromAsset(
           markerIcon.assetName,
           _getDefaultIconWidth(),
@@ -148,7 +147,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   /// Returns the default icon width in pixels according the device screen.
   int _getDefaultIconWidth() {
-    final dpr = window.devicePixelRatio;
+    final dpr = ui.window.devicePixelRatio;
     final size = dpr * 80;
     return size.round();
   }
