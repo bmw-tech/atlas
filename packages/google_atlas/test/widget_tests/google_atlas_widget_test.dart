@@ -216,7 +216,7 @@ main() {
               longitude: -87.6298,
             ),
             icon: MarkerIcon(
-              assetName: 'assets/butterfly.png',
+              assetName: 'assets/icon.png',
             ))
       ]);
 
