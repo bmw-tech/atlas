@@ -139,7 +139,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
       bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromBytes(
         await _getBytesFromAsset(
           markerIcon.assetName,
-          markerIcon.width > 0 ? markerIcon.width : _getDefaultIconWidth(),
+          _getDefaultIconWidth(),
         ),
       );
     } catch (_) {}
