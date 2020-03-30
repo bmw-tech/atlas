@@ -2,7 +2,7 @@ version: 2.1
 executors:
   flutter_sdk_image:
     docker:
-      - image: cirrusci/flutter:v1.5.4-hotfix.2
+      - image: cirrusci/flutter:stable
 
 orbs:
   codecov: codecov/codecov@1.0.4
