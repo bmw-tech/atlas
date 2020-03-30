@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:typed_data';
 import 'dart:ui';
+import 'dart:ui' as ui;
 
-import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_atlas/google_atlas.dart';
 import 'package:google_atlas/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
@@ -131,17 +134,36 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
     MarkerIcon markerIcon,
   ) async {
-    final ImageConfiguration imageConfiguration = ImageConfiguration(
-      devicePixelRatio: window.devicePixelRatio,
-    );
     GoogleMaps.BitmapDescriptor bitmapDescriptor;
     try {
-      bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromAssetImage(
-        imageConfiguration,
-        markerIcon.assetName,
+      bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromBytes(
+        await _getBytesFromAsset(
+          markerIcon.assetName,
+          markerIcon.width > 0 ? markerIcon.width : _getDefaultIconWidth(),
+        ),
       );
     } catch (_) {}
     return bitmapDescriptor;
+  }
+
+  /// Returns the default icon width in pixels according the device screen.
+  int _getDefaultIconWidth() {
+    final dpr = window.devicePixelRatio;
+    final size = dpr * 80;
+    return size.round();
+  }
+
+  /// Reads the [asset] file and returns an `Uint8List` byte array.
+  Future<Uint8List> _getBytesFromAsset(String path, int width) async {
+    final data = await rootBundle.load(path);
+    final codec = await ui.instantiateImageCodec(
+      data.buffer.asUint8List(),
+      targetWidth: width,
+    );
+    final fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
+        .buffer
+        .asUint8List();
   }
 
   /// Converts a `GoogleMaps.onTap` to an `Atlas.onTap` callback.
