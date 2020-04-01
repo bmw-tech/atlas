@@ -46,6 +46,13 @@ class GoogleAtlas extends Provider {
       onMapCreated: onMapCreated,
     );
   }
+
+  /// This method enables/disables the decoding of an asset image
+  /// into a byte array. Only for testing purposes.
+  @visibleForTesting
+  static void setGetBytesFromAssetEnabled(bool enabled) {
+    _getBytesFromAssetEnabled = enabled;
+  }
 }
 
 class GoogleMapsProvider extends StatefulWidget {
@@ -73,6 +80,8 @@ class GoogleMapsProvider extends StatefulWidget {
 
   State<GoogleMapsProvider> createState() => _GoogleMapsProviderState();
 }
+
+bool _getBytesFromAssetEnabled = true;
 
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   CameraPosition get initialCameraPosition => widget.initialCameraPosition;
@@ -154,15 +163,19 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   /// Reads the [asset] file and returns an `Uint8List` byte array.
   Future<Uint8List> _getBytesFromAsset(String path, int width) async {
-    final data = await rootBundle.load(path);
-    final codec = await ui.instantiateImageCodec(
-      data.buffer.asUint8List(),
-      targetWidth: width,
-    );
-    final fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
-        .buffer
-        .asUint8List();
+    if (_getBytesFromAssetEnabled) {
+      final data = await rootBundle.load(path);
+      final codec = await ui.instantiateImageCodec(
+        data.buffer.asUint8List(),
+        targetWidth: width,
+      );
+      final fi = await codec.getNextFrame();
+      return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
+          .buffer
+          .asUint8List();
+    } else {
+      return Uint8List(0);
+    }
   }
 
   /// Converts a `GoogleMaps.onTap` to an `Atlas.onTap` callback.

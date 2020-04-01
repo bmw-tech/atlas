@@ -15,6 +15,7 @@ main() {
   setUpAll(() {
     SystemChannels.platform_views.setMockMethodCallHandler(
         fakePlatformViewsController.fakePlatformViewsMethodHandler);
+    GoogleAtlas.setGetBytesFromAssetEnabled(false);
   });
 
   group('GoogleAtlasProvider Test', () {
