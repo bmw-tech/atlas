@@ -15,6 +15,7 @@ main() {
   setUpAll(() {
     SystemChannels.platform_views.setMockMethodCallHandler(
         fakePlatformViewsController.fakePlatformViewsMethodHandler);
+    GoogleAtlas.setGetBytesFromAssetEnabled(false);
   });
 
   group('GoogleAtlasProvider Test', () {
@@ -239,6 +240,36 @@ main() {
           platformGoogleMap.markersToAdd.first;
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
+    });
+
+    testWidgets('get bytes from valid asset does not crash',
+        (WidgetTester tester) async {
+      GoogleAtlas.setGetBytesFromAssetEnabled(true);
+      final Set<Marker> mockMarker = Set<Marker>.from([
+        Marker(
+            id: 'marker-1',
+            position: LatLng(
+              latitude: 41.8781,
+              longitude: -87.6298,
+            ),
+            icon: MarkerIcon(
+              assetName: 'assets/icon.png',
+            ))
+      ]);
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: AtlasTestSample(
+          initialCameraPosition: initialCameraPosition,
+          markers: mockMarker,
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      final FakePlatformGoogleMap platformGoogleMap =
+          fakePlatformViewsController.lastCreatedView;
+      expect(platformGoogleMap, isNotNull);
     });
 
     testWidgets(
