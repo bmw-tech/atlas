@@ -1,5 +1,9 @@
 # atlas
 
+## v0.5.2 (2020-4-2)
+
+- Added custom width support for `MarkerIcon`
+
 ## v0.5.1 (2020-02-27)
 
 - Added night as `MapType` enum
