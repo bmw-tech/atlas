@@ -1,6 +1,6 @@
 # atlas
 
-## v0.5.2 (2020-4-2)
+## v0.5.3 (2020-4-3)
 
 - Added custom width support for `MarkerIcon`
 
