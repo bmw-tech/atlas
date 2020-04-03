@@ -13,7 +13,8 @@ abstract class AtlasController {
 
   /// Updates the camera bounds based on the provided `LatLngBounds`
   /// and adds padding around the bounds based on the provided `north, east, south, west` padding.
-  Future<void> updateBoundsWithPaddingToAllSides(LatLngBounds bounds, double north, double east, double south, double west);
+  Future<void> updateBoundsWithPaddingToAllSides(LatLngBounds bounds,
+      double north, double east, double south, double west);
 
   /// Return a [ScreenCoordinate] corresponding to the [LatLng] in the map view.
   Future<LatLng> getLatLng(ScreenCoordinates screenCoordinates);
