@@ -1,5 +1,9 @@
 # atlas
 
+## v0.6.0 (2020-4-6)
+
+- `onCameraPositionChanged` callback added to Atlas Map
+
 ## v0.5.3 (2020-4-3)
 
 - Added custom width support for `MarkerIcon`
