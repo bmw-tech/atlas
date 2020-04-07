@@ -25,6 +25,7 @@ abstract class Provider {
     final ArgumentCallback<LatLng> onTap,
     final ArgumentCallback<LatLng> onLongPress,
     final ArgumentCallback<AtlasController> onMapCreated,
+    final ArgumentCallback<CameraPosition> onCameraPositionChanged,
     final bool showMyLocation,
     final bool showMyLocationButton,
     final bool followMyLocation,
