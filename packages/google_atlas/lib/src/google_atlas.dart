@@ -1,8 +1,10 @@
 import 'dart:async';
-import 'dart:ui';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
-import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_atlas/google_atlas.dart';
 import 'package:google_atlas/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
@@ -45,6 +47,13 @@ class GoogleAtlas extends Provider {
       onMapCreated: onMapCreated,
     );
   }
+
+  /// This method enables/disables the decoding of an asset image
+  /// into a byte array. Only for testing purposes.
+  @visibleForTesting
+  static void setGetBytesFromAssetEnabled(bool enabled) {
+    _getBytesFromAssetEnabled = enabled;
+  }
 }
 
 class GoogleMapsProvider extends StatefulWidget {
@@ -72,6 +81,8 @@ class GoogleMapsProvider extends StatefulWidget {
 
   State<GoogleMapsProvider> createState() => _GoogleMapsProviderState();
 }
+
+bool _getBytesFromAssetEnabled = true;
 
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   CameraPosition get initialCameraPosition => widget.initialCameraPosition;
@@ -132,17 +143,40 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
     MarkerIcon markerIcon,
   ) async {
-    final ImageConfiguration imageConfiguration = ImageConfiguration(
-      devicePixelRatio: window.devicePixelRatio,
-    );
     GoogleMaps.BitmapDescriptor bitmapDescriptor;
     try {
-      bitmapDescriptor = await GoogleMaps.BitmapDescriptor.fromAssetImage(
-        imageConfiguration,
-        markerIcon.assetName,
+      bitmapDescriptor = GoogleMaps.BitmapDescriptor.fromBytes(
+        await _getBytesFromAsset(
+          markerIcon.assetName,
+          _getDefaultIconWidth(),
+        ),
       );
     } catch (_) {}
     return bitmapDescriptor;
+  }
+
+  /// Returns the default icon width in pixels according the device screen.
+  int _getDefaultIconWidth() {
+    final dpr = ui.window.devicePixelRatio;
+    final size = dpr * 80;
+    return size.round();
+  }
+
+  /// Reads the [asset] file and returns an `Uint8List` byte array.
+  Future<Uint8List> _getBytesFromAsset(String path, int width) async {
+    if (_getBytesFromAssetEnabled) {
+      final data = await rootBundle.load(path);
+      final codec = await ui.instantiateImageCodec(
+        data.buffer.asUint8List(),
+        targetWidth: width,
+      );
+      final fi = await codec.getNextFrame();
+      return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
+          .buffer
+          .asUint8List();
+    } else {
+      return Uint8List(0);
+    }
   }
 
   /// Converts a `GoogleMaps.onTap` to an `Atlas.onTap` callback.

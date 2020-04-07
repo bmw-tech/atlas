@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.3.2 (2020-4-2)
+
+- Fix icon asset size issue
+
 ## v0.3.1 (2019-3-16)
 
 - Added support for mapTypes
