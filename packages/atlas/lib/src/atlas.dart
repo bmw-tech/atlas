@@ -37,6 +37,9 @@ class Atlas extends StatelessWidget {
   /// The updated `CameraPosition ` is passed as an argument.
   final ArgumentCallback<CameraPosition> onCameraPositionChanged;
 
+  /// `onLocationChanged` callback which receives a position when the user moves
+  final ArgumentCallback<LatLng> onLocationChanged;
+
   /// `showMyLocation` determines whether or not the current device location
   /// should be displayed on the map. It will default to false if not specified.
   ///
@@ -70,6 +73,10 @@ class Atlas extends StatelessWidget {
   ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
 
+  /// This option enables the map to update its camera position so that
+  /// the user's current location is always shown in the center of the screen
+  final bool followMyLocation;
+
   /// Sets the underlying map type to be displayed.
   ///
   /// Defaults to [MapType.normal].
@@ -90,12 +97,14 @@ class Atlas extends StatelessWidget {
     Set<Polyline> polylines,
     bool showMyLocation,
     bool showMyLocationButton,
+    bool followMyLocation,
     MapType mapType,
     bool showTraffic,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
     this.onCameraPositionChanged,
+    this.onLocationChanged,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
@@ -103,6 +112,7 @@ class Atlas extends StatelessWidget {
         polylines = polylines ?? Set<Polyline>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
+        followMyLocation = followMyLocation ?? false,
         mapType = mapType ?? MapType.normal,
         showTraffic = showTraffic ?? false,
         super(key: key);
@@ -117,8 +127,10 @@ class Atlas extends StatelessWidget {
       polylines: polylines,
       onTap: onTap,
       onLongPress: onLongPress,
+      onLocationChanged: onLocationChanged,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
+      followMyLocation: followMyLocation,
       mapType: mapType,
       showTraffic: showTraffic,
       onMapCreated: onMapCreated,

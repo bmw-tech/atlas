@@ -631,6 +631,7 @@ class GoogleAtlasProviderSample extends Provider {
     ArgumentCallback<LatLng> onLongPress,
     ArgumentCallback<AtlasController> onMapCreated,
     ArgumentCallback<CameraPosition> onCameraPositionChanged,
+    ArgumentCallback<LatLng> onLocationChanged,
     bool showMyLocation,
     bool showMyLocationButton,
     MapType mapType,
