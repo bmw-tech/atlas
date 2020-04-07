@@ -73,6 +73,10 @@ class Atlas extends StatelessWidget {
   ///   * [showMyLocation] parameter.
   final bool showMyLocationButton;
 
+  /// This option enables the map to update its camera position so that
+  /// the user's current location is always shown in the center of the screen
+  final bool followMyLocation;
+
   /// Sets the underlying map type to be displayed.
   ///
   /// Defaults to [MapType.normal].
@@ -93,6 +97,7 @@ class Atlas extends StatelessWidget {
     Set<Polyline> polylines,
     bool showMyLocation,
     bool showMyLocationButton,
+    bool followMyLocation,
     MapType mapType,
     bool showTraffic,
     this.onTap,
@@ -107,6 +112,7 @@ class Atlas extends StatelessWidget {
         polylines = polylines ?? Set<Polyline>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
+        followMyLocation = followMyLocation ?? false,
         mapType = mapType ?? MapType.normal,
         showTraffic = showTraffic ?? false,
         super(key: key);
@@ -124,6 +130,7 @@ class Atlas extends StatelessWidget {
       onLocationChanged: onLocationChanged,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
+      followMyLocation: followMyLocation,
       mapType: mapType,
       showTraffic: showTraffic,
       onMapCreated: onMapCreated,

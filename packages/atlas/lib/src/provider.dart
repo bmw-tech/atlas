@@ -29,6 +29,7 @@ abstract class Provider {
     final ArgumentCallback<LatLng> onLocationChanged,
     final bool showMyLocation,
     final bool showMyLocationButton,
+    final bool followMyLocation,
     final MapType mapType,
     final bool showTraffic,
   });
