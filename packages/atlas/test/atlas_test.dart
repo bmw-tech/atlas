@@ -740,7 +740,7 @@ main() {
       ).called(1);
     });
 
-      testWidgets(
+    testWidgets(
         'should call provider build method with correct arguments when onLocationChanged is provided',
         (WidgetTester tester) async {
       final Function(LatLng) onLocationChanged = (LatLng position) {
