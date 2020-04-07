@@ -739,5 +739,52 @@ main() {
         ),
       ).called(1);
     });
+
+    testWidgets(
+        'should call provider build method with correct arguments when onLocationChanged is provided',
+        (WidgetTester tester) async {
+      final Function(LatLng) onLocationChanged = (LatLng position) {
+        print('onLocationChanged ${position.latitude}, ${position.latitude}');
+      };
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
+        onLocationChanged: onLocationChanged,
+        showMyLocation: false,
+        showMyLocationButton: false,
+        followMyLocation: false,
+        mapType: MapType.normal,
+        showTraffic: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              onLocationChanged: onLocationChanged,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          onLocationChanged: onLocationChanged,
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+        ),
+      ).called(1);
+    });
   });
 }
