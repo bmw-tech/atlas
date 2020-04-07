@@ -51,6 +51,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -73,6 +74,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -103,6 +105,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -126,6 +129,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -143,6 +147,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -165,6 +170,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -193,6 +199,7 @@ main() {
         circles: circles,
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -216,6 +223,7 @@ main() {
           circles: circles,
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -256,6 +264,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -279,6 +288,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -311,6 +321,7 @@ main() {
         circles: Set<Circle>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -334,6 +345,7 @@ main() {
           circles: Set<Circle>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -355,6 +367,7 @@ main() {
         onTap: onTap,
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -379,6 +392,7 @@ main() {
           onTap: onTap,
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -400,6 +414,7 @@ main() {
         onLongPress: onLongPress,
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -424,6 +439,7 @@ main() {
           onLongPress: onLongPress,
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -441,6 +457,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: true,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -464,6 +481,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: true,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -481,6 +499,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -503,6 +522,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -520,6 +540,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: true,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -544,6 +565,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: true,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -561,6 +583,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -583,6 +606,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -600,6 +624,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
       )).thenReturn(Container(key: mapKey));
@@ -622,6 +647,7 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
         ),
@@ -639,6 +665,7 @@ main() {
         polylines: Set<Polyline>(),
         showMyLocation: false,
         showMyLocationButton: false,
+        followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: true,
       )).thenReturn(Container(key: mapKey));
@@ -662,8 +689,53 @@ main() {
           polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
+          followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: true,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when followMyLocation is enabled',
+        (WidgetTester tester) async {
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
+        showMyLocation: true,
+        showMyLocationButton: true,
+        followMyLocation: true,
+        mapType: MapType.normal,
+        showTraffic: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              showMyLocation: true,
+              showMyLocationButton: true,
+              followMyLocation: true,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: true,
+          showMyLocationButton: true,
+          followMyLocation: true,
+          mapType: MapType.normal,
+          showTraffic: false,
         ),
       ).called(1);
     });
