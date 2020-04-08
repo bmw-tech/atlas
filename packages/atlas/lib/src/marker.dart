@@ -15,6 +15,8 @@ class Marker {
   /// A `void Function` which is called whenever a `Marker` is tapped.
   final void Function() onTap;
 
+  final Annotation annotation;
+
   /// The z-index of the marker, used to determine relative drawing order of
   /// map overlays.
   ///
@@ -27,6 +29,7 @@ class Marker {
     @required this.id,
     @required this.position,
     this.onTap,
+    this.annotation = const Annotation(),
     this.icon,
     this.zIndex = 0.0,
     this.anchor,
@@ -75,4 +78,35 @@ class Anchor {
 
   /// {@macro anchor}
   const Anchor({this.x = 0.5, this.y = 0.5});
+}
+
+/// Text labels for a [Marker] info window.
+class Annotation {
+  final String title;
+
+  final String subTitle;
+
+  final MarkerIcon icon;
+
+  /// A `void Function` which is called whenever a `Marker info` is tapped.
+  final VoidCallback onTap;
+
+  const Annotation({
+    this.title,
+    this.subTitle,
+    this.icon,
+    this.onTap,
+  });
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final Annotation typedOther = other;
+    return title == typedOther.title &&
+        subTitle == typedOther.subTitle &&
+        icon == typedOther.icon;
+  }
+
+  int get hashCode => title.hashCode ^ subTitle.hashCode ^ icon.hashCode;
 }
