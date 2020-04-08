@@ -158,7 +158,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   /// Returns the icon width in pixels according the device screen.
   int _getIconWidth(int width) {
-    return width != null
+    return (width != null && width > 0)
         ? (width * ui.window.devicePixelRatio).round()
         : _getDefaultIconWidth();
   }
