@@ -100,6 +100,46 @@ main() {
       expect(marker.onTap, expectedOnTap);
     });
 
+    test('should have correct properties when no MarkerAnnotation is provided',
+        () {
+      final expectedId = 'id';
+      final expectedPosition = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      );
+      final expectedMarkerAnnotation = null;
+      final marker = Marker(
+        id: expectedId,
+        position: expectedPosition,
+        annotation: expectedMarkerAnnotation,
+      );
+      expect(marker.id, expectedId);
+      expect(marker.position, expectedPosition);
+      expect(marker.annotation, expectedMarkerAnnotation);
+    });
+
+    test('should have correct properties when MarkerAnnotation is provided',
+        () {
+      final expectedId = 'id';
+      final expectedPosition = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      );
+      final expectedMarkerAnnotation = Annotation(
+        title: 'MarkerAnnotation Title',
+        subTitle: 'MarkerAnnotation subTitle',
+      );
+      final marker = Marker(
+        id: expectedId,
+        position: expectedPosition,
+        annotation: expectedMarkerAnnotation,
+      );
+      expect(marker.id, expectedId);
+      expect(marker.position, expectedPosition);
+      expect(marker.annotation.title, expectedMarkerAnnotation.title);
+      expect(marker.annotation.subTitle, expectedMarkerAnnotation.subTitle);
+    });
+
     test('different instances with same properties should be equal', () {
       final marker1 = Marker(
         id: 'id',

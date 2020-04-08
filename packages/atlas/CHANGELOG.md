@@ -1,8 +1,11 @@
 # atlas
 
-## v0.6.0 (2020-4-6)
+## v0.6.0 (2020-4-7)
 
 - `onCameraPositionChanged` callback added to Atlas Map
+- `onLocationChanged` callback added to Atlas Map
+- `Annotation` class added to support annotations on `Marker` objects
+- Added `updateBoundsWithPaddingToAllSides` for more granular padding options
 
 ## v0.5.3 (2020-4-3)
 
