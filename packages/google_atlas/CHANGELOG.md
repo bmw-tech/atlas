@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.3.3 (2020-4-8)
+
+- Use `MarkerIcon` width value
+
 ## v0.3.2 (2020-4-2)
 
 - Fix icon asset size issue
