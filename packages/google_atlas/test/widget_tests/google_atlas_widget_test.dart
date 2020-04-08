@@ -204,8 +204,8 @@ main() {
     });
 
     Future<void> _testMarkerIcon(
-        WidgetTester tester, 
-        MarkerIcon markerIcon,
+      WidgetTester tester,
+      MarkerIcon markerIcon,
     ) async {
       final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
