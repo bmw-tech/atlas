@@ -104,29 +104,26 @@ class _AtlasSampleState extends State<AtlasSample> {
             onMapCreated: (controller) {
               _controller = controller;
             },
-            onCameraPositionChanged: (cameraPosition) => setState(
-              () {
-                this.showSearchAreaButton = true;
-              },
-            ),
+            onCameraPositionChanged: (_) => _showSearchAreaButton(true),
           ),
-          Visibility(
-            visible: showSearchAreaButton,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FlatButton(
-                  child: Text('Search Area'),
-                  color: Colors.white,
-                  textColor: Colors.black,
-                  onPressed: () => setState(
-                    () {
-                      this.showSearchAreaButton = false;
-                    },
+          Padding(
+            padding: EdgeInsets.only(
+              top: 50,
+            ),
+            child: Visibility(
+              visible: showSearchAreaButton,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  FlatButton(
+                    child: Text('Search Area'),
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    onPressed: () => _showSearchAreaButton(false),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Container(
@@ -175,6 +172,12 @@ class _AtlasSampleState extends State<AtlasSample> {
         ],
       ),
     );
+  }
+
+  void _showSearchAreaButton(bool show) {
+    setState(() {
+      this.showSearchAreaButton = show;
+    });
   }
 
   bool _shouldShowMapTypeButton() {

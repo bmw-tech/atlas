@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_atlas/google_atlas.dart';
 import 'package:google_atlas/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
+import 'package:rxdart/rxdart.dart';
 
 /// `Atlas` Provider for Google Maps
 class GoogleAtlas extends Provider {
@@ -101,6 +102,25 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   ArgumentCallback<CameraPosition> get onCameraPositionChanged =>
       widget.onCameraPositionChanged;
 
+  PublishSubject<GoogleMaps.CameraPosition> publishSubjectCameraPosition;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (onCameraPositionChanged != null) {
+      publishSubjectCameraPosition =
+          PublishSubject<GoogleMaps.CameraPosition>();
+      _cameraPositionDebounceTime();
+    }
+  }
+
+  @override
+  void dispose() {
+    publishSubjectCameraPosition?.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Set<GoogleMaps.Marker>>(
@@ -118,7 +138,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           onTap: _toGoogleOnTap(onTap),
           onLongPress: _toGoogleOnLongPress(onLongPress),
           onMapCreated: _onMapCreated,
-          onCameraMove: (cameraPosition) => _onCameraMove(cameraPosition),
+          onCameraMove: _onCameraMove,
         );
       },
     );
@@ -239,10 +259,17 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   }
 
   /// Callback method when camera moves
-  void _onCameraMove(GoogleMaps.CameraPosition cameraPosition) async {
-    if (onCameraPositionChanged != null) {
-      onCameraPositionChanged(
-          CameraUtils.toAtlasCameraPosition(cameraPosition));
-    }
+  void _onCameraMove(GoogleMaps.CameraPosition cameraPosition) {
+    publishSubjectCameraPosition.add(cameraPosition);
+  }
+
+  /// DebounceTime method that listen to camera position moves
+  void _cameraPositionDebounceTime() {
+    publishSubjectCameraPosition
+        .debounceTime(Duration(milliseconds: 500))
+        .listen(
+          (cameraPosition) => onCameraPositionChanged
+              .call(CameraUtils.toAtlasCameraPosition(cameraPosition)),
+        );
   }
 }
