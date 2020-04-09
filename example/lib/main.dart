@@ -65,6 +65,7 @@ class _AtlasSampleState extends State<AtlasSample> {
         },
         icon: MarkerIcon(
           assetName: 'assets/mario.png',
+          width: 50,
         ),
       )
     ],
