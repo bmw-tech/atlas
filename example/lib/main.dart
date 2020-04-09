@@ -23,6 +23,7 @@ class AtlasSample extends StatefulWidget {
 
 class _AtlasSampleState extends State<AtlasSample> {
   MapType mapType = MapType.normal;
+  bool showSearchAreaButton = false;
 
   final CameraPosition _initialCameraPosition = CameraPosition(
     target: LatLng(
@@ -102,6 +103,30 @@ class _AtlasSampleState extends State<AtlasSample> {
             onMapCreated: (controller) {
               _controller = controller;
             },
+            onCameraPositionChanged: (cameraPosition) => setState(
+              () {
+                this.showSearchAreaButton = true;
+              },
+            ),
+          ),
+          Visibility(
+            visible: showSearchAreaButton,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FlatButton(
+                  child: Text('Search Area'),
+                  color: Colors.white,
+                  textColor: Colors.black,
+                  onPressed: () => setState(
+                    () {
+                      this.showSearchAreaButton = false;
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
           Container(
             alignment: Alignment.centerRight,

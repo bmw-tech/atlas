@@ -14,4 +14,17 @@ class CameraUtils {
       zoom: position.zoom,
     );
   }
+
+  /// Converts a `GoogleMaps.CameraPosition` to an `Atlas.LatLng`
+  static CameraPosition toAtlasCameraPosition(
+    GoogleMaps.CameraPosition position,
+  ) {
+    return CameraPosition(
+      target: LatLng(
+        latitude: position.target.latitude,
+        longitude: position.target.longitude,
+      ),
+      zoom: position.zoom,
+    );
+  }
 }

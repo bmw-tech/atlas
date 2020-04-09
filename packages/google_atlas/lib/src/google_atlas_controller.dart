@@ -44,4 +44,10 @@ class GoogleAtlasController implements AtlasController {
         .getScreenCoordinate(LatLngUtils.toGoogleLatLng(latLng));
     return LatLngUtils.fromGoogleScreenCoordinate(googleScreenCoordinate);
   }
+
+  @override
+  Future<void> updateBoundsWithPaddingToAllSides(LatLngBounds bounds, double north, double east, double south, double west) {
+    // TODO: implement updateBoundsWithPaddingToAllSides
+    return null;
+  }
 }
