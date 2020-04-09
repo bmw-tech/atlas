@@ -155,11 +155,18 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
       bitmapDescriptor = GoogleMaps.BitmapDescriptor.fromBytes(
         await _getBytesFromAsset(
           markerIcon.assetName,
-          _getDefaultIconWidth(),
+          _getIconWidth(markerIcon.width),
         ),
       );
     } catch (_) {}
     return bitmapDescriptor;
+  }
+
+  /// Returns the icon width in pixels according the device screen.
+  int _getIconWidth(int width) {
+    return (width != null && width > 0)
+        ? (width * ui.window.devicePixelRatio).round()
+        : _getDefaultIconWidth();
   }
 
   /// Returns the default icon width in pixels according the device screen.

@@ -203,7 +203,10 @@ main() {
       expect(actualMarker, equals(expectedMarker));
     });
 
-    testWidgets('able to give a Marker a MapIcon', (WidgetTester tester) async {
+    Future<void> _testMarkerIcon(
+      WidgetTester tester,
+      MarkerIcon markerIcon,
+    ) async {
       final GoogleMaps.Marker expectedMarker = GoogleMaps.Marker(
         markerId: GoogleMaps.MarkerId('marker-1'),
         position: GoogleMaps.LatLng(41.8781, -87.6298),
@@ -211,14 +214,13 @@ main() {
 
       final Set<Marker> mockMarker = Set<Marker>.from([
         Marker(
-            id: 'marker-1',
-            position: LatLng(
-              latitude: 41.8781,
-              longitude: -87.6298,
-            ),
-            icon: MarkerIcon(
-              assetName: 'assets/icon.png',
-            ))
+          id: 'marker-1',
+          position: LatLng(
+            latitude: 41.8781,
+            longitude: -87.6298,
+          ),
+          icon: markerIcon,
+        )
       ]);
 
       await tester.pumpWidget(MaterialApp(
@@ -240,6 +242,27 @@ main() {
           platformGoogleMap.markersToAdd.first;
       expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
+    }
+
+    testWidgets('able to give a Marker a MarkerIcon',
+        (WidgetTester tester) async {
+      await _testMarkerIcon(
+        tester,
+        MarkerIcon(
+          assetName: 'assets/icon.png',
+        ),
+      );
+    });
+
+    testWidgets('able to give a Marker a MarkerIcon with custom width',
+        (WidgetTester tester) async {
+      await _testMarkerIcon(
+        tester,
+        MarkerIcon(
+          assetName: 'assets/icon.png',
+          width: 100,
+        ),
+      );
     });
 
     testWidgets('get bytes from valid asset does not crash',
