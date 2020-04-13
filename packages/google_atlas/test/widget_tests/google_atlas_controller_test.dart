@@ -92,5 +92,19 @@ main() {
         expect(inputLatLng.longitude, resultingLatLng.longitude);
       });
     });
+
+    // TODO: implement updateBoundsWithPaddingToAllSides tests
+    group('updateBoundsWithPaddingToAllSides', () {
+      test('invokes lookAtWithGeoBoxAndOrientation', () async {
+        await googleAtlasController.updateBoundsWithPaddingToAllSides(
+          null,
+          0,
+          0,
+          0,
+          0,
+        );
+        verify(googleMapController.moveCamera(any)).called(1);
+      });
+    });
   });
 }
