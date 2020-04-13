@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
 import 'package:google_atlas/google_atlas.dart';
@@ -633,6 +634,59 @@ main() {
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
     });
+
+    testWidgets('MOVE CAMERA', (WidgetTester tester) async {
+      var showSearchAreaButton = false;
+
+      final ArgumentCallback<CameraPosition> mockOnCameraPositionChanged =
+          (CameraPosition cameraPosition) async {
+        showSearchAreaButton = true;
+      };
+
+      await tester.pumpWidget(MaterialApp(
+        title: 'Atlas Test Sample with Google Provider',
+        home: Stack(
+          children: [
+            AtlasTestSample(
+              initialCameraPosition: initialCameraPosition,
+              onCameraPositionChanged: mockOnCameraPositionChanged,
+            ),
+            Visibility(
+              visible: showSearchAreaButton,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  FlatButton(
+                    child: Text('Search Area'),
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    onPressed: () {
+                      showSearchAreaButton = false;
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+
+      expect(find.text('Search Area'), findsNothing);
+
+      final googleMap =
+          find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
+      (googleMap as GoogleMaps.GoogleMap).onCameraMove(
+          GoogleMaps.CameraPosition(
+              target: GoogleMaps.LatLng(0.0, 0.0), zoom: 9.0));
+
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expectLater(find.text('Search Area'), findsOneWidget);
+    });
   });
 }
 
@@ -643,6 +697,7 @@ class GoogleAtlasProviderSample extends Provider {
         MapType.satellite,
         MapType.terrain,
       };
+
   @override
   Widget build({
     CameraPosition initialCameraPosition,
@@ -657,6 +712,7 @@ class GoogleAtlasProviderSample extends Provider {
     ArgumentCallback<LatLng> onLocationChanged,
     bool showMyLocation,
     bool showMyLocationButton,
+    bool followMyLocation,
     MapType mapType,
     bool showTraffic,
   }) {
@@ -669,6 +725,7 @@ class GoogleAtlasProviderSample extends Provider {
       showTraffic: showTraffic,
       onTap: onTap,
       onLongPress: onLongPress,
+      onCameraPositionChanged: onCameraPositionChanged,
     );
   }
 }
@@ -682,6 +739,7 @@ class AtlasTestSample extends StatefulWidget {
   final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
+  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
 
   AtlasTestSample({
     @required this.initialCameraPosition,
@@ -692,6 +750,7 @@ class AtlasTestSample extends StatefulWidget {
     this.showTraffic,
     this.onTap,
     this.onLongPress,
+    this.onCameraPositionChanged,
   });
 
   State<AtlasTestSample> createState() => _AtlasTestSampleState(
@@ -703,6 +762,7 @@ class AtlasTestSample extends StatefulWidget {
         showTraffic: this.showTraffic,
         onTap: this.onTap,
         onLongPress: this.onLongPress,
+        onCameraPositionChanged: this.onCameraPositionChanged,
       );
 }
 
@@ -715,6 +775,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
+  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
   AtlasController _controller;
 
   _AtlasTestSampleState({
@@ -726,6 +787,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
     this.showTraffic,
     this.onTap,
     this.onLongPress,
+    this.onCameraPositionChanged,
   });
 
   @override
@@ -746,6 +808,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             onMapCreated: (controller) {
               _controller = controller;
             },
+            onCameraPositionChanged: this.onCameraPositionChanged ?? null,
           ),
           Container(
             alignment: Alignment.centerRight,
