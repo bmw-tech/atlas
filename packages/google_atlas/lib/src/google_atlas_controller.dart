@@ -46,7 +46,8 @@ class GoogleAtlasController implements AtlasController {
   }
 
   @override
-  Future<void> updateBoundsWithPaddingToAllSides(LatLngBounds bounds, double north, double east, double south, double west) {
+  Future<void> updateBoundsWithPaddingToAllSides(LatLngBounds bounds,
+      double north, double east, double south, double west) {
     // TODO: implement updateBoundsWithPaddingToAllSides
     return null;
   }
