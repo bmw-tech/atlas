@@ -109,9 +109,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     super.initState();
 
     if (onCameraPositionChanged != null) {
-      publishSubjectCameraPosition =
-          PublishSubject<GoogleMaps.CameraPosition>();
-      _cameraPositionDebounceTime();
+      _setupCameraPositionListener();
     }
   }
 
@@ -263,8 +261,9 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     publishSubjectCameraPosition.add(cameraPosition);
   }
 
-  /// DebounceTime method that listen to camera position moves
-  void _cameraPositionDebounceTime() {
+  /// Camera Position Listener method that listen to camera position moves
+  void _setupCameraPositionListener() {
+    publishSubjectCameraPosition = PublishSubject<GoogleMaps.CameraPosition>();
     publishSubjectCameraPosition
         .debounceTime(Duration(milliseconds: 500))
         .listen(
