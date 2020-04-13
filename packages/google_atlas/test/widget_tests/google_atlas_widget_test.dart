@@ -635,57 +635,40 @@ main() {
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
     });
 
-    testWidgets('MOVE CAMERA', (WidgetTester tester) async {
-      var showSearchAreaButton = false;
+    testWidgets('should return a new cameraPosition after the camera position moved to a new position', (WidgetTester tester) async {
+      await tester.runAsync(() async {
+        var showSearchAreaButton = false;
 
-      final ArgumentCallback<CameraPosition> mockOnCameraPositionChanged =
-          (CameraPosition cameraPosition) async {
-        showSearchAreaButton = true;
-      };
+        final ArgumentCallback<CameraPosition> mockOnCameraPositionChanged =
+            (CameraPosition cameraPosition) async {
+          showSearchAreaButton = true;
+        };
 
-      await tester.pumpWidget(MaterialApp(
-        title: 'Atlas Test Sample with Google Provider',
-        home: Stack(
-          children: [
-            AtlasTestSample(
-              initialCameraPosition: initialCameraPosition,
-              onCameraPositionChanged: mockOnCameraPositionChanged,
-            ),
-            Visibility(
-              visible: showSearchAreaButton,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  FlatButton(
-                    child: Text('Search Area'),
-                    color: Colors.white,
-                    textColor: Colors.black,
-                    onPressed: () {
-                      showSearchAreaButton = false;
-                    },
-                  ),
-                ],
+        await tester.pumpWidget(MaterialApp(
+          title: 'Atlas Test Sample with Google Provider',
+          home: Stack(
+            children: [
+              AtlasTestSample(
+                initialCameraPosition: initialCameraPosition,
+                onCameraPositionChanged: mockOnCameraPositionChanged,
               ),
-            ),
-          ],
-        ),
-      ));
+            ],
+          ),
+        ));
 
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
 
-      expect(find.text('Search Area'), findsNothing);
-
-      final googleMap =
-          find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
-      (googleMap as GoogleMaps.GoogleMap).onCameraMove(
+        final googleMap =
+            find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
+        (googleMap as GoogleMaps.GoogleMap).onCameraMove(
           GoogleMaps.CameraPosition(
-              target: GoogleMaps.LatLng(0.0, 0.0), zoom: 9.0));
+              target: GoogleMaps.LatLng(0.0, 0.0), zoom: 9.0),
+        );
 
-      await tester.pump();
-      await tester.pumpAndSettle();
-
-      expectLater(find.text('Search Area'), findsOneWidget);
+        Future.delayed(Duration(milliseconds: 1)).then((_) {
+          expect(showSearchAreaButton, isTrue);
+        });
+      });
     });
   });
 }
