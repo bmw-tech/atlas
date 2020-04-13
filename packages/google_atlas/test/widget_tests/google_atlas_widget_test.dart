@@ -646,17 +646,15 @@ main() {
           showSearchAreaButton = true;
         };
 
-        await tester.pumpWidget(MaterialApp(
-          title: 'Atlas Test Sample with Google Provider',
-          home: Stack(
-            children: [
-              AtlasTestSample(
-                initialCameraPosition: initialCameraPosition,
-                onCameraPositionChanged: mockOnCameraPositionChanged,
-              ),
-            ],
+        await tester.pumpWidget(
+          MaterialApp(
+            title: 'Atlas Test Sample with Google Provider',
+            home: AtlasTestSample(
+              initialCameraPosition: initialCameraPosition,
+              onCameraPositionChanged: mockOnCameraPositionChanged,
+            ),
           ),
-        ));
+        );
 
         await tester.pumpAndSettle();
 
