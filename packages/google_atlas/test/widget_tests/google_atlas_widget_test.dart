@@ -635,7 +635,9 @@ main() {
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
     });
 
-    testWidgets('should return a new cameraPosition after the camera position moved to a new position', (WidgetTester tester) async {
+    testWidgets(
+        'should return a new cameraPosition after the camera position moved to a new position',
+        (WidgetTester tester) async {
       await tester.runAsync(() async {
         var showSearchAreaButton = false;
 
