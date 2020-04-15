@@ -8,7 +8,6 @@ import 'package:flutter/widgets.dart';
 import 'package:google_atlas/google_atlas.dart';
 import 'package:google_atlas/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
-import 'package:rxdart/rxdart.dart';
 
 /// `Atlas` Provider for Google Maps
 class GoogleAtlas extends Provider {
@@ -101,23 +100,6 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
   ArgumentCallback<CameraPosition> get onCameraPositionChanged =>
       widget.onCameraPositionChanged;
-
-  PublishSubject<GoogleMaps.CameraPosition> publishSubjectCameraPosition;
-
-  @override
-  void initState() {
-    super.initState();
-
-    if (onCameraPositionChanged != null) {
-      _setupCameraPositionListener();
-    }
-  }
-
-  @override
-  void dispose() {
-    publishSubjectCameraPosition?.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -258,17 +240,8 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
 
   /// Callback method when camera moves
   void _onCameraMove(GoogleMaps.CameraPosition cameraPosition) {
-    publishSubjectCameraPosition.add(cameraPosition);
-  }
-
-  /// Camera Position Listener method that listen to camera position moves
-  void _setupCameraPositionListener() {
-    publishSubjectCameraPosition = PublishSubject<GoogleMaps.CameraPosition>();
-    publishSubjectCameraPosition
-        .debounceTime(Duration(milliseconds: 500))
-        .listen(
-          (cameraPosition) => onCameraPositionChanged
-              .call(CameraUtils.toAtlasCameraPosition(cameraPosition)),
-        );
+    onCameraPositionChanged?.call(
+      CameraUtils.toAtlasCameraPosition(cameraPosition),
+    );
   }
 }
