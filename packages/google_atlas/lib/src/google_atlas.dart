@@ -46,6 +46,7 @@ class GoogleAtlas extends Provider {
       onTap: onTap,
       onLongPress: onLongPress,
       onMapCreated: onMapCreated,
+      onCameraPositionChanged: onCameraPositionChanged,
     );
   }
 
@@ -67,6 +68,7 @@ class GoogleMapsProvider extends StatefulWidget {
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<AtlasController> onMapCreated;
+  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
 
   GoogleMapsProvider({
     @required this.initialCameraPosition,
@@ -78,6 +80,7 @@ class GoogleMapsProvider extends StatefulWidget {
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
+    this.onCameraPositionChanged,
   });
 
   State<GoogleMapsProvider> createState() => _GoogleMapsProviderState();
@@ -95,6 +98,8 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   ArgumentCallback<LatLng> get onTap => widget.onTap;
   ArgumentCallback<LatLng> get onLongPress => widget.onLongPress;
   ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
+  ArgumentCallback<CameraPosition> get onCameraPositionChanged =>
+      widget.onCameraPositionChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +118,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           onTap: _toGoogleOnTap(onTap),
           onLongPress: _toGoogleOnLongPress(onLongPress),
           onMapCreated: _onMapCreated,
+          onCameraMove: _onCameraMove,
         );
       },
     );
@@ -229,6 +235,13 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   void _onMapCreated(GoogleMaps.GoogleMapController controller) async {
     onMapCreated?.call(
       GoogleAtlasController(controller: controller),
+    );
+  }
+
+  /// Callback method when camera moves
+  void _onCameraMove(GoogleMaps.CameraPosition cameraPosition) {
+    onCameraPositionChanged?.call(
+      CameraUtils.toAtlasCameraPosition(cameraPosition),
     );
   }
 }

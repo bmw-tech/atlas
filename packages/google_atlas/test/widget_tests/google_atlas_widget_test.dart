@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
 import 'package:google_atlas/google_atlas.dart';
@@ -633,6 +634,42 @@ main() {
 
       expect(platformGoogleMap.cameraPosition.target, expectedPosition);
     });
+
+    testWidgets(
+        'should return a new cameraPosition after the camera position moved to a new position',
+        (WidgetTester tester) async {
+      await tester.runAsync(() async {
+        var showSearchAreaButton = false;
+
+        final ArgumentCallback<CameraPosition> mockOnCameraPositionChanged =
+            (CameraPosition cameraPosition) async {
+          showSearchAreaButton = true;
+        };
+
+        await tester.pumpWidget(
+          MaterialApp(
+            title: 'Atlas Test Sample with Google Provider',
+            home: AtlasTestSample(
+              initialCameraPosition: initialCameraPosition,
+              onCameraPositionChanged: mockOnCameraPositionChanged,
+            ),
+          ),
+        );
+
+        await tester.pumpAndSettle();
+
+        final googleMap =
+            find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
+        (googleMap as GoogleMaps.GoogleMap).onCameraMove(
+          GoogleMaps.CameraPosition(
+              target: GoogleMaps.LatLng(0.0, 0.0), zoom: 9.0),
+        );
+
+        Future.delayed(Duration(milliseconds: 1)).then((_) {
+          expect(showSearchAreaButton, isTrue);
+        });
+      });
+    });
   });
 }
 
@@ -643,6 +680,7 @@ class GoogleAtlasProviderSample extends Provider {
         MapType.satellite,
         MapType.terrain,
       };
+
   @override
   Widget build({
     CameraPosition initialCameraPosition,
@@ -657,6 +695,7 @@ class GoogleAtlasProviderSample extends Provider {
     ArgumentCallback<LatLng> onLocationChanged,
     bool showMyLocation,
     bool showMyLocationButton,
+    bool followMyLocation,
     MapType mapType,
     bool showTraffic,
   }) {
@@ -669,6 +708,7 @@ class GoogleAtlasProviderSample extends Provider {
       showTraffic: showTraffic,
       onTap: onTap,
       onLongPress: onLongPress,
+      onCameraPositionChanged: onCameraPositionChanged,
     );
   }
 }
@@ -682,6 +722,7 @@ class AtlasTestSample extends StatefulWidget {
   final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
+  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
 
   AtlasTestSample({
     @required this.initialCameraPosition,
@@ -692,6 +733,7 @@ class AtlasTestSample extends StatefulWidget {
     this.showTraffic,
     this.onTap,
     this.onLongPress,
+    this.onCameraPositionChanged,
   });
 
   State<AtlasTestSample> createState() => _AtlasTestSampleState(
@@ -703,6 +745,7 @@ class AtlasTestSample extends StatefulWidget {
         showTraffic: this.showTraffic,
         onTap: this.onTap,
         onLongPress: this.onLongPress,
+        onCameraPositionChanged: this.onCameraPositionChanged,
       );
 }
 
@@ -715,6 +758,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
+  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
   AtlasController _controller;
 
   _AtlasTestSampleState({
@@ -726,6 +770,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
     this.showTraffic,
     this.onTap,
     this.onLongPress,
+    this.onCameraPositionChanged,
   });
 
   @override
@@ -746,6 +791,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             onMapCreated: (controller) {
               _controller = controller;
             },
+            onCameraPositionChanged: this.onCameraPositionChanged ?? null,
           ),
           Container(
             alignment: Alignment.centerRight,
