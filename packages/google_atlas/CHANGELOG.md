@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.3.4 (2020-4-16)
+
+- Added support for `onCameraPositionChanged` callback
+
 ## v0.3.3 (2020-4-8)
 
 - Use `MarkerIcon` width value
