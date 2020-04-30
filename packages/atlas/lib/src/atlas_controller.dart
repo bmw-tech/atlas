@@ -21,4 +21,7 @@ abstract class AtlasController {
 
   /// Returns a [LatLng] corresponding to the [ScreenCoordinate] in the map view.
   Future<ScreenCoordinates> getScreenCoordinate(LatLng latLng);
+
+  ///Changes the Icon of the LocationMarker to the given asset. (May not work on all MapProviders)
+  void changeUserLocationIcon(String asset);
 }
