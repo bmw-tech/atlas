@@ -1,5 +1,9 @@
 # atlas
 
+## v0.7.0 (2020-5-5)
+
+- Added `changeUserLocationIcon` function
+
 ## v0.6.0 (2020-4-7)
 
 - `onCameraPositionChanged` callback added to Atlas Map
