@@ -1,5 +1,10 @@
 # atlas
 
+## v0.6.1 (2020-5-9)
+
+- Added 'outlineWidth' to 'Polyline'
+- Added 'outlineColor' to 'Polyline'
+
 ## v0.6.0 (2020-4-7)
 
 - `onCameraPositionChanged` callback added to Atlas Map
