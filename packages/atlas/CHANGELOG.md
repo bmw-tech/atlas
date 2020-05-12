@@ -1,8 +1,13 @@
 # atlas
 
-## v0.7.0 (2020-5-5)
+## v0.7.0 (2020-5-12)
 
 - Added `changeUserLocationIcon` function
+
+## v0.6.1 (2020-5-9)
+
+- Added 'outlineWidth' to 'Polyline'
+- Added 'outlineColor' to 'Polyline'
 
 ## v0.6.0 (2020-4-7)
 
