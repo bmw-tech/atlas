@@ -51,4 +51,9 @@ class GoogleAtlasController implements AtlasController {
       double north, double east, double south, double west) {
     return _controller.moveCamera(null);
   }
+
+  @override
+  void changeUserLocationIcon(String asset) {
+    // TODO: implement changeUserLocationIcon
+  }
 }
