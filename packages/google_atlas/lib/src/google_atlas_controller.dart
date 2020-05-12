@@ -53,7 +53,5 @@ class GoogleAtlasController implements AtlasController {
   }
 
   @override
-  void changeUserLocationIcon(String asset) {
-    // TODO: implement changeUserLocationIcon
-  }
+  void changeUserLocationIcon(String asset) {}
 }
