@@ -106,5 +106,11 @@ main() {
         verify(googleMapController.moveCamera(any)).called(1);
       });
     });
+
+    group('changeUserLocationIcon', () {
+      test('invokes changeUserLocationIcon', () {
+        googleAtlasController.changeUserLocationIcon('asset');
+      });
+    });
   });
 }
