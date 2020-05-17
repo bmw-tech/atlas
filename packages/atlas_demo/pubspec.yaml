@@ -1,0 +1,24 @@
+name: atlas_demo
+description: Demo package for Atlas sub-projects
+version: 0.0.1
+authors:
+  - Kyle Santiyanont <kyle.santiyanont@spr.com>
+repository: https://github.com/bmw-tech/atlas
+issue_tracker: https://github.com/bmw-tech/atlas/issues
+homepage: https://bmw-tech.github.io/atlas
+
+environment:
+  sdk: ">=2.2.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  atlas: ^0.9.0
+  flutter_bloc: ^3.2.0
+  equatable: ^1.1.1
+  cupertino_icons: ^0.1.2
+  uuid: 2.0.4
+  location_permissions: ^2.0.4+1
+
+flutter:
+  uses-material-design: true
