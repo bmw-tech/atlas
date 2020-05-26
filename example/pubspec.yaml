@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^2.0.0
+  flutter_bloc: ^4.0.0
   equatable: ^1.1.1
   google_atlas:
     path: ../packages/google_atlas

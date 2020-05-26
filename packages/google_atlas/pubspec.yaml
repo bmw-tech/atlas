@@ -1,6 +1,6 @@
 name: google_atlas
 description: Google Map Provider for Atlas, an extensible map abstraction for Flutter with support for multiple map providers
-version: 0.3.5
+version: 0.4.0
 authors:
   - Jorge Coca <jcocaramos@gmail.com>
   - Felix Angelov <felangelov@gmail.com>
@@ -18,7 +18,7 @@ dependencies:
     sdk: flutter
   atlas: ^0.7.0
   google_maps_flutter: ^0.5.21+3
-  rxdart: ^0.22.0
+  rxdart: ^0.24.1
 
 dev_dependencies:
   flutter_test:
