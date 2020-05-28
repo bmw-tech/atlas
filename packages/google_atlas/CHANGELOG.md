@@ -1,5 +1,10 @@
 # google_atlas
 
+## v0.4.0 (2020-5-27)
+
+- Ensured compatibility to Flutter 1.17.1 
+- Upgrade outdated RxDart package to 0.24.1
+
 ## v0.3.5 (2020-5-12)
 
 - Added support for `changeUserLocationIcon` function (May not work on all MapProviders)
