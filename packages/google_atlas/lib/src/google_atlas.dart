@@ -119,7 +119,6 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           trafficEnabled: showTraffic,
           initialCameraPosition:
               CameraUtils.toGoogleCameraPosition(initialCameraPosition),
-          currentCameraPosition: currentCameraPosition,
           markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,
           onTap: _toGoogleOnTap(onTap),
           onLongPress: _toGoogleOnLongPress(onLongPress),
