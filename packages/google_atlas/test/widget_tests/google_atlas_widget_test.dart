@@ -684,6 +684,7 @@ class GoogleAtlasProviderSample extends Provider {
   @override
   Widget build({
     CameraPosition initialCameraPosition,
+    CameraPosition currentCameraPosition,
     Set<Marker> markers,
     Set<Circle> circles,
     Set<Polygon> polygons,

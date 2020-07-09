@@ -1,7 +1,7 @@
+import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:atlas/atlas.dart';
 
 class MockProvider extends Mock implements Provider {}
 
@@ -9,6 +9,14 @@ main() {
   group('Atlas', () {
     Provider provider;
     final CameraPosition initialCameraPosition = CameraPosition(
+      target: LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      ),
+      zoom: 12,
+    );
+
+    final CameraPosition currentCameraPosition = CameraPosition(
       target: LatLng(
         latitude: 37.42796133580664,
         longitude: -122.085749655962,
@@ -45,6 +53,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -68,6 +77,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -99,6 +109,7 @@ main() {
 
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: markers,
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -123,6 +134,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: markers,
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -141,6 +153,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -164,6 +177,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -193,6 +207,7 @@ main() {
 
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -217,6 +232,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -258,6 +274,7 @@ main() {
 
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         polygons: polygons,
         polylines: Set<Polyline>(),
@@ -282,6 +299,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           polygons: polygons,
           polylines: Set<Polyline>(),
@@ -315,6 +333,7 @@ main() {
 
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         polygons: Set<Polygon>(),
         polylines: polylines,
@@ -339,6 +358,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           polygons: Set<Polygon>(),
           polylines: polylines,
@@ -360,6 +380,7 @@ main() {
       };
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -385,6 +406,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -407,6 +429,7 @@ main() {
       };
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -432,6 +455,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -451,6 +475,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -475,6 +500,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -493,6 +519,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -516,6 +543,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -534,6 +562,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -559,6 +588,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -577,6 +607,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -600,6 +631,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -618,6 +650,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -641,6 +674,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -659,6 +693,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -683,6 +718,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -716,6 +752,7 @@ main() {
 
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: markers,
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -740,6 +777,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: markers,
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -758,6 +796,7 @@ main() {
         (WidgetTester tester) async {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -784,6 +823,7 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
@@ -805,6 +845,7 @@ main() {
       };
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
@@ -830,11 +871,99 @@ main() {
       verify(
         provider.build(
           initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           onLocationChanged: onLocationChanged,
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with currentCameraPosition equal initialCameraPosition when currentCameraPosition is not provided',
+        (WidgetTester tester) async {
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+        followMyLocation: false,
+        mapType: MapType.normal,
+        showTraffic: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when currentCameraPosition is provided',
+        (WidgetTester tester) async {
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        currentCameraPosition: currentCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
+        showMyLocation: false,
+        showMyLocationButton: false,
+        followMyLocation: false,
+        mapType: MapType.normal,
+        showTraffic: false,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              currentCameraPosition: currentCameraPosition,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          currentCameraPosition: currentCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
           showMyLocation: false,
           showMyLocationButton: false,
           followMyLocation: false,

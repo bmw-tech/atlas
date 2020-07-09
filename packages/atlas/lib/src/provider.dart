@@ -18,6 +18,7 @@ abstract class Provider {
 
   Widget build({
     final CameraPosition initialCameraPosition,
+    final CameraPosition currentCameraPosition,
     final Set<Marker> markers,
     final Set<Circle> circles,
     final Set<Polygon> polygons,

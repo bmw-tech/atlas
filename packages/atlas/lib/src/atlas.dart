@@ -1,5 +1,5 @@
-import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/widgets.dart';
 
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider
 /// and exposes a developer-friendly, declarative API for working with a map.
@@ -8,6 +8,9 @@ import 'package:atlas/atlas.dart';
 class Atlas extends StatelessWidget {
   /// The `CameraPosition` which the map will initially be focused on.
   final CameraPosition initialCameraPosition;
+
+  /// The current `CameraPosition` which the map is focused on.
+  final CameraPosition currentCameraPosition;
 
   /// The [Set] of `Marker` objects which will be rendered on the map.
   final Set<Marker> markers;
@@ -91,6 +94,7 @@ class Atlas extends StatelessWidget {
   Atlas({
     Key key,
     @required this.initialCameraPosition,
+    currentCameraPosition,
     Set<Marker> markers,
     Set<Circle> circles,
     Set<Polygon> polygons,
@@ -106,6 +110,7 @@ class Atlas extends StatelessWidget {
     this.onCameraPositionChanged,
     this.onLocationChanged,
   })  : assert(initialCameraPosition != null),
+        currentCameraPosition = currentCameraPosition,
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
         polygons = polygons ?? Set<Polygon>(),
@@ -121,6 +126,7 @@ class Atlas extends StatelessWidget {
   Widget build(BuildContext context) {
     return AtlasProvider.instance.build(
       initialCameraPosition: initialCameraPosition,
+      currentCameraPosition: currentCameraPosition ?? initialCameraPosition,
       markers: markers,
       circles: circles,
       polygons: polygons,

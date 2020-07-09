@@ -21,6 +21,7 @@ class GoogleAtlas extends Provider {
   @override
   Widget build({
     @required CameraPosition initialCameraPosition,
+    CameraPosition currentCameraPosition,
     @required Set<Marker> markers,
     @required Set<Circle> circles,
     @required Set<Polygon> polygons,
@@ -38,6 +39,7 @@ class GoogleAtlas extends Provider {
   }) {
     return GoogleMapsProvider(
       initialCameraPosition: initialCameraPosition,
+      currentCameraPosition: currentCameraPosition,
       markers: markers,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
@@ -60,6 +62,7 @@ class GoogleAtlas extends Provider {
 
 class GoogleMapsProvider extends StatefulWidget {
   final CameraPosition initialCameraPosition;
+  final CameraPosition currentCameraPosition;
   final Set<Marker> markers;
   final bool showMyLocation;
   final bool showMyLocationButton;
@@ -72,6 +75,7 @@ class GoogleMapsProvider extends StatefulWidget {
 
   GoogleMapsProvider({
     @required this.initialCameraPosition,
+    this.currentCameraPosition,
     @required this.markers,
     @required this.showMyLocation,
     @required this.showMyLocationButton,
@@ -90,6 +94,7 @@ bool _getBytesFromAssetEnabled = true;
 
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   CameraPosition get initialCameraPosition => widget.initialCameraPosition;
+  CameraPosition get currentCameraPosition => widget.currentCameraPosition;
   Set<Marker> get markers => widget.markers;
   bool get showMyLocation => widget.showMyLocation;
   bool get showMyLocationButton => widget.showMyLocationButton;
@@ -114,6 +119,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
           trafficEnabled: showTraffic,
           initialCameraPosition:
               CameraUtils.toGoogleCameraPosition(initialCameraPosition),
+          currentCameraPosition: currentCameraPosition,
           markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,
           onTap: _toGoogleOnTap(onTap),
           onLongPress: _toGoogleOnLongPress(onLongPress),
@@ -131,6 +137,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     for (Marker marker in markers) {
       googleMarkers.add(
         GoogleMaps.Marker(
+          zIndex: marker.zIndex,
           markerId: GoogleMaps.MarkerId(marker.id),
           position: GoogleMaps.LatLng(
             marker.position.latitude,

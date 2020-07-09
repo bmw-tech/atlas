@@ -16,7 +16,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  atlas: ^0.7.0
+  atlas:
+    path: ../atlas
   google_maps_flutter: ^0.5.21+3
   rxdart: ^0.22.0
 
