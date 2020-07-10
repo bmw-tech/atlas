@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_atlas/google_atlas.dart';
-import 'package:bloc/bloc.dart';
+
 import 'bloc/bloc.dart';
 
 void main() {
@@ -129,6 +129,8 @@ class _AtlasSampleState extends State<AtlasSample> {
                         color: Colors.white,
                         textColor: Colors.black,
                         onPressed: () {
+                          print('Position: ${_controller.getCameraPosition()}');
+
                           BlocProvider.of<MapBloc>(context)
                             ..add(
                               MapShowSearchAreaButtonChanged(

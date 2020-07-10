@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:atlas/atlas.dart';
 import 'package:flutter/foundation.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 import 'package:google_atlas/src/utils/utils.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 class GoogleAtlasController implements AtlasController {
   final GoogleMaps.GoogleMapController _controller;
@@ -54,4 +54,9 @@ class GoogleAtlasController implements AtlasController {
 
   @override
   void changeUserLocationIcon(String asset) {}
+
+  @override
+  CameraPosition getCameraPosition() {
+    return null;
+  }
 }
