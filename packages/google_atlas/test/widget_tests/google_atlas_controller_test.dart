@@ -112,5 +112,12 @@ main() {
         googleAtlasController.changeUserLocationIcon('asset');
       });
     });
+
+    group('getCameraPosition', () {
+      test('call getCameraPosition and returns null', () {
+        final cameraPosition = googleAtlasController.getCameraPosition();
+        expect(cameraPosition, null);
+      });
+    });
   });
 }
