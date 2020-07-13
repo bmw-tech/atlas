@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.3.6 (2020-7-13)
+
+- Added implementation for `getCameraPosition` method (empty implementation since google-atlas doest not support the feature)
+
 ## v0.3.5 (2020-5-12)
 
 - Added support for `changeUserLocationIcon` function (May not work on all MapProviders)
