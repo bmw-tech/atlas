@@ -7,7 +7,7 @@ abstract class AtlasController {
   /// Moves the camera to the specified `CameraPosition`
   Future<void> moveCamera(CameraPosition cameraPosition);
 
-  ///Get the current camera position
+  /// Get the current camera position
   CameraPosition getCameraPosition();
 
   /// Updates the camera bounds based on the provided `LatLngBounds`
