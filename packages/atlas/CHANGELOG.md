@@ -1,5 +1,9 @@
 # atlas
 
+## v0.8.0 (2020-7-13)
+
+- Added `getCameraPosition` function to Atlas Controller
+
 ## v0.7.0 (2020-5-12)
 
 - Added `changeUserLocationIcon` function
