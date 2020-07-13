@@ -88,8 +88,6 @@ class _AtlasSampleState extends State<AtlasSample> {
                   );
                 },
                 onLongPress: (LatLng position) {
-                  print(
-                      'long press ${position.latitude}, ${position.longitude}');
                   setState(() {
                     _markers.add(
                       Marker(
