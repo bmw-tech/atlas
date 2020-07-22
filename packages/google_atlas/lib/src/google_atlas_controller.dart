@@ -56,7 +56,7 @@ class GoogleAtlasController implements AtlasController {
   void changeUserLocationIcon(String asset) {}
 
   @override
-  CameraPosition getCameraPosition() {
+  Future<CameraPosition> getCameraPosition() async {
     return null;
   }
 }
