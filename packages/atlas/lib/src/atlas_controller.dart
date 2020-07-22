@@ -8,7 +8,7 @@ abstract class AtlasController {
   Future<void> moveCamera(CameraPosition cameraPosition);
 
   /// Get the current camera position
-  CameraPosition getCameraPosition();
+  Future<CameraPosition> getCameraPosition();
 
   /// Updates the camera bounds based on the provided `LatLngBounds`
   /// and adds padding around the bounds based on the provided `padding`.
@@ -25,6 +25,6 @@ abstract class AtlasController {
   /// Returns a [LatLng] corresponding to the [ScreenCoordinate] in the map view.
   Future<ScreenCoordinates> getScreenCoordinate(LatLng latLng);
 
-  ///Changes the Icon of the LocationMarker to the given asset. (May not work on all MapProviders)
+  /// Changes the Icon of the LocationMarker to the given asset. (May not work on all MapProviders)
   void changeUserLocationIcon(String asset);
 }
