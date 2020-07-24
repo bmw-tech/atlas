@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.3.7 (2020-7-22)
+
+- Updated `getCameraPosition` method to return Future promise
+
 ## v0.3.6 (2020-7-13)
 
 - Added implementation for `getCameraPosition` method (empty implementation since google-atlas does not support this feature)
