@@ -1,3 +1,4 @@
+import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
 
@@ -88,6 +89,11 @@ class Atlas extends StatelessWidget {
   /// Enable real-time traffic information status
   final bool showTraffic;
 
+  /// Sets the map exhibition language.
+  ///
+  /// Defaults to [MapLanguage.enUs].
+  final MapLanguage mapLanguage;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -105,6 +111,7 @@ class Atlas extends StatelessWidget {
     this.onMapCreated,
     this.onCameraPositionChanged,
     this.onLocationChanged,
+    this.mapLanguage,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
@@ -135,6 +142,7 @@ class Atlas extends StatelessWidget {
       showTraffic: showTraffic,
       onMapCreated: onMapCreated,
       onCameraPositionChanged: onCameraPositionChanged,
+      mapLanguage: mapLanguage,
     );
   }
 }
