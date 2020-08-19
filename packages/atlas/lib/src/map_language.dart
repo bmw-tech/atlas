@@ -1,4 +1,17 @@
-/// Map exibition languages.
+/// This enum represents map exhibition language codes.
+///
+/// The basic naming pattern consists of a
+/// 2-letter ISO 639-1 language code followed by a
+/// 2-letter ISO 3166-1 country code.
+///
+/// Some language codes consist only of a language code, i.e. without a country code.
+///
+/// When there is no ISO 639-1 language code, the related
+/// ISO 639-2 or
+/// ISO 639-3 language code is used.
+///
+/// In case the script is specified its
+/// ISO 15924 code is used.
 
 enum MapLanguage {
   /// English (United States)
