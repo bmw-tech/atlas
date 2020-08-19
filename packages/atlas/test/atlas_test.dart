@@ -873,7 +873,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
-          mapLanguage: MapLanguage.deDe,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
