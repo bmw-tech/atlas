@@ -54,6 +54,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -77,6 +78,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -108,6 +110,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -132,6 +135,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -150,6 +154,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -173,6 +178,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -202,6 +208,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -226,6 +233,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -267,6 +275,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -291,6 +300,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -324,6 +334,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -348,6 +359,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -370,6 +382,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -395,6 +408,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -417,6 +431,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -442,6 +457,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -460,6 +476,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -484,6 +501,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -502,6 +520,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -525,6 +544,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -543,6 +563,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -568,6 +589,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -586,6 +608,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -609,6 +632,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -627,6 +651,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -650,6 +675,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -668,6 +694,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: true,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -692,6 +719,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: true,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -725,6 +753,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -749,6 +778,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -767,6 +797,7 @@ main() {
         followMyLocation: true,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -793,6 +824,7 @@ main() {
           followMyLocation: true,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
@@ -815,6 +847,7 @@ main() {
         followMyLocation: false,
         mapType: MapType.normal,
         showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
       )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
@@ -840,6 +873,7 @@ main() {
           followMyLocation: false,
           mapType: MapType.normal,
           showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
         ),
       ).called(1);
     });
