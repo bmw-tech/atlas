@@ -1,5 +1,11 @@
 # atlas
 
+## v0.10.0 (2020-8-19)
+
+- Added `mapLanguage` property to provide map languages support
+
+# atlas
+
 ## v0.9.0 (2020-7-22)
 
 - Updated `getCameraPosition` function to be Future

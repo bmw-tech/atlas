@@ -1,3 +1,4 @@
+import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
 import 'package:atlas/atlas.dart';
 
@@ -32,5 +33,6 @@ abstract class Provider {
     final bool followMyLocation,
     final MapType mapType,
     final bool showTraffic,
+    final MapLanguage mapLanguage,
   });
 }
