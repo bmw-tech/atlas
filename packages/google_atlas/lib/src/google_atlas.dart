@@ -99,7 +99,6 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   bool get showMyLocationButton => widget.showMyLocationButton;
   MapType get mapType => widget.mapType;
   bool get showTraffic => widget.showTraffic;
-  MapLanguage get mapLanguage => widget.mapLanguage;
   ArgumentCallback<LatLng> get onTap => widget.onTap;
   ArgumentCallback<LatLng> get onLongPress => widget.onLongPress;
   ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
