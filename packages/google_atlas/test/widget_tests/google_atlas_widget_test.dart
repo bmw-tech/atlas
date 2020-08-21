@@ -653,6 +653,7 @@ main() {
             home: AtlasTestSample(
               initialCameraPosition: initialCameraPosition,
               onCameraPositionChanged: mockOnCameraPositionChanged,
+              mapLanguage: MapLanguage.enUs,
             ),
           ),
         );
@@ -793,6 +794,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             showMyLocation: this.showMyLocation ?? false,
             showMyLocationButton: this.showMyLocationButton ?? false,
             mapType: this.mapType ?? MapType.normal,
+            mapLanguage: this.mapLanguage ?? MapLanguage.enUs,
             showTraffic: this.showTraffic ?? false,
             onTap: this.onTap ?? null,
             onLongPress: this.onLongPress ?? null,
