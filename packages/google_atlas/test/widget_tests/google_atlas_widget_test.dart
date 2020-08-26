@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'package:flutter_test/flutter_test.dart';
+
 import 'package:atlas/atlas.dart';
-import 'package:google_atlas/google_atlas.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:google_atlas/google_atlas.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 import 'fake_maps_controller.dart';
@@ -652,6 +653,7 @@ main() {
             home: AtlasTestSample(
               initialCameraPosition: initialCameraPosition,
               onCameraPositionChanged: mockOnCameraPositionChanged,
+              mapLanguage: MapLanguage.enUs,
             ),
           ),
         );
@@ -698,6 +700,7 @@ class GoogleAtlasProviderSample extends Provider {
     bool followMyLocation,
     MapType mapType,
     bool showTraffic,
+    MapLanguage mapLanguage,
   }) {
     return AtlasTestSample(
       initialCameraPosition: initialCameraPosition,
@@ -706,6 +709,7 @@ class GoogleAtlasProviderSample extends Provider {
       showMyLocationButton: showMyLocationButton,
       mapType: mapType,
       showTraffic: showTraffic,
+      mapLanguage: mapLanguage,
       onTap: onTap,
       onLongPress: onLongPress,
       onCameraPositionChanged: onCameraPositionChanged,
@@ -720,6 +724,7 @@ class AtlasTestSample extends StatefulWidget {
   final bool showMyLocationButton;
   final MapType mapType;
   final bool showTraffic;
+  final MapLanguage mapLanguage;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<CameraPosition> onCameraPositionChanged;
@@ -731,6 +736,7 @@ class AtlasTestSample extends StatefulWidget {
     this.showMyLocationButton,
     this.mapType,
     this.showTraffic,
+    this.mapLanguage,
     this.onTap,
     this.onLongPress,
     this.onCameraPositionChanged,
@@ -742,6 +748,7 @@ class AtlasTestSample extends StatefulWidget {
         showMyLocation: this.showMyLocation,
         showMyLocationButton: this.showMyLocationButton,
         mapType: this.mapType,
+        mapLanguage: this.mapLanguage,
         showTraffic: this.showTraffic,
         onTap: this.onTap,
         onLongPress: this.onLongPress,
@@ -755,6 +762,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final MapType mapType;
+  final MapLanguage mapLanguage;
   final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
@@ -768,6 +776,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
     this.showMyLocationButton,
     this.mapType,
     this.showTraffic,
+    this.mapLanguage,
     this.onTap,
     this.onLongPress,
     this.onCameraPositionChanged,
@@ -785,6 +794,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             showMyLocation: this.showMyLocation ?? false,
             showMyLocationButton: this.showMyLocationButton ?? false,
             mapType: this.mapType ?? MapType.normal,
+            mapLanguage: this.mapLanguage ?? MapLanguage.enUs,
             showTraffic: this.showTraffic ?? false,
             onTap: this.onTap ?? null,
             onLongPress: this.onLongPress ?? null,

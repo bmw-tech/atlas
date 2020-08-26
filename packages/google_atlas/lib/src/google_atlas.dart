@@ -29,6 +29,7 @@ class GoogleAtlas extends Provider {
     @required bool showMyLocationButton,
     @required MapType mapType,
     @required bool showTraffic,
+    MapLanguage mapLanguage,
     bool followMyLocation,
     ArgumentCallback<LatLng> onTap,
     ArgumentCallback<LatLng> onLongPress,
@@ -42,6 +43,7 @@ class GoogleAtlas extends Provider {
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
       mapType: mapType,
+      mapLanguage: mapLanguage,
       showTraffic: showTraffic,
       onTap: onTap,
       onLongPress: onLongPress,
@@ -64,6 +66,7 @@ class GoogleMapsProvider extends StatefulWidget {
   final bool showMyLocation;
   final bool showMyLocationButton;
   final MapType mapType;
+  final MapLanguage mapLanguage;
   final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<LatLng> onLongPress;
@@ -77,6 +80,7 @@ class GoogleMapsProvider extends StatefulWidget {
     @required this.showMyLocationButton,
     @required this.mapType,
     @required this.showTraffic,
+    this.mapLanguage,
     this.onTap,
     this.onLongPress,
     this.onMapCreated,
