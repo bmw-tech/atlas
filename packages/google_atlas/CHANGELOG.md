@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.4.0 (2020-8-26)
+
+- Added support for `MapLanguage`
+
 ## v0.3.7 (2020-7-22)
 
 - Updated `getCameraPosition` method to return Future promise
