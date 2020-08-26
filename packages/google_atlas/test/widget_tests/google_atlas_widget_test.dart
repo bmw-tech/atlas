@@ -700,7 +700,7 @@ class GoogleAtlasProviderSample extends Provider {
     bool followMyLocation,
     MapType mapType,
     bool showTraffic,
-    MapLanguage  mapLanguage,
+    MapLanguage mapLanguage,
   }) {
     return AtlasTestSample(
       initialCameraPosition: initialCameraPosition,
