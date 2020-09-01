@@ -1,5 +1,9 @@
 # atlas
 
+## v0.11.0 (2020-9-01)
+
+- Added `getVisibleArea` function to Atlas Controller
+
 ## v0.10.0 (2020-8-19)
 
 - Added `mapLanguage` property to provide map languages support

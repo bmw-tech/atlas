@@ -25,6 +25,9 @@ abstract class AtlasController {
   /// Returns a [LatLng] corresponding to the [ScreenCoordinate] in the map view.
   Future<ScreenCoordinates> getScreenCoordinate(LatLng latLng);
 
+  /// Return a [BoundingBox] corresponding to the currently visible area in the map view.
+  Future<LatLngBounds> getVisibleArea();
+
   /// Changes the Icon of the LocationMarker to the given asset. (May not work on all MapProviders)
   void changeUserLocationIcon(String asset);
 }
