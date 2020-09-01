@@ -59,4 +59,11 @@ class GoogleAtlasController implements AtlasController {
   Future<CameraPosition> getCameraPosition() async {
     return null;
   }
+
+  @override
+  Future<LatLngBounds> getVisibleArea() async {
+    return LatLngUtils.fromGoogleLatLngBounds(
+      await _controller.getVisibleRegion(),
+    );
+  }
 }
