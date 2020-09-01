@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.5.0 (2020-9-01)
+
+- Added support for `getVisibleArea` function
+
 ## v0.4.0 (2020-8-26)
 
 - Added support for `MapLanguage`
