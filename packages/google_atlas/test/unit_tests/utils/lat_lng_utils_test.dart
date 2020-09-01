@@ -61,5 +61,39 @@ main() {
         expect(result.y, 2);
       });
     });
+
+    group('fromGoogleLatLngBounds', () {
+      test('returns correct Atlas LatLngBounds', () {
+        final northeast = GoogleMaps.LatLng(
+          1,
+          1,
+        );
+        final southwest = GoogleMaps.LatLng(
+          0,
+          0,
+        );
+        final testBoundingBox = GoogleMaps.LatLngBounds(
+          northeast: northeast,
+          southwest: southwest,
+        );
+        final result = LatLngUtils.fromGoogleLatLngBounds(testBoundingBox);
+        final expectedNorthEast = LatLng(
+          latitude: 1,
+          longitude: 1,
+        );
+        final expectedSouthWest = LatLng(
+          latitude: 0,
+          longitude: 0,
+        );
+        expect(
+          result.northeast.latitude,
+          expectedNorthEast.latitude,
+        );
+        expect(
+          result.southwest.longitude,
+          expectedSouthWest.longitude,
+        );
+      });
+    });
   });
 }

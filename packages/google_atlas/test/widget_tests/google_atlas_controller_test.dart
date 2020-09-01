@@ -119,5 +119,28 @@ main() {
         expect(cameraPosition, null);
       });
     });
+
+    group('getVisibleArea', () {
+      test('invokes getVisibleArea', () async {
+        when(googleMapController.getVisibleRegion()).thenAnswer(
+          (_) => Future.value(
+            Future.value(
+              GoogleMaps.LatLngBounds(
+                northeast: GoogleMaps.LatLng(
+                  1,
+                  1,
+                ),
+                southwest: GoogleMaps.LatLng(
+                  0,
+                  0,
+                ),
+              ),
+            ),
+          ),
+        );
+        await googleAtlasController.getVisibleArea();
+        verify(googleMapController.getVisibleRegion()).called(1);
+      });
+    });
   });
 }
