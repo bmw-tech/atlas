@@ -38,4 +38,16 @@ class LatLngUtils {
       y: googleCoordinate.y,
     );
   }
+
+  static LatLngBounds fromGoogleLatLngBounds(
+      GoogleMaps.LatLngBounds googleLatLngBounds) {
+    return LatLngBounds(
+      northeast: LatLngUtils.fromGoogleLatLng(
+        googleLatLngBounds.northeast,
+      ),
+      southwest: LatLngUtils.fromGoogleLatLng(
+        googleLatLngBounds.southwest,
+      ),
+    );
+  }
 }
