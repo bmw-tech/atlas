@@ -414,6 +414,56 @@ main() {
     });
 
     testWidgets(
+        'should call provider build method with correct arguments when onPoiTap is provided',
+        (WidgetTester tester) async {
+      final Function(Poi) onPoiTap = (Poi poi) {
+        print(
+            'onPoiTap ${poi.name}, ${poi.latLng.latitude}, ${poi.latLng.longitude}');
+      };
+      when(provider.build(
+        initialCameraPosition: initialCameraPosition,
+        markers: Set<Marker>(),
+        circles: Set<Circle>(),
+        polygons: Set<Polygon>(),
+        polylines: Set<Polyline>(),
+        onPoiTap: onPoiTap,
+        showMyLocation: false,
+        showMyLocationButton: false,
+        followMyLocation: false,
+        mapType: MapType.normal,
+        showTraffic: false,
+        mapLanguage: MapLanguage.enUs,
+      )).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              onPoiTap: onPoiTap,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          onPoiTap: onPoiTap,
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
         'should call provider build method with correct arguments when onLongPress is provided',
         (WidgetTester tester) async {
       final Function(LatLng) onLongPress = (LatLng position) {

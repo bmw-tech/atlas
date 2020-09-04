@@ -15,3 +15,4 @@ export 'src/map_language.dart';
 export 'src/polygon.dart';
 export 'src/polyline.dart';
 export 'src/screen_coordinate.dart';
+export 'src/poi.dart';

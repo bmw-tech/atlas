@@ -1,5 +1,9 @@
 # atlas
 
+## v0.12.0 (2020-9-04)
+
+- `onPoiTap` callback added to Atlas Map
+
 ## v0.11.0 (2020-9-01)
 
 - Added `getVisibleArea` function to Atlas Controller

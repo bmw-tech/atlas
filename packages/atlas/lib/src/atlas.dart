@@ -26,6 +26,11 @@ class Atlas extends StatelessWidget {
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng> onTap;
 
+  /// `onPoiTap` gets called when a valid point on the map is clicked.
+  /// When the clicked place is not valid point, `onTap` gets called.
+  /// The `Poi` contains the name and latitude and longitude of the valid point.
+  final ArgumentCallback<Poi> onPoiTap;
+
   /// `onLongPress` gets called when the map is long pressed
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng> onLongPress;
@@ -108,6 +113,7 @@ class Atlas extends StatelessWidget {
     bool showTraffic,
     MapLanguage mapLanguage,
     this.onTap,
+    this.onPoiTap,
     this.onLongPress,
     this.onMapCreated,
     this.onCameraPositionChanged,
@@ -134,6 +140,7 @@ class Atlas extends StatelessWidget {
       polygons: polygons,
       polylines: polylines,
       onTap: onTap,
+      onPoiTap: onPoiTap,
       onLongPress: onLongPress,
       onLocationChanged: onLocationChanged,
       showMyLocation: showMyLocation,
