@@ -24,6 +24,7 @@ abstract class Provider {
     final Set<Polygon> polygons,
     final Set<Polyline> polylines,
     final ArgumentCallback<LatLng> onTap,
+    final ArgumentCallback<Poi> onPoiTap,
     final ArgumentCallback<LatLng> onLongPress,
     final ArgumentCallback<AtlasController> onMapCreated,
     final ArgumentCallback<CameraPosition> onCameraPositionChanged,
