@@ -1,5 +1,12 @@
 # google_atlas
 
+## v0.7.0 (2020-9-24)
+
+- Ensured compatibility to Flutter 1.20.4
+- Upgrade outdated RxDart package to 0.24.1
+- Upgrade Google Maps Flutter to 0.5.33
+- Upgrade Flutter Bloc to 6.0.5
+
 ## v0.6.0 (2020-9-23)
 
 - `onPoiTap` callback added to Atlas Map
