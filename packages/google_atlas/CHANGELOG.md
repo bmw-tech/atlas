@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.6.0 (2020-9-23)
+
+- `onPoiTap` callback added to Atlas Map
+
 ## v0.5.0 (2020-9-01)
 
 - Added support for `getVisibleArea` function
