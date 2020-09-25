@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_atlas/google_atlas.dart';
+import 'package:bloc/bloc.dart';
 import 'bloc/bloc.dart';
 
 void main() {
