@@ -1,5 +1,9 @@
 # atlas
 
+## v0.12.1 (2020-9-30)
+
+- Added `heading` to Marker object
+
 ## v0.12.0 (2020-9-04)
 
 - `onPoiTap` callback added to Atlas Map

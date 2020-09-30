@@ -58,7 +58,7 @@ class Marker {
       position.hashCode ^
       icon.hashCode ^
       zIndex.hashCode ^
-      anchor.hashCode  ^
+      anchor.hashCode ^
       heading.hashCode;
 }
 
