@@ -25,6 +25,9 @@ class Marker {
 
   final Anchor anchor;
 
+  // Optional heading used to rotate the marker in degrees (eg. 0 to 360)
+  final int heading;
+
   const Marker({
     @required this.id,
     @required this.position,
@@ -33,6 +36,7 @@ class Marker {
     this.icon,
     this.zIndex = 0.0,
     this.anchor,
+    this.heading,
   })  : assert(id != null),
         assert(position != null);
 
@@ -44,7 +48,8 @@ class Marker {
     return id == typedOther.id &&
         position == typedOther.position &&
         icon == typedOther.icon &&
-        zIndex == typedOther.zIndex;
+        zIndex == typedOther.zIndex &&
+        heading == typedOther.heading;
   }
 
   @override
@@ -53,7 +58,8 @@ class Marker {
       position.hashCode ^
       icon.hashCode ^
       zIndex.hashCode ^
-      anchor.hashCode;
+      anchor.hashCode  ^
+      heading.hashCode;
 }
 
 /// {@template anchor}
