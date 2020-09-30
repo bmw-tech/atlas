@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.6.1 (2020-9-30)
+
+- Update to use `atlas v0.12.1`
+
 ## v0.6.0 (2020-9-23)
 
 - `onPoiTap` callback added to Atlas Map
