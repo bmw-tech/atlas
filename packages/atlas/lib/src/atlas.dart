@@ -100,7 +100,7 @@ class Atlas extends StatelessWidget {
   final MapLanguage mapLanguage;
 
   /// `onPan` gets called when the map is panned by user pan gesture.
-  final ArgumentCallback<bool> onPan;
+  final VoidCallback onPan;
 
   Atlas({
     Key key,

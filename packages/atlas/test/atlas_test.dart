@@ -978,9 +978,8 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when onPan is provided',
         (WidgetTester tester) async {
-      final Function(bool) onPan = (bool wasPanned) {
-        print('onPan $wasPanned');
-      };
+      final VoidCallback onPan = () {};
+
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
