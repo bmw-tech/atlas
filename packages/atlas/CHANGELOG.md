@@ -1,6 +1,6 @@
 # atlas
 
-## v0.13.0 (2020-11-12)
+## v0.12.1 (2020-11-12)
 
 - `onPan` callback added to Atlas Map
 
