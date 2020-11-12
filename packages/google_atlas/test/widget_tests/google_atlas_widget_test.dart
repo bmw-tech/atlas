@@ -50,6 +50,10 @@ main() {
       fakePlatformViewsController.reset();
     });
 
+    test('should support 3 map types', () {
+      expect(googleAtlas.supportedMapTypes.length, 3);
+    });
+
     testWidgets(
         'should return correct GoogleMap with initial camera position and no markers',
         (WidgetTester tester) async {
