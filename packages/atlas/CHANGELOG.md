@@ -1,5 +1,9 @@
 # atlas
 
+## v0.12.2 (2020-11-12)
+
+- `onPan` callback added to Atlas Map
+
 ## v0.12.1 (2020-9-30)
 
 - Added `heading` to Marker object
@@ -15,8 +19,6 @@
 ## v0.10.0 (2020-8-19)
 
 - Added `mapLanguage` property to provide map languages support
-
-# atlas
 
 ## v0.9.0 (2020-7-22)
 
