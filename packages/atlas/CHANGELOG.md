@@ -1,6 +1,6 @@
 # atlas
 
-##v0.12.3 (2020-12-22)
+## v0.12.3 (2020-12-22)
 
 - Added `isDottedLine` to Polyline object
 
