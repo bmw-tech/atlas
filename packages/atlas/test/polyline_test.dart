@@ -118,6 +118,53 @@ main() {
       expect(polyline.width, 5);
     });
 
+    test('should have correct properties when no isDottedLine is provided', () {
+      final expectedId = 'id';
+      final expectedPoints = [
+        LatLng(
+          latitude: 38.7439498,
+          longitude: -9.1490721,
+        ),
+        LatLng(
+          latitude: 36.7439498,
+          longitude: 126.1490721,
+        )
+      ];
+
+      final polyline = Polyline(
+        id: expectedId,
+        points: expectedPoints,
+        isDottedLine: true,
+      );
+
+      expect(polyline.id, expectedId);
+      expect(polyline.points, expectedPoints);
+      expect(polyline.isDottedLine, true);
+    });
+
+    test('should have correct properties when isDottedLine is provided', () {
+      final expectedId = 'id';
+      final expectedPoints = [
+        LatLng(
+          latitude: 38.7439498,
+          longitude: -9.1490721,
+        ),
+        LatLng(
+          latitude: 36.7439498,
+          longitude: 126.1490721,
+        )
+      ];
+
+      final polyline = Polyline(
+        id: expectedId,
+        points: expectedPoints,
+      );
+
+      expect(polyline.id, expectedId);
+      expect(polyline.points, expectedPoints);
+      expect(polyline.isDottedLine, false);
+    });
+
     test('should have correct properties when width is NOT provided', () {
       final expectedId = 'id';
       final expectedPoints = [

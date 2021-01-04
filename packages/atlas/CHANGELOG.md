@@ -1,5 +1,9 @@
 # atlas
 
+## v0.12.3 (2020-12-22)
+
+- Added `isDottedLine` to Polyline object
+
 ## v0.12.2 (2020-11-12)
 
 - `onPan` callback added to Atlas Map
