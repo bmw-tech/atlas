@@ -1,6 +1,7 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/foundation.dart';
 
+/// Represents all information need to create the boundingBox
 class BoundingBoxData {
   /// A latitude/longitude aligned rectangle `LatLngBounds`
   final LatLngBounds bounds;
