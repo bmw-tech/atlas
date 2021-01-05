@@ -16,3 +16,5 @@ export 'src/polygon.dart';
 export 'src/polyline.dart';
 export 'src/screen_coordinate.dart';
 export 'src/poi.dart';
+export 'src/bounding_box_data.dart';
+export 'src/rectangle_2d.dart';
