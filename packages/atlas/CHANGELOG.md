@@ -1,5 +1,9 @@
 # atlas
 
+## v0.13.0 (2021-01-05)
+
+- Refactor update bounds method
+
 ## v0.12.3 (2020-12-22)
 
 - Added `isDottedLine` to Polyline object
