@@ -1,5 +1,9 @@
 # atlas
 
+## v0.13.0 (2021-01-08)
+
+- Added `​​​​​MoveCameraAnimation` to moveCamera method.
+
 ## v0.12.3 (2020-12-22)
 
 - Added `isDottedLine` to Polyline object
