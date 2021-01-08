@@ -67,37 +67,40 @@ main() {
       }
     });
 
-    // test('should override == properly', () {
-    //   var controller = AnimationController(vsync: MockStateTicker());
-    //   var panSequence = TweenSequence<LatLng>([TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]);
-    //   var zoomSequence = TweenSequence<double>([TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]);
+    test('should override == properly', () {
+      var controller = AnimationController(vsync: MockStateTicker());
+      var panSequence = TweenSequence<LatLng>(
+          [TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]);
+      var zoomSequence = TweenSequence<double>(
+          [TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]);
 
-    //   expect(
-    //     MoveCameraAnimation(
-    //       controller: controller,
-    //       panSequence: panSequence,
-    //       zoomSequence: zoomSequence,
-    //     ),
-    //     MoveCameraAnimation(
-    //       controller: controller,
-    //       panSequence: panSequence,
-    //       zoomSequence: zoomSequence,
-    //     ),
-    //   );
-    // });
+      expect(
+        MoveCameraAnimation(
+          controller: controller,
+          panSequence: panSequence,
+          zoomSequence: zoomSequence,
+        ),
+        MoveCameraAnimation(
+          controller: controller,
+          panSequence: panSequence,
+          zoomSequence: zoomSequence,
+        ),
+      );
+    });
 
-    // test('should override hashCode properly', () {
-    //   final moveCameraAnimation = MoveCameraAnimation(
-    //     controller: AnimationController(vsync: MockStateTicker()),
-    //     panSequence: TweenSequence<LatLng>([TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]),
-    //     zoomSequence: TweenSequence<double>([TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]),
-    //   );
-    //   expect(
-    //     moveCameraAnimation.hashCode,
-    //     moveCameraAnimation.controller.hashCode ^
-    //     moveCameraAnimation.panSequence.hashCode ^
-    //     moveCameraAnimation.zoomSequence.hashCode
-    //   );
-    // });
+    test('should override hashCode properly', () {
+      final moveCameraAnimation = MoveCameraAnimation(
+        controller: AnimationController(vsync: MockStateTicker()),
+        panSequence: TweenSequence<LatLng>(
+            [TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]),
+        zoomSequence: TweenSequence<double>(
+            [TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]),
+      );
+      expect(
+          moveCameraAnimation.hashCode,
+          moveCameraAnimation.controller.hashCode ^
+              moveCameraAnimation.panSequence.hashCode ^
+              moveCameraAnimation.zoomSequence.hashCode);
+    });
   });
 }
