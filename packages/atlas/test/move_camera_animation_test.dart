@@ -39,18 +39,19 @@ main() {
       }
     });
 
-    // test('should throw assertion error if panSequence is null', () {
-    //   try {
-    //     MoveCameraAnimation(
-    //       controller: AnimationController(vsync: MockStateTicker()),
-    //       panSequence: null,
-    //       zoomSequence: TweenSequence<double>([TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]),
-    //     );
-    //     fail('should throw assertion error');
-    //   } catch (error) {
-    //     expect(error, isAssertionError);
-    //   }
-    // });
+    test('should throw assertion error if panSequence is null', () {
+      try {
+        MoveCameraAnimation(
+          controller: AnimationController(vsync: MockStateTicker()),
+          panSequence: null,
+          zoomSequence: TweenSequence<double>(
+              [TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]),
+        );
+        fail('should throw assertion error');
+      } catch (error) {
+        expect(error, isAssertionError);
+      }
+    });
 
     // test('should throw assertion error if zoomSequence is null', () {
     //   try {
