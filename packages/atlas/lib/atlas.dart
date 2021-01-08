@@ -16,3 +16,4 @@ export 'src/polygon.dart';
 export 'src/polyline.dart';
 export 'src/screen_coordinate.dart';
 export 'src/poi.dart';
+export 'src/move_camera_animation.dart';
