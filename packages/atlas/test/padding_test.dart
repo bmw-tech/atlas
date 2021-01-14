@@ -27,6 +27,51 @@ main() {
           expect(padding.bottomPadding, expectedBottomPadding);
         },
       );
+      test('should override == properly', () {
+        final double expectedDefaultPadding = 1.0;
+        final double expectedTopPadding = 2.0;
+        final double expectedBottomPadding = 3.0;
+        final double expectedLeftPadding = 4.0;
+        final double expectedRightPadding = 5.0;
+
+        expect(
+            Padding(
+              defaultPadding: expectedDefaultPadding,
+              bottomPadding: expectedBottomPadding,
+              leftPadding: expectedLeftPadding,
+              rightPadding: expectedRightPadding,
+              topPadding: expectedTopPadding,
+            ),
+            Padding(
+              defaultPadding: expectedDefaultPadding,
+              bottomPadding: expectedBottomPadding,
+              leftPadding: expectedLeftPadding,
+              rightPadding: expectedRightPadding,
+              topPadding: expectedTopPadding,
+            ));
+      });
+
+      test('should override hashCode properly', () {
+        final double expectedDefaultPadding = 1.0;
+        final double expectedTopPadding = 2.0;
+        final double expectedBottomPadding = 3.0;
+        final double expectedLeftPadding = 4.0;
+        final double expectedRightPadding = 5.0;
+        final padding = Padding(
+          defaultPadding: expectedDefaultPadding,
+          bottomPadding: expectedBottomPadding,
+          leftPadding: expectedLeftPadding,
+          rightPadding: expectedRightPadding,
+          topPadding: expectedTopPadding,
+        );
+        expect(
+            padding.hashCode,
+            padding.defaultPadding.hashCode ^
+                padding.topPadding.hashCode ^
+                padding.bottomPadding.hashCode ^
+                padding.rightPadding.hashCode ^
+                padding.leftPadding.hashCode);
+      });
     },
   );
 }
