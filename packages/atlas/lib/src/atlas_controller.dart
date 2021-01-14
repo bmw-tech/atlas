@@ -4,8 +4,11 @@ import 'package:atlas/atlas.dart';
 
 /// `AtlasController` allows developers to manipulate `Atlas` after the map has been initialized.
 abstract class AtlasController {
-  /// Moves the camera to the specified `CameraPosition`
-  Future<void> moveCamera(CameraPosition cameraPosition);
+  /// Moves the camera to the specified `CameraPosition` with an optional animation `​​​​​MoveCameraAnimation`.
+  Future<void> moveCamera(
+    CameraPosition cameraPosition, {
+    MoveCameraAnimation animation,
+  });
 
   /// Get the current camera position
   Future<CameraPosition> getCameraPosition();
