@@ -1,5 +1,6 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 
 /// Represents all information need to create the boundingBox
 class BoundingBoxData {
@@ -10,7 +11,7 @@ class BoundingBoxData {
   final Rectangle2D rectangle2d;
 
   /// Optional padding that should be apply to the bounding box
-  final Padding padding;
+  final EdgeInsets padding;
 
   BoundingBoxData({
     @required this.bounds,

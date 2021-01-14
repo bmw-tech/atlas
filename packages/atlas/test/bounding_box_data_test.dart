@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
 
@@ -27,7 +28,7 @@ main() {
         height: 1.0,
         width: 1.0,
       );
-      final Padding expectedPadding = Padding(defaultPadding: 1.0);
+      final EdgeInsets expectedPadding = EdgeInsets.all(1.0);
       final boundingBoxData = BoundingBoxData(
         bounds: expectedBounds,
         rectangle2d: expectedRectangle2D,
@@ -48,7 +49,7 @@ main() {
         height: 1.0,
         width: 1.0,
       );
-      final Padding expectedPadding = Padding(defaultPadding: 1.0);
+      final EdgeInsets expectedPadding = EdgeInsets.all(1.0);
 
       expect(
           BoundingBoxData(
@@ -74,7 +75,7 @@ main() {
         height: 1.0,
         width: 1.0,
       );
-      final Padding expectedPadding = Padding(defaultPadding: 1.0);
+      final EdgeInsets expectedPadding = EdgeInsets.all(1.0);
       final boundingBoxData = BoundingBoxData(
         bounds: expectedBounds,
         rectangle2d: expectedRectangle2D,
