@@ -9,16 +9,22 @@ main() {
         'Should have correct properties',
         () {
           final double expectedDefaultPadding = 1.0;
-          final double expectedTopPadding = 1.0;
-          final double expectedBottomPadding = 1.0;
-          final double expectedLeftPadding = 1.0;
-          final double expectedRightPadding = 1.0;
-          final padding = Padding(defaultPadding: expectedDefaultPadding);
+          final double expectedTopPadding = 2.0;
+          final double expectedBottomPadding = 3.0;
+          final double expectedLeftPadding = 4.0;
+          final double expectedRightPadding = 5.0;
+          final padding = Padding(
+            defaultPadding: expectedDefaultPadding,
+            bottomPadding: expectedBottomPadding,
+            leftPadding: expectedLeftPadding,
+            rightPadding: expectedRightPadding,
+            topPadding: expectedTopPadding,
+          );
           expect(padding.defaultPadding, expectedDefaultPadding);
           expect(padding.topPadding, expectedTopPadding);
-          expect(padding.leftPadding, expectedBottomPadding);
-          expect(padding.rightPadding, expectedLeftPadding);
-          expect(padding.bottomPadding, expectedLeftPadding);
+          expect(padding.leftPadding, expectedLeftPadding);
+          expect(padding.rightPadding, expectedRightPadding);
+          expect(padding.bottomPadding, expectedBottomPadding);
         },
       );
     },
