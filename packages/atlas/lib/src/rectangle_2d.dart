@@ -18,4 +18,18 @@ class Rectangle2D {
     this.width,
     this.height,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Rectangle2D &&
+          runtimeType == other.runtimeType &&
+          originX == other.originX &&
+          originY == other.originY &&
+          width == other.width &&
+          height == other.height;
+
+  @override
+  int get hashCode =>
+      originX.hashCode ^ originY.hashCode ^ width.hashCode ^ height.hashCode;
 }

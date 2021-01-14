@@ -27,7 +27,13 @@ main() {
         height: 1.0,
         width: 1.0,
       );
-      final double expectedPadding = 1.0;
+      final Padding expectedPadding = Padding(
+        10,
+        null,
+        null,
+        null,
+        null,
+      );
       final boundingBoxData = BoundingBoxData(
         bounds: expectedBounds,
         rectangle2d: expectedRectangle2D,
