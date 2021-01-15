@@ -10,7 +10,7 @@ class BoundingBoxData {
   /// Optional 2D rectangle based on a Origin and Size `Rectangle2D`
   final Rectangle2D rectangle2d;
 
-  /// Optional padding that should be apply to the bounding box
+  /// Optional padding that should be applied to the bounding box
   final EdgeInsets padding;
 
   BoundingBoxData({
