@@ -1,5 +1,9 @@
 # atlas
 
+## v0.14.0 (2021-01-14)
+
+- Refactor update bounds method
+
 ## v0.13.0 (2021-01-08)
 
 - Added `​​​​​MoveCameraAnimation` to moveCamera method.
