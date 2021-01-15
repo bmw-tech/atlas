@@ -1,4 +1,4 @@
-///Represents a virtual rectangle of the screen
+/// Represents a virtual rectangle of the screen
 class Rectangle2D {
   /// Represents the X-axis coordinate of the origin point
   final double originX;
