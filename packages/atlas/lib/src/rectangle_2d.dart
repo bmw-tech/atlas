@@ -1,6 +1,6 @@
 /// Represents a virtual rectangle of the screen
 class Rectangle2D {
-  /// Represents the X-axis coordinate of the origin point
+  /// Represents the X-axis point of the origin coordinate
   final double originX;
 
   /// Represents the Y-axis point of the origin coordinate
