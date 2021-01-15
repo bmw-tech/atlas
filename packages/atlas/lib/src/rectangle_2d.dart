@@ -3,7 +3,7 @@ class Rectangle2D {
   /// Represents the X-axis coordinate of the origin point
   final double originX;
 
-  /// Represents the Y-axis coordinate of the origin point
+  /// Represents the Y-axis point of the origin coordinate
   final double originY;
 
   /// Represents the width of the rectangle
