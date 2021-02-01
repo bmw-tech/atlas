@@ -104,7 +104,7 @@ class Annotation {
     this.subTitle,
     this.icon,
     this.onTap,
-    this.annotationType = AnnotationType.normal,
+    this.annotationType = AnnotationType.destination,
   });
 
   @override

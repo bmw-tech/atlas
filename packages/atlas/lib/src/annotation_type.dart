@@ -1,8 +1,7 @@
-/// Type of map tiles to display.
+/// Type of Annotation BackgroundColor,fontColor etc
 
 enum AnnotationType {
-  normal,
+  destination,
 
-  /// Do not display map tiles.
   route,
 }
