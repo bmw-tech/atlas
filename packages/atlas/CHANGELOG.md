@@ -1,5 +1,25 @@
 # atlas
 
+## v0.14.0 (2021-01-14)
+
+- Refactor update bounds method
+
+## v0.13.0 (2021-01-08)
+
+- Added `​​​​​MoveCameraAnimation` to moveCamera method.
+
+## v0.12.3 (2020-12-22)
+
+- Added `isDottedLine` to Polyline object
+
+## v0.12.2 (2020-11-12)
+
+- `onPan` callback added to Atlas Map
+
+## v0.12.1 (2020-9-30)
+
+- Added `heading` to Marker object
+
 ## v0.12.0 (2020-9-04)
 
 - `onPoiTap` callback added to Atlas Map
@@ -11,8 +31,6 @@
 ## v0.10.0 (2020-8-19)
 
 - Added `mapLanguage` property to provide map languages support
-
-# atlas
 
 ## v0.9.0 (2020-7-22)
 

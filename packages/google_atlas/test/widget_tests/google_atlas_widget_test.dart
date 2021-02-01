@@ -50,6 +50,10 @@ main() {
       fakePlatformViewsController.reset();
     });
 
+    test('should support 3 map types', () {
+      expect(googleAtlas.supportedMapTypes.length, 3);
+    });
+
     testWidgets(
         'should return correct GoogleMap with initial camera position and no markers',
         (WidgetTester tester) async {
@@ -691,6 +695,7 @@ class GoogleAtlasProviderSample extends Provider {
     Set<Polygon> polygons,
     Set<Polyline> polylines,
     ArgumentCallback<LatLng> onTap,
+    ArgumentCallback<Poi> onPoiTap,
     ArgumentCallback<LatLng> onLongPress,
     ArgumentCallback<AtlasController> onMapCreated,
     ArgumentCallback<CameraPosition> onCameraPositionChanged,
@@ -711,6 +716,7 @@ class GoogleAtlasProviderSample extends Provider {
       showTraffic: showTraffic,
       mapLanguage: mapLanguage,
       onTap: onTap,
+      onPoiTap: onPoiTap,
       onLongPress: onLongPress,
       onCameraPositionChanged: onCameraPositionChanged,
     );
@@ -726,6 +732,7 @@ class AtlasTestSample extends StatefulWidget {
   final bool showTraffic;
   final MapLanguage mapLanguage;
   final ArgumentCallback<LatLng> onTap;
+  final ArgumentCallback<Poi> onPoiTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<CameraPosition> onCameraPositionChanged;
 
@@ -738,6 +745,7 @@ class AtlasTestSample extends StatefulWidget {
     this.showTraffic,
     this.mapLanguage,
     this.onTap,
+    this.onPoiTap,
     this.onLongPress,
     this.onCameraPositionChanged,
   });
@@ -751,6 +759,7 @@ class AtlasTestSample extends StatefulWidget {
         mapLanguage: this.mapLanguage,
         showTraffic: this.showTraffic,
         onTap: this.onTap,
+        onPoiTap: this.onPoiTap,
         onLongPress: this.onLongPress,
         onCameraPositionChanged: this.onCameraPositionChanged,
       );
@@ -765,6 +774,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
   final MapLanguage mapLanguage;
   final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
+  final ArgumentCallback<Poi> onPoiTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<CameraPosition> onCameraPositionChanged;
   AtlasController _controller;
@@ -778,6 +788,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
     this.showTraffic,
     this.mapLanguage,
     this.onTap,
+    this.onPoiTap,
     this.onLongPress,
     this.onCameraPositionChanged,
   });
@@ -797,6 +808,7 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
             mapLanguage: this.mapLanguage ?? MapLanguage.enUs,
             showTraffic: this.showTraffic ?? false,
             onTap: this.onTap ?? null,
+            onPoiTap: this.onPoiTap ?? null,
             onLongPress: this.onLongPress ?? null,
             onMapCreated: (controller) {
               _controller = controller;

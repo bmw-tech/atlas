@@ -186,5 +186,25 @@ main() {
       expect(marker1, marker2);
       expect(marker3, marker4);
     });
+
+    test('should have correct properties when heading is provided', () {
+      final expectedId = 'id';
+      final expectedPosition = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      );
+      final expectedOnTap = null;
+      final expectedHeading = 180;
+      final marker = Marker(
+        id: expectedId,
+        position: expectedPosition,
+        onTap: expectedOnTap,
+        heading: 180,
+      );
+      expect(marker.id, expectedId);
+      expect(marker.position, expectedPosition);
+      expect(marker.onTap, expectedOnTap);
+      expect(marker.heading, expectedHeading);
+    });
   });
 }

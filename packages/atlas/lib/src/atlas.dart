@@ -99,6 +99,9 @@ class Atlas extends StatelessWidget {
   /// Defaults to [MapLanguage.enUs].
   final MapLanguage mapLanguage;
 
+  /// `onPan` gets called when the map is panned by user pan gesture.
+  final VoidCallback onPan;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -118,6 +121,7 @@ class Atlas extends StatelessWidget {
     this.onMapCreated,
     this.onCameraPositionChanged,
     this.onLocationChanged,
+    this.onPan,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
@@ -151,6 +155,7 @@ class Atlas extends StatelessWidget {
       mapLanguage: mapLanguage,
       onMapCreated: onMapCreated,
       onCameraPositionChanged: onCameraPositionChanged,
+      onPan: onPan,
     );
   }
 }

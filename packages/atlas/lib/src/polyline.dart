@@ -29,12 +29,20 @@ class Polyline {
   /// The default value is 0.
   final int outlineWidth;
 
+  ///The style of the line.
+  ///
+  ///When false, is solid lines.
+  ///When true, is dotted lines.
+  ///The default value is false.
+  final bool isDottedLine;
+
   const Polyline(
       {@required this.id,
       @required this.points,
       this.color = Colors.black,
       this.width = 10,
       this.outlineColor = Colors.black,
+      this.isDottedLine = false,
       this.outlineWidth = 0})
       : assert(id != null),
         assert(points != null);
@@ -49,6 +57,7 @@ class Polyline {
         color == typedOther.color &&
         width == typedOther.width &&
         outlineColor == typedOther.outlineColor &&
+        isDottedLine == typedOther.isDottedLine &&
         outlineWidth == typedOther.outlineWidth;
   }
 
@@ -59,5 +68,6 @@ class Polyline {
       color.hashCode ^
       width.hashCode ^
       outlineColor.hashCode ^
+      isDottedLine.hashCode ^
       outlineWidth.hashCode;
 }
