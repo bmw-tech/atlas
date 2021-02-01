@@ -15,10 +15,10 @@ main() {
             icon: markerIcon,
           ),
           Annotation(
-            title: 'MarkerAnnotation-title',
-            subTitle: 'MarkerAnnotation-subTitle',
-            icon: markerIcon,
-          ));
+              title: 'MarkerAnnotation-title',
+              subTitle: 'MarkerAnnotation-subTitle',
+              icon: markerIcon,
+              annotationType: AnnotationType.normal));
     });
 
     test('should override hashCode properly', () {
@@ -30,12 +30,14 @@ main() {
         title: 'MarkerAnnotation-title',
         subTitle: 'MarkerAnnotation-subTitle',
         icon: markerIcon,
+        annotationType: AnnotationType.normal,
       );
       expect(
         annotation.hashCode,
         annotation.title.hashCode ^
             annotation.subTitle.hashCode ^
-            annotation.icon.hashCode,
+            annotation.icon.hashCode ^
+            annotation.annotationType.hashCode,
       );
     });
   });
