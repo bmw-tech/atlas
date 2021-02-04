@@ -97,11 +97,14 @@ class Annotation {
   /// A `void Function` which is called whenever a `Marker info` is tapped.
   final VoidCallback onTap;
 
+  final AnnotationType annotationType;
+
   const Annotation({
     this.title,
     this.subTitle,
     this.icon,
     this.onTap,
+    this.annotationType = AnnotationType.destination,
   });
 
   @override
@@ -111,8 +114,13 @@ class Annotation {
     final Annotation typedOther = other;
     return title == typedOther.title &&
         subTitle == typedOther.subTitle &&
-        icon == typedOther.icon;
+        icon == typedOther.icon &&
+        annotationType == typedOther.annotationType;
   }
 
-  int get hashCode => title.hashCode ^ subTitle.hashCode ^ icon.hashCode;
+  int get hashCode =>
+      title.hashCode ^
+      subTitle.hashCode ^
+      icon.hashCode ^
+      annotationType.hashCode;
 }

@@ -18,6 +18,7 @@ main() {
             title: 'MarkerAnnotation-title',
             subTitle: 'MarkerAnnotation-subTitle',
             icon: markerIcon,
+            annotationType: AnnotationType.destination,
           ));
     });
 
@@ -30,12 +31,14 @@ main() {
         title: 'MarkerAnnotation-title',
         subTitle: 'MarkerAnnotation-subTitle',
         icon: markerIcon,
+        annotationType: AnnotationType.destination,
       );
       expect(
         annotation.hashCode,
         annotation.title.hashCode ^
             annotation.subTitle.hashCode ^
-            annotation.icon.hashCode,
+            annotation.icon.hashCode ^
+            annotation.annotationType.hashCode,
       );
     });
   });
