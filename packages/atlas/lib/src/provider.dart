@@ -36,5 +36,7 @@ abstract class Provider {
     final MapType mapType,
     final bool showTraffic,
     final MapLanguage mapLanguage,
+    final DeviceLocation deviceLocation,
+    final String deviceLocationIconAsset,
   });
 }

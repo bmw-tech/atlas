@@ -102,6 +102,12 @@ class Atlas extends StatelessWidget {
   /// `onPan` gets called when the map is panned by user pan gesture.
   final VoidCallback onPan;
 
+  /// Sets the device location coordinates with accuracy.
+  final DeviceLocation deviceLocation;
+
+  /// Sets the device location icon asset path.
+  final String deviceLocationIconAsset;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -122,6 +128,8 @@ class Atlas extends StatelessWidget {
     this.onCameraPositionChanged,
     this.onLocationChanged,
     this.onPan,
+    this.deviceLocation,
+    this.deviceLocationIconAsset,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
@@ -156,6 +164,8 @@ class Atlas extends StatelessWidget {
       onMapCreated: onMapCreated,
       onCameraPositionChanged: onCameraPositionChanged,
       onPan: onPan,
+      deviceLocation: deviceLocation,
+      deviceLocationIconAsset: deviceLocationIconAsset,
     );
   }
 }
