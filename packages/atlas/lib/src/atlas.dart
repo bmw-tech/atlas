@@ -108,6 +108,9 @@ class Atlas extends StatelessWidget {
   /// Sets the device location icon asset path.
   final String deviceLocationIconAsset;
 
+  /// Sets the country name.
+  final String country;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -130,6 +133,7 @@ class Atlas extends StatelessWidget {
     this.onPan,
     this.deviceLocation,
     this.deviceLocationIconAsset,
+    this.country,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
         circles = circles ?? Set<Circle>(),
@@ -166,6 +170,7 @@ class Atlas extends StatelessWidget {
       onPan: onPan,
       deviceLocation: deviceLocation,
       deviceLocationIconAsset: deviceLocationIconAsset,
+      country: country,
     );
   }
 }

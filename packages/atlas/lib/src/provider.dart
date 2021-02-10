@@ -38,5 +38,6 @@ abstract class Provider {
     final MapLanguage mapLanguage,
     final DeviceLocation deviceLocation,
     final String deviceLocationIconAsset,
+    final String country,
   });
 }
