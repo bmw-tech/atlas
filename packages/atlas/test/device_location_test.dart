@@ -69,5 +69,26 @@ main() {
 
       expect(deviceLocationA, deviceLocationB);
     });
+
+    test('should override hashCode properly', () {
+      final double latitude = 1.0;
+      final double longitude = 1.0;
+      final double accuracy = 1.0;
+      final double altitude = 1.0;
+
+      final deviceLocation = DeviceLocation(
+        target: LatLng(
+          latitude: latitude,
+          longitude: longitude,
+        ),
+        accuracy: accuracy,
+        altitude: altitude,
+      );
+      expect(
+          deviceLocation.hashCode,
+          deviceLocation.target.hashCode ^
+              deviceLocation.accuracy.hashCode ^
+              deviceLocation.altitude.hashCode);
+    });
   });
 }
