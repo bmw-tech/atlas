@@ -1022,5 +1022,161 @@ main() {
         ),
       ).called(1);
     });
+
+    testWidgets(
+        'should call provider build method with correct arguments when deviceLocation is provided',
+        (WidgetTester tester) async {
+      final deviceLocation = DeviceLocation(
+        target: LatLng(
+          latitude: 0,
+          longitude: 0,
+        ),
+        accuracy: 0,
+      );
+
+      when(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
+          deviceLocation: deviceLocation,
+        ),
+      ).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              deviceLocation: deviceLocation,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
+          deviceLocation: deviceLocation,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when deviceLocationIconAsset is provided',
+        (WidgetTester tester) async {
+      final deviceLocationIconAsset = 'path-to-the-icon-asset';
+
+      when(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
+          deviceLocationIconAsset: deviceLocationIconAsset,
+        ),
+      ).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              deviceLocationIconAsset: deviceLocationIconAsset,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
+          deviceLocationIconAsset: deviceLocationIconAsset,
+        ),
+      ).called(1);
+    });
+
+    testWidgets(
+        'should call provider build method with correct arguments when country is provided',
+        (WidgetTester tester) async {
+      final country = 'Japan';
+
+      when(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
+          country: country,
+        ),
+      ).thenReturn(Container(key: mapKey));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Atlas(
+              initialCameraPosition: initialCameraPosition,
+              country: country,
+            ),
+          ),
+        ),
+      );
+      expect(find.byKey(mapKey), findsOneWidget);
+      verify(
+        provider.build(
+          initialCameraPosition: initialCameraPosition,
+          markers: Set<Marker>(),
+          circles: Set<Circle>(),
+          polygons: Set<Polygon>(),
+          polylines: Set<Polyline>(),
+          showMyLocation: false,
+          showMyLocationButton: false,
+          followMyLocation: false,
+          mapType: MapType.normal,
+          showTraffic: false,
+          mapLanguage: MapLanguage.enUs,
+          country: country,
+        ),
+      ).called(1);
+    });
   });
 }
