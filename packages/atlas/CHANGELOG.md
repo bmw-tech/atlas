@@ -1,5 +1,9 @@
 # atlas
 
+## v0.14.1 (2021-02-10)
+
+- Added `deviceLocation`, `deviceLocationIconAsset` and `country` to Atlas map
+
 ## v0.14.0 (2021-01-14)
 
 - Refactor update bounds method
