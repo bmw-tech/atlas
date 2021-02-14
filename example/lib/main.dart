@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_atlas/google_atlas.dart';
-import 'package:bloc/bloc.dart';
 import 'bloc/bloc.dart';
 
 void main() {
@@ -115,7 +114,7 @@ class _AtlasSampleState extends State<AtlasSample> {
                 },
               ),
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   top: 50,
                 ),
                 child: Visibility(
@@ -124,10 +123,16 @@ class _AtlasSampleState extends State<AtlasSample> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      FlatButton(
-                        child: Text('Search Area'),
-                        color: Colors.white,
-                        textColor: Colors.black,
+                      TextButton(
+                        child: const Text(
+                          'Search Area',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                        ),
                         onPressed: () {
                           BlocProvider.of<MapBloc>(context)
                             ..add(
@@ -144,7 +149,7 @@ class _AtlasSampleState extends State<AtlasSample> {
               Container(
                 alignment: Alignment.centerRight,
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     top: 175,
                     right: 15,
                   ),
@@ -153,10 +158,10 @@ class _AtlasSampleState extends State<AtlasSample> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       FloatingActionButton(
-                        child: Icon(Icons.location_on),
+                        child: const Icon(Icons.location_on),
                         onPressed: () {
                           _controller?.moveCamera(
-                            CameraPosition(
+                            const CameraPosition(
                               target: LatLng(
                                 latitude: 41.8661,
                                 longitude: -90.1070,
@@ -168,7 +173,7 @@ class _AtlasSampleState extends State<AtlasSample> {
                       Visibility(
                         visible: _shouldShowMapTypeButton(),
                         child: FloatingActionButton(
-                          child: Icon(Icons.map),
+                          child: const Icon(Icons.map),
                           onPressed: () {
                             setState(() {
                               if (mapType == MapType.normal) {
