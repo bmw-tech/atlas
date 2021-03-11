@@ -15,8 +15,9 @@ jobs:
 
     strategy:
       matrix:
-        package: ["packages/atlas"]
-        version: ["2.10.3",]
+        package: 'packages/atlas'
+        channel: 'stable'
+        flutter-version: '1.22.3'
 
     steps:
       - uses: actions/checkout@v2
@@ -47,8 +48,9 @@ jobs:
 
     strategy:
       matrix:
-        package: ["packages/google_atlas"]
-        channel: ["2.10.3"]
+        package: 'packages/google_atlas'
+        channel: 'stable'
+        flutter-version: '1.22.3'
 
     steps:
       - uses: actions/checkout@v2
