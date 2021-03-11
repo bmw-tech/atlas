@@ -1,0 +1,75 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_dart:
+    runs-on: ubuntu-latest
+
+    container:
+      image: google/dart:${{ matrix.version }}
+
+    strategy:
+      matrix:
+        package: ["packages/atlas"]
+        version: ["1.22.6",]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: ${{ matrix.channel }}
+
+      - name: Install dependencies
+        run: flutter packages get
+        working-directory: ${{ matrix.package }}
+
+      - name: Analyze
+        run: flutter analyze
+        working-directory: ${{ matrix.package }}
+
+      - name: Run tests
+        run: flutter test --coverage --coverage-path coverage/lcov.info
+        working-directory: ${{ matrix.package }}
+
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: ${{ matrix.package }}
+          file: ./${{ matrix.package }}/coverage/lcov.info
+      
+  build_flutter:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        package: ["packages/google_atlas"]
+        channel: ["1.22.6"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: ${{ matrix.channel }}
+
+      - name: Install dependencies
+        run: flutter packages get
+        working-directory: ${{ matrix.package }}
+
+      - name: Analyze
+        run: flutter analyze
+        working-directory: ${{ matrix.package }}
+
+      - name: Run tests
+        run: flutter test --coverage --coverage-path coverage/lcov.info
+        working-directory: ${{ matrix.package }}
+
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: ${{ matrix.package }}
+          file: ./${{ matrix.package }}/coverage/lcov.info
