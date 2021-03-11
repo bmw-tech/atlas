@@ -7,16 +7,18 @@ on:
     branches: [master]
 
 jobs:
-  build_flutter_atlas:
+  build_flutter:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        package: ["packages/atlas"]
+        package: ["packages/atlas", "packages/google_atlas"]
         channel: ["stable"]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ matrix.channel }}
@@ -33,40 +35,10 @@ jobs:
         run: flutter test --coverage --coverage-path coverage/lcov.info
         working-directory: ${{ matrix.package }}
 
-      - name: Upload coverage to codecov
-        uses: codecov/codecov-action@v1
-        with:
-          flags: ${{ matrix.package }}
-          file: ./${{ matrix.package }}/coverage/lcov.info
-
-  build_flutter_google_atlas:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        package: ["packages/google_atlas"]
-        channel: ["stable"]
-
-    steps:
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: ${{ matrix.channel }}
-
-      - name: Install dependencies
-        run: flutter packages get
-        working-directory: ${{ matrix.package }}
-
-      - name: Analyze
-        run: flutter analyze
-        working-directory: ${{ matrix.package }}
-
-      - name: Run tests
-        run: flutter test --coverage --coverage-path coverage/lcov.info
-        working-directory: ${{ matrix.package }}
-
-      - name: Upload coverage to codecov
-        uses: codecov/codecov-action@v1
-        with:
-          flags: ${{ matrix.package }}
-          file: ./${{ matrix.package }}/coverage/lcov.info
+      - name: Upload coverage to Codecov
+        if: success()
+        run: |
+          curl -s https://codecov.io/bash -o codecov.sh
+          bash codecov.sh -c -F ${{ matrix.package }}
+        env:
+          CODECOV_NAME: ${{ matrix.package }}
