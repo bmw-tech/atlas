@@ -38,7 +38,6 @@ jobs:
       - name: Upload coverage to Codecov
         if: success()
         run: |
-          curl -s https://codecov.io/bash -o codecov.sh
-          bash codecov.sh -c -F ${{ matrix.package }}
+          bash <(curl -s https://codecov.io/bash) -c -F ${{ matrix.package }}
         env:
           CODECOV_NAME: ${{ matrix.package }}
