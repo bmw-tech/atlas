@@ -34,7 +34,9 @@ jobs:
         working-directory: ${{ matrix.package }}
 
       - name: Upload coverage to Codecov 
-        uses: codecov/codecov-action@v1
-        with:
-          flags: ${{ matrix.package }}
-          file: ${{ matrix.package }}/coverage/lcov.info
+        if: success()
+        run: |
+          curl -s https://codecov.io/bash -o codecov.sh
+          bash codecov.sh -F ${{ matrix.codecov-flag }}
+        env:
+          CODECOV_NAME: ${{ matrix.package }}
