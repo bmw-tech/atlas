@@ -142,7 +142,7 @@ class Atlas extends StatelessWidget {
     this.country,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
-        callouts = markers ?? Set<Callout>(),
+        callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
         polygons = polygons ?? Set<Polygon>(),
         polylines = polylines ?? Set<Polyline>(),

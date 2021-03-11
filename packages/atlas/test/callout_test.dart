@@ -1,8 +1,6 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../lib/src/callout.dart';
-
 main() {
   group('Callout', () {
     test('should throw AssertionError if id is null', () {

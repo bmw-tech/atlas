@@ -2,8 +2,6 @@ import 'package:atlas/atlas.dart';
 import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
 
-import 'callout.dart';
-
 /// Callback function taking a single argument.
 typedef void ArgumentCallback<T>(T argument);
 

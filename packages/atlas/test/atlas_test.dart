@@ -1,7 +1,7 @@
+import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:atlas/atlas.dart';
 
 class MockProvider extends Mock implements Provider {}
 
@@ -46,6 +46,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -70,6 +71,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -102,6 +104,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: markers,
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -127,6 +130,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: markers,
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -146,6 +150,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -170,6 +175,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -200,6 +206,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
         circles: circles,
@@ -225,6 +232,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
           circles: circles,
@@ -267,6 +275,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         polygons: polygons,
         polylines: Set<Polyline>(),
         circles: Set<Circle>(),
@@ -292,6 +301,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           polygons: polygons,
           polylines: Set<Polyline>(),
           circles: Set<Circle>(),
@@ -326,6 +336,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         polygons: Set<Polygon>(),
         polylines: polylines,
         circles: Set<Circle>(),
@@ -351,6 +362,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           polygons: Set<Polygon>(),
           polylines: polylines,
           circles: Set<Circle>(),
@@ -373,6 +385,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -399,6 +412,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -423,6 +437,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -449,6 +464,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -472,6 +488,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -498,6 +515,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -518,6 +536,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -543,6 +562,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -562,6 +582,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -586,6 +607,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -605,6 +627,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -631,6 +654,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -650,6 +674,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -674,6 +699,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -693,6 +719,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -717,6 +744,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -736,6 +764,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -761,6 +790,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -795,6 +825,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: markers,
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -820,6 +851,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: markers,
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -839,6 +871,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -866,6 +899,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -888,6 +922,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -914,6 +949,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -934,6 +970,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -962,6 +999,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -983,6 +1021,7 @@ main() {
       when(provider.build(
         initialCameraPosition: initialCameraPosition,
         markers: Set<Marker>(),
+        callouts: Set<Callout>(),
         circles: Set<Circle>(),
         polygons: Set<Polygon>(),
         polylines: Set<Polyline>(),
@@ -1009,6 +1048,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -1038,6 +1078,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -1065,6 +1106,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -1088,6 +1130,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -1115,6 +1158,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -1138,6 +1182,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
@@ -1165,6 +1210,7 @@ main() {
         provider.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
+          callouts: Set<Callout>(),
           circles: Set<Circle>(),
           polygons: Set<Polygon>(),
           polylines: Set<Polyline>(),
