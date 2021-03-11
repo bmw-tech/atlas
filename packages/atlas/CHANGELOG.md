@@ -1,5 +1,10 @@
 # atlas
 
+## v0.14.2 (2021-02-10)
+
+- Added support for `Callout` on a Map
+- Added ability to supply an `height` on a `MarkerIcon`
+
 ## v0.14.1 (2021-02-10)
 
 - Added `deviceLocation`, `deviceLocationIconAsset` and `country` to Atlas map
@@ -50,8 +55,8 @@
 
 ## v0.6.1 (2020-5-9)
 
-- Added 'outlineWidth' to 'Polyline'
-- Added 'outlineColor' to 'Polyline'
+- Added `outlineWidth` to `Polyline`
+- Added `outlineColor` to `Polyline`
 
 ## v0.6.0 (2020-4-7)
 

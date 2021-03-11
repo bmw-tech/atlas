@@ -111,6 +111,9 @@ class Atlas extends StatelessWidget {
   /// Sets the country name.
   final String country;
 
+    /// The [Set] of `Callout` objects which will be rendered on the map.
+  final Set<Callout> callouts;
+
   Atlas({
     Key key,
     @required this.initialCameraPosition,
@@ -118,6 +121,7 @@ class Atlas extends StatelessWidget {
     Set<Circle> circles,
     Set<Polygon> polygons,
     Set<Polyline> polylines,
+    Set<Callout> callouts,
     bool showMyLocation,
     bool showMyLocationButton,
     bool followMyLocation,
@@ -139,6 +143,7 @@ class Atlas extends StatelessWidget {
         circles = circles ?? Set<Circle>(),
         polygons = polygons ?? Set<Polygon>(),
         polylines = polylines ?? Set<Polyline>(),
+        callouts = callouts ?? Set<Callout>(),
         showMyLocation = showMyLocation ?? false,
         showMyLocationButton = showMyLocationButton ?? false,
         followMyLocation = followMyLocation ?? false,
@@ -155,6 +160,7 @@ class Atlas extends StatelessWidget {
       circles: circles,
       polygons: polygons,
       polylines: polylines,
+      callouts: callouts,
       onTap: onTap,
       onPoiTap: onPoiTap,
       onLongPress: onLongPress,
