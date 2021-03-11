@@ -45,6 +45,6 @@ jobs:
       - name: Upload coverage to Codecov Google Atlas
         if: success() && ${{ matrix.package }} == "packages/google_atlas"
         run: |
-          bash <(curl -s https://codecov.io/bash) -c -F google-atlas
+          bash <(curl -s https://codecov.io/bash) -c -F google_atlas
         env:
           CODECOV_NAME: ${{ matrix.package }}
