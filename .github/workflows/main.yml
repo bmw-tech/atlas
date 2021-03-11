@@ -42,5 +42,5 @@ jobs:
           bash codecov.sh
         env:
           CODECOV_NAME: ${{ matrix.package }}
-          FILE: ./${{ matrix.package }}/coverage/lcov.info
-          FLAG: ${{ matrix.package }}
+          CODECOV_FILE: ./${{ matrix.package }}/coverage/lcov.info
+          CODECOV_FLAG: ${{ matrix.package }}
