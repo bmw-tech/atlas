@@ -35,7 +35,7 @@ jobs:
         run: flutter test --coverage --coverage-path coverage/lcov.info
         working-directory: ${{ matrix.package }}
 
-      - name: Upload coverage to Codecov Atlas
+      - name: Upload coverage to Codecov
         if: success()
         run: |
           if [ ${{ matrix.package }} == "packages/atlas" ]; then
