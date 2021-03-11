@@ -40,7 +40,7 @@ jobs:
         run: |
           text=${{ matrix.package }}
           text="${text//\//%2F}"
-          echo "::set-output name=ATLAS_PACKAGE::$text"
-          bash <(curl -s https://codecov.io/bash) -c -F ${{ env.ATLAS_PACKAGE }}
+          echo "atlas_package_name=$text" >> $GITHUB_ENV
+          bash <(curl -s https://codecov.io/bash) -c -F ${{ env.atlas_package_name }}
         env:
           CODECOV_NAME: ${{ matrix.package }}
