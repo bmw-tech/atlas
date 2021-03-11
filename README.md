@@ -1,6 +1,6 @@
 # Atlas
 
-[![CircleCI](https://circleci.com/gh/bmw-tech/atlas/tree/master.svg?style=shield)](https://circleci.com/gh/bmw-tech/atlas/tree/master)
+[![Build Status](https://github.com/bmw-tech/atlas/actions/workflows/main.yml/badge.svg)](https://github.com/bmw-tech/atlas/actions)
 [![codecov](https://codecov.io/gh/bmw-tech/atlas/branch/master/graph/badge.svg)](https://codecov.io/gh/bmw-tech/atlas)
 
 An extensible map abstraction for Flutter with support for multiple map providers
@@ -79,12 +79,11 @@ class AtlasSample extends StatelessWidget {
 
 ## Maintainers
 
-Project Lead(s):
+This project is maintained by BMW Group.
+
+Thank you to the original authors
 
 - [@tchabot22](https://github.com/tchabot22)
-
-Main Maintainer(s):
-
 - [@felangel](https://github.com/felangel)
 - [@jorgecoca](https://github.com/jorgecoca)
 - [@noahmateen](https://github.com/noahmateen)
