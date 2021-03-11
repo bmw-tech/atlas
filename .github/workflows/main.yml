@@ -38,11 +38,8 @@ jobs:
       - name: Upload coverage to Codecov
         if: success()
         run: |
-          if [ ${{ matrix.package }} == "packages/atlas" ]; then
-            codecov_flag=atlas
-          else
-            codecov_flag=google_atlas
-          fi
+          package_str=${{ matrix.package }}
+          codecov_flag="${package_str//packages\/}"
           bash <(curl -s https://codecov.io/bash) -c -F $codecov_flag
         env:
           CODECOV_NAME: ${{ matrix.package }}
