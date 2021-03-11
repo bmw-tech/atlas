@@ -35,12 +35,16 @@ jobs:
         run: flutter test --coverage --coverage-path coverage/lcov.info
         working-directory: ${{ matrix.package }}
 
-      - name: Upload coverage to Codecov
-        if: success()
+      - name: Upload coverage to Codecov Atlas
+        if: success() && ${{ matrix.package == "packages/atlas" }}
         run: |
-          text=${{ matrix.package }}
-          text="${text//\//%2F}"
-          echo "atlas_package_name=$text" >> $GITHUB_ENV
-          bash <(curl -s https://codecov.io/bash) -c -F ${{ env.atlas_package_name }}
+          bash <(curl -s https://codecov.io/bash) -c -F atlas
+        env:
+          CODECOV_NAME: ${{ matrix.package }}
+
+      - name: Upload coverage to Codecov Google Atlas
+        if: success() && ${{ matrix.package == "packages/google_atlas" }}
+        run: |
+          bash <(curl -s https://codecov.io/bash) -c -F google-atlas
         env:
           CODECOV_NAME: ${{ matrix.package }}
