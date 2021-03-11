@@ -12,8 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        package: ["packages/atlas", "packages/google_atlas",]
-        channel: ["stable",]
+        package: ["packages/atlas", "packages/google_atlas"]
+        channel: ["stable"]
 
     steps:
       - uses: actions/checkout@v2
