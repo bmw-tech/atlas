@@ -31,4 +31,26 @@ class Callout {
     this.texts,
   })  : assert(id != null),
         assert(position != null);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final Callout typedOther = other;
+    return id == typedOther.id &&
+        position == typedOther.position &&
+        icon == typedOther.icon &&
+        zIndex == typedOther.zIndex &&
+        annotationType == typedOther.annotationType &&
+        texts == typedOther.texts;
+  }
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      position.hashCode ^
+      icon.hashCode ^
+      zIndex.hashCode ^
+      annotationType.hashCode ^
+      texts.hashCode;
 }
