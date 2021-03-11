@@ -27,15 +27,15 @@ jobs:
 
       - name: Install dependencies
         run: flutter packages get
-        working-directory: env.PACKAGE_PREFIX/${{ matrix.package }}
+        working-directory: ${{ matrix.package }}/env.PACKAGE_PREFIX
 
       - name: Analyze
         run: flutter analyze
-        working-directory: env.PACKAGE_PREFIX/${{ matrix.package }}
+        working-directory: ${{ matrix.package }}/env.PACKAGE_PREFIX
 
       - name: Run tests
         run: flutter test --coverage --coverage-path coverage/lcov.info
-        working-directory: env.PACKAGE_PREFIX/${{ matrix.package }}
+        working-directory: ${{ matrix.package }}/env.PACKAGE_PREFIX
 
       - name: Upload coverage to Codecov
         if: success()
