@@ -44,22 +44,22 @@ main() {
     });
 
     test('should have correct properties when no AnnotationType is provided',
-            () {
-          final expectedId = 'id';
-          final expectedPosition = LatLng(
-            latitude: 37.42796133580664,
-            longitude: -122.085749655962,
-          );
-          final expectedAnnotationType = null;
-          final callout = Callout(
-            id: expectedId,
-            position: expectedPosition,
-            annotationType: expectedAnnotationType,
-          );
-          expect(callout.id, expectedId);
-          expect(callout.position, expectedPosition);
-          expect(callout.annotationType, expectedAnnotationType);
-        });
+        () {
+      final expectedId = 'id';
+      final expectedPosition = LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      );
+      final expectedAnnotationType = null;
+      final callout = Callout(
+        id: expectedId,
+        position: expectedPosition,
+        annotationType: expectedAnnotationType,
+      );
+      expect(callout.id, expectedId);
+      expect(callout.position, expectedPosition);
+      expect(callout.annotationType, expectedAnnotationType);
+    });
 
     test('should have correct properties when AnnotationType is provided', () {
       final expectedId = 'id';
@@ -113,6 +113,33 @@ main() {
         zIndex: 1.0,
       );
       expect(callout1, callout2);
+    });
+
+    test('should override hashCode properly', () {
+      final String id = "1";
+      final double latitude = 1.0;
+      final double longitude = 1.0;
+      final AnnotationType annotationType = AnnotationType.route;
+      final MarkerIcon icon = MarkerIcon(assetName: 'my-asset');
+      final List<String> texts = ["T1, T2"];
+
+      final callout = Callout(
+          id: id,
+          position: LatLng(
+            latitude: latitude,
+            longitude: longitude,
+          ),
+          annotationType: annotationType,
+          icon: icon,
+          texts: texts);
+
+      expect(
+          callout.hashCode,
+          callout.id.hashCode ^
+              callout.position.hashCode ^
+              callout.annotationType.hashCode ^
+              callout.icon.hashCode ^
+              callout.texts.hashCode);
     });
   });
 }
