@@ -79,12 +79,11 @@ class AtlasSample extends StatelessWidget {
 
 ## Maintainers
 
-Project Lead(s):
+This project is maintained by BMW Group.
+
+Thank you to the original authors
 
 - [@tchabot22](https://github.com/tchabot22)
-
-Main Maintainer(s):
-
 - [@felangel](https://github.com/felangel)
 - [@jorgecoca](https://github.com/jorgecoca)
 - [@noahmateen](https://github.com/noahmateen)
