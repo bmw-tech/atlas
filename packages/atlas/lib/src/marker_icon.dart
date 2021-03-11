@@ -10,7 +10,7 @@ class MarkerIcon {
 
   final int width;
 
-  /// The [height] will be defined keeping the aspect ratio.
+  /// The [height] argument is optional. It is the desired height in pixels.
   final int height;
 
   const MarkerIcon({
