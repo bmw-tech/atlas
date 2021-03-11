@@ -9,12 +9,10 @@ on:
 jobs:
   build_flutter:
     runs-on: ubuntu-latest
-    env:
-      PACKAGE_PREFIX: "packages/"
 
     strategy:
       matrix:
-        package: ["atlas", "google_atlas"]
+        package: ["packages/atlas", "packages/google_atlas"]
         channel: ["stable"]
 
     steps:
@@ -27,19 +25,19 @@ jobs:
 
       - name: Install dependencies
         run: flutter packages get
-        working-directory: ${{ matrix.package }}/env.PACKAGE_PREFIX
+        working-directory: ${{ matrix.package }}
 
       - name: Analyze
         run: flutter analyze
-        working-directory: ${{ matrix.package }}/env.PACKAGE_PREFIX
+        working-directory: ${{ matrix.package }}
 
       - name: Run tests
         run: flutter test --coverage --coverage-path coverage/lcov.info
-        working-directory: ${{ matrix.package }}/env.PACKAGE_PREFIX
+        working-directory: ${{ matrix.package }}
 
       - name: Upload coverage to Codecov
         if: success()
         run: |
-          bash <(curl -s https://codecov.io/bash) -c -F ${{ matrix.package }}
+          bash <(curl -s https://codecov.io/bash) -c -F ${${{ matrix.package }}//packages\/}
         env:
           CODECOV_NAME: ${{ matrix.package }}
