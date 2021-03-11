@@ -38,6 +38,9 @@ jobs:
       - name: Upload coverage to Codecov
         if: success()
         run: |
-          bash <(curl -s https://codecov.io/bash) -c -F ${${{ matrix.package }}//packages\/}
+          text=${{ matrix.package }}
+          text="${text//\//%2F}"
+          echo "::set-output name=ATLAS_PACKAGE::$text"
+          bash <(curl -s https://codecov.io/bash) -c -F ${{ env.ATLAS_PACKAGE }}
         env:
           CODECOV_NAME: ${{ matrix.package }}
