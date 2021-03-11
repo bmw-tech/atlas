@@ -33,8 +33,8 @@ jobs:
         run: flutter test --coverage --coverage-path coverage/lcov.info
         working-directory: ${{ matrix.package }}
 
-      - name: Upload coverage to codecov
+      - name: Upload coverage to Codecov 
         uses: codecov/codecov-action@v1
         with:
           flags: ${{ matrix.package }}
-          file: ./${{ matrix.package }}/coverage/lcov.info
+          file: ${{ matrix.package }}/coverage/lcov.info
