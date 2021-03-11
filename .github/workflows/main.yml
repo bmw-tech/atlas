@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build_flutter:
@@ -33,10 +33,18 @@ jobs:
         run: flutter test --coverage --coverage-path coverage/lcov.info
         working-directory: ${{ matrix.package }}
 
-      - name: Upload coverage to Codecov 
-        if: success()
-        run: |
-          curl -s https://codecov.io/bash -o codecov.sh
-          bash codecov.sh -F ${{ matrix.codecov-flag }}
-        env:
-          CODECOV_NAME: ${{ matrix.package }}
+      # - name: Upload coverage to Codecov
+      #   if: success()
+      #   run: |
+      #     curl -s https://codecov.io/bash -o codecov.sh
+      #     bash codecov.sh -F ${{ matrix.codecov-flag }}
+      #   env:
+      #     CODECOV_NAME: ${{ matrix.package }}
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: ${{ matrix.package }}
+          file: ./${{ matrix.package }}/coverage/lcov.info
+          override_pr: ${{ github.event.number }}
+          override_commit: ${{ github.event.pull_request.head.sha }}
