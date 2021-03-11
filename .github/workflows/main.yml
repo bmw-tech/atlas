@@ -36,15 +36,13 @@ jobs:
         working-directory: ${{ matrix.package }}
 
       - name: Upload coverage to Codecov Atlas
-        if: success() && ${{ matrix.package }} == "packages/atlas"
+        if: success()
         run: |
-          bash <(curl -s https://codecov.io/bash) -c -F atlas
-        env:
-          CODECOV_NAME: ${{ matrix.package }}
-
-      - name: Upload coverage to Codecov Google Atlas
-        if: success() && ${{ matrix.package }} == "packages/google_atlas"
-        run: |
-          bash <(curl -s https://codecov.io/bash) -c -F google_atlas
+          if [ ${{ matrix.package }} == "packages/atlas" ]; then
+            codecov_flag=atlas
+          else
+            codecov_flag=google_atlas
+          fi
+          bash <(curl -s https://codecov.io/bash) -c -F $codecov_flag
         env:
           CODECOV_NAME: ${{ matrix.package }}
