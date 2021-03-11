@@ -39,8 +39,6 @@ jobs:
         if: success()
         run: |
           curl -s https://codecov.io/bash -o codecov.sh
-          bash codecov.sh
+          bash codecov.sh -F "${{ matrix.package }}" -f "./${{ matrix.package }}/coverage/lcov.info"
         env:
           CODECOV_NAME: ${{ matrix.package }}
-          CODECOV_FILE: ./${{ matrix.package }}/coverage/lcov.info
-          CODECOV_FLAG: ${{ matrix.package }}
