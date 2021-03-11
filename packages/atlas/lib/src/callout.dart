@@ -9,11 +9,13 @@ class Callout {
   /// The location where the `Callout` is drawn is represented as `LatLng`.
   final LatLng position;
 
+  /// The type of annotation of the `Callout`
   final AnnotationType annotationType;
 
   /// Optional MarkerIcon used to replace default icon
   final MarkerIcon icon;
 
+  /// List of information of the `Callout`
   final List<String> texts;
 
   /// The z-index of the callout, used to determine relative drawing order of

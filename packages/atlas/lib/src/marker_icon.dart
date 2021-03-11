@@ -7,9 +7,10 @@ class MarkerIcon {
   final String assetName;
 
   /// The [width] argument is optional. It is the desired width in pixels.
-  /// The height will be defined keeping the aspect ratio.
+
   final int width;
 
+  /// The [height] will be defined keeping the aspect ratio.
   final int height;
 
   const MarkerIcon({

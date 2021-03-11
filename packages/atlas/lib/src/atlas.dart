@@ -2,8 +2,6 @@ import 'package:atlas/atlas.dart';
 import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
 
-import 'callout.dart';
-
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider
 /// and exposes a developer-friendly, declarative API for working with a map.
 /// The underlying map provider that will be used must be specified as the
