@@ -1,6 +1,8 @@
+import 'package:atlas/atlas.dart';
 import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
-import 'package:atlas/atlas.dart';
+
+import 'callout.dart';
 
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider
 /// and exposes a developer-friendly, declarative API for working with a map.
@@ -12,6 +14,9 @@ class Atlas extends StatelessWidget {
 
   /// The [Set] of `Marker` objects which will be rendered on the map.
   final Set<Marker> markers;
+
+  /// The [Set] of `Callout` objects which will be rendered on the map.
+  final Set<Callout> callouts;
 
   /// The [Set] of `Circle` objects which will be rendered on the map.
   final Set<Circle> circles;
@@ -115,6 +120,7 @@ class Atlas extends StatelessWidget {
     Key key,
     @required this.initialCameraPosition,
     Set<Marker> markers,
+    Set<Callout> callouts,
     Set<Circle> circles,
     Set<Polygon> polygons,
     Set<Polyline> polylines,
@@ -136,6 +142,7 @@ class Atlas extends StatelessWidget {
     this.country,
   })  : assert(initialCameraPosition != null),
         markers = markers ?? Set<Marker>(),
+        callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
         polygons = polygons ?? Set<Polygon>(),
         polylines = polylines ?? Set<Polyline>(),
@@ -152,6 +159,7 @@ class Atlas extends StatelessWidget {
     return AtlasProvider.instance.build(
       initialCameraPosition: initialCameraPosition,
       markers: markers,
+      callouts: callouts,
       circles: circles,
       polygons: polygons,
       polylines: polylines,
