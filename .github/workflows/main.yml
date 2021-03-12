@@ -40,6 +40,6 @@ jobs:
         run: |
           package_str=${{ matrix.package }}
           codecov_flag="${package_str//packages\/}"
-          bash <(curl -s https://codecov.io/bash) -c -F $codecov_flag
+          bash <(curl -s https://codecov.io/bash) -c -F $codecov_flag -f ./${{ matrix.package }}/coverage/lcov.info
         env:
           CODECOV_NAME: ${{ matrix.package }}
