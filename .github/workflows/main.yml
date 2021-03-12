@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build_flutter:
@@ -22,7 +22,11 @@ jobs:
           channel: ${{ matrix.channel }}
 
       - name: Install dependencies
-        run: flutter packages get
+        run: |
+          package_str=${{ matrix.package }}
+          codecov_flag="${package_str//packages\/}"
+          echo "CODECOV_FLAG=${codecov_flag}" >> "$GITHUB_ENV"
+          flutter packages get
         working-directory: ${{ matrix.package }}
 
       - name: Analyze
@@ -33,8 +37,8 @@ jobs:
         run: flutter test --coverage --coverage-path coverage/lcov.info
         working-directory: ${{ matrix.package }}
 
-      - name: Upload coverage to codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          flags: ${{ matrix.package }}
+          flags: ${{ env.CODECOV_FLAG }}
           file: ./${{ matrix.package }}/coverage/lcov.info
