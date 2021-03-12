@@ -42,5 +42,5 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          flags: $CODECOV_FLAG
+          flags: ${CODECOV_FLAG}
           file: ./${{ matrix.package }}/coverage/lcov.info
