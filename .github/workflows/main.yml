@@ -20,13 +20,13 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ matrix.channel }}
+
+      - name: Install dependencies
         run: |
           package_str=${{ matrix.package }}
           codecov_flag="${package_str//packages\/}"
           echo "CODECOV_FLAG=${codecov_flag}" >> "$GITHUB_ENV"
-
-      - name: Install dependencies
-        run: flutter packages get
+          flutter packages get
         working-directory: ${{ matrix.package }}
 
       - name: Analyze
