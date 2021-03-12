@@ -17,18 +17,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ matrix.channel }}
-
-      - name: Install dependencies
         run: |
           package_str=${{ matrix.package }}
           codecov_flag="${package_str//packages\/}"
           echo "CODECOV_FLAG=${codecov_flag}" >> "$GITHUB_ENV"
-          flutter packages get
+
+      - name: Install dependencies
+        run: flutter packages get
         working-directory: ${{ matrix.package }}
 
       - name: Analyze
