@@ -23,23 +23,38 @@ jobs:
         with:
           channel: ${{ matrix.channel }}
 
-      - name: Install dependencies
-        run: flutter packages get
-        working-directory: ${{ matrix.package }}
-
-      - name: Analyze
-        run: flutter analyze
-        working-directory: ${{ matrix.package }}
-
-      - name: Run tests
-        run: flutter test --coverage --coverage-path coverage/lcov.info
-        working-directory: ${{ matrix.package }}
-
-      - name: Upload coverage to Codecov
-        if: success()
+      - name: Set environment variables
         run: |
           package_str=${{ matrix.package }}
           codecov_flag="${package_str//packages\/}"
-          bash <(curl -s https://codecov.io/bash) -c -F $codecov_flag -f ./${{ matrix.package }}/coverage/lcov.info
-        env:
-          CODECOV_NAME: ${{ matrix.package }}
+          echo "CODECOV_FLAG=${codecov_flag}" >> "$GITHUB_ENV"
+      - name: Use environment variables
+        run: |
+          echo "CODECOV_FLAG=${CODECOV_FLAG}"
+          echo $CODECOV_FLAG
+      # - name: Install dependencies
+      #   run: |
+      #     package_str=${{ matrix.package }}
+      #     codecov_flag="${package_str//packages\/}"
+      #     echo "CODECOV_FLAG=${codecov_flag}" >> "$GITHUB_ENV"
+      #     flutter packages get
+      #   working-directory: ${{ matrix.package }}
+      # - name: Analyze
+      #   run: flutter analyze
+      #   working-directory: ${{ matrix.package }}
+      # - name: Run tests
+      #   run: flutter test --coverage --coverage-path coverage/lcov.info
+      #   working-directory: ${{ matrix.package }}
+      # - name: Upload coverage to Codecov
+      #   if: success()
+      #   run: |
+      #     package_str=${{ matrix.package }}
+      #     codecov_flag="${package_str//packages\/}"
+      #     bash <(curl -s https://codecov.io/bash) -c -F $codecov_flag -f ./${{ matrix.package }}/coverage/lcov.info
+      #   env:
+      #     CODECOV_NAME: ${{ matrix.package }}
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v1
+      #   with:
+      #     flags: $CODECOV_FLAG
+      #     file: ./${{ matrix.package }}/coverage/lcov.info
