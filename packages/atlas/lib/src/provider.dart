@@ -1,6 +1,6 @@
+import 'package:atlas/atlas.dart';
 import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
-import 'package:atlas/atlas.dart';
 
 /// Callback function taking a single argument.
 typedef void ArgumentCallback<T>(T argument);
@@ -20,6 +20,7 @@ abstract class Provider {
   Widget build({
     final CameraPosition initialCameraPosition,
     final Set<Marker> markers,
+    final Set<Callout> callouts,
     final Set<Circle> circles,
     final Set<Polygon> polygons,
     final Set<Polyline> polylines,

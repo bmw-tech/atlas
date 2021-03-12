@@ -1,5 +1,10 @@
 # atlas
 
+## v0.14.2 (2021-02-10)
+
+- Added support for `Callout` on a Map
+- Added ability to supply an `height` on a `MarkerIcon`
+
 ## v0.14.1 (2021-02-10)
 
 - Added `deviceLocation`, `deviceLocationIconAsset` and `country` to Atlas map

@@ -7,12 +7,16 @@ class MarkerIcon {
   final String assetName;
 
   /// The [width] argument is optional. It is the desired width in pixels.
-  /// The height will be defined keeping the aspect ratio.
+
   final int width;
+
+  /// The [height] argument is optional. It is the desired height in pixels.
+  final int height;
 
   const MarkerIcon({
     @required this.assetName,
     this.width = 0,
+    this.height = 0,
   }) : assert(assetName != null);
 
   @override
@@ -20,10 +24,15 @@ class MarkerIcon {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
     final MarkerIcon typedOther = other;
-    return assetName == typedOther.assetName && width == typedOther.width;
+    return assetName == typedOther.assetName &&
+        width == typedOther.width &&
+        height == typedOther.height;
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ assetName.hashCode ^ width.hashCode;
+      runtimeType.hashCode ^
+      assetName.hashCode ^
+      width.hashCode ^
+      height.hashCode;
 }
