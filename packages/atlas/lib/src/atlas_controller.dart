@@ -19,6 +19,9 @@ abstract class AtlasController {
   /// Return a [ScreenCoordinate] corresponding to the [LatLng] in the map view.
   Future<LatLng> getLatLng(ScreenCoordinates screenCoordinates);
 
+  /// Return a [LatLngBounds] corresponding to [Rectangle2D] the in the map view
+  LatLngBounds getBounds(Rectangle2D rectangle2d);
+
   /// Returns a [LatLng] corresponding to the [ScreenCoordinate] in the map view.
   Future<ScreenCoordinates> getScreenCoordinate(LatLng latLng);
 
