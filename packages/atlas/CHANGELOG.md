@@ -1,5 +1,9 @@
 # atlas
 
+## v0.15.0 (2021-03-19)
+
+- Added `getBounds` method to `AtlasController`
+
 ## v0.14.2 (2021-02-10)
 
 - Added support for `Callout` on a Map
