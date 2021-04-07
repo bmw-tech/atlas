@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
 
@@ -14,7 +16,7 @@ main() {
       }
     });
 
-    test('should override == properly', () {
+    test('should override == properly when using assetName', () {
       expect(
         MarkerIcon(
           assetName: 'my-asset',
@@ -25,13 +27,27 @@ main() {
       );
     });
 
+    test('should override == properly when using assetBytes', () {
+      final assetBytes = Uint8List(10);
+      expect(
+        MarkerIcon(
+          assetBytes: assetBytes,
+        ),
+        MarkerIcon(
+          assetBytes: assetBytes,
+        ),
+      );
+    });
+
     test('should override hashCode properly', () {
       final markerIcon = MarkerIcon(
         assetName: 'my-asset',
       );
       expect(
         markerIcon.hashCode,
-        markerIcon.runtimeType.hashCode ^ markerIcon.assetName.hashCode,
+        markerIcon.runtimeType.hashCode ^
+            markerIcon.assetName.hashCode ^
+            markerIcon.assetBytes.hashCode,
       );
     });
   });
