@@ -1,5 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 main() {
   group('Marker', () {
@@ -136,8 +136,8 @@ main() {
       );
       expect(marker.id, expectedId);
       expect(marker.position, expectedPosition);
-      expect(marker.annotation.title, expectedMarkerAnnotation.title);
-      expect(marker.annotation.subTitle, expectedMarkerAnnotation.subTitle);
+      expect(marker.annotation?.title, expectedMarkerAnnotation.title);
+      expect(marker.annotation?.subTitle, expectedMarkerAnnotation.subTitle);
     });
 
     test('different instances with same properties should be equal', () {

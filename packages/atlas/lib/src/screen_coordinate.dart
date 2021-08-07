@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 /// relative to the top of the map, not top left of the whole screen.
 class ScreenCoordinates {
   /// The x coordinate in screen pixels.
-  final int x;
+  final int? x;
 
   /// The y coordinate in screen pixels.
-  final int y;
+  final int? y;
 
   const ScreenCoordinates({
     @required this.x,
@@ -20,7 +20,12 @@ class ScreenCoordinates {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final ScreenCoordinates typedOther = other;
+    final ScreenCoordinates typedOther = other is ScreenCoordinates
+        ? other
+        : ScreenCoordinates(
+            x: 0,
+            y: 0,
+          );
     return x == typedOther.x && y == typedOther.y;
   }
 

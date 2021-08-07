@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
+import 'package:flutter_test/flutter_test.dart';
 import 'package:google_atlas/src/utils/utils.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 
 main() {
   group('LatLngUtils', () {
@@ -86,11 +86,11 @@ main() {
           longitude: 0,
         );
         expect(
-          result.northeast.latitude,
+          result.northeast?.latitude,
           expectedNorthEast.latitude,
         );
         expect(
-          result.southwest.longitude,
+          result.southwest?.longitude,
           expectedSouthWest.longitude,
         );
       });

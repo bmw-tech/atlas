@@ -10,60 +10,60 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FakePlatformGoogleMap {
   FakePlatformGoogleMap(int id, Map<dynamic, dynamic> params) {
-    cameraPosition = CameraPosition.fromMap(params['initialCameraPosition']);
+    cameraPosition = CameraPosition.fromMap(params['initialCameraPosition'])!;
     channel = MethodChannel(
         'plugins.flutter.io/google_maps_$id', const StandardMethodCodec());
-    channel.setMockMethodCallHandler(onMethodCall);
+    channel!.setMockMethodCallHandler(onMethodCall);
     updateOptions(params['options']);
     updateMarkers(params);
     updatePolylines(params);
   }
 
-  MethodChannel channel;
+  MethodChannel? channel;
 
-  CameraPosition cameraPosition;
+  CameraPosition? cameraPosition;
 
-  bool compassEnabled;
+  bool? compassEnabled;
 
-  CameraTargetBounds cameraTargetBounds;
+  CameraTargetBounds? cameraTargetBounds;
 
-  MapType mapType;
+  MapType? mapType;
 
-  bool trafficEnabled;
+  bool? trafficEnabled;
 
-  MinMaxZoomPreference minMaxZoomPreference;
+  MinMaxZoomPreference? minMaxZoomPreference;
 
-  bool rotateGesturesEnabled;
+  bool? rotateGesturesEnabled;
 
-  bool scrollGesturesEnabled;
+  bool? scrollGesturesEnabled;
 
-  bool tiltGesturesEnabled;
+  bool? tiltGesturesEnabled;
 
-  bool zoomGesturesEnabled;
+  bool? zoomGesturesEnabled;
 
-  bool trackCameraPosition;
+  bool? trackCameraPosition;
 
-  bool myLocationEnabled;
+  bool? myLocationEnabled;
 
-  bool myLocationButtonEnabled;
+  bool? myLocationButtonEnabled;
 
-  Set<MarkerId> markerIdsToRemove;
+  Set<MarkerId>? markerIdsToRemove;
 
-  Set<Marker> markersToAdd;
+  Set<Marker>? markersToAdd;
 
-  Set<Marker> markersToChange;
+  Set<Marker>? markersToChange;
 
-  Set<PolylineId> polylineIdsToRemove;
+  Set<PolylineId>? polylineIdsToRemove;
 
-  Set<Polyline> polylinesToAdd;
+  Set<Polyline>? polylinesToAdd;
 
-  Set<Polyline> polylinesToChange;
+  Set<Polyline>? polylinesToChange;
 
-  ArgumentCallback<LatLng> onTap;
+  ArgumentCallback<LatLng>? onTap;
 
-  ArgumentCallback<LatLng> onLongPress;
+  ArgumentCallback<LatLng>? onLongPress;
 
-  int updatePositionCallCount = 0;
+  int? updatePositionCallCount = 0;
 
   Future<dynamic> onMethodCall(MethodCall call) {
     switch (call.method) {
@@ -89,8 +89,8 @@ class FakePlatformGoogleMap {
   }
 
   void updatePosition(List<dynamic> cameraUpdate) {
-    updatePositionCallCount++;
-    if (cameraUpdate == null && cameraUpdate.length < 2) {
+    updatePositionCallCount = updatePositionCallCount! + 1;
+    if (cameraUpdate.length < 2) {
       return;
     }
     if (cameraUpdate[0] == 'newCameraPosition') {
@@ -125,7 +125,7 @@ class FakePlatformGoogleMap {
     }
     if (cameraUpdate[0] == 'zoomTo') {
       cameraPosition = CameraPosition(
-        target: cameraPosition.target,
+        target: cameraPosition!.target,
         zoom: cameraUpdate[1],
       );
     }
@@ -269,7 +269,7 @@ class FakePlatformGoogleMap {
 }
 
 class FakePlatformViewsController {
-  FakePlatformGoogleMap lastCreatedView;
+  late FakePlatformGoogleMap lastCreatedView;
 
   Future<dynamic> fakePlatformViewsMethodHandler(MethodCall call) {
     switch (call.method) {
@@ -287,7 +287,7 @@ class FakePlatformViewsController {
   }
 
   void reset() {
-    lastCreatedView = null;
+    //lastCreatedView = null;
   }
 }
 

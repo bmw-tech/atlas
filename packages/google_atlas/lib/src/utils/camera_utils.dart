@@ -8,10 +8,10 @@ class CameraUtils {
   ) {
     return GoogleMaps.CameraPosition(
       target: GoogleMaps.LatLng(
-        position.target.latitude,
-        position.target.longitude,
+        position.target?.latitude ?? 0,
+        position.target?.longitude ?? 0,
       ),
-      zoom: position.zoom,
+      zoom: position.zoom!,
     );
   }
 

@@ -20,23 +20,28 @@ class GoogleAtlas extends Provider {
 
   @override
   Widget build({
-    @required CameraPosition initialCameraPosition,
-    @required Set<Marker> markers,
-    @required Set<Circle> circles,
-    @required Set<Polygon> polygons,
-    @required Set<Polyline> polylines,
-    @required bool showMyLocation,
-    @required bool showMyLocationButton,
-    @required MapType mapType,
-    @required bool showTraffic,
-    MapLanguage mapLanguage,
-    bool followMyLocation,
-    ArgumentCallback<LatLng> onTap,
-    ArgumentCallback<Poi> onPoiTap,
-    ArgumentCallback<LatLng> onLongPress,
-    ArgumentCallback<LatLng> onLocationChanged,
-    ArgumentCallback<AtlasController> onMapCreated,
-    ArgumentCallback<CameraPosition> onCameraPositionChanged,
+    @required CameraPosition? initialCameraPosition,
+    @required Set<Marker>? markers,
+    @required Set<Callout>? callouts,
+    @required Set<Circle>? circles,
+    @required Set<Polygon>? polygons,
+    @required Set<Polyline>? polylines,
+    ArgumentCallback<LatLng>? onTap,
+    ArgumentCallback<Poi>? onPoiTap,
+    ArgumentCallback<LatLng>? onLongPress,
+    ArgumentCallback<AtlasController>? onMapCreated,
+    ArgumentCallback<CameraPosition>? onCameraPositionChanged,
+    ArgumentCallback<LatLng>? onLocationChanged,
+    VoidCallback? onPan,
+    @required bool? showMyLocation,
+    @required bool? showMyLocationButton,
+    bool? followMyLocation,
+    @required MapType? mapType,
+    @required bool? showTraffic,
+    MapLanguage? mapLanguage,
+    DeviceLocation? deviceLocation,
+    String? deviceLocationIconAsset,
+    String? country,
   }) {
     return GoogleMapsProvider(
       initialCameraPosition: initialCameraPosition,
@@ -63,18 +68,18 @@ class GoogleAtlas extends Provider {
 }
 
 class GoogleMapsProvider extends StatefulWidget {
-  final CameraPosition initialCameraPosition;
-  final Set<Marker> markers;
-  final bool showMyLocation;
-  final bool showMyLocationButton;
-  final MapType mapType;
-  final MapLanguage mapLanguage;
-  final bool showTraffic;
-  final ArgumentCallback<LatLng> onTap;
-  final ArgumentCallback<Poi> onPoiTap;
-  final ArgumentCallback<LatLng> onLongPress;
-  final ArgumentCallback<AtlasController> onMapCreated;
-  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
+  final CameraPosition? initialCameraPosition;
+  final Set<Marker>? markers;
+  final bool? showMyLocation;
+  final bool? showMyLocationButton;
+  final MapType? mapType;
+  final MapLanguage? mapLanguage;
+  final bool? showTraffic;
+  final ArgumentCallback<LatLng>? onTap;
+  final ArgumentCallback<Poi>? onPoiTap;
+  final ArgumentCallback<LatLng>? onLongPress;
+  final ArgumentCallback<AtlasController>? onMapCreated;
+  final ArgumentCallback<CameraPosition>? onCameraPositionChanged;
 
   GoogleMapsProvider({
     @required this.initialCameraPosition,
@@ -97,34 +102,35 @@ class GoogleMapsProvider extends StatefulWidget {
 bool _getBytesFromAssetEnabled = true;
 
 class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
-  CameraPosition get initialCameraPosition => widget.initialCameraPosition;
-  Set<Marker> get markers => widget.markers;
-  bool get showMyLocation => widget.showMyLocation;
-  bool get showMyLocationButton => widget.showMyLocationButton;
-  MapType get mapType => widget.mapType;
-  bool get showTraffic => widget.showTraffic;
-  ArgumentCallback<LatLng> get onTap => widget.onTap;
-  ArgumentCallback<LatLng> get onLongPress => widget.onLongPress;
-  ArgumentCallback<AtlasController> get onMapCreated => widget.onMapCreated;
-  ArgumentCallback<CameraPosition> get onCameraPositionChanged =>
+  CameraPosition? get initialCameraPosition => widget.initialCameraPosition;
+  Set<Marker>? get markers => widget.markers;
+  bool? get showMyLocation => widget.showMyLocation;
+  bool? get showMyLocationButton => widget.showMyLocationButton;
+  MapType? get mapType => widget.mapType;
+  bool? get showTraffic => widget.showTraffic;
+  ArgumentCallback<LatLng>? get onTap => widget.onTap;
+  ArgumentCallback<LatLng>? get onLongPress => widget.onLongPress;
+  ArgumentCallback<AtlasController>? get onMapCreated => widget.onMapCreated;
+  ArgumentCallback<CameraPosition>? get onCameraPositionChanged =>
       widget.onCameraPositionChanged;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Set<GoogleMaps.Marker>>(
-      future: _toGoogleMarkers(markers),
+      future: _toGoogleMarkers(markers!),
       initialData: Set<GoogleMaps.Marker>(),
       builder: (context, snapshot) {
         return GoogleMaps.GoogleMap(
-          myLocationEnabled: showMyLocation,
-          myLocationButtonEnabled: showMyLocationButton,
-          mapType: _toGoogleMapType(mapType),
-          trafficEnabled: showTraffic,
+          myLocationEnabled: showMyLocation!,
+          myLocationButtonEnabled: showMyLocationButton!,
+          mapType: _toGoogleMapType(mapType!),
+          trafficEnabled: showTraffic!,
           initialCameraPosition:
-              CameraUtils.toGoogleCameraPosition(initialCameraPosition),
-          markers: snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data,
-          onTap: _toGoogleOnTap(onTap),
-          onLongPress: _toGoogleOnLongPress(onLongPress),
+              CameraUtils.toGoogleCameraPosition(initialCameraPosition!),
+          markers:
+              snapshot.hasError ? Set<GoogleMaps.Marker>() : snapshot.data!,
+          onTap: _toGoogleOnTap(onTap!),
+          onLongPress: _toGoogleOnLongPress(onLongPress!),
           onMapCreated: _onMapCreated,
           onCameraMove: _onCameraMove,
         );
@@ -139,15 +145,13 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     for (Marker marker in markers) {
       googleMarkers.add(
         GoogleMaps.Marker(
-          markerId: GoogleMaps.MarkerId(marker.id),
+          markerId: GoogleMaps.MarkerId(marker.id!),
           position: GoogleMaps.LatLng(
-            marker.position.latitude,
-            marker.position.longitude,
+            marker.position!.latitude ?? 0,
+            marker.position!.longitude ?? 0,
           ),
           onTap: marker.onTap,
-          icon: marker.icon == null
-              ? null
-              : await _toBitmapDescriptor(marker.icon),
+          icon: await _toBitmapDescriptor(marker.icon!),
         ),
       );
     }
@@ -158,21 +162,21 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
   Future<GoogleMaps.BitmapDescriptor> _toBitmapDescriptor(
     MarkerIcon markerIcon,
   ) async {
-    GoogleMaps.BitmapDescriptor bitmapDescriptor;
+    GoogleMaps.BitmapDescriptor? bitmapDescriptor;
     try {
       bitmapDescriptor = GoogleMaps.BitmapDescriptor.fromBytes(
         await _getBytesFromAsset(
-          markerIcon.assetName,
-          _getIconWidth(markerIcon.width),
+          markerIcon.assetName!,
+          _getIconWidth(markerIcon.width!),
         ),
       );
     } catch (_) {}
-    return bitmapDescriptor;
+    return bitmapDescriptor!;
   }
 
   /// Returns the icon width in pixels according the device screen.
   int _getIconWidth(int width) {
-    return (width != null && width > 0)
+    return (width > 0)
         ? (width * ui.window.devicePixelRatio).round()
         : _getDefaultIconWidth();
   }
@@ -193,7 +197,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
         targetWidth: width,
       );
       final fi = await codec.getNextFrame();
-      return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
+      return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
           .buffer
           .asUint8List();
     } else {
@@ -206,7 +210,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     ArgumentCallback<LatLng> onTap,
   ) {
     return (GoogleMaps.LatLng position) {
-      onTap?.call(LatLngUtils.fromGoogleLatLng(position));
+      onTap.call(LatLngUtils.fromGoogleLatLng(position));
     };
   }
 
@@ -215,7 +219,7 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     ArgumentCallback<LatLng> onLongPress,
   ) {
     return (GoogleMaps.LatLng position) {
-      onLongPress?.call(LatLngUtils.fromGoogleLatLng(position));
+      onLongPress.call(LatLngUtils.fromGoogleLatLng(position));
     };
   }
 
@@ -224,16 +228,12 @@ class _GoogleMapsProviderState extends State<GoogleMapsProvider> {
     switch (atlasMapType) {
       case MapType.normal:
         return GoogleMaps.MapType.normal;
-        break;
       case MapType.satellite:
         return GoogleMaps.MapType.satellite;
-        break;
       case MapType.hybrid:
         return GoogleMaps.MapType.hybrid;
-        break;
       case MapType.terrain:
         return GoogleMaps.MapType.terrain;
-        break;
       default:
         return GoogleMaps.MapType.normal;
     }

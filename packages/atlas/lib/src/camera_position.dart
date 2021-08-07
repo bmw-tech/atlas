@@ -6,10 +6,10 @@ import 'package:flutter/foundation.dart';
 /// Aggregates the camera's `target` geographical location and the its `zoom` level.
 class CameraPosition {
   /// The camera's `target` position as `LatLng`.
-  final LatLng target;
+  final LatLng? target;
 
   /// The camera's zoom level as a `double`.
-  final double zoom;
+  final double? zoom;
 
   const CameraPosition({
     @required this.target,

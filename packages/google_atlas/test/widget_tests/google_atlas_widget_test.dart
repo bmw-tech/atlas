@@ -21,21 +21,21 @@ main() {
   });
 
   group('GoogleAtlasProvider Test', () {
-    Provider provider;
+    Provider? provider;
 
     setUp(() {
       provider = GoogleAtlasProviderSample();
     });
 
     test('provider creates and supplies maptypes', () {
-      expect(provider.supportedMapTypes,
+      expect(provider?.supportedMapTypes,
           {MapType.normal, MapType.satellite, MapType.terrain});
     });
   });
 
   group('GoogleAtlas Widget Test', () {
-    GoogleAtlas googleAtlas;
-    CameraPosition initialCameraPosition;
+    GoogleAtlas? googleAtlas;
+    CameraPosition? initialCameraPosition;
 
     setUp(() {
       googleAtlas = GoogleAtlas();
@@ -51,7 +51,7 @@ main() {
     });
 
     test('should support 3 map types', () {
-      expect(googleAtlas.supportedMapTypes.length, 3);
+      expect(googleAtlas?.supportedMapTypes.length, 3);
     });
 
     testWidgets(
@@ -62,9 +62,7 @@ main() {
 
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
-        home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
-        ),
+        home: AtlasTestSample(initialCameraPosition: initialCameraPosition!),
       ));
 
       await tester.pumpAndSettle();
@@ -72,9 +70,9 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
-      expect(platformGoogleMap.cameraPosition.zoom, expectedZoom);
-      expect(platformGoogleMap.markersToAdd.length, 0);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.zoom, expectedZoom);
+      expect(platformGoogleMap.markersToAdd!.length, 0);
       expect(platformGoogleMap.mapType, GoogleMaps.MapType.normal);
     });
 
@@ -83,7 +81,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           showTraffic: true,
         ),
       ));
@@ -101,7 +99,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           mapType: MapType.normal,
         ),
       ));
@@ -120,7 +118,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           mapType: MapType.satellite,
         ),
       ));
@@ -139,7 +137,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           mapType: MapType.terrain,
         ),
       ));
@@ -158,7 +156,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           mapType: MapType.hybrid,
         ),
       ));
@@ -191,7 +189,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           markers: mockMarker,
         ),
       ));
@@ -201,11 +199,11 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.markersToAdd.length, 1);
+      expect(platformGoogleMap.markersToAdd?.length, 1);
 
       final GoogleMaps.Marker actualMarker =
-          platformGoogleMap.markersToAdd.first;
-      expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
+          platformGoogleMap.markersToAdd!.first;
+      expect(platformGoogleMap.markerIdsToRemove?.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
     });
 
@@ -232,7 +230,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           markers: mockMarker,
         ),
       ));
@@ -242,11 +240,11 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.markersToAdd.length, 1);
+      expect(platformGoogleMap.markersToAdd?.length, 1);
 
       final GoogleMaps.Marker actualMarker =
-          platformGoogleMap.markersToAdd.first;
-      expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
+          platformGoogleMap.markersToAdd!.first;
+      expect(platformGoogleMap.markerIdsToRemove?.isEmpty, true);
       expect(actualMarker, equals(expectedMarker));
     }
 
@@ -289,7 +287,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           markers: mockMarker,
         ),
       ));
@@ -334,7 +332,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           markers: mockMarker,
         ),
       ));
@@ -344,17 +342,17 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.markersToAdd.length, 2);
+      expect(platformGoogleMap.markersToAdd!.length, 2);
 
       final GoogleMaps.Marker firstActualMarker =
-          platformGoogleMap.markersToAdd.first;
+          platformGoogleMap.markersToAdd!.first;
       expect(firstActualMarker, equals(expectedFirstMarker));
 
       final GoogleMaps.Marker secondActualMarker =
-          platformGoogleMap.markersToAdd.last;
+          platformGoogleMap.markersToAdd!.last;
       expect(secondActualMarker, equals(expectedSecondMarker));
 
-      expect(platformGoogleMap.markerIdsToRemove.isEmpty, true);
+      expect(platformGoogleMap.markerIdsToRemove!.isEmpty, true);
     });
 
     /* Track Google Maps Flutter Plugin Issue on better interactive testing.
@@ -371,7 +369,7 @@ main() {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
           home: AtlasTestSample(
-            initialCameraPosition: initialCameraPosition,
+            initialCameraPosition: initialCameraPosition!,
             onLongPress: mockOnLongPress,
           ),
         ));
@@ -380,7 +378,7 @@ main() {
 
         final googleMap =
             find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
-        (googleMap as GoogleMaps.GoogleMap).onTap(GoogleMaps.LatLng(0, 0));
+        (googleMap as GoogleMaps.GoogleMap).onTap!(GoogleMaps.LatLng(0, 0));
       } catch (_) {
         fail('should not throw');
       }
@@ -400,7 +398,7 @@ main() {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
           home: AtlasTestSample(
-            initialCameraPosition: initialCameraPosition,
+            initialCameraPosition: initialCameraPosition!,
             onTap: mockOnTap,
           ),
         ));
@@ -409,7 +407,7 @@ main() {
 
         final googleMap =
             find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
-        (googleMap as GoogleMaps.GoogleMap).onTap(GoogleMaps.LatLng(0, 0));
+        (googleMap as GoogleMaps.GoogleMap).onTap!(GoogleMaps.LatLng(0, 0));
       } catch (_) {
         fail('should not throw');
       }
@@ -422,7 +420,7 @@ main() {
         'should return correct GoogleMap when build is called with onTap',
         (WidgetTester tester) async {
       int onTapCallCount = 0;
-      LatLng onTapPosition;
+      LatLng? onTapPosition;
       final ArgumentCallback<LatLng> mockOnTap = (LatLng position) {
         onTapCallCount++;
         onTapPosition = position;
@@ -432,7 +430,7 @@ main() {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
           home: AtlasTestSample(
-            initialCameraPosition: initialCameraPosition,
+            initialCameraPosition: initialCameraPosition!,
             onTap: mockOnTap,
           ),
         ));
@@ -441,11 +439,11 @@ main() {
 
         final googleMap =
             find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
-        (googleMap as GoogleMaps.GoogleMap).onTap(GoogleMaps.LatLng(0, 0));
+        (googleMap as GoogleMaps.GoogleMap).onTap!(GoogleMaps.LatLng(0, 0));
 
         expect(onTapCallCount, 1);
-        expect(onTapPosition.latitude, 0.0);
-        expect(onTapPosition.longitude, 0.0);
+        expect(onTapPosition?.latitude, 0.0);
+        expect(onTapPosition?.longitude, 0.0);
       } catch (_) {
         fail("should not throw");
       }
@@ -458,7 +456,7 @@ main() {
         'should return correct GoogleMap when build is called with onLongPress',
         (WidgetTester tester) async {
       int onLongPressCallCount = 0;
-      LatLng onLongPressPosition;
+      LatLng? onLongPressPosition;
       final ArgumentCallback<LatLng> mockOnLongPress = (LatLng position) {
         onLongPressCallCount++;
         onLongPressPosition = position;
@@ -468,7 +466,7 @@ main() {
         await tester.pumpWidget(MaterialApp(
           title: 'Atlas Test Sample with Google Provider',
           home: AtlasTestSample(
-            initialCameraPosition: initialCameraPosition,
+            initialCameraPosition: initialCameraPosition!,
             onLongPress: mockOnLongPress,
           ),
         ));
@@ -478,11 +476,11 @@ main() {
         final googleMap =
             find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
         (googleMap as GoogleMaps.GoogleMap)
-            .onLongPress(GoogleMaps.LatLng(0, 0));
+            .onLongPress!(GoogleMaps.LatLng(0, 0));
 
         expect(onLongPressCallCount, 1);
-        expect(onLongPressPosition.latitude, 0.0);
-        expect(onLongPressPosition.longitude, 0.0);
+        expect(onLongPressPosition?.latitude, 0.0);
+        expect(onLongPressPosition?.longitude, 0.0);
       } catch (_) {
         fail("should not throw");
       }
@@ -496,7 +494,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           showMyLocation: false,
         ),
       ));
@@ -506,7 +504,7 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
       expect(platformGoogleMap.myLocationEnabled, false);
     });
 
@@ -518,7 +516,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           showMyLocation: true,
         ),
       ));
@@ -528,7 +526,7 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
       expect(platformGoogleMap.myLocationEnabled, true);
     });
 
@@ -540,7 +538,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
         ),
       ));
 
@@ -549,7 +547,7 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
       expect(platformGoogleMap.myLocationEnabled, false);
     });
 
@@ -561,7 +559,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           showMyLocationButton: false,
         ),
       ));
@@ -571,7 +569,7 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
       expect(platformGoogleMap.myLocationButtonEnabled, false);
     });
 
@@ -583,7 +581,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
           showMyLocationButton: true,
         ),
       ));
@@ -593,7 +591,7 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
       expect(platformGoogleMap.myLocationButtonEnabled, true);
     });
 
@@ -605,7 +603,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
         ),
       ));
 
@@ -614,7 +612,7 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
       expect(platformGoogleMap.myLocationButtonEnabled, false);
     });
 
@@ -625,7 +623,7 @@ main() {
       await tester.pumpWidget(MaterialApp(
         title: 'Atlas Test Sample with Google Provider',
         home: AtlasTestSample(
-          initialCameraPosition: initialCameraPosition,
+          initialCameraPosition: initialCameraPosition!,
         ),
       ));
 
@@ -637,7 +635,7 @@ main() {
       final FakePlatformGoogleMap platformGoogleMap =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(platformGoogleMap.cameraPosition.target, expectedPosition);
+      expect(platformGoogleMap.cameraPosition!.target, expectedPosition);
     });
 
     testWidgets(
@@ -655,7 +653,7 @@ main() {
           MaterialApp(
             title: 'Atlas Test Sample with Google Provider',
             home: AtlasTestSample(
-              initialCameraPosition: initialCameraPosition,
+              initialCameraPosition: initialCameraPosition!,
               onCameraPositionChanged: mockOnCameraPositionChanged,
               mapLanguage: MapLanguage.enUs,
             ),
@@ -666,7 +664,7 @@ main() {
 
         final googleMap =
             find.byType(GoogleMaps.GoogleMap).evaluate().first.widget;
-        (googleMap as GoogleMaps.GoogleMap).onCameraMove(
+        (googleMap as GoogleMaps.GoogleMap).onCameraMove!(
           GoogleMaps.CameraPosition(
               target: GoogleMaps.LatLng(0.0, 0.0), zoom: 9.0),
         );
@@ -689,23 +687,28 @@ class GoogleAtlasProviderSample extends Provider {
 
   @override
   Widget build({
-    CameraPosition initialCameraPosition,
-    Set<Marker> markers,
-    Set<Circle> circles,
-    Set<Polygon> polygons,
-    Set<Polyline> polylines,
-    ArgumentCallback<LatLng> onTap,
-    ArgumentCallback<Poi> onPoiTap,
-    ArgumentCallback<LatLng> onLongPress,
-    ArgumentCallback<AtlasController> onMapCreated,
-    ArgumentCallback<CameraPosition> onCameraPositionChanged,
-    ArgumentCallback<LatLng> onLocationChanged,
-    bool showMyLocation,
-    bool showMyLocationButton,
-    bool followMyLocation,
-    MapType mapType,
-    bool showTraffic,
-    MapLanguage mapLanguage,
+    @required CameraPosition? initialCameraPosition,
+    @required Set<Marker>? markers,
+    @required Set<Callout>? callouts,
+    @required Set<Circle>? circles,
+    @required Set<Polygon>? polygons,
+    @required Set<Polyline>? polylines,
+    ArgumentCallback<LatLng>? onTap,
+    ArgumentCallback<Poi>? onPoiTap,
+    ArgumentCallback<LatLng>? onLongPress,
+    ArgumentCallback<AtlasController>? onMapCreated,
+    ArgumentCallback<CameraPosition>? onCameraPositionChanged,
+    ArgumentCallback<LatLng>? onLocationChanged,
+    VoidCallback? onPan,
+    @required bool? showMyLocation,
+    @required bool? showMyLocationButton,
+    bool? followMyLocation,
+    @required MapType? mapType,
+    @required bool? showTraffic,
+    MapLanguage? mapLanguage,
+    DeviceLocation? deviceLocation,
+    String? deviceLocationIconAsset,
+    String? country,
   }) {
     return AtlasTestSample(
       initialCameraPosition: initialCameraPosition,
@@ -724,17 +727,17 @@ class GoogleAtlasProviderSample extends Provider {
 }
 
 class AtlasTestSample extends StatefulWidget {
-  final CameraPosition initialCameraPosition;
-  final Set<Marker> markers;
-  final bool showMyLocation;
-  final bool showMyLocationButton;
-  final MapType mapType;
-  final bool showTraffic;
-  final MapLanguage mapLanguage;
-  final ArgumentCallback<LatLng> onTap;
-  final ArgumentCallback<Poi> onPoiTap;
-  final ArgumentCallback<LatLng> onLongPress;
-  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
+  final CameraPosition? initialCameraPosition;
+  final Set<Marker>? markers;
+  final bool? showMyLocation;
+  final bool? showMyLocationButton;
+  final MapType? mapType;
+  final bool? showTraffic;
+  final MapLanguage? mapLanguage;
+  final ArgumentCallback<LatLng>? onTap;
+  final ArgumentCallback<Poi>? onPoiTap;
+  final ArgumentCallback<LatLng>? onLongPress;
+  final ArgumentCallback<CameraPosition>? onCameraPositionChanged;
 
   AtlasTestSample({
     @required this.initialCameraPosition,
@@ -766,18 +769,18 @@ class AtlasTestSample extends StatefulWidget {
 }
 
 class _AtlasTestSampleState extends State<AtlasTestSample> {
-  final CameraPosition initialCameraPosition;
-  final Set<Marker> markers;
-  final bool showMyLocation;
-  final bool showMyLocationButton;
-  final MapType mapType;
-  final MapLanguage mapLanguage;
-  final bool showTraffic;
-  final ArgumentCallback<LatLng> onTap;
-  final ArgumentCallback<Poi> onPoiTap;
-  final ArgumentCallback<LatLng> onLongPress;
-  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
-  AtlasController _controller;
+  final CameraPosition? initialCameraPosition;
+  final Set<Marker>? markers;
+  final bool? showMyLocation;
+  final bool? showMyLocationButton;
+  final MapType? mapType;
+  final MapLanguage? mapLanguage;
+  final bool? showTraffic;
+  final ArgumentCallback<LatLng>? onTap;
+  final ArgumentCallback<Poi>? onPoiTap;
+  final ArgumentCallback<LatLng>? onLongPress;
+  final ArgumentCallback<CameraPosition>? onCameraPositionChanged;
+  AtlasController? _controller;
 
   _AtlasTestSampleState({
     @required this.initialCameraPosition,

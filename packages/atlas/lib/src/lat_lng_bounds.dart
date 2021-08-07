@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/foundation.dart';
 
 /// A latitude/longitude aligned rectangle.
 ///
@@ -10,8 +10,8 @@ import 'package:atlas/atlas.dart';
 /// * lng ∈ [-180, `northeast.longitude`] ∪ [`southwest.longitude`, 180[,
 ///   if `northeast.longitude` < `southwest.longitude`
 class LatLngBounds {
-  final LatLng northeast;
-  final LatLng southwest;
+  final LatLng? northeast;
+  final LatLng? southwest;
 
   const LatLngBounds({
     @required this.northeast,

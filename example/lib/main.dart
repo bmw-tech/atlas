@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_atlas/google_atlas.dart';
+
 import 'bloc/bloc.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class AtlasSample extends StatefulWidget {
 class _AtlasSampleState extends State<AtlasSample> {
   MapType mapType = MapType.normal;
 
-  AtlasController _controller;
+  AtlasController? _controller;
   final Set<Marker> _markers = Set<Marker>.from(
     [
       Marker(
@@ -118,7 +119,7 @@ class _AtlasSampleState extends State<AtlasSample> {
                   top: 50,
                 ),
                 child: Visibility(
-                  visible: state.showSearchAreaButton,
+                  visible: state.showSearchAreaButton!,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -197,6 +198,6 @@ class _AtlasSampleState extends State<AtlasSample> {
   }
 
   bool _shouldShowMapTypeButton() {
-    return AtlasProvider.instance.supportedMapTypes.length > 1;
+    return AtlasProvider.instance!.supportedMapTypes!.length > 1;
   }
 }

@@ -8,46 +8,46 @@ import 'package:flutter/widgets.dart';
 /// `AtlasProvider.instance` before the `Atlas` widget is rendered.
 class Atlas extends StatelessWidget {
   /// The `CameraPosition` which the map will initially be focused on.
-  final CameraPosition initialCameraPosition;
+  final CameraPosition? initialCameraPosition;
 
   /// The [Set] of `Marker` objects which will be rendered on the map.
-  final Set<Marker> markers;
+  final Set<Marker>? markers;
 
   /// The [Set] of `Callout` objects which will be rendered on the map.
-  final Set<Callout> callouts;
+  final Set<Callout>? callouts;
 
   /// The [Set] of `Circle` objects which will be rendered on the map.
-  final Set<Circle> circles;
+  final Set<Circle>? circles;
 
   /// The [Set] of `Polygon` objects which will be rendered on the map.
-  final Set<Polygon> polygons;
+  final Set<Polygon>? polygons;
 
   /// The [Set] of `Polyline` objects which will be rendered on the map.
-  final Set<Polyline> polylines;
+  final Set<Polyline>? polylines;
 
   /// `onTap` gets called when the map is tapped.
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
-  final ArgumentCallback<LatLng> onTap;
+  final ArgumentCallback<LatLng>? onTap;
 
   /// `onPoiTap` gets called when a valid point on the map is clicked.
   /// When the clicked place is not valid point, `onTap` gets called.
   /// The `Poi` contains the name and latitude and longitude of the valid point.
-  final ArgumentCallback<Poi> onPoiTap;
+  final ArgumentCallback<Poi>? onPoiTap;
 
   /// `onLongPress` gets called when the map is long pressed
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
-  final ArgumentCallback<LatLng> onLongPress;
+  final ArgumentCallback<LatLng>? onLongPress;
 
   /// `onMapCreated` gets called when the map is initialized and provides an `AtlasController`
   /// which can be used to manipulate the map.
-  final ArgumentCallback<AtlasController> onMapCreated;
+  final ArgumentCallback<AtlasController>? onMapCreated;
 
   /// `onCameraPositionChanged ` gets called when the map's camera position is changed.
   /// The updated `CameraPosition ` is passed as an argument.
-  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
+  final ArgumentCallback<CameraPosition>? onCameraPositionChanged;
 
   /// `onLocationChanged` callback which receives a position when the user moves
-  final ArgumentCallback<LatLng> onLocationChanged;
+  final ArgumentCallback<LatLng>? onLocationChanged;
 
   /// `showMyLocation` determines whether or not the current device location
   /// should be displayed on the map. It will default to false if not specified.
@@ -67,7 +67,7 @@ class Atlas extends StatelessWidget {
   /// * On iOS add a `NSLocationWhenInUseUsageDescription` key to your
   /// `Info.plist` file. This will automatically prompt the user for permissions
   /// when the map is loaded.
-  final bool showMyLocation;
+  final bool? showMyLocation;
 
   /// Enables or disables the my-location button.
   ///
@@ -80,11 +80,11 @@ class Atlas extends StatelessWidget {
   ///
   /// See also:
   ///   * [showMyLocation] parameter.
-  final bool showMyLocationButton;
+  final bool? showMyLocationButton;
 
   /// This option enables the map to update its camera position so that
   /// the user's current location is always shown in the center of the screen
-  final bool followMyLocation;
+  final bool? followMyLocation;
 
   /// Sets the underlying map type to be displayed.
   ///
@@ -92,42 +92,42 @@ class Atlas extends StatelessWidget {
   ///
   /// See also:
   ///   * [Provider.supportedMapTypes] parameter.
-  final MapType mapType;
+  final MapType? mapType;
 
   /// Enable real-time traffic information status
-  final bool showTraffic;
+  final bool? showTraffic;
 
   /// Sets the map exhibition language.
   ///
   /// Defaults to [MapLanguage.enUs].
-  final MapLanguage mapLanguage;
+  final MapLanguage? mapLanguage;
 
   /// `onPan` gets called when the map is panned by user pan gesture.
-  final VoidCallback onPan;
+  final VoidCallback? onPan;
 
   /// Sets the device location coordinates with accuracy.
-  final DeviceLocation deviceLocation;
+  final DeviceLocation? deviceLocation;
 
   /// Sets the device location icon asset path.
-  final String deviceLocationIconAsset;
+  final String? deviceLocationIconAsset;
 
   /// Sets the country name.
-  final String country;
+  final String? country;
 
   Atlas({
-    Key key,
+    Key? key,
     @required this.initialCameraPosition,
-    Set<Marker> markers,
-    Set<Callout> callouts,
-    Set<Circle> circles,
-    Set<Polygon> polygons,
-    Set<Polyline> polylines,
-    bool showMyLocation,
-    bool showMyLocationButton,
-    bool followMyLocation,
-    MapType mapType,
-    bool showTraffic,
-    MapLanguage mapLanguage,
+    Set<Marker>? markers,
+    Set<Callout>? callouts,
+    Set<Circle>? circles,
+    Set<Polygon>? polygons,
+    Set<Polyline>? polylines,
+    bool? showMyLocation,
+    bool? showMyLocationButton,
+    bool? followMyLocation,
+    MapType? mapType,
+    bool? showTraffic,
+    MapLanguage? mapLanguage,
     this.onTap,
     this.onPoiTap,
     this.onLongPress,
@@ -154,7 +154,7 @@ class Atlas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AtlasProvider.instance.build(
+    return AtlasProvider.instance!.build(
       initialCameraPosition: initialCameraPosition,
       markers: markers,
       callouts: callouts,

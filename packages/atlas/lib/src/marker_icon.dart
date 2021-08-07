@@ -4,17 +4,17 @@ import 'dart:typed_data';
 class MarkerIcon {
   /// The [assetName] argument must not be null if [assetBytes] is null. It should name the main asset
   /// from the set of images to choose from. File should be of type png
-  final String assetName;
+  final String? assetName;
 
   /// The [assetBytes] argument must not be null if [assetName] is null.
   /// File should be of type png
-  final Uint8List assetBytes;
+  final Uint8List? assetBytes;
 
   /// The [width] argument is optional. It is the desired width in pixels.
-  final int width;
+  final int? width;
 
   /// The [height] argument is optional. It is the desired height in pixels.
-  final int height;
+  final int? height;
 
   const MarkerIcon({
     this.assetName,
@@ -27,7 +27,7 @@ class MarkerIcon {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final MarkerIcon typedOther = other;
+    final MarkerIcon typedOther = other is MarkerIcon ? other : MarkerIcon();
     return assetName == typedOther.assetName &&
         width == typedOther.width &&
         height == typedOther.height &&

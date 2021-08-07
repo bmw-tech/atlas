@@ -9,8 +9,8 @@ class MockGoogleMapController extends Mock
 
 main() {
   group('GoogleAtlasController', () {
-    GoogleMaps.GoogleMapController googleMapController;
-    GoogleAtlasController googleAtlasController;
+    GoogleMaps.GoogleMapController? googleMapController;
+    GoogleAtlasController? googleAtlasController;
 
     setUp(() {
       googleMapController = MockGoogleMapController();
@@ -34,19 +34,39 @@ main() {
           target: LatLng(latitude: 10.1, longitude: -80.7),
           zoom: 15,
         );
-        await googleAtlasController.moveCamera(cameraPosition);
-        verify(googleMapController.moveCamera(any)).called(1);
+        final googleMapsBounds = GoogleMaps.LatLngBounds(
+          northeast: GoogleMaps.LatLng(0, 0),
+          southwest: GoogleMaps.LatLng(0, 0),
+        );
+
+        final cameraUpdate =
+            GoogleMaps.CameraUpdate.newLatLngBounds(googleMapsBounds, 0);
+        await googleAtlasController?.moveCamera(cameraPosition);
+        verify(googleMapController?.moveCamera(cameraUpdate)).called(1);
       });
     });
 
     group('updateBounds', () {
       test('invokes newLatLngBounds', () async {
-        final LatLngBounds bounds = LatLngBounds(
+        final LatLngBounds atlasBounds = LatLngBounds(
           northeast: LatLng(latitude: 1, longitude: 1),
           southwest: LatLng(latitude: 0, longitude: 3),
         );
-        await googleAtlasController.updateBounds(bounds, 20);
-        verify(googleMapController.moveCamera(any)).called(1);
+
+        final BoundingBoxData boundingBox = BoundingBoxData(
+          bounds: atlasBounds,
+        );
+
+        final googleMapsBounds = GoogleMaps.LatLngBounds(
+          northeast: GoogleMaps.LatLng(0, 0),
+          southwest: GoogleMaps.LatLng(0, 0),
+        );
+
+        final cameraUpdate =
+            GoogleMaps.CameraUpdate.newLatLngBounds(googleMapsBounds, 0);
+
+        await googleAtlasController?.updateBounds(boundingBox);
+        verify(googleMapController?.moveCamera(cameraUpdate)).called(1);
       });
     });
 
@@ -58,12 +78,14 @@ main() {
         );
         var googleLatLng = GoogleMaps.LatLng(1.1, 2.2);
 
-        when(googleMapController.getLatLng(any))
+        var screenCoordinate = GoogleMaps.ScreenCoordinate(x: 0, y: 0);
+        when(googleMapController?.getLatLng(screenCoordinate))
             .thenAnswer((_) => Future.value(googleLatLng));
 
-        await googleAtlasController.getLatLng(coordinates);
-        List<dynamic> results =
-            verify(googleMapController.getLatLng(captureAny)).captured;
+        await googleAtlasController?.getLatLng(coordinates);
+        List<dynamic> results = verify(
+          googleMapController?.getLatLng(screenCoordinate),
+        ).captured;
         GoogleMaps.ScreenCoordinate resultingScreenCoordinate = results.first;
         expect(coordinates.x, resultingScreenCoordinate.x);
         expect(coordinates.y, resultingScreenCoordinate.y);
@@ -80,13 +102,19 @@ main() {
           x: 1,
           y: 2,
         );
-        when(googleMapController.getScreenCoordinate(any))
+
+        when(googleMapController?.getScreenCoordinate(GoogleMaps.LatLng(0, 0)))
             .thenAnswer((_) => Future.value(returnedGoogleScreenCoordinate));
 
-        await googleAtlasController.getScreenCoordinate(inputLatLng);
-        List<dynamic> results =
-            verify(googleMapController.getScreenCoordinate(captureAny))
-                .captured;
+        await googleAtlasController?.getScreenCoordinate(inputLatLng);
+        List<dynamic> results = verify(
+          googleMapController?.getScreenCoordinate(
+            GoogleMaps.LatLng(
+              0,
+              0,
+            ),
+          ),
+        ).captured;
         GoogleMaps.LatLng resultingLatLng = results.first;
         expect(inputLatLng.latitude, resultingLatLng.latitude);
         expect(inputLatLng.longitude, resultingLatLng.longitude);
@@ -96,33 +124,53 @@ main() {
     // TODO: implement updateBoundsWithPaddingToAllSides tests
     group('updateBoundsWithPaddingToAllSides', () {
       test('invokes lookAtWithGeoBoxAndOrientation', () async {
-        await googleAtlasController.updateBoundsWithPaddingToAllSides(
-          null,
+        await googleAtlasController?.updateBoundsWithPaddingToAllSides(
+          LatLngBounds(
+            southwest: LatLng(
+              latitude: 0,
+              longitude: 0,
+            ),
+            northeast: LatLng(
+              latitude: 0,
+              longitude: 0,
+            ),
+          ),
           0,
           0,
           0,
           0,
         );
-        verify(googleMapController.moveCamera(any)).called(1);
+
+        final googleMapsBounds = GoogleMaps.LatLngBounds(
+          northeast: GoogleMaps.LatLng(0, 0),
+          southwest: GoogleMaps.LatLng(0, 0),
+        );
+
+        final cameraUpdate = GoogleMaps.CameraUpdate.newLatLngBounds(
+          googleMapsBounds,
+          0,
+        );
+
+        verify(googleMapController?.moveCamera(cameraUpdate)).called(1);
       });
     });
 
     group('changeUserLocationIcon', () {
       test('invokes changeUserLocationIcon', () {
-        googleAtlasController.changeUserLocationIcon('asset');
+        googleAtlasController?.changeUserLocationIcon('asset');
       });
     });
 
     group('getCameraPosition', () {
       test('call getCameraPosition and returns null', () async {
-        final cameraPosition = await googleAtlasController.getCameraPosition();
+        final cameraPosition = await googleAtlasController?.getCameraPosition();
         expect(cameraPosition, null);
       });
     });
 
     group('getVisibleArea', () {
       test('invokes getVisibleArea', () async {
-        when(googleMapController.getVisibleRegion()).thenAnswer(
+        when(googleMapController?.getVisibleRegion()).thenAnswer(
           (_) => Future.value(
             Future.value(
               GoogleMaps.LatLngBounds(
@@ -138,8 +186,8 @@ main() {
             ),
           ),
         );
-        await googleAtlasController.getVisibleArea();
-        verify(googleMapController.getVisibleRegion()).called(1);
+        await googleAtlasController?.getVisibleArea();
+        verify(googleMapController?.getVisibleRegion()).called(1);
       });
     });
   });

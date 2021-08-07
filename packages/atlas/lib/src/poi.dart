@@ -4,13 +4,13 @@ import 'package:flutter/foundation.dart';
 /// The `Poi` represents the details of the valid points selected on the map.
 class Poi {
   ///A unique identifier of the valid point selected.
-  final String id;
+  final String? id;
 
   ///The name of the valid point selected.
-  final String name;
+  final String? name;
 
   ///The latitude and longitude of the selected valid point.
-  final LatLng latLng;
+  final LatLng? latLng;
 
   const Poi({
     this.id,

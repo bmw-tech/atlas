@@ -1,20 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:rxdart/rxdart.dart';
+
 import 'bloc.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
-  @override
-  MapState get initialState => MapState.initial();
+  MapBloc() : super(MapState.initial());
 
-  @override
-  Stream<MapState> transformEvents(
-      Stream<MapEvent> events, Stream<MapState> Function(MapEvent event) next) {
-    final observableStream = events as Observable<MapEvent>;
+  Stream<Transition<MapEvent, MapState>> transformEvents(
+    Stream<MapEvent> events,
+    TransitionFunction<MapEvent, MapState> next,
+  ) {
     final nonDebounceStream =
-        observableStream.where((event) => event is! MapCameraPositionChanged);
-    final debounceStream = observableStream
+        events.where((event) => event is! MapCameraPositionChanged);
+
+    final debounceStream = events
         .where((event) => event is MapCameraPositionChanged)
         .debounceTime(Duration(milliseconds: 200));
+
     return super.transformEvents(
         MergeStream([nonDebounceStream, debounceStream]), next);
   }
@@ -33,11 +35,11 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   Stream<MapState> _mapMapCameraPositionChangedToState(
       MapCameraPositionChanged event) async* {
     yield state.copyWith(newDefaultCameraPosition: event.cameraPosition);
-    if ((event.cameraPosition.target.longitude !=
-                state.defaultCameraPosition.target.longitude &&
-            event.cameraPosition.target.latitude !=
-                state.defaultCameraPosition.target.latitude) ||
-        event.cameraPosition.zoom != state.defaultCameraPosition.zoom) {
+    if ((event.cameraPosition?.target?.longitude !=
+                state.defaultCameraPosition?.target?.longitude &&
+            event.cameraPosition?.target?.latitude !=
+                state.defaultCameraPosition?.target?.latitude) ||
+        event.cameraPosition?.zoom != state.defaultCameraPosition?.zoom) {
       yield state.copyWith(showSearchAreaButton: true);
     }
   }

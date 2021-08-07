@@ -1,16 +1,16 @@
 /// Represents a virtual rectangle of the screen
 class Rectangle2D {
   /// Represents the X-axis point of the origin coordinate
-  final double originX;
+  final double? originX;
 
   /// Represents the Y-axis point of the origin coordinate
-  final double originY;
+  final double? originY;
 
   /// Represents the width of the rectangle
-  final double width;
+  final double? width;
 
   /// Represents the height of the rectangle
-  final double height;
+  final double? height;
 
   Rectangle2D({
     this.originX,
