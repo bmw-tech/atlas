@@ -21,8 +21,8 @@ main() {
         accuracy: 1.0,
         altitude: 1.0,
       );
-      expect(deviceLocation.target.latitude, 1.0);
-      expect(deviceLocation.target.longitude, 1.0);
+      expect(deviceLocation.target?.latitude, 1.0);
+      expect(deviceLocation.target?.longitude, 1.0);
       expect(deviceLocation.accuracy, 1.0);
       expect(deviceLocation.altitude, 1.0);
     });

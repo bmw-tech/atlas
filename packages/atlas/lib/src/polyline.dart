@@ -1,40 +1,40 @@
-import 'package:flutter/foundation.dart';
 import 'package:atlas/atlas.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// A `Polyline` made up of multiple points on the map
 class Polyline {
   /// Uniquely identifies a `Polyline`.
-  final String id;
+  final String? id;
 
   /// A `List` of `LatLng` points that make up the polyline's shape.
-  final List<LatLng> points;
+  final List<LatLng>? points;
 
   /// The `Color` of the line
-  final Color color;
+  final Color? color;
 
   /// Width of the polyline, used to define the width of the line segment to be drawn.
   ///
   /// The width is constant and independent of the camera's zoom level.
   /// The default value is 10.
-  final int width;
+  final int? width;
 
   /// The 'Outline Color' of the line.
   /// The default color is black.
-  final Color outlineColor;
+  final Color? outlineColor;
 
   /// Width of the outline of the polyline.
   ///
   /// The width is constant and independent of the camera's zoom level.
   /// The default value is 0.
-  final int outlineWidth;
+  final int? outlineWidth;
 
   ///The style of the line.
   ///
   ///When false, is solid lines.
   ///When true, is dotted lines.
   ///The default value is false.
-  final bool isDottedLine;
+  final bool? isDottedLine;
 
   const Polyline(
       {@required this.id,
@@ -51,7 +51,12 @@ class Polyline {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Polyline typedOther = other;
+    final Polyline typedOther = other is Polyline
+        ? other
+        : Polyline(
+            id: "0",
+            points: [],
+          );
     return id == typedOther.id &&
         points == typedOther.points &&
         color == typedOther.color &&

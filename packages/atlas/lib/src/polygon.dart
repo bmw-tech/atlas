@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 /// `Polygon` made up of mulitple points on the map
 class Polygon {
   /// Uniquely identifies a `Polygon`
-  final String id;
+  final String? id;
 
   /// A `List` of `LatLng` points that make up the polygon's shape
-  final List<LatLng> points;
+  final List<LatLng>? points;
 
   /// Defines the width of the stroke surrounding the polygon's shape
-  final int strokeWidth;
+  final int? strokeWidth;
 
   /// Defines the `Color` of the stroke surrounding the polygon's shape
-  final Color strokeColor;
+  final Color? strokeColor;
 
   /// Defines the fill `Color` within the polygon's shape
-  final Color fillColor;
+  final Color? fillColor;
 
   const Polygon({
     @required this.id,
@@ -31,7 +31,8 @@ class Polygon {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Polygon typedOther = other;
+    final Polygon typedOther =
+        other is Polygon ? other : Polygon(id: "0", points: []);
     return id == typedOther.id &&
         points == typedOther.points &&
         strokeWidth == typedOther.strokeWidth &&

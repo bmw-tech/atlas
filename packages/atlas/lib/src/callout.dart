@@ -4,19 +4,19 @@ import 'package:flutter/foundation.dart';
 /// Marks a geographical location on the map.
 class Callout {
   /// Uniquely identifies a `Callout`.
-  final String id;
+  final String? id;
 
   /// The location where the `Callout` is drawn is represented as `LatLng`.
-  final LatLng position;
+  final LatLng? position;
 
   /// The type of annotation of the `Callout`
-  final AnnotationType annotationType;
+  final AnnotationType? annotationType;
 
   /// Optional MarkerIcon used to replace default icon
-  final MarkerIcon icon;
+  final MarkerIcon? icon;
 
   /// List of information of the `Callout`
-  final List<String> texts;
+  final List<String>? texts;
 
   /// The z-index of the callout, used to determine relative drawing order of
   /// map overlays.
@@ -38,7 +38,9 @@ class Callout {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Callout typedOther = other;
+    final Callout typedOther = other is Callout
+        ? other
+        : Callout(id: "0", position: LatLng(latitude: 0, longitude: 0));
     return id == typedOther.id &&
         position == typedOther.position &&
         icon == typedOther.icon &&

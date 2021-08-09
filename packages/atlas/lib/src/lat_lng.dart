@@ -4,19 +4,20 @@ import 'package:flutter/foundation.dart';
 /// The `latitude` and `longitude` are stored as degrees.
 class LatLng {
   /// The latitude in degrees between -90.0 and 90.0, both inclusive.
-  final double latitude;
+  final double? latitude;
 
   /// The longitude in degrees between -180.0 (inclusive) and 180.0 (exclusive).
-  final double longitude;
+  final double? longitude;
 
   const LatLng({
-    @required double latitude,
-    @required double longitude,
+    @required double? latitude,
+    @required double? longitude,
   })  : assert(latitude != null),
         assert(longitude != null),
-        latitude =
-            (latitude < -90.0 ? -90.0 : (90.0 < latitude ? 90.0 : latitude)),
-        longitude = (longitude + 180.0) % 360.0 - 180.0;
+        latitude = (latitude != null && latitude < -90.0
+            ? -90.0
+            : (latitude != null && 90.0 < latitude ? 90.0 : latitude)),
+        longitude = (longitude ?? 0 + 180.0) % 360.0 - 180.0;
 
   @override
   bool operator ==(Object o) {
