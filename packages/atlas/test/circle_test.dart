@@ -184,6 +184,94 @@ main() {
       expect(circle.zIndex, expectedZIndex);
     });
 
+    test('should have correct properties when no strokeColor is provided', () {
+      final expectedId = 'id';
+      final expectedCenter = LatLng(
+        latitude: 38.7439498,
+        longitude: -9.1490721,
+      );
+      final expectedRadius = 10.0;
+      final expectedStrokeColor = null;
+
+      final circle = Circle(
+        id: expectedId,
+        center: expectedCenter,
+        radiusInMeters: expectedRadius,
+        strokeColor: expectedStrokeColor,
+      );
+
+      expect(circle.id, expectedId);
+      expect(circle.center, expectedCenter);
+      expect(circle.radiusInMeters, expectedRadius);
+      expect(circle.strokeColor, expectedStrokeColor);
+    });
+
+    test('should have correct properties when strokeColor is provided', () {
+      final expectedId = 'id';
+      final expectedCenter = LatLng(
+        latitude: 38.7439498,
+        longitude: -9.1490721,
+      );
+      final expectedRadius = 10.0;
+      final expectedStrokeColor = Colors.orange;
+
+      final circle = Circle(
+        id: expectedId,
+        center: expectedCenter,
+        radiusInMeters: expectedRadius,
+        strokeColor: expectedStrokeColor,
+      );
+
+      expect(circle.id, expectedId);
+      expect(circle.center, expectedCenter);
+      expect(circle.radiusInMeters, expectedRadius);
+      expect(circle.strokeColor, expectedStrokeColor);
+    });
+
+    test('should have correct properties when no strokeWidth is provided', () {
+      final expectedId = 'id';
+      final expectedCenter = LatLng(
+        latitude: 38.7439498,
+        longitude: -9.1490721,
+      );
+      final expectedRadius = 10.0;
+      final expectedStrokeColor = null;
+
+      final circle = Circle(
+        id: expectedId,
+        center: expectedCenter,
+        radiusInMeters: expectedRadius,
+        strokeWidth: expectedStrokeColor,
+      );
+
+      expect(circle.id, expectedId);
+      expect(circle.center, expectedCenter);
+      expect(circle.radiusInMeters, expectedRadius);
+      expect(circle.strokeWidth, expectedStrokeColor);
+    });
+
+    test('should have correct properties when strokeWidth is provided', () {
+      final expectedId = 'id';
+      final expectedCenter = LatLng(
+        latitude: 38.7439498,
+        longitude: -9.1490721,
+      );
+      final expectedRadius = 10.0;
+      final expectedStrokeWidth = 1.0;
+
+      final circle = Circle(
+        id: expectedId,
+        center: expectedCenter,
+        radiusInMeters: expectedRadius,
+        strokeWidth: expectedStrokeWidth,
+      );
+
+      expect(circle.id, expectedId);
+      expect(circle.center, expectedCenter);
+      expect(circle.radiusInMeters, expectedRadius);
+      expect(circle.strokeWidth, expectedStrokeWidth);
+    });
+
     test('different instances with same properties should be equal', () {
       final circle1 = Circle(
         id: 'id',
@@ -194,6 +282,7 @@ main() {
         radiusInMeters: 10.0,
         fillColor: Colors.green,
         strokeColor: Colors.orange,
+        strokeWidth: 1.0,
         zIndex: 1.0,
       );
       final circle2 = Circle(
@@ -205,6 +294,7 @@ main() {
         radiusInMeters: 10.0,
         fillColor: Colors.green,
         strokeColor: Colors.orange,
+        strokeWidth: 1.0,
         zIndex: 1.0,
       );
 

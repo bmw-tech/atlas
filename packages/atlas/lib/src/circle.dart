@@ -19,6 +19,9 @@ class Circle {
   /// Optional StrokeColor used to color the boundary of the `Circle`.
   final Color strokeColor;
 
+  /// Optional StrokeWidth used to width the boundary of the `Circle`.
+  final double strokeWidth;
+
   /// The z-index of the `Circle`, used to determine relative drawing order of
   /// map overlays.
   ///
@@ -31,6 +34,7 @@ class Circle {
     @required this.radiusInMeters,
     this.fillColor = Colors.transparent,
     this.strokeColor = Colors.black,
+    this.strokeWidth = 1.0,
     this.zIndex = 0.0,
   })  : assert(id != null),
         assert(center != null),
@@ -46,6 +50,7 @@ class Circle {
         radiusInMeters == typedOther.radiusInMeters &&
         fillColor == typedOther.fillColor &&
         strokeColor == typedOther.strokeColor &&
+        strokeWidth == typedOther.strokeWidth &&
         zIndex == typedOther.zIndex;
   }
 
@@ -56,5 +61,6 @@ class Circle {
       radiusInMeters.hashCode ^
       fillColor.hashCode ^
       strokeColor.hashCode ^
+      strokeWidth.hashCode ^
       zIndex.hashCode;
 }
