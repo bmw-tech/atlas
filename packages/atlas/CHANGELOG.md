@@ -1,5 +1,9 @@
 # atlas
 
+## v0.17.0 (2021-09-01)
+
+- Added ability to supply a `StrokeWidth` on a `Circle`
+
 ## v0.16.0 (2021-04-07)
 
 - Added ability to supply an `assetBytes` on a `MarkerIcon`
