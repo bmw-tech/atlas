@@ -1,5 +1,9 @@
 # atlas
 
+## v0.17.1 (2021-09-17)
+
+- Added ability to supply an `Intervals` on a `Polyline`
+
 ## v0.17.0 (2021-09-01)
 
 - Added ability to supply a `StrokeWidth` on a `Circle`

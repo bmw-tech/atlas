@@ -165,6 +165,34 @@ main() {
       expect(polyline.isDottedLine, false);
     });
 
+    test('should have correct properties when intervals is provided', () {
+      final expectedId = 'id';
+      final expectedPoints = [
+        LatLng(
+          latitude: 38.7439498,
+          longitude: -9.1490721,
+        ),
+        LatLng(
+          latitude: 36.7439498,
+          longitude: 126.1490721,
+        )
+      ];
+
+      final expectedColor = Colors.orange;
+
+      final polyline = Polyline(
+          id: expectedId,
+          points: expectedPoints,
+          color: expectedColor,
+          intervals: [10.0, 10.0]);
+
+      expect(polyline.id, expectedId);
+      expect(polyline.points, expectedPoints);
+      expect(polyline.color, expectedColor);
+      expect(polyline.width, 10);
+      expect(polyline.intervals, [10.0, 10.0]);
+    });
+
     test('should have correct properties when width is NOT provided', () {
       final expectedId = 'id';
       final expectedPoints = [
