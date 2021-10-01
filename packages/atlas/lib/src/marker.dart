@@ -94,6 +94,7 @@ class Anchor {
         y == typedOther.y;
   }
 
+  @override
   int get hashCode =>
       x.hashCode ^
       y.hashCode;
@@ -131,6 +132,7 @@ class Annotation {
         annotationType == typedOther.annotationType;
   }
 
+  @override
   int get hashCode =>
       title.hashCode ^
       subTitle.hashCode ^
