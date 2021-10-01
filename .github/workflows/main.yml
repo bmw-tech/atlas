@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         package: ["packages/atlas", "packages/google_atlas"]
         channel: ["stable"]
