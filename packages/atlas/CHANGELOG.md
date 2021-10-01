@@ -1,6 +1,6 @@
 # atlas
 
-## v0.17.1 (2021-09-01)
+## v0.17.1 (2021-10-01)
 
 - Added hashcode and == operator override methods `Anchor` object
 
