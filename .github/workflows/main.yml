@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         package: ["packages/atlas", "packages/google_atlas"]
         channel: ["stable"]
@@ -20,6 +21,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ matrix.channel }}
+          flutter-version: '2.2.3'
 
       - name: Install dependencies
         run: |
@@ -38,7 +40,7 @@ jobs:
         working-directory: ${{ matrix.package }}
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
           flags: ${{ env.CODECOV_FLAG }}
           file: ./${{ matrix.package }}/coverage/lcov.info
