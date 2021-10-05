@@ -84,6 +84,20 @@ class Anchor {
 
   /// {@macro anchor}
   const Anchor({this.x = 0.5, this.y = 0.5});
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final Anchor typedOther = other;
+    return x == typedOther.x &&
+        y == typedOther.y;
+  }
+
+  @override
+  int get hashCode =>
+      x.hashCode ^
+      y.hashCode;
 }
 
 /// Text labels for a [Marker] info window.
@@ -118,6 +132,7 @@ class Annotation {
         annotationType == typedOther.annotationType;
   }
 
+  @override
   int get hashCode =>
       title.hashCode ^
       subTitle.hashCode ^
