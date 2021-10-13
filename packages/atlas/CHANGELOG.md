@@ -1,6 +1,6 @@
 # atlas
 
-## v0.17.2 (2021-09-17)
+## v0.17.2 (2021-10-13)
 
 - Added ability to supply an `Intervals` on a `Polyline`
 
