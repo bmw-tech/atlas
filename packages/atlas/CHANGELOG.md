@@ -1,5 +1,9 @@
 # atlas
 
+## v0.17.2 (2021-10-13)
+
+- Added ability to supply an `Intervals` on a `Polyline`
+
 ## v0.17.1 (2021-10-01)
 
 - Added hashcode and == operator override methods `Anchor` object

@@ -36,15 +36,19 @@ class Polyline {
   ///The default value is false.
   final bool isDottedLine;
 
-  const Polyline(
-      {@required this.id,
-      @required this.points,
-      this.color = Colors.black,
-      this.width = 10,
-      this.outlineColor = Colors.black,
-      this.isDottedLine = false,
-      this.outlineWidth = 0})
-      : assert(id != null),
+  /// The distance between the Polylines.
+  final List<double> intervals;
+
+  const Polyline({
+    @required this.id,
+    @required this.points,
+    this.color = Colors.black,
+    this.width = 10,
+    this.outlineColor = Colors.black,
+    this.isDottedLine = false,
+    this.outlineWidth = 0,
+    this.intervals = const <double>[],
+  })  : assert(id != null),
         assert(points != null);
 
   @override
@@ -58,7 +62,8 @@ class Polyline {
         width == typedOther.width &&
         outlineColor == typedOther.outlineColor &&
         isDottedLine == typedOther.isDottedLine &&
-        outlineWidth == typedOther.outlineWidth;
+        outlineWidth == typedOther.outlineWidth &&
+        intervals == typedOther.intervals;
   }
 
   @override
@@ -69,5 +74,6 @@ class Polyline {
       width.hashCode ^
       outlineColor.hashCode ^
       isDottedLine.hashCode ^
-      outlineWidth.hashCode;
+      outlineWidth.hashCode ^
+      intervals.hashCode;
 }
