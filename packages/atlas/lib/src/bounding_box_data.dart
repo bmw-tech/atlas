@@ -20,13 +20,14 @@ class BoundingBoxData {
   }) : assert(bounds != null);
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BoundingBoxData &&
-          runtimeType == other.runtimeType &&
-          bounds == other.bounds &&
-          rectangle2d == other.rectangle2d &&
-          padding == other.padding;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final BoundingBoxData typedOther = other;
+    return bounds == typedOther.bounds &&
+        rectangle2d == typedOther.rectangle2d &&
+        padding == typedOther.padding;
+  }
 
   @override
   int get hashCode => bounds.hashCode ^ rectangle2d.hashCode ^ padding.hashCode;

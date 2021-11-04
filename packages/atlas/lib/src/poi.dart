@@ -17,4 +17,17 @@ class Poi {
     this.name,
     @required this.latLng,
   }) : assert(latLng != null);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final Poi typedOther = other;
+    return id == typedOther.id &&
+        name == typedOther.name &&
+        latLng == typedOther.latLng;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ name.hashCode ^ latLng.hashCode;
 }

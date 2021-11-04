@@ -18,4 +18,16 @@ class LatLngBounds {
     @required this.southwest,
   })  : assert(northeast != null),
         assert(southwest != null);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final LatLngBounds typedOther = other;
+    return northeast == typedOther.northeast &&
+        southwest == typedOther.southwest;
+  }
+
+  @override
+  int get hashCode => northeast.hashCode ^ southwest.hashCode;
 }

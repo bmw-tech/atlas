@@ -15,4 +15,15 @@ class CameraPosition {
     @required this.target,
     this.zoom = 0.0,
   }) : assert(target != null);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final CameraPosition typedOther = other;
+    return target == typedOther.target && zoom == typedOther.zoom;
+  }
+
+  @override
+  int get hashCode => target.hashCode ^ zoom.hashCode;
 }

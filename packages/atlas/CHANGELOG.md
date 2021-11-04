@@ -1,5 +1,9 @@
 # atlas
 
+## v0.17.3 (2021-10-13)
+
+- Adjusted `hashCode` and `operator ==` for the map objects
+
 ## v0.17.2 (2021-10-13)
 
 - Added ability to supply an `Intervals` on a `Polyline`

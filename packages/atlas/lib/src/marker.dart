@@ -47,8 +47,11 @@ class Marker {
     final Marker typedOther = other;
     return id == typedOther.id &&
         position == typedOther.position &&
+        onTap == typedOther.onTap &&
+        annotation == typedOther.annotation &&
         icon == typedOther.icon &&
         zIndex == typedOther.zIndex &&
+        anchor == typedOther.anchor &&
         heading == typedOther.heading;
   }
 
@@ -56,6 +59,8 @@ class Marker {
   int get hashCode =>
       id.hashCode ^
       position.hashCode ^
+      onTap.hashCode ^
+      annotation.hashCode ^
       icon.hashCode ^
       zIndex.hashCode ^
       anchor.hashCode ^
@@ -90,14 +95,11 @@ class Anchor {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
     final Anchor typedOther = other;
-    return x == typedOther.x &&
-        y == typedOther.y;
+    return x == typedOther.x && y == typedOther.y;
   }
 
   @override
-  int get hashCode =>
-      x.hashCode ^
-      y.hashCode;
+  int get hashCode => runtimeType.hashCode ^ x.hashCode ^ y.hashCode;
 }
 
 /// Text labels for a [Marker] info window.
@@ -129,13 +131,16 @@ class Annotation {
     return title == typedOther.title &&
         subTitle == typedOther.subTitle &&
         icon == typedOther.icon &&
+        onTap == typedOther.onTap &&
         annotationType == typedOther.annotationType;
   }
 
   @override
   int get hashCode =>
+      runtimeType.hashCode ^
       title.hashCode ^
       subTitle.hashCode ^
       icon.hashCode ^
+      onTap.hashCode ^
       annotationType.hashCode;
 }
