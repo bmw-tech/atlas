@@ -99,7 +99,7 @@ class Anchor {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ x.hashCode ^ y.hashCode;
+  int get hashCode => x.hashCode ^ y.hashCode;
 }
 
 /// Text labels for a [Marker] info window.
@@ -137,7 +137,6 @@ class Annotation {
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
       title.hashCode ^
       subTitle.hashCode ^
       icon.hashCode ^

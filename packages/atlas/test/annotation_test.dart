@@ -38,6 +38,7 @@ main() {
         annotation.title.hashCode ^
             annotation.subTitle.hashCode ^
             annotation.icon.hashCode ^
+            annotation.onTap.hashCode ^
             annotation.annotationType.hashCode,
       );
     });

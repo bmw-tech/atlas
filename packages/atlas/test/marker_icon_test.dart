@@ -45,9 +45,7 @@ main() {
       );
       expect(
         markerIcon.hashCode,
-        markerIcon.runtimeType.hashCode ^
-            markerIcon.assetName.hashCode ^
-            markerIcon.assetBytes.hashCode,
+        markerIcon.assetName.hashCode ^ markerIcon.assetBytes.hashCode,
       );
     });
   });
