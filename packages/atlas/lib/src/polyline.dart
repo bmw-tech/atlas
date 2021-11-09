@@ -10,6 +10,9 @@ class Polyline {
   /// A `List` of `LatLng` points that make up the polyline's shape.
   final List<LatLng> points;
 
+  /// A `void Function` which is called whenever a `Polyline` is tapped.
+  final void Function() onTap;
+
   /// The `Color` of the line
   final Color color;
 
@@ -39,15 +42,20 @@ class Polyline {
   /// The distance between the Polylines.
   final List<double> intervals;
 
+  /// Order that the polyline is drawn
+  final double zIndex;
+
   const Polyline({
     @required this.id,
     @required this.points,
+    this.onTap,
     this.color = Colors.black,
     this.width = 10,
     this.outlineColor = Colors.black,
     this.isDottedLine = false,
     this.outlineWidth = 0,
     this.intervals = const <double>[],
+    this.zIndex = 0.0,
   })  : assert(id != null),
         assert(points != null);
 
@@ -58,22 +66,26 @@ class Polyline {
     final Polyline typedOther = other;
     return id == typedOther.id &&
         points == typedOther.points &&
+        onTap == typedOther.onTap &&
         color == typedOther.color &&
         width == typedOther.width &&
         outlineColor == typedOther.outlineColor &&
         isDottedLine == typedOther.isDottedLine &&
         outlineWidth == typedOther.outlineWidth &&
-        intervals == typedOther.intervals;
+        intervals == typedOther.intervals &&
+        zIndex == typedOther.zIndex;
   }
 
   @override
   int get hashCode =>
       id.hashCode ^
       points.hashCode ^
+      onTap.hashCode ^
       color.hashCode ^
       width.hashCode ^
       outlineColor.hashCode ^
       isDottedLine.hashCode ^
       outlineWidth.hashCode ^
-      intervals.hashCode;
+      intervals.hashCode ^
+      zIndex.hashCode;
 }
