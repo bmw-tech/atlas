@@ -255,7 +255,7 @@ main() {
           longitude: -122.085749655962,
         )
       ];
-      final expectedOnTap = () => {};
+      final expectedOnTap = () {};
       final expectedZIndex = 0.0;
       final marker = Polyline(
         id: expectedId,
@@ -276,7 +276,7 @@ main() {
           longitude: -122.085749655962,
         )
       ];
-      final expectedOnTap = () => {};
+      final expectedOnTap = () {};
       final expectedZIndex = 2.0;
       final marker = Polyline(
         id: expectedId,
