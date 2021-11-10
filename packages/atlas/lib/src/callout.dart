@@ -18,6 +18,9 @@ class Callout {
   /// List of information of the `Callout`
   final List<String> texts;
 
+  /// A `void Function` which is called whenever a `Callout` is tapped.
+  final void Function() onTap;
+
   /// The z-index of the callout, used to determine relative drawing order of
   /// map overlays.
   ///
@@ -31,6 +34,7 @@ class Callout {
     this.icon,
     this.zIndex = 0.0,
     this.texts,
+    this.onTap,
   })  : assert(id != null),
         assert(position != null);
 
