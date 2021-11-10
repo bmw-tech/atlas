@@ -246,5 +246,48 @@ main() {
 
       expect(polyline1, polyline2);
     });
+
+    test('should have correct properties when no zIndex is provided', () {
+      final expectedId = 'id';
+      final expectedPoints = [
+        LatLng(
+          latitude: 37.42796133580664,
+          longitude: -122.085749655962,
+        )
+      ];
+      final expectedOnTap = () => '';
+      final expectedZIndex = 0.0;
+      final marker = Polyline(
+        id: expectedId,
+        points: expectedPoints,
+        onTap: expectedOnTap,
+      );
+      expect(marker.id, expectedId);
+      expect(marker.points, expectedPoints);
+      expect(marker.onTap, expectedOnTap);
+      expect(marker.zIndex, expectedZIndex);
+    });
+
+    test('should have correct properties when is zIndex is provided', () {
+      final expectedId = 'id';
+      final expectedPoints = [
+        LatLng(
+          latitude: 37.42796133580664,
+          longitude: -122.085749655962,
+        )
+      ];
+      final expectedOnTap = () => '';
+      final expectedZIndex = 2.0;
+      final marker = Polyline(
+        id: expectedId,
+        points: expectedPoints,
+        onTap: expectedOnTap,
+        zIndex: 2.0,
+      );
+      expect(marker.id, expectedId);
+      expect(marker.points, expectedPoints);
+      expect(marker.onTap, expectedOnTap);
+      expect(marker.zIndex, expectedZIndex);
+    });
   });
 }

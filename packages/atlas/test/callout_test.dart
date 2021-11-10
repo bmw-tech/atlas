@@ -85,14 +85,17 @@ main() {
         longitude: -122.085749655962,
       );
       final expectedZIndex = 1.0;
+      final expectedOnTap = () => '';
       final marker = Callout(
         id: expectedId,
         position: expectedPosition,
         zIndex: 1.0,
+        onTap: expectedOnTap,
       );
       expect(marker.id, expectedId);
       expect(marker.position, expectedPosition);
       expect(marker.zIndex, expectedZIndex);
+      expect(marker.onTap, expectedOnTap);
     });
 
     test('different instances with same properties should be equal', () {
