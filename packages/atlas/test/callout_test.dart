@@ -85,7 +85,7 @@ main() {
         longitude: -122.085749655962,
       );
       final expectedZIndex = 1.0;
-      final expectedOnTap = () => '';
+      final expectedOnTap = () {};
       final marker = Callout(
         id: expectedId,
         position: expectedPosition,
