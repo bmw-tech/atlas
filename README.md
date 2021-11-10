@@ -41,11 +41,11 @@ class MyApp extends StatelessWidget {
 }
 
 class AtlasSample extends StatelessWidget {
-  final position = LatLng(
+  final _initialCameraPosition = LatLng(
     latitude: 37.42796133580664,
     longitude: -122.085749655962,
   );
-  final Set<Marker> _markers = Set<Marker>.from([
+  final _markers = Set<Marker>.from([
     Marker(
       id: 'marker-1',
       position: LatLng(
@@ -69,7 +69,7 @@ class AtlasSample extends StatelessWidget {
     return Scaffold(
       /// Use `Atlas` as your Map Widget
       body: Atlas(
-        position: position,
+        initialCameraPosition: _initialCameraPosition,
         markers: _markers,
       ),
     );

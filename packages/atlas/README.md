@@ -35,15 +35,35 @@ class MyApp extends StatelessWidget {
 }
 
 class AtlasSample extends StatelessWidget {
-  final _position = LatLng(
+  final _initialCameraPosition = LatLng(
     latitude: 37.42796133580664,
     longitude: -122.085749655962,
   );
+  final _markers = Set<Marker>.from([
+    Marker(
+      id: 'marker-1',
+      position: LatLng(
+        latitude: 37.42796133580664,
+        longitude: -122.085749655962,
+      ),
+      icon: MarkerIcon(
+        assetName: 'assets/marker.png',
+      ),
+      anchor: Anchor(
+        x: 0.5,
+        y: 1.0,
+      )
+      onTap: () {
+        print('tapped marker-1');
+      },
+    )
+  ]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Atlas(
-        position: _position,
+        initialCameraPosition: _initialCameraPosition,
+        markers: _markers,
       ),
     );
   }
@@ -52,12 +72,11 @@ class AtlasSample extends StatelessWidget {
 
 ## Maintainers
 
-Project Lead(s):
+This project is maintained by BMW Group.
+
+Thank you to the original authors
 
 - [@tchabot22](https://github.com/tchabot22)
-
-Main Maintainer(s):
-
 - [@felangel](https://github.com/felangel)
 - [@jorgecoca](https://github.com/jorgecoca)
 - [@noahmateen](https://github.com/noahmateen)

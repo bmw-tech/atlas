@@ -9,7 +9,7 @@ class Marker {
   /// The location where the `Marker` is drawn is represented as `LatLng`.
   final LatLng position;
 
-  /// Optional MarkerIcon used to replace default icon
+  /// Optional MarkerIcon used to replace default icon.
   final MarkerIcon icon;
 
   /// A `void Function` which is called whenever a `Marker` is tapped.
@@ -23,9 +23,10 @@ class Marker {
   /// Lower values means drawn earlier, and thus appearing to be closer to the surface of the Earth.
   final double zIndex;
 
+  /// Specifies the anchor to be at a particular point in the marker image.
   final Anchor anchor;
 
-  // Optional heading used to rotate the marker in degrees (eg. 0 to 360)
+  // Optional heading used to rotate the marker in degrees (eg. 0 to 360).
   final int heading;
 
   const Marker({
