@@ -1,8 +1,12 @@
 # atlas
 
-## v0.17.3 (2021-11-04)
+## v0.17.4 (2021-11-11)
 
 - Adjusted `hashCode` and `operator ==` for the map objects
+
+## v0.17.3 (2021-11-11)
+
+- Added support for Polyline and Callout `onTap` function
 
 ## v0.17.2 (2021-10-13)
 
