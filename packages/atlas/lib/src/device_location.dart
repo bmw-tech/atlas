@@ -17,8 +17,7 @@ class DeviceLocation {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
     final DeviceLocation typedOther = other;
-    return runtimeType == typedOther.runtimeType &&
-        target == typedOther.target &&
+    return target == typedOther.target &&
         accuracy == typedOther.accuracy &&
         altitude == typedOther.altitude;
   }

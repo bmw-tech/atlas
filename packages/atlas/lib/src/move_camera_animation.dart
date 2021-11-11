@@ -21,13 +21,14 @@ class MoveCameraAnimation {
         assert(zoomSequence != null);
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MoveCameraAnimation &&
-          runtimeType == other.runtimeType &&
-          controller == other.controller &&
-          panSequence == other.panSequence &&
-          zoomSequence == other.zoomSequence;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final MoveCameraAnimation typedOther = other;
+    return controller == typedOther.controller &&
+        panSequence == typedOther.panSequence &&
+        zoomSequence == typedOther.zoomSequence;
+  }
 
   @override
   int get hashCode =>

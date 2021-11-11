@@ -36,7 +36,6 @@ class MarkerIcon {
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
       assetName.hashCode ^
       width.hashCode ^
       height.hashCode ^

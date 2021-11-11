@@ -20,14 +20,15 @@ class Rectangle2D {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Rectangle2D &&
-          runtimeType == other.runtimeType &&
-          originX == other.originX &&
-          originY == other.originY &&
-          width == other.width &&
-          height == other.height;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final Rectangle2D typedOther = other;
+    return originX == typedOther.originX &&
+        originY == typedOther.originY &&
+        width == typedOther.width &&
+        height == typedOther.height;
+  }
 
   @override
   int get hashCode =>

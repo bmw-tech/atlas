@@ -19,11 +19,13 @@ class LatLng {
         longitude = (longitude + 180.0) % 360.0 - 180.0;
 
   @override
-  bool operator ==(Object o) {
-    return o is LatLng && o.latitude == latitude && o.longitude == longitude;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    final LatLng typedOther = other;
+    return latitude == typedOther.latitude && longitude == typedOther.longitude;
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ latitude.hashCode ^ longitude.hashCode;
+  int get hashCode => latitude.hashCode ^ longitude.hashCode;
 }

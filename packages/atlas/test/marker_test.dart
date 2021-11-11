@@ -141,14 +141,16 @@ main() {
     });
 
     test('different instances with same properties should be equal', () {
+      final onTap = () {};
       final marker1 = Marker(
         id: 'id',
         position: LatLng(
           latitude: 37.42796133580664,
           longitude: -122.085749655962,
         ),
-        onTap: () {},
+        onTap: onTap,
         zIndex: 1.0,
+        anchor: Anchor(),
       );
       final marker2 = Marker(
         id: 'id',
@@ -156,35 +158,12 @@ main() {
           latitude: 37.42796133580664,
           longitude: -122.085749655962,
         ),
-        onTap: () {},
+        onTap: onTap,
         zIndex: 1.0,
+        anchor: Anchor(),
       );
 
-      final anchor = Anchor();
-
-      final marker3 = Marker(
-        id: 'id',
-        position: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        onTap: () {},
-        zIndex: 1.0,
-        anchor: anchor,
-      );
-
-      final marker4 = Marker(
-        id: 'id',
-        position: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        onTap: () {},
-        zIndex: 1.0,
-        anchor: anchor,
-      );
       expect(marker1, marker2);
-      expect(marker3, marker4);
     });
 
     test('should have correct properties when heading is provided', () {

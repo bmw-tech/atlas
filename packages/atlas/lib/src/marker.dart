@@ -9,7 +9,7 @@ class Marker {
   /// The location where the `Marker` is drawn is represented as `LatLng`.
   final LatLng position;
 
-  /// Optional MarkerIcon used to replace default icon
+  /// Optional MarkerIcon used to replace default icon.
   final MarkerIcon icon;
 
   /// A `void Function` which is called whenever a `Marker` is tapped.
@@ -23,9 +23,10 @@ class Marker {
   /// Lower values means drawn earlier, and thus appearing to be closer to the surface of the Earth.
   final double zIndex;
 
+  /// Specifies the anchor to be at a particular point in the marker image.
   final Anchor anchor;
 
-  // Optional heading used to rotate the marker in degrees (eg. 0 to 360)
+  // Optional heading used to rotate the marker in degrees (eg. 0 to 360).
   final int heading;
 
   const Marker({
@@ -47,8 +48,11 @@ class Marker {
     final Marker typedOther = other;
     return id == typedOther.id &&
         position == typedOther.position &&
+        onTap == typedOther.onTap &&
+        annotation == typedOther.annotation &&
         icon == typedOther.icon &&
         zIndex == typedOther.zIndex &&
+        anchor == typedOther.anchor &&
         heading == typedOther.heading;
   }
 
@@ -56,6 +60,8 @@ class Marker {
   int get hashCode =>
       id.hashCode ^
       position.hashCode ^
+      onTap.hashCode ^
+      annotation.hashCode ^
       icon.hashCode ^
       zIndex.hashCode ^
       anchor.hashCode ^
@@ -90,14 +96,11 @@ class Anchor {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
     final Anchor typedOther = other;
-    return x == typedOther.x &&
-        y == typedOther.y;
+    return x == typedOther.x && y == typedOther.y;
   }
 
   @override
-  int get hashCode =>
-      x.hashCode ^
-      y.hashCode;
+  int get hashCode => x.hashCode ^ y.hashCode;
 }
 
 /// Text labels for a [Marker] info window.
@@ -129,6 +132,7 @@ class Annotation {
     return title == typedOther.title &&
         subTitle == typedOther.subTitle &&
         icon == typedOther.icon &&
+        onTap == typedOther.onTap &&
         annotationType == typedOther.annotationType;
   }
 
@@ -137,5 +141,6 @@ class Annotation {
       title.hashCode ^
       subTitle.hashCode ^
       icon.hashCode ^
+      onTap.hashCode ^
       annotationType.hashCode;
 }
