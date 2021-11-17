@@ -10,12 +10,12 @@ class Marker {
   final LatLng position;
 
   /// Optional MarkerIcon used to replace default icon.
-  final MarkerIcon icon;
+  final MarkerIcon? icon;
 
   /// A `void Function` which is called whenever a `Marker` is tapped.
-  final void Function() onTap;
+  final void Function()? onTap;
 
-  final Annotation annotation;
+  final Annotation? annotation;
 
   /// The z-index of the marker, used to determine relative drawing order of
   /// map overlays.
@@ -24,36 +24,38 @@ class Marker {
   final double zIndex;
 
   /// Specifies the anchor to be at a particular point in the marker image.
-  final Anchor anchor;
+  final Anchor? anchor;
 
   // Optional heading used to rotate the marker in degrees (eg. 0 to 360).
-  final int heading;
+  final int? heading;
 
   const Marker({
-    @required this.id,
-    @required this.position,
+    required this.id,
+    required this.position,
     this.onTap,
     this.annotation = const Annotation(),
     this.icon,
     this.zIndex = 0.0,
     this.anchor,
     this.heading,
-  })  : assert(id != null),
-        assert(position != null);
+  });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Marker typedOther = other;
-    return id == typedOther.id &&
-        position == typedOther.position &&
-        onTap == typedOther.onTap &&
-        annotation == typedOther.annotation &&
-        icon == typedOther.icon &&
-        zIndex == typedOther.zIndex &&
-        anchor == typedOther.anchor &&
-        heading == typedOther.heading;
+    if (other is Marker) {
+      return id == other.id &&
+          position == other.position &&
+          onTap == other.onTap &&
+          annotation == other.annotation &&
+          icon == other.icon &&
+          zIndex == other.zIndex &&
+          anchor == other.anchor &&
+          heading == other.heading;
+    } else {
+      return false;
+    }
   }
 
   @override
@@ -95,8 +97,11 @@ class Anchor {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Anchor typedOther = other;
-    return x == typedOther.x && y == typedOther.y;
+    if (other is Anchor) {
+      return x == other.x && y == other.y;
+    } else {
+      return false;
+    }
   }
 
   @override
@@ -105,14 +110,14 @@ class Anchor {
 
 /// Text labels for a [Marker] info window.
 class Annotation {
-  final String title;
+  final String? title;
 
-  final String subTitle;
+  final String? subTitle;
 
-  final MarkerIcon icon;
+  final MarkerIcon? icon;
 
   /// A `void Function` which is called whenever a `Marker info` is tapped.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   final AnnotationType annotationType;
 
@@ -128,12 +133,15 @@ class Annotation {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Annotation typedOther = other;
-    return title == typedOther.title &&
-        subTitle == typedOther.subTitle &&
-        icon == typedOther.icon &&
-        onTap == typedOther.onTap &&
-        annotationType == typedOther.annotationType;
+    if (other is Annotation) {
+      return title == other.title &&
+          subTitle == other.subTitle &&
+          icon == other.icon &&
+          onTap == other.onTap &&
+          annotationType == other.annotationType;
+    } else {
+      return false;
+    }
   }
 
   @override

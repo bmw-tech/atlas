@@ -7,7 +7,7 @@ abstract class AtlasController {
   /// Moves the camera to the specified `CameraPosition` with an optional animation `​​​​​MoveCameraAnimation`.
   Future<void> moveCamera(
     CameraPosition cameraPosition, {
-    MoveCameraAnimation animation,
+    MoveCameraAnimation? animation,
   });
 
   /// Get the current camera position

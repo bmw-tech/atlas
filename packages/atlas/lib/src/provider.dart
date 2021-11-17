@@ -15,30 +15,30 @@ abstract class Provider {
   /// This info can then be used to either cycle through
   /// MapTypes with a button on the GUI, or to set the initial
   /// [Atlas.mapType] property.
-  Set<MapType> supportedMapTypes;
+  Set<MapType>? supportedMapTypes;
 
   Widget build({
-    final CameraPosition initialCameraPosition,
-    final Set<Marker> markers,
-    final Set<Callout> callouts,
-    final Set<Circle> circles,
-    final Set<Polygon> polygons,
-    final Set<Polyline> polylines,
-    final ArgumentCallback<LatLng> onTap,
-    final ArgumentCallback<Poi> onPoiTap,
-    final ArgumentCallback<LatLng> onLongPress,
-    final ArgumentCallback<AtlasController> onMapCreated,
-    final ArgumentCallback<CameraPosition> onCameraPositionChanged,
-    final ArgumentCallback<LatLng> onLocationChanged,
-    final VoidCallback onPan,
-    final bool showMyLocation,
-    final bool showMyLocationButton,
-    final bool followMyLocation,
-    final MapType mapType,
-    final bool showTraffic,
-    final MapLanguage mapLanguage,
-    final DeviceLocation deviceLocation,
-    final String deviceLocationIconAsset,
-    final String country,
+    final CameraPosition? initialCameraPosition,
+    final Set<Marker>? markers,
+    final Set<Callout>? callouts,
+    final Set<Circle>? circles,
+    final Set<Polygon>? polygons,
+    final Set<Polyline>? polylines,
+    final ArgumentCallback<LatLng>? onTap,
+    final ArgumentCallback<Poi>? onPoiTap,
+    final ArgumentCallback<LatLng>? onLongPress,
+    final ArgumentCallback<AtlasController>? onMapCreated,
+    final ArgumentCallback<CameraPosition>? onCameraPositionChanged,
+    final ArgumentCallback<LatLng>? onLocationChanged,
+    final VoidCallback? onPan,
+    final bool? showMyLocation,
+    final bool? showMyLocationButton,
+    final bool? followMyLocation,
+    final MapType? mapType,
+    final bool? showTraffic,
+    final MapLanguage? mapLanguage,
+    final DeviceLocation? deviceLocation,
+    final String? deviceLocationIconAsset,
+    final String? country,
   });
 }

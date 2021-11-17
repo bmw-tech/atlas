@@ -3,15 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   group('DeviceLocation', () {
-    test('should throw AssertionError if target is null', () {
-      try {
-        DeviceLocation(target: null);
-        fail('should throw AssertionError');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
-
     test('should have correct properties when provided', () {
       final deviceLocation = DeviceLocation(
         target: LatLng(

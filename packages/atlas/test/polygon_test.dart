@@ -4,47 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   group('Polygon', () {
-    test('should throw AssertionError if id is null', () {
-      try {
-        Polygon(
-          id: null,
-          points: [
-            LatLng(
-              latitude: 48.133,
-              longitude: 11.5888,
-            ),
-            LatLng(
-              latitude: 48.233,
-              longitude: 11.5888,
-            ),
-            LatLng(
-              latitude: 48.333,
-              longitude: 11.4888,
-            ),
-          ],
-          fillColor: Colors.red,
-          strokeColor: Colors.red,
-          strokeWidth: 1,
-        );
-
-        fail('should throw AssertionError');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
-
-    test('should throw AssertionError if points is null', () {
-      try {
-        Polygon(
-          id: 'id',
-          points: null,
-        );
-        fail('should throw AssertionError');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
-
     test('should have correct properties when stroke color is NOT provided',
         () {
       final expectedId = 'id';
@@ -59,7 +18,7 @@ main() {
         )
       ];
 
-      final expectedColor = null;
+      final dynamic expectedColor = null;
 
       final polygon = Polygon(
         id: expectedId,

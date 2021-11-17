@@ -1,13 +1,13 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
 class MockProvider extends Mock implements Provider {}
 
 main() {
   group('Atlas', () {
-    Provider provider;
+    Provider? provider;
     final CameraPosition initialCameraPosition = CameraPosition(
       target: LatLng(
         latitude: 37.42796133580664,
@@ -22,41 +22,23 @@ main() {
       AtlasProvider.instance = provider;
     });
 
-    testWidgets('should throw exception if initialCameraPosition is null',
-        (WidgetTester tester) async {
-      try {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: Atlas(
-                initialCameraPosition: null,
-              ),
-            ),
-          ),
-        );
-        fail('should throw AssertionError');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
-
     testWidgets(
         'should call provider build method with correct arguments when no map markers are provided',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -68,7 +50,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -101,20 +83,20 @@ main() {
         ),
       ].toSet();
 
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: markers,
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: markers,
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -127,7 +109,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: markers,
           callouts: Set<Callout>(),
@@ -147,20 +129,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when no map circles are provided',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -172,7 +154,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -203,20 +185,20 @@ main() {
         ),
       ].toSet();
 
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        circles: circles,
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            circles: circles,
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -229,7 +211,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -272,20 +254,20 @@ main() {
         ),
       ].toSet();
 
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        polygons: polygons,
-        polylines: Set<Polyline>(),
-        circles: Set<Circle>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            polygons: polygons,
+            polylines: Set<Polyline>(),
+            circles: Set<Circle>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -298,7 +280,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -333,20 +315,20 @@ main() {
         ),
       ].toSet();
 
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        polygons: Set<Polygon>(),
-        polylines: polylines,
-        circles: Set<Circle>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            polygons: Set<Polygon>(),
+            polylines: polylines,
+            circles: Set<Circle>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -359,7 +341,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -382,21 +364,21 @@ main() {
       final Function(LatLng) onTap = (LatLng position) {
         print('onTap ${position.latitude}, ${position.latitude}');
       };
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        onTap: onTap,
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            onTap: onTap,
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -409,7 +391,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -434,21 +416,21 @@ main() {
         print(
             'onPoiTap ${poi.name}, ${poi.latLng.latitude}, ${poi.latLng.longitude}');
       };
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        onPoiTap: onPoiTap,
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            onPoiTap: onPoiTap,
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -461,7 +443,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -485,21 +467,21 @@ main() {
       final Function(LatLng) onLongPress = (LatLng position) {
         print('onLongPress ${position.latitude}, ${position.latitude}');
       };
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        onLongPress: onLongPress,
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            onLongPress: onLongPress,
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -512,7 +494,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -533,20 +515,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocation is enabled',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: true,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: true,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -559,7 +541,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -579,20 +561,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocation is not provided',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -604,7 +586,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -624,20 +606,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocationButton is enabled',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: true,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: true,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -651,7 +633,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -671,20 +653,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showMyLocationButton is not provided',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -696,7 +678,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -716,20 +698,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when mapType is supplied',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -741,7 +723,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -761,20 +743,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when showTraffic is enabled',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: true,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: true,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -787,7 +769,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -822,20 +804,20 @@ main() {
             )),
       ].toSet();
 
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: markers,
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: markers,
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -848,7 +830,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: markers,
           callouts: Set<Callout>(),
@@ -868,20 +850,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when followMyLocation is enabled',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: true,
-        showMyLocationButton: true,
-        followMyLocation: true,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: true,
+            showMyLocationButton: true,
+            followMyLocation: true,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -896,7 +878,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -919,21 +901,21 @@ main() {
       final Function(LatLng) onLocationChanged = (LatLng position) {
         print('onLocationChanged ${position.latitude}, ${position.latitude}');
       };
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        onLocationChanged: onLocationChanged,
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            onLocationChanged: onLocationChanged,
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -946,7 +928,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -967,20 +949,20 @@ main() {
     testWidgets(
         'should call provider build method with correct arguments when mapLanguage is provided',
         (WidgetTester tester) async {
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        showMyLocation: true,
-        showMyLocationButton: true,
-        followMyLocation: true,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.deDe,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            showMyLocation: true,
+            showMyLocationButton: true,
+            followMyLocation: true,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.deDe,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -996,7 +978,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -1018,21 +1000,21 @@ main() {
         (WidgetTester tester) async {
       final VoidCallback onPan = () {};
 
-      when(provider.build(
-        initialCameraPosition: initialCameraPosition,
-        markers: Set<Marker>(),
-        callouts: Set<Callout>(),
-        circles: Set<Circle>(),
-        polygons: Set<Polygon>(),
-        polylines: Set<Polyline>(),
-        onPan: onPan,
-        showMyLocation: false,
-        showMyLocationButton: false,
-        followMyLocation: false,
-        mapType: MapType.normal,
-        showTraffic: false,
-        mapLanguage: MapLanguage.enUs,
-      )).thenReturn(Container(key: mapKey));
+      when(() => provider!.build(
+            initialCameraPosition: initialCameraPosition,
+            markers: Set<Marker>(),
+            callouts: Set<Callout>(),
+            circles: Set<Circle>(),
+            polygons: Set<Polygon>(),
+            polylines: Set<Polyline>(),
+            onPan: onPan,
+            showMyLocation: false,
+            showMyLocationButton: false,
+            followMyLocation: false,
+            mapType: MapType.normal,
+            showTraffic: false,
+            mapLanguage: MapLanguage.enUs,
+          )).thenReturn(Container(key: mapKey));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -1045,7 +1027,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -1075,7 +1057,7 @@ main() {
       );
 
       when(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -1103,7 +1085,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -1127,7 +1109,7 @@ main() {
       final deviceLocationIconAsset = 'path-to-the-icon-asset';
 
       when(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -1155,7 +1137,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -1179,7 +1161,7 @@ main() {
       final country = 'Japan';
 
       when(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),
@@ -1207,7 +1189,7 @@ main() {
       );
       expect(find.byKey(mapKey), findsOneWidget);
       verify(
-        provider.build(
+        () => provider!.build(
           initialCameraPosition: initialCameraPosition,
           markers: Set<Marker>(),
           callouts: Set<Callout>(),

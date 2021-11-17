@@ -13,30 +13,32 @@ class Polygon {
   final int strokeWidth;
 
   /// Defines the `Color` of the stroke surrounding the polygon's shape
-  final Color strokeColor;
+  final Color? strokeColor;
 
   /// Defines the fill `Color` within the polygon's shape
   final Color fillColor;
 
   const Polygon({
-    @required this.id,
-    @required this.points,
+    required this.id,
+    required this.points,
     this.strokeWidth = 1,
     this.strokeColor = Colors.blue,
     this.fillColor = Colors.blue,
-  })  : assert(id != null),
-        assert(points != null);
+  });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Polygon typedOther = other;
-    return id == typedOther.id &&
-        points == typedOther.points &&
-        strokeWidth == typedOther.strokeWidth &&
-        strokeColor == typedOther.strokeColor &&
-        fillColor == typedOther.fillColor;
+    if (other is Polygon) {
+      return id == other.id &&
+          points == other.points &&
+          strokeWidth == other.strokeWidth &&
+          strokeColor == other.strokeColor &&
+          fillColor == other.fillColor;
+    } else {
+      return false;
+    }
   }
 
   @override

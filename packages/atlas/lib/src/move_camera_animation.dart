@@ -12,22 +12,23 @@ class MoveCameraAnimation {
   /// The sequence to control the zoom animation.
   final TweenSequence<double> zoomSequence;
 
-  MoveCameraAnimation(
-      {@required this.controller,
-      @required this.panSequence,
-      @required this.zoomSequence})
-      : assert(controller != null),
-        assert(panSequence != null),
-        assert(zoomSequence != null);
+  MoveCameraAnimation({
+    required this.controller,
+    required this.panSequence,
+    required this.zoomSequence,
+  });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final MoveCameraAnimation typedOther = other;
-    return controller == typedOther.controller &&
-        panSequence == typedOther.panSequence &&
-        zoomSequence == typedOther.zoomSequence;
+    if (other is MoveCameraAnimation) {
+      return controller == other.controller &&
+          panSequence == other.panSequence &&
+          zoomSequence == other.zoomSequence;
+    } else {
+      return false;
+    }
   }
 
   @override
