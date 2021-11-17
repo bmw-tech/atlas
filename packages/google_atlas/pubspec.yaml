@@ -11,9 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  atlas: 0.17.3
-  google_maps_flutter: 1.2.0
-  rxdart: 0.26.0
+  atlas: ^0.17.3
+  google_maps_flutter: ^1.2.0
+  rxdart: ^0.26.0
 
 dev_dependencies:
   flutter_test:
