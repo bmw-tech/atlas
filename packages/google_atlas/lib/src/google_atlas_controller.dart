@@ -13,7 +13,8 @@ class GoogleAtlasController implements AtlasController {
         _controller = controller;
 
   @override
-  Future<void> moveCamera(CameraPosition cameraPosition) {
+  Future<void> moveCamera(CameraPosition cameraPosition,
+      {MoveCameraAnimation animation}) {
     return _controller.moveCamera(
       GoogleMaps.CameraUpdate.newCameraPosition(
         CameraUtils.toGoogleCameraPosition(cameraPosition),
@@ -22,13 +23,19 @@ class GoogleAtlasController implements AtlasController {
   }
 
   @override
-  Future<void> updateBounds(LatLngBounds bounds, double padding) {
+  Future<void> updateBounds(BoundingBoxData boundingBoxData) {
     return _controller.moveCamera(
       GoogleMaps.CameraUpdate.newLatLngBounds(
-        LatLngUtils.toGoogleLatLngBounds(bounds),
-        padding,
+        LatLngUtils.toGoogleLatLngBounds(boundingBoxData.bounds),
+        0,
       ),
     );
+  }
+
+  @override
+  LatLngBounds getBounds(Rectangle2D rectangle2d) {
+    // TODO: implement getBounds
+    throw UnimplementedError();
   }
 
   @override
@@ -45,19 +52,10 @@ class GoogleAtlasController implements AtlasController {
     return LatLngUtils.fromGoogleScreenCoordinate(googleScreenCoordinate);
   }
 
-  // TODO: implement updateBoundsWithPaddingToAllSides
-  @override
-  Future<void> updateBoundsWithPaddingToAllSides(LatLngBounds bounds,
-      double north, double east, double south, double west) {
-    return _controller.moveCamera(null);
-  }
-
-  @override
-  void changeUserLocationIcon(String asset) {}
-
   @override
   Future<CameraPosition> getCameraPosition() async {
-    return null;
+    // TODO: implement getCameraPosition
+    throw UnimplementedError();
   }
 
   @override

@@ -3,20 +3,13 @@ import 'package:rxdart/rxdart.dart';
 import 'bloc.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
-  @override
-  MapState get initialState => MapState.initial();
+  EventTransformer<MapEvent> debounce<MapEvent>(Duration duration) {
+    return (events, mapper) => events.debounceTime(duration).switchMap(mapper);
+  }
 
-  @override
-  Stream<MapState> transformEvents(
-      Stream<MapEvent> events, Stream<MapState> Function(MapEvent event) next) {
-    final observableStream = events as Observable<MapEvent>;
-    final nonDebounceStream =
-        observableStream.where((event) => event is! MapCameraPositionChanged);
-    final debounceStream = observableStream
-        .where((event) => event is MapCameraPositionChanged)
-        .debounceTime(Duration(milliseconds: 200));
-    return super.transformEvents(
-        MergeStream([nonDebounceStream, debounceStream]), next);
+  MapBloc() : super(MapState.initial()) {
+    on<MapCameraPositionChanged>((_, __) {},
+        transformer: debounce(const Duration(milliseconds: 200)));
   }
 
   @override
