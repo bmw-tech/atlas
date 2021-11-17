@@ -40,7 +40,7 @@ main() {
 
       test('throws UnimplementedError if getBounds is called', () async {
         try {
-          await googleAtlasController.getBounds(Rectangle2D());
+          googleAtlasController.getBounds(Rectangle2D());
         } catch (error) {
           expect(error, isUnimplementedError);
         }
