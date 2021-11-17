@@ -1,17 +1,16 @@
 name: example
-description: A new Flutter project.
+description: Atlas + Google Atlas example project
 publish_to: none
 
-version: 1.0.0+1
-
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.10.2 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^2.0.0
-  equatable: ^1.1.1
+  flutter_bloc: 7.2.0
+  equatable: 2.0.3
+  rxdart: 0.26.0
   google_atlas:
     path: ../packages/google_atlas
 

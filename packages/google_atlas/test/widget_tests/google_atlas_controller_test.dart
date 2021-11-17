@@ -28,6 +28,25 @@ main() {
       }
     });
 
+    group('UnimplementedError', () {
+      test('throws UnimplementedError if getCameraPosition is called',
+          () async {
+        try {
+          await googleAtlasController.getCameraPosition();
+        } catch (error) {
+          expect(error, isUnimplementedError);
+        }
+      });
+
+      test('throws UnimplementedError if getBounds is called', () async {
+        try {
+          googleAtlasController.getBounds(Rectangle2D());
+        } catch (error) {
+          expect(error, isUnimplementedError);
+        }
+      });
+    });
+
     group('moveCamera', () {
       test('invokes moveCamera', () async {
         final CameraPosition cameraPosition = CameraPosition(
@@ -41,11 +60,13 @@ main() {
 
     group('updateBounds', () {
       test('invokes newLatLngBounds', () async {
-        final LatLngBounds bounds = LatLngBounds(
-          northeast: LatLng(latitude: 1, longitude: 1),
-          southwest: LatLng(latitude: 0, longitude: 3),
+        final boundingBoxData = BoundingBoxData(
+          bounds: LatLngBounds(
+            northeast: LatLng(latitude: 1, longitude: 1),
+            southwest: LatLng(latitude: 0, longitude: 3),
+          ),
         );
-        await googleAtlasController.updateBounds(bounds, 20);
+        await googleAtlasController.updateBounds(boundingBoxData);
         verify(googleMapController.moveCamera(any)).called(1);
       });
     });
@@ -90,33 +111,6 @@ main() {
         GoogleMaps.LatLng resultingLatLng = results.first;
         expect(inputLatLng.latitude, resultingLatLng.latitude);
         expect(inputLatLng.longitude, resultingLatLng.longitude);
-      });
-    });
-
-    // TODO: implement updateBoundsWithPaddingToAllSides tests
-    group('updateBoundsWithPaddingToAllSides', () {
-      test('invokes lookAtWithGeoBoxAndOrientation', () async {
-        await googleAtlasController.updateBoundsWithPaddingToAllSides(
-          null,
-          0,
-          0,
-          0,
-          0,
-        );
-        verify(googleMapController.moveCamera(any)).called(1);
-      });
-    });
-
-    group('changeUserLocationIcon', () {
-      test('invokes changeUserLocationIcon', () {
-        googleAtlasController.changeUserLocationIcon('asset');
-      });
-    });
-
-    group('getCameraPosition', () {
-      test('call getCameraPosition and returns null', () async {
-        final cameraPosition = await googleAtlasController.getCameraPosition();
-        expect(cameraPosition, null);
       });
     });
 

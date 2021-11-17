@@ -1,5 +1,9 @@
 # atlas
 
+## v0.17.5 (2021-11-17)
+
+- README.md updated
+
 ## v0.17.4 (2021-11-11)
 
 - Adjusted `hashCode` and `operator ==` for the map objects

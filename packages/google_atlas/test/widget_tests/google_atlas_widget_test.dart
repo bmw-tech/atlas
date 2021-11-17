@@ -691,6 +691,7 @@ class GoogleAtlasProviderSample extends Provider {
   Widget build({
     CameraPosition initialCameraPosition,
     Set<Marker> markers,
+    Set<Callout> callouts,
     Set<Circle> circles,
     Set<Polygon> polygons,
     Set<Polyline> polylines,
@@ -700,97 +701,158 @@ class GoogleAtlasProviderSample extends Provider {
     ArgumentCallback<AtlasController> onMapCreated,
     ArgumentCallback<CameraPosition> onCameraPositionChanged,
     ArgumentCallback<LatLng> onLocationChanged,
+    VoidCallback onPan,
     bool showMyLocation,
     bool showMyLocationButton,
     bool followMyLocation,
     MapType mapType,
     bool showTraffic,
     MapLanguage mapLanguage,
+    DeviceLocation deviceLocation,
+    String deviceLocationIconAsset,
+    String country,
   }) {
     return AtlasTestSample(
       initialCameraPosition: initialCameraPosition,
+      onTap: onTap,
+      onLongPress: onLongPress,
       markers: markers,
+      polygons: polygons,
+      polylines: polylines,
+      circles: circles,
+      callouts: callouts,
       showMyLocation: showMyLocation,
       showMyLocationButton: showMyLocationButton,
+      onCameraPositionChanged: onCameraPositionChanged,
+      onMapCreated: onMapCreated,
       mapType: mapType,
       showTraffic: showTraffic,
       mapLanguage: mapLanguage,
-      onTap: onTap,
-      onPoiTap: onPoiTap,
-      onLongPress: onLongPress,
-      onCameraPositionChanged: onCameraPositionChanged,
+      onPan: onPan,
+      deviceLocation: deviceLocation,
+      deviceLocationIconAsset: deviceLocationIconAsset,
+      country: country,
     );
   }
 }
 
 class AtlasTestSample extends StatefulWidget {
   final CameraPosition initialCameraPosition;
+  final ArgumentCallback<LatLng> onTap;
+  final ArgumentCallback<Poi> onPoiTap;
+  final ArgumentCallback<LatLng> onLongPress;
+  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
+  final VoidCallback onPan;
   final Set<Marker> markers;
+  final Set<Polyline> polylines;
+  final Set<Polygon> polygons;
+  final Set<Circle> circles;
+  final Set<Callout> callouts;
   final bool showMyLocation;
   final bool showMyLocationButton;
   final MapType mapType;
   final bool showTraffic;
   final MapLanguage mapLanguage;
-  final ArgumentCallback<LatLng> onTap;
-  final ArgumentCallback<Poi> onPoiTap;
-  final ArgumentCallback<LatLng> onLongPress;
-  final ArgumentCallback<CameraPosition> onCameraPositionChanged;
+  final DeviceLocation deviceLocation;
+  final String deviceLocationIconAsset;
+  final String country;
+
+  final ArgumentCallback<AtlasController> onMapCreated;
 
   AtlasTestSample({
     @required this.initialCameraPosition,
     this.markers,
+    this.polygons,
+    this.circles,
+    this.polylines,
+    this.callouts,
+    this.onCameraPositionChanged,
+    this.onMapCreated,
+    this.onLongPress,
+    this.onPoiTap,
+    this.onTap,
+    this.onPan,
     this.showMyLocation,
     this.showMyLocationButton,
     this.mapType,
     this.showTraffic,
     this.mapLanguage,
-    this.onTap,
-    this.onPoiTap,
-    this.onLongPress,
-    this.onCameraPositionChanged,
+    this.deviceLocation,
+    this.deviceLocationIconAsset,
+    this.country,
   });
 
   State<AtlasTestSample> createState() => _AtlasTestSampleState(
-        initialCameraPosition: this.initialCameraPosition,
-        markers: this.markers,
-        showMyLocation: this.showMyLocation,
-        showMyLocationButton: this.showMyLocationButton,
-        mapType: this.mapType,
-        mapLanguage: this.mapLanguage,
-        showTraffic: this.showTraffic,
-        onTap: this.onTap,
-        onPoiTap: this.onPoiTap,
-        onLongPress: this.onLongPress,
-        onCameraPositionChanged: this.onCameraPositionChanged,
+        initialCameraPosition: initialCameraPosition,
+        onTap: onTap,
+        onLongPress: onLongPress,
+        markers: markers,
+        polygons: polygons,
+        polylines: polylines,
+        circles: circles,
+        callouts: callouts,
+        onMapCreated: onMapCreated,
+        showMyLocation: showMyLocation,
+        showMyLocationButton: showMyLocationButton,
+        onCameraPositionChanged: onCameraPositionChanged,
+        mapType: mapType,
+        showTraffic: showTraffic,
+        mapLanguage: mapLanguage,
+        onPan: onPan,
+        deviceLocation: deviceLocation,
+        deviceLocationIconAsset: deviceLocationIconAsset,
+        country: country,
       );
 }
 
 class _AtlasTestSampleState extends State<AtlasTestSample> {
   final CameraPosition initialCameraPosition;
-  final Set<Marker> markers;
-  final bool showMyLocation;
-  final bool showMyLocationButton;
-  final MapType mapType;
-  final MapLanguage mapLanguage;
-  final bool showTraffic;
   final ArgumentCallback<LatLng> onTap;
   final ArgumentCallback<Poi> onPoiTap;
   final ArgumentCallback<LatLng> onLongPress;
   final ArgumentCallback<CameraPosition> onCameraPositionChanged;
+  final ArgumentCallback<LatLng> onLocationChanged;
+  final VoidCallback onPan;
+  final Set<Marker> markers;
+  final Set<Polyline> polylines;
+  final Set<Polygon> polygons;
+  final Set<Circle> circles;
+  final Set<Callout> callouts;
+  final bool showMyLocation;
+  final bool showMyLocationButton;
+  final MapType mapType;
+  final bool showTraffic;
+  final MapLanguage mapLanguage;
+  final DeviceLocation deviceLocation;
+  final String deviceLocationIconAsset;
+  final String country;
+
+  final ArgumentCallback<AtlasController> onMapCreated;
+
   AtlasController _controller;
 
   _AtlasTestSampleState({
     @required this.initialCameraPosition,
     this.markers,
+    this.polygons,
+    this.circles,
+    this.polylines,
+    this.callouts,
+    this.onCameraPositionChanged,
+    this.onLocationChanged,
+    this.onMapCreated,
+    this.onLongPress,
+    this.onPoiTap,
+    this.onTap,
+    this.onPan,
     this.showMyLocation,
     this.showMyLocationButton,
     this.mapType,
     this.showTraffic,
     this.mapLanguage,
-    this.onTap,
-    this.onPoiTap,
-    this.onLongPress,
-    this.onCameraPositionChanged,
+    this.deviceLocation,
+    this.deviceLocationIconAsset,
+    this.country,
   });
 
   @override
@@ -801,19 +863,28 @@ class _AtlasTestSampleState extends State<AtlasTestSample> {
           Atlas(
             key: Key('TestAtlas'),
             initialCameraPosition: initialCameraPosition,
-            markers: this.markers ?? Set(),
-            showMyLocation: this.showMyLocation ?? false,
-            showMyLocationButton: this.showMyLocationButton ?? false,
+            markers: this.markers ?? <Marker>{},
+            polygons: this.polygons ?? <Polygon>{},
+            polylines: this.polylines ?? <Polyline>{},
+            callouts: this.callouts ?? <Callout>{},
+            circles: this.circles ?? <Circle>{},
+            showMyLocation: this.showMyLocation,
+            showMyLocationButton: this.showMyLocationButton,
             mapType: this.mapType ?? MapType.normal,
             mapLanguage: this.mapLanguage ?? MapLanguage.enUs,
-            showTraffic: this.showTraffic ?? false,
-            onTap: this.onTap ?? null,
-            onPoiTap: this.onPoiTap ?? null,
-            onLongPress: this.onLongPress ?? null,
+            showTraffic: this.showTraffic,
+            onTap: this.onTap,
+            onPoiTap: this.onPoiTap,
+            onLongPress: this.onLongPress,
             onMapCreated: (controller) {
               _controller = controller;
             },
-            onCameraPositionChanged: this.onCameraPositionChanged ?? null,
+            onCameraPositionChanged: this.onCameraPositionChanged,
+            country: this.country,
+            deviceLocation: this.deviceLocation,
+            deviceLocationIconAsset: this.deviceLocationIconAsset,
+            onPan: this.onPan,
+            onLocationChanged: this.onLocationChanged,
           ),
           Container(
             alignment: Alignment.centerRight,

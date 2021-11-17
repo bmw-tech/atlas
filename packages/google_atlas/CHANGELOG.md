@@ -1,5 +1,9 @@
 # google_atlas
 
+## v0.7.0 (2021-11-17)
+
+- Atlas updated to support `v0.17.3`
+
 ## v0.6.1 (2020-9-30)
 
 - Update to use `atlas v0.12.1`
