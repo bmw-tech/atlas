@@ -4,19 +4,6 @@ import 'package:atlas/atlas.dart';
 
 main() {
   group('BoundingBoxData', () {
-    test(
-      'should throw AssertionError if bounds is null',
-      () {
-        try {
-          BoundingBoxData(
-            bounds: null,
-          );
-          fail('should throw AssertionError');
-        } catch (error) {
-          expect(error, isAssertionError);
-        }
-      },
-    );
     test('should have correct properties when provided', () {
       final expectedBounds = LatLngBounds(
         northeast: LatLng(latitude: 1.0, longitude: 1.0),

@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 /// A pair of latitude and longitude coordinates.
 /// The `latitude` and `longitude` are stored as degrees.
 class LatLng {
@@ -10,11 +8,9 @@ class LatLng {
   final double longitude;
 
   const LatLng({
-    @required double latitude,
-    @required double longitude,
-  })  : assert(latitude != null),
-        assert(longitude != null),
-        latitude =
+    required double latitude,
+    required double longitude,
+  })  : latitude =
             (latitude < -90.0 ? -90.0 : (90.0 < latitude ? 90.0 : latitude)),
         longitude = (longitude + 180.0) % 360.0 - 180.0;
 
@@ -22,8 +18,11 @@ class LatLng {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final LatLng typedOther = other;
-    return latitude == typedOther.latitude && longitude == typedOther.longitude;
+    if (other is LatLng) {
+      return latitude == other.latitude && longitude == other.longitude;
+    } else {
+      return false;
+    }
   }
 
   @override

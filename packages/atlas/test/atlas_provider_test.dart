@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:atlas/atlas.dart';
 
 class MockAtlasProvider extends Mock implements Provider {}

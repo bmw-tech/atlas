@@ -1,5 +1,11 @@
 # atlas
 
+## v1.0.0 (2021-11-18)
+
+- Atlas now supports null safety
+- **BREAKING**: opt into null safety
+  - upgrade Dart SDK constraints to `>=2.12.0 <3.0.0`
+
 ## v0.17.5 (2021-11-17)
 
 - README.md updated

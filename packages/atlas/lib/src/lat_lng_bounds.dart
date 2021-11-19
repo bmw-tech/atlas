@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:atlas/atlas.dart';
 
 /// A latitude/longitude aligned rectangle.
@@ -14,18 +13,19 @@ class LatLngBounds {
   final LatLng southwest;
 
   const LatLngBounds({
-    @required this.northeast,
-    @required this.southwest,
-  })  : assert(northeast != null),
-        assert(southwest != null);
+    required this.northeast,
+    required this.southwest,
+  });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final LatLngBounds typedOther = other;
-    return northeast == typedOther.northeast &&
-        southwest == typedOther.southwest;
+    if (other is LatLngBounds) {
+      return northeast == other.northeast && southwest == other.southwest;
+    } else {
+      return false;
+    }
   }
 
   @override

@@ -1,25 +1,27 @@
 import 'package:atlas/atlas.dart';
-import 'package:flutter/foundation.dart';
 
 class DeviceLocation {
   final LatLng target;
-  final double accuracy;
+  final double? accuracy;
   final double altitude;
 
   const DeviceLocation({
-    @required this.target,
+    required this.target,
     this.accuracy = 0.0,
     this.altitude = 0.0,
-  }) : assert(target != null);
+  });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final DeviceLocation typedOther = other;
-    return target == typedOther.target &&
-        accuracy == typedOther.accuracy &&
-        altitude == typedOther.altitude;
+    if (other is DeviceLocation) {
+      return target == other.target &&
+          accuracy == other.accuracy &&
+          altitude == other.altitude;
+    } else {
+      return false;
+    }
   }
 
   @override

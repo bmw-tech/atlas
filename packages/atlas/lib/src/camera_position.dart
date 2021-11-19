@@ -1,5 +1,4 @@
 import 'package:atlas/atlas.dart';
-import 'package:flutter/foundation.dart';
 
 /// The `CameraPosition` represents the position of the map "camera",
 /// the view point from which the world is shown in the map view.
@@ -12,16 +11,19 @@ class CameraPosition {
   final double zoom;
 
   const CameraPosition({
-    @required this.target,
+    required this.target,
     this.zoom = 0.0,
-  }) : assert(target != null);
+  });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final CameraPosition typedOther = other;
-    return target == typedOther.target && zoom == typedOther.zoom;
+    if (other is CameraPosition) {
+      return target == other.target && zoom == other.zoom;
+    } else {
+      return false;
+    }
   }
 
   @override

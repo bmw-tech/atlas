@@ -1,5 +1,4 @@
 import 'package:atlas/atlas.dart';
-import 'package:flutter/foundation.dart';
 
 /// Marks a geographical location on the map.
 class Callout {
@@ -10,16 +9,16 @@ class Callout {
   final LatLng position;
 
   /// The type of annotation of the `Callout`
-  final AnnotationType annotationType;
+  final AnnotationType? annotationType;
 
   /// Optional MarkerIcon used to replace default icon
-  final MarkerIcon icon;
+  final MarkerIcon? icon;
 
   /// List of information of the `Callout`
-  final List<String> texts;
+  final List<String>? texts;
 
   /// A `void Function` which is called whenever a `Callout` is tapped.
-  final void Function() onTap;
+  final void Function()? onTap;
 
   /// The z-index of the callout, used to determine relative drawing order of
   /// map overlays.
@@ -28,27 +27,29 @@ class Callout {
   final double zIndex;
 
   const Callout({
-    @required this.id,
-    @required this.position,
+    required this.id,
+    required this.position,
     this.annotationType,
     this.icon,
     this.zIndex = 0.0,
     this.texts,
     this.onTap,
-  })  : assert(id != null),
-        assert(position != null);
+  });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final Callout typedOther = other;
-    return id == typedOther.id &&
-        position == typedOther.position &&
-        icon == typedOther.icon &&
-        zIndex == typedOther.zIndex &&
-        annotationType == typedOther.annotationType &&
-        texts == typedOther.texts;
+    if (other is Callout) {
+      return id == other.id &&
+          position == other.position &&
+          icon == other.icon &&
+          zIndex == other.zIndex &&
+          annotationType == other.annotationType &&
+          texts == other.texts;
+    } else {
+      return false;
+    }
   }
 
   @override

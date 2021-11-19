@@ -4,54 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   group('Circle', () {
-    test('should throw AssertionError if id is null', () {
-      try {
-        Circle(
-          id: null,
-          center: LatLng(
-            latitude: 38.7439498,
-            longitude: -9.1490721,
-          ),
-          radiusInMeters: 0.0,
-        );
-
-        fail('should throw AssertionError');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
-
-    test('should throw AssertionError if center is null', () {
-      try {
-        Circle(
-          id: 'id',
-          center: null,
-          radiusInMeters: 0.0,
-        );
-
-        fail('should throw AssertionError');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
-
-    test('should throw AssertionError if radius is null', () {
-      try {
-        Circle(
-          id: 'id',
-          center: LatLng(
-            latitude: 38.7439498,
-            longitude: -9.1490721,
-          ),
-          radiusInMeters: null,
-        );
-
-        fail('should throw AssertionError');
-      } catch (error) {
-        expect(error, isAssertionError);
-      }
-    });
-
     test('should have correct properties when no fillColor is provided', () {
       final expectedId = 'id';
       final expectedCenter = LatLng(
@@ -59,7 +11,7 @@ main() {
         longitude: -9.1490721,
       );
       final expectedRadius = 10.0;
-      final expectedFillColor = null;
+      final dynamic expectedFillColor = null;
 
       final circle = Circle(
         id: expectedId,
@@ -103,7 +55,7 @@ main() {
         longitude: -9.1490721,
       );
       final expectedRadius = 10.0;
-      final expectedStrokeColor = null;
+      final dynamic expectedStrokeColor = null;
 
       final circle = Circle(
         id: expectedId,
@@ -147,7 +99,7 @@ main() {
         longitude: -9.1490721,
       );
       final expectedRadius = 10.0;
-      final expectedZIndex = null;
+      final dynamic expectedZIndex = null;
 
       final circle = Circle(
         id: expectedId,
@@ -191,7 +143,7 @@ main() {
         longitude: -9.1490721,
       );
       final expectedRadius = 10.0;
-      final expectedStrokeColor = null;
+      final dynamic expectedStrokeColor = null;
 
       final circle = Circle(
         id: expectedId,
@@ -235,7 +187,7 @@ main() {
         longitude: -9.1490721,
       );
       final expectedRadius = 10.0;
-      final expectedStrokeColor = null;
+      final dynamic expectedStrokeColor = null;
 
       final circle = Circle(
         id: expectedId,
