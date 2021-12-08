@@ -27,6 +27,11 @@ class Circle {
   /// Lower values means drawn earlier, and thus appearing to be closer to the surface of the Earth.
   final double? zIndex;
 
+  /// Optional Circle Pulsing Effect
+  final bool pulsingVisible;
+  final double? pulsingTime;
+  final double? pulsingInterval;
+
   const Circle({
     required this.id,
     required this.center,
@@ -35,6 +40,9 @@ class Circle {
     this.strokeColor = Colors.black,
     this.strokeWidth = 1.0,
     this.zIndex = 0.0,
+    this.pulsingVisible = false,
+    this.pulsingTime = 0.5,
+    this.pulsingInterval = 2.5,
   });
 
   @override
@@ -48,7 +56,10 @@ class Circle {
           fillColor == other.fillColor &&
           strokeColor == other.strokeColor &&
           strokeWidth == other.strokeWidth &&
-          zIndex == other.zIndex;
+          zIndex == other.zIndex &&
+          pulsingVisible == other.pulsingVisible &&
+          pulsingTime == other.pulsingTime &&
+          pulsingInterval == other.pulsingInterval;
     } else {
       return false;
     }
@@ -62,5 +73,8 @@ class Circle {
       fillColor.hashCode ^
       strokeColor.hashCode ^
       strokeWidth.hashCode ^
-      zIndex.hashCode;
+      zIndex.hashCode ^
+      pulsingVisible.hashCode ^
+      pulsingTime.hashCode ^
+      pulsingInterval.hashCode;
 }
