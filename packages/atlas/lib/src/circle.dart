@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +27,11 @@ class Circle {
   /// Lower values means drawn earlier, and thus appearing to be closer to the surface of the Earth.
   final double zIndex;
 
+  /// Optional Circle Pulsing Effect
+  final bool pulsingVisible;
+  final double? pulsingTime;
+  final double? pulsingInterval;
+
   const Circle({
     @required this.id,
     @required this.center,
@@ -36,7 +40,10 @@ class Circle {
     this.strokeColor = Colors.black,
     this.strokeWidth = 1.0,
     this.zIndex = 0.0,
-  })  : assert(id != null),
+    this.pulsingVisible = false,
+    this.pulsingTime = 0.5,
+    this.pulsingInterval = 2.5,
+  }) : assert(id != null),
         assert(center != null),
         assert(radiusInMeters != null);
 
@@ -51,7 +58,9 @@ class Circle {
         fillColor == typedOther.fillColor &&
         strokeColor == typedOther.strokeColor &&
         strokeWidth == typedOther.strokeWidth &&
-        zIndex == typedOther.zIndex;
+        pulsingVisible == typedOther.pulsingVisible &&
+pulsingTime == typedOther.pulsingTime &&
+pulsingInterval == typedOther.pulsingInterval;
   }
 
   @override
@@ -62,5 +71,8 @@ class Circle {
       fillColor.hashCode ^
       strokeColor.hashCode ^
       strokeWidth.hashCode ^
-      zIndex.hashCode;
+      zIndex.hashCode ^
+      pulsingVisible.hashCode ^
+      pulsingTime.hashCode ^
+      pulsingInterval.hashCode;
 }
