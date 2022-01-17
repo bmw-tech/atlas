@@ -29,8 +29,8 @@ class Circle {
 
   /// Optional Circle Pulsing Effect
   final bool pulsingVisible;
-  final double? pulsingTime;
-  final double? pulsingInterval;
+  final double pulsingTime;
+  final double pulsingInterval;
 
   const Circle({
     @required this.id,
@@ -43,7 +43,7 @@ class Circle {
     this.pulsingVisible = false,
     this.pulsingTime = 0.5,
     this.pulsingInterval = 2.5,
-  }) : assert(id != null),
+  })  : assert(id != null),
         assert(center != null),
         assert(radiusInMeters != null);
 
@@ -59,8 +59,8 @@ class Circle {
         strokeColor == typedOther.strokeColor &&
         strokeWidth == typedOther.strokeWidth &&
         pulsingVisible == typedOther.pulsingVisible &&
-pulsingTime == typedOther.pulsingTime &&
-pulsingInterval == typedOther.pulsingInterval;
+        pulsingTime == typedOther.pulsingTime &&
+        pulsingInterval == typedOther.pulsingInterval;
   }
 
   @override
