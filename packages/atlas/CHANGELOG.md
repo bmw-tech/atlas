@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.1 (2022-01-21)
+
+- Added `pulsingVisible`, `pulsingTime` and `pulsingInterval` boolean properties to the Circle object
+
 ## v1.0.0 (2021-11-18)
 
 - Atlas now supports null safety
