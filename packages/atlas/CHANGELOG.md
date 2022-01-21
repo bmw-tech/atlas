@@ -1,10 +1,8 @@
 # atlas
 
-## v1.0.1 (2021-01-21)
+## v1.0.1 (2022-01-21)
 
-- Added `pulsingVisible` boolean
-- Added `pulsingTime` boolean
-- Added `pulsingInterval` boolean
+- Added `pulsingVisible`, `pulsingTime` and `pulsingInterval` boolean properties to the Circle object
 
 ## v1.0.0 (2021-11-18)
 
