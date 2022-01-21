@@ -1,6 +1,6 @@
 name: atlas
 description: An extensible map abstraction for Flutter with support for multiple map providers
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/bmw-tech/atlas
 issue_tracker: https://github.com/bmw-tech/atlas/issues
 homepage: https://bmw-tech.github.io/atlas

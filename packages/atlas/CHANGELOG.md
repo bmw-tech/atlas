@@ -1,5 +1,11 @@
 # atlas
 
+## v1.0.1 (2021-01-21)
+
+- Added `pulsingVisible` boolean
+- Added `pulsingTime` boolean
+- Added `pulsingInterval` boolean
+
 ## v1.0.0 (2021-11-18)
 
 - Atlas now supports null safety
