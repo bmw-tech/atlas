@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.2 (2022-01-24)
+
+- Fix: removed onTap from the marker == comparer (functions from different instances will never be the same)
+
 ## v1.0.1 (2022-01-21)
 
 - Added `pulsingVisible`, `pulsingTime` and `pulsingInterval` boolean properties to the Circle object
