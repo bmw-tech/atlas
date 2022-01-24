@@ -13,7 +13,7 @@ class Marker {
   final MarkerIcon? icon;
 
   /// A `void Function` which is called whenever a `Marker` is tapped.
-  final void Function()? onTap;
+  final VoidCallback? onTap;
 
   final Annotation? annotation;
 
@@ -47,7 +47,6 @@ class Marker {
     if (other is Marker) {
       return id == other.id &&
           position == other.position &&
-          onTap == other.onTap &&
           annotation == other.annotation &&
           icon == other.icon &&
           zIndex == other.zIndex &&
@@ -62,7 +61,6 @@ class Marker {
   int get hashCode =>
       id.hashCode ^
       position.hashCode ^
-      onTap.hashCode ^
       annotation.hashCode ^
       icon.hashCode ^
       zIndex.hashCode ^
@@ -137,7 +135,6 @@ class Annotation {
       return title == other.title &&
           subTitle == other.subTitle &&
           icon == other.icon &&
-          onTap == other.onTap &&
           annotationType == other.annotationType;
     } else {
       return false;
@@ -149,6 +146,5 @@ class Annotation {
       title.hashCode ^
       subTitle.hashCode ^
       icon.hashCode ^
-      onTap.hashCode ^
       annotationType.hashCode;
 }
