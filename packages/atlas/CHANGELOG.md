@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.3 (2022-03-03)
+
+- Added ability to supply an `Anchor` on a `Callout`
+
 ## v1.0.2 (2022-01-24)
 
 - Fix: removed onTap from the marker == comparer (functions from different instances will never be the same)
