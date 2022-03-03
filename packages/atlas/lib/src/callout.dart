@@ -26,6 +26,9 @@ class Callout {
   /// Lower values means drawn earlier, and thus appearing to be closer to the surface of the Earth.
   final double zIndex;
 
+  /// Specifies the anchor to be at a particular point in the marker image.
+  final Anchor? anchor;
+
   const Callout({
     required this.id,
     required this.position,
@@ -34,6 +37,7 @@ class Callout {
     this.zIndex = 0.0,
     this.texts,
     this.onTap,
+    this.anchor,
   });
 
   @override
@@ -46,7 +50,8 @@ class Callout {
           icon == other.icon &&
           zIndex == other.zIndex &&
           annotationType == other.annotationType &&
-          texts == other.texts;
+          texts == other.texts &&
+          anchor == other.anchor;
     } else {
       return false;
     }
@@ -59,5 +64,6 @@ class Callout {
       icon.hashCode ^
       zIndex.hashCode ^
       annotationType.hashCode ^
-      texts.hashCode;
+      texts.hashCode ^
+      anchor.hashCode;
 }

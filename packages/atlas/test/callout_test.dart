@@ -101,16 +101,19 @@ main() {
       final AnnotationType annotationType = AnnotationType.route;
       final MarkerIcon icon = MarkerIcon(assetName: 'my-asset');
       final List<String> texts = ["T1, T2"];
+      final Anchor anchor = Anchor(x: 1.0, y: 1.0);
 
       final callout = Callout(
-          id: id,
-          position: LatLng(
-            latitude: latitude,
-            longitude: longitude,
-          ),
-          annotationType: annotationType,
-          icon: icon,
-          texts: texts);
+        id: id,
+        position: LatLng(
+          latitude: latitude,
+          longitude: longitude,
+        ),
+        annotationType: annotationType,
+        icon: icon,
+        texts: texts,
+        anchor: anchor,
+      );
 
       expect(
           callout.hashCode,
@@ -118,7 +121,8 @@ main() {
               callout.position.hashCode ^
               callout.annotationType.hashCode ^
               callout.icon.hashCode ^
-              callout.texts.hashCode);
+              callout.texts.hashCode ^
+              callout.anchor.hashCode);
     });
   });
 }
