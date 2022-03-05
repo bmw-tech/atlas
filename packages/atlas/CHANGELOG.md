@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.4 (2022-03-05)
+
+- Added support for `getScreenShot` function
+
 ## v1.0.3 (2022-03-03)
 
 - Added ability to supply an `Anchor` on a `Callout`
