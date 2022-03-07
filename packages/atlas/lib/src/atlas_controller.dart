@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:atlas/atlas.dart';
 
@@ -27,4 +28,16 @@ abstract class AtlasController {
 
   /// Return a [BoundingBox] corresponding to the currently visible area in the map view.
   Future<LatLngBounds> getVisibleArea();
+
+  /// Return a [Uint8List] to the screenshot of the specified range of the current screen
+  ///
+  /// [x] and [y] are the starting coordinates relative to the upper left corner [0, 0]
+  /// [width] is the width to be intercepted
+  /// [height] is the height to be intercepted
+  Future<Uint8List> getScreenShot({
+    int x,
+    int y,
+    int width,
+    int height,
+  });
 }
