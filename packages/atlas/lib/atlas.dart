@@ -8,6 +8,8 @@ export 'src/bounding_box_data.dart';
 export 'src/callout.dart';
 export 'src/camera_position.dart';
 export 'src/circle.dart';
+export 'src/cluster.dart';
+export 'src/cluster_icon.dart';
 export 'src/device_location.dart';
 export 'src/lat_lng.dart';
 export 'src/lat_lng_bounds.dart';
