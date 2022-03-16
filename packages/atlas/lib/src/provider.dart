@@ -24,6 +24,7 @@ abstract class Provider {
     final Set<Circle>? circles,
     final Set<Polygon>? polygons,
     final Set<Polyline>? polylines,
+    final Set<Cluster>? clusters,
     final ArgumentCallback<LatLng>? onTap,
     final ArgumentCallback<Poi>? onPoiTap,
     final ArgumentCallback<LatLng>? onLongPress,
