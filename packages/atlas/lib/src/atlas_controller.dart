@@ -41,7 +41,7 @@ abstract class AtlasController {
     int height,
   });
 
-    /// Updates the map's logo bottom padding
-    /// [bottomPadding] is the value that the padding will become
-    Future<void> updateMapLogoBottomPadding(int bottomPadding);
+  /// Updates the map's logo bottom padding
+  /// [bottomPadding] is the value that the padding will become
+  Future<void> updateMapLogoBottomPadding(int bottomPadding);
 }
