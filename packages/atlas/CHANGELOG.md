@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.6 (2022-18-07)
+
+- Add support for `updateMapLogoBottomPadding` function
+
 ## v1.0.5 (2022-03-12)
 
 - Add ability to supply `Cluster` on atlas
