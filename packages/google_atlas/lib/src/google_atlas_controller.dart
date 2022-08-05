@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:atlas/atlas.dart';
 import 'package:flutter/foundation.dart';
@@ -8,13 +9,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as GoogleMaps;
 class GoogleAtlasController implements AtlasController {
   final GoogleMaps.GoogleMapController _controller;
 
-  GoogleAtlasController({@required GoogleMaps.GoogleMapController controller})
-      : assert(controller != null),
-        _controller = controller;
+  GoogleAtlasController({required GoogleMaps.GoogleMapController controller})
+      : _controller = controller;
 
   @override
   Future<void> moveCamera(CameraPosition cameraPosition,
-      {MoveCameraAnimation animation}) {
+      {MoveCameraAnimation? animation}) {
     return _controller.moveCamera(
       GoogleMaps.CameraUpdate.newCameraPosition(
         CameraUtils.toGoogleCameraPosition(cameraPosition),
@@ -63,5 +63,17 @@ class GoogleAtlasController implements AtlasController {
     return LatLngUtils.fromGoogleLatLngBounds(
       await _controller.getVisibleRegion(),
     );
+  }
+
+  @override
+  Future<Uint8List> getScreenShot({int? x, int? y, int? width, int? height}) {
+    // TODO: implement getScreenShot
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateMapLogoBottomPadding(int bottomPadding) {
+    // TODO: implement updateMapLogoBottomPadding
+    throw UnimplementedError();
   }
 }
