@@ -17,14 +17,17 @@ extension PositionIndicatorMarker on PositionIndicatorStyle {
 }
 
 class PositionIndicator {
-  //Set the type of indicator, it can be navigator or pedestrian
+  ///Set the type of indicator, it can be navigator or pedestrian
   final PositionIndicatorStyle style;
-  //Set whether the indicator will be displayed as disable or enable
+
+  ///Set whether the indicator will be displayed as disable or enable
   final bool isActive;
-  //Responsible for defining, in degrees, where the indicator is pointing.
-  //Min 0 and Max 360
+
+  ///Responsible for defining, in degrees, where the indicator is pointing.
+  ///Min 0 and Max 360
   final double bearingInDegrees;
-  //Coordinates of the indicator
+
+  ///Coordinates of the indicator
   final LatLng latLng;
 
   PositionIndicator({
@@ -47,6 +50,9 @@ class PositionIndicator {
       return true;
     }
   }
+
+  @override
+  int get hashCode => style.hashCode ^ latLng.hashCode ^ bearingInDegrees.hashCode ^ isActive.hashCode;
 
   PositionIndicator copyWith({
     PositionIndicatorStyle? style,

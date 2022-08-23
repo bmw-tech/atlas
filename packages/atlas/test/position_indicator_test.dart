@@ -42,9 +42,15 @@ main() {
         bearingInDegrees: bearingInDegrees,
       );
 
-      final sameIndicator = indicator.copyWith();
+      final copyIndicator = indicator.copyWith();
 
-      expect(sameIndicator, indicator);
+      expect(copyIndicator, indicator);
+      expect(copyIndicator.hashCode, indicator.hashCode);
+
+      final newIndicator = indicator.copyWith(isActive: false);
+      final comparsion = newIndicator == indicator;
+
+      expect(comparsion, false);
     });
   });
 }
