@@ -48,6 +48,16 @@ class PositionIndicator {
     }
   }
 
-  @override
-  int get hashCode => style.hashCode ^ latLng.hashCode ^ bearingInDegrees.hashCode ^ isActive.hashCode;
+  PositionIndicator copyWith({
+    PositionIndicatorStyle? style,
+    double? bearingInDegrees,
+    LatLng? latLng,
+    bool? isActive,
+  }) =>
+      PositionIndicator(
+        style: style ?? this.style,
+        latLng: latLng ?? this.latLng,
+        isActive: isActive ?? this.isActive,
+        bearingInDegrees: bearingInDegrees ?? this.bearingInDegrees,
+      );
 }

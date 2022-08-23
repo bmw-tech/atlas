@@ -28,5 +28,23 @@ main() {
       expect(PositionIndicatorStyle.navigator.styleToString(), "navigator");
       expect(PositionIndicatorStyle.pedestrian.styleToString(), "pedestrian");
     });
+
+    test("copyWith", () {
+      final positionIndLatLng = LatLng(
+        latitude: 38.7439498,
+        longitude: -9.1490721,
+      );
+      final bearingInDegrees = 20.0;
+      final indicator = PositionIndicator(
+        style: PositionIndicatorStyle.pedestrian,
+        latLng: positionIndLatLng,
+        isActive: true,
+        bearingInDegrees: bearingInDegrees,
+      );
+
+      final sameIndicator = indicator.copyWith();
+
+      expect(sameIndicator, indicator);
+    });
   });
 }
