@@ -6,14 +6,12 @@ enum PositionIndicatorStyle {
 }
 
 extension PositionIndicatorMarker on PositionIndicatorStyle {
-  int styleToInt() {
+  String styleToString() {
     switch (this) {
       case PositionIndicatorStyle.pedestrian:
-        return 0;
+        return "pedestrian";
       case PositionIndicatorStyle.navigator:
-        return 1;
-      default:
-        return 0;
+        return "navigator";
     }
   }
 }
@@ -25,15 +23,15 @@ class PositionIndicator {
   final bool isActive;
   //Responsible for defining, in degrees, where the indicator is pointing.
   //Min 0 and Max 360
-  final double orientationDegrees;
+  final double bearingInDegrees;
   //Coordinates of the indicator
-  final LatLng coordinates;
+  final LatLng latLng;
 
   PositionIndicator({
     required this.style,
-    required this.coordinates,
+    required this.latLng,
     required this.isActive,
-    required this.orientationDegrees,
+    required this.bearingInDegrees,
   });
 
   @override
@@ -42,8 +40,8 @@ class PositionIndicator {
     if (other.runtimeType != runtimeType) return false;
     if (other is PositionIndicator) {
       return other.isActive == isActive &&
-          other.coordinates == coordinates &&
-          other.orientationDegrees == orientationDegrees &&
+          other.latLng == latLng &&
+          other.bearingInDegrees == bearingInDegrees &&
           other.style == style;
     } else {
       return true;
@@ -51,5 +49,5 @@ class PositionIndicator {
   }
 
   @override
-  int get hashCode => style.hashCode ^ coordinates.hashCode ^ orientationDegrees.hashCode ^ isActive.hashCode;
+  int get hashCode => style.hashCode ^ latLng.hashCode ^ bearingInDegrees.hashCode ^ isActive.hashCode;
 }
