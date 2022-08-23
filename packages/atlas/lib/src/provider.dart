@@ -1,5 +1,4 @@
 import 'package:atlas/atlas.dart';
-import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
 
 /// Callback function taking a single argument.
@@ -25,6 +24,7 @@ abstract class Provider {
     final Set<Polygon>? polygons,
     final Set<Polyline>? polylines,
     final Set<Cluster>? clusters,
+    final PositionIndicator? positionIndicator,
     final ArgumentCallback<LatLng>? onTap,
     final ArgumentCallback<Poi>? onPoiTap,
     final ArgumentCallback<LatLng>? onLongPress,

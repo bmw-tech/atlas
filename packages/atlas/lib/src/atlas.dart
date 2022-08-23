@@ -117,6 +117,9 @@ class Atlas extends StatelessWidget {
   /// Sets the country name.
   final String? country;
 
+  /// Sets the indicator position.
+  final PositionIndicator? positionIndicator;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -142,6 +145,7 @@ class Atlas extends StatelessWidget {
     this.deviceLocation,
     this.deviceLocationIconAsset,
     this.country,
+    this.positionIndicator,
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -182,6 +186,7 @@ class Atlas extends StatelessWidget {
       deviceLocation: deviceLocation,
       deviceLocationIconAsset: deviceLocationIconAsset,
       country: country,
+      positionIndicator: positionIndicator,
     );
   }
 }
