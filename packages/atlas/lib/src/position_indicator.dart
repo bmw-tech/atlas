@@ -1,4 +1,5 @@
 import 'package:atlas/atlas.dart';
+import 'package:flutter/material.dart';
 
 enum PositionIndicatorStyle {
   pedestrian,
@@ -30,11 +31,18 @@ class PositionIndicator {
   ///Coordinates of the indicator
   final LatLng latLng;
 
+  final String? assetIndicator3D;
+  final String? assetIndicatorTexture;
+  final Color? indicatorColor;
+
   PositionIndicator({
     required this.style,
     required this.latLng,
     required this.isActive,
     required this.bearingInDegrees,
+    this.assetIndicator3D,
+    this.assetIndicatorTexture,
+    this.indicatorColor,
   });
 
   @override
@@ -45,7 +53,10 @@ class PositionIndicator {
       return other.isActive == isActive &&
           other.latLng == latLng &&
           other.bearingInDegrees == bearingInDegrees &&
-          other.style == style;
+          other.style == style &&
+          other.assetIndicator3D == assetIndicator3D &&
+          other.assetIndicatorTexture == assetIndicatorTexture &&
+          other.indicatorColor == indicatorColor;
     } else {
       return true;
     }
