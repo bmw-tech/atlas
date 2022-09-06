@@ -1,4 +1,9 @@
 # atlas
+## v1.0.7 (2022-07-09)
+
+- Added ability to supply an `Heading` on `DeviceLocation`
+- Added ability to supply an `3Dassets` on `DeviceLocation`
+- Added ability to supply an `isActive` on `DeviceLocation`
 
 ## v1.0.6 (2022-18-07)
 
