@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
 
@@ -9,17 +10,20 @@ class Polyline {
   /// A `List` of `LatLng` points that make up the polyline's shape.
   final List<LatLng> points;
 
-  /// A `void Function` which is called whenever a `Polyline` is tapped.
-  final void Function()? onTap;
-
   /// The `Color` of the line
-  final Color? color;
+  final Color color;
 
   /// Width of the polyline, used to define the width of the line segment to be drawn.
   ///
   /// The width is constant and independent of the camera's zoom level.
   /// The default value is 10.
   final int width;
+
+    /// height of the polyline, used to define the height of the line segment to be drawn.
+  ///
+  /// The height is constant and independent of the camera's zoom level.
+  /// The default value is 10.
+  final int height;
 
   /// The 'Outline Color' of the line.
   /// The default color is black.
@@ -38,55 +42,41 @@ class Polyline {
   ///The default value is false.
   final bool isDottedLine;
 
-  /// The distance between the Polylines.
-  final List<double> intervals;
-
-  /// Order that the polyline is drawn
-  final double zIndex;
-
-  const Polyline({
-    required this.id,
-    required this.points,
-    this.onTap,
-    this.color = Colors.black,
-    this.width = 10,
-    this.outlineColor = Colors.black,
-    this.isDottedLine = false,
-    this.outlineWidth = 0,
-    this.intervals = const <double>[],
-    this.zIndex = 0.0,
-  });
+  const Polyline(
+      {@required this.id,
+      @required this.points,
+      this.color = Colors.black,
+      this.width = 10,
+      this.height = 10,
+      this.outlineColor = Colors.black,
+      this.isDottedLine = false,
+      this.outlineWidth = 0})
+      : assert(id != null),
+        assert(points != null);
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    if (other is Polyline) {
-      return id == other.id &&
-          points == other.points &&
-          onTap == other.onTap &&
-          color == other.color &&
-          width == other.width &&
-          outlineColor == other.outlineColor &&
-          isDottedLine == other.isDottedLine &&
-          outlineWidth == other.outlineWidth &&
-          intervals == other.intervals &&
-          zIndex == other.zIndex;
-    } else {
-      return false;
-    }
+    final Polyline typedOther = other;
+    return id == typedOther.id &&
+        points == typedOther.points &&
+        color == typedOther.color &&
+        width == typedOther.width &&
+        height == typedOther.height &&
+        outlineColor == typedOther.outlineColor &&
+        isDottedLine == typedOther.isDottedLine &&
+        outlineWidth == typedOther.outlineWidth;
   }
 
   @override
   int get hashCode =>
       id.hashCode ^
       points.hashCode ^
-      onTap.hashCode ^
       color.hashCode ^
       width.hashCode ^
+      height.hashCode ^
       outlineColor.hashCode ^
       isDottedLine.hashCode ^
-      outlineWidth.hashCode ^
-      intervals.hashCode ^
-      zIndex.hashCode;
+      outlineWidth.hashCode;
 }
