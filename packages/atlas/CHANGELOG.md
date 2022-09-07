@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.7 (2022-7-09)
+
+- Added `height` to Polyline object
+
 ## v1.0.6 (2022-18-07)
 
 - Add support for `updateMapLogoBottomPadding` function
