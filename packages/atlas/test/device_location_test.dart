@@ -56,7 +56,7 @@ main() {
         ),
         heading: null,
       );
-      expect(deviceLocation.accuracy, null);
+      expect(deviceLocation.heading, null);
     });
 
     test('heading should be zero when not provided', () {
