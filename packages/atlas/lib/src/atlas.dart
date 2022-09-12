@@ -117,6 +117,9 @@ class Atlas extends StatelessWidget {
   /// Sets the country name.
   final String? country;
 
+  /// [Bool] To indicate if the provider should set the political views
+  final bool? setPoliticalViews;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -142,6 +145,7 @@ class Atlas extends StatelessWidget {
     this.deviceLocation,
     this.deviceLocationIconAsset,
     this.country,
+    this.setPoliticalViews,
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -182,6 +186,7 @@ class Atlas extends StatelessWidget {
       deviceLocation: deviceLocation,
       deviceLocationIconAsset: deviceLocationIconAsset,
       country: country,
+      setPoliticalViews: setPoliticalViews,
     );
   }
 }
