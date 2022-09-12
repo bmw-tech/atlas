@@ -44,4 +44,7 @@ abstract class AtlasController {
   /// Updates the map's logo bottom padding
   /// [bottomPadding] is the value that the padding will become
   Future<void> updateMapLogoBottomPadding(int bottomPadding);
+
+  /// Disposed the map sdk
+  Future<void> disposeSDK();
 }
