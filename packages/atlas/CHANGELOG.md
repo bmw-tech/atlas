@@ -1,4 +1,10 @@
 # atlas
+
+## v1.0.8 (2022-12-09)
+
+- Added ability to set political views
+- Add support to dispose provider sdk
+
 ## v1.0.7 (2022-07-09)
 
 - Added ability to supply an `Heading` on `DeviceLocation`
