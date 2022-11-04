@@ -47,4 +47,7 @@ abstract class AtlasController {
 
   /// Dispose the map sdk
   Future<void> disposeSDK();
+
+  /// Return a [LatLngBounds] corresponding to [Rectangle2D] the in the map view - Async method
+  Future<LatLngBounds>? getLatLngBounds(Rectangle2D rectangle2d);
 }
