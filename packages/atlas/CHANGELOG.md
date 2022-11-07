@@ -1,5 +1,10 @@
 # atlas
 
+
+## v1.0.0 (2022-07-10)
+
+- Added new function `getLatLngBounds`
+
 ## v1.0.8 (2022-12-09)
 
 - Added ability to set political views
