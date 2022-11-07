@@ -1,7 +1,7 @@
 # atlas
 
 
-## v1.0.0 (2022-07-10)
+## v1.0.9 (2022-07-10)
 
 - Added new function `getLatLngBounds`
 
