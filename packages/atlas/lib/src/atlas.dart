@@ -120,6 +120,15 @@ class Atlas extends StatelessWidget {
   /// [Bool] To indicate if the provider should set the political views
   final bool? setPoliticalViews;
 
+  /// [Double] To indicate the zoom level
+  final double? zoom;
+
+  /// [Double] To indicate the minimum zoom level
+  final double? minZoom;
+
+  /// [Double] To indicate the maximum zoom level
+  final double? maxZoom;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -146,6 +155,9 @@ class Atlas extends StatelessWidget {
     this.deviceLocationIconAsset,
     this.country,
     this.setPoliticalViews,
+    this.zoom,
+    this.minZoom,
+    this.maxZoom
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -187,6 +199,9 @@ class Atlas extends StatelessWidget {
       deviceLocationIconAsset: deviceLocationIconAsset,
       country: country,
       setPoliticalViews: setPoliticalViews,
+      zoom: zoom,
+      minZoom: minZoom,
+      maxZoom: maxZoom,
     );
   }
 }
