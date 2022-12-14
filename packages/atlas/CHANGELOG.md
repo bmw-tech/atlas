@@ -4,6 +4,8 @@
 ## v1.0.9 (2022-07-10)
 
 - Added new function `getLatLngBounds`
+- Added min and max zoom variables
+- Added onPolylineTap
 
 ## v1.0.8 (2022-12-09)
 
