@@ -37,6 +37,11 @@ class Atlas extends StatelessWidget {
   /// The `Poi` contains the name and latitude and longitude of the valid point.
   final ArgumentCallback<Poi>? onPoiTap;
 
+  /// `onPolylineTap` gets called when a valid polyline on the map is clicked.
+  /// When the clicked place is not valid polyline, `onTap` gets called.
+  /// The `Polyline` contains the id and a list of valid points.
+  final ArgumentCallback<Polyline>? onPolylineTap;
+
   /// `onLongPress` gets called when the map is long pressed
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng>? onLongPress;
@@ -157,7 +162,8 @@ class Atlas extends StatelessWidget {
     this.setPoliticalViews,
     this.zoom,
     this.minZoom,
-    this.maxZoom
+    this.maxZoom,
+    this.onPolylineTap
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -202,6 +208,7 @@ class Atlas extends StatelessWidget {
       zoom: zoom,
       minZoom: minZoom,
       maxZoom: maxZoom,
+      onPolylineTap: onPolylineTap,
     );
   }
 }
