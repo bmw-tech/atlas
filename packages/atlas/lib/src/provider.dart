@@ -41,5 +41,9 @@ abstract class Provider {
       final DeviceLocation? deviceLocation,
       final String? deviceLocationIconAsset,
       final String? country,
-      final bool? setPoliticalViews});
+      final bool? setPoliticalViews,
+      final double? zoom,
+      final double? minZoom,
+      final double? maxZoom,
+      });
 }
