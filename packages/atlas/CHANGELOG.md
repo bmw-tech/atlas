@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.9 (2023-01-16)
+
+- Add ability to supply `TrackPlayback` on atlas
+
 ## v1.0.8 (2022-12-09)
 
 - Added ability to set political views

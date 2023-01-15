@@ -38,7 +38,7 @@ class Cluster {
     this.zIndex = 0.0,
     this.description,
     this.position,
-	this.anchor,
+	  this.anchor,
     this.markers,
     this.icon,
     this.onTap,
@@ -53,7 +53,7 @@ class Cluster {
           zIndex == other.zIndex &&
           description == other.description &&
           position == other.position &&
-		  anchor == other.anchor &&
+		      anchor == other.anchor &&
           icon == other.icon &&
           markers == other.markers;
     } else {
@@ -66,7 +66,7 @@ class Cluster {
       id.hashCode ^
       description.hashCode ^
       position.hashCode ^
-	  anchor.hashCode ^
+	    anchor.hashCode ^
       markers.hashCode ^
       zIndex.hashCode ^
       icon.hashCode;
