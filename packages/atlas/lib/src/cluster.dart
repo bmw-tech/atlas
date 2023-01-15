@@ -53,7 +53,7 @@ class Cluster {
           zIndex == other.zIndex &&
           description == other.description &&
           position == other.position &&
-	  anchor == other.anchor &&
+          anchor == other.anchor &&
           icon == other.icon &&
           markers == other.markers;
     } else {
