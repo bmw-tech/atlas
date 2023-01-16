@@ -23,7 +23,7 @@ class Cluster {
   /// If [position] is null, position information needs to be calculated
   /// through custom rules, such as getting the average latitude and longitude through markers
   final LatLng? position;
-  
+
   /// Specifies the anchor to be at a particular point in the cluster image.
   final Anchor? anchor;
 

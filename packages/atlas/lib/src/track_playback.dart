@@ -7,7 +7,7 @@ class TrackPlayback {
   final String id;
 
   /// The whole journey is composed of 'polylines'
-  final Set<Polyline> polylines;
+  final List<Polyline> polylines;
 
   /// Driving car icon
   final MarkerIcon? carIcon;
@@ -19,13 +19,13 @@ class TrackPlayback {
   final int overlookingAngle;
 
   /// After the trip, the displayed markers
-  final Set<Marker>? afterEndMarkers;
+  final List<Marker>? afterEndMarkers;
 
   /// Corresponding to 'polylines', control the color of corresponding polylines
-  final Set<Color>? colors;
+  final List<Color>? colors;
 
   /// Corresponding to 'polylines', the speed of the corresponding polyline
-  final Set<int>? speeds;
+  final List<int>? speeds;
 
   /// Callback after animation completion
   final VoidCallback? onCompleted;
