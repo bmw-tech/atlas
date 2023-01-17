@@ -47,4 +47,8 @@ abstract class AtlasController {
 
   /// Dispose the map sdk
   Future<void> disposeSDK();
+
+  /// Some regions may have their own unique methods,
+  /// this function can be used for customized implementation
+  Future<void> executeCustomMethod(Map<String, dynamic> parameters);
 }
