@@ -28,6 +28,7 @@ abstract class Provider {
       final TrackPlayback? trackPlayback,
       final ArgumentCallback<LatLng>? onTap,
       final ArgumentCallback<Poi>? onPoiTap,
+      final ArgumentCallback<Polyline>? onPolylineTap,
       final ArgumentCallback<LatLng>? onLongPress,
       final ArgumentCallback<AtlasController>? onMapCreated,
       final ArgumentCallback<CameraPosition>? onCameraPositionChanged,
