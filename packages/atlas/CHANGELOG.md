@@ -1,5 +1,11 @@
 # atlas
 
+## v1.0.10 (2023-07-29)
+
+- Added new function `getLatLngBounds`
+- Added min and max zoom variables
+- Added onPolylineTap
+
 ## v1.0.9 (2023-01-16)
 
 - Add ability to supply `TrackPlayback` on atlas

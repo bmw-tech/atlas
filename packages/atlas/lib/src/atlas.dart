@@ -40,6 +40,11 @@ class Atlas extends StatelessWidget {
   /// The `Poi` contains the name and latitude and longitude of the valid point.
   final ArgumentCallback<Poi>? onPoiTap;
 
+  /// `onPolylineTap` gets called when a valid polyline on the map is clicked.
+  /// When the clicked place is not valid polyline, `onTap` gets called.
+  /// The `Polyline` contains the id and a list of valid points.
+  final ArgumentCallback<Polyline>? onPolylineTap;
+
   /// `onLongPress` gets called when the map is long pressed
   /// The `LatLng` of the location where the pressed event occurred is passed as an argument.
   final ArgumentCallback<LatLng>? onLongPress;
@@ -123,6 +128,15 @@ class Atlas extends StatelessWidget {
   /// [Bool] To indicate if the provider should set the political views
   final bool? setPoliticalViews;
 
+  /// [Double] To indicate the zoom level
+  final double? zoom;
+
+  /// [Double] To indicate the minimum zoom level
+  final double? minZoom;
+
+  /// [Double] To indicate the maximum zoom level
+  final double? maxZoom;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -150,6 +164,10 @@ class Atlas extends StatelessWidget {
     this.deviceLocationIconAsset,
     this.country,
     this.setPoliticalViews,
+    this.zoom,
+    this.minZoom,
+    this.maxZoom,
+    this.onPolylineTap
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -193,6 +211,10 @@ class Atlas extends StatelessWidget {
       deviceLocationIconAsset: deviceLocationIconAsset,
       country: country,
       setPoliticalViews: setPoliticalViews,
+      zoom: zoom,
+      minZoom: minZoom,
+      maxZoom: maxZoom,
+      onPolylineTap: onPolylineTap,
     );
   }
 }

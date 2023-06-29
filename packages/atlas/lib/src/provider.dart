@@ -28,6 +28,7 @@ abstract class Provider {
       final TrackPlayback? trackPlayback,
       final ArgumentCallback<LatLng>? onTap,
       final ArgumentCallback<Poi>? onPoiTap,
+      final ArgumentCallback<Polyline>? onPolylineTap,
       final ArgumentCallback<LatLng>? onLongPress,
       final ArgumentCallback<AtlasController>? onMapCreated,
       final ArgumentCallback<CameraPosition>? onCameraPositionChanged,
@@ -42,5 +43,9 @@ abstract class Provider {
       final DeviceLocation? deviceLocation,
       final String? deviceLocationIconAsset,
       final String? country,
-      final bool? setPoliticalViews});
+      final bool? setPoliticalViews,
+      final double? zoom,
+      final double? minZoom,
+      final double? maxZoom,
+      });
 }
