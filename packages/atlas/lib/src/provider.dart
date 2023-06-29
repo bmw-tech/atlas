@@ -25,6 +25,7 @@ abstract class Provider {
       final Set<Polygon>? polygons,
       final Set<Polyline>? polylines,
       final Set<Cluster>? clusters,
+      final TrackPlayback? trackPlayback,
       final ArgumentCallback<LatLng>? onTap,
       final ArgumentCallback<Poi>? onPoiTap,
       final ArgumentCallback<LatLng>? onLongPress,

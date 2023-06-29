@@ -48,6 +48,10 @@ abstract class AtlasController {
   /// Dispose the map sdk
   Future<void> disposeSDK();
 
+  /// Some regions may have their own unique methods,
+  /// this function can be used for customized implementation
+  Future<void> executeCustomMethod(Map<String, dynamic> parameters);
+
   /// Return a [LatLngBounds] corresponding to [Rectangle2D] the in the map view - Async method
   Future<LatLngBounds>? getLatLngBounds(Rectangle2D rectangle2d);
 }
