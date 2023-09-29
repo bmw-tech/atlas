@@ -38,14 +38,14 @@ main() {
 
     test('should override hashCode properly', () {
       final cameraPosition = CameraPosition(
-        target: LatLng(
-          latitude: 37.42796133580664,
-          longitude: -122.085749655962,
-        ),
-        zoom: 10.0,
-      );
+          target: LatLng(
+            latitude: 37.42796133580664,
+            longitude: -122.085749655962,
+          ),
+          zoom: 10.0,
+          isUserUpdate: false);
       expect(cameraPosition.hashCode,
-          cameraPosition.target.hashCode ^ cameraPosition.zoom.hashCode);
+          cameraPosition.target.hashCode ^ cameraPosition.zoom.hashCode ^ cameraPosition.isUserUpdate.hashCode);
     });
   });
 }
