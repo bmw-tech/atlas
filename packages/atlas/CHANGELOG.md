@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.12 (2023-09-29)
+
+- Add `isUserUpdate`` to `CameraPosition`
+
 ## v1.0.10 (2023-07-29)
 
 - Added new function `getLatLngBounds`
