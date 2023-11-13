@@ -45,6 +45,15 @@ abstract class AtlasController {
   /// [bottomPadding] is the value that the padding will become
   Future<void> updateMapLogoBottomPadding(int bottomPadding);
 
+  /// Updates the map's compass position
+  Future<void> updateMapCompassPosition({
+    Uint8List? image,
+    required double marginTop,
+    required double marginRight,
+    required double marginBot,
+    required double marginLeft,
+  });
+
   /// Dispose the map sdk
   Future<void> disposeSDK();
 
