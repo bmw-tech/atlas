@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.12 (2023-11-14)
+
+- Added new function `updateMapCompassProperties`
+
 ## v1.0.11 (2023-09-29)
 
 - Add `isUserUpdate`` to `CameraPosition`
