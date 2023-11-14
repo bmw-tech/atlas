@@ -47,12 +47,14 @@ abstract class AtlasController {
 
   /// Updates the map's compass position
   Future<void> updateMapCompassPosition({
-    Uint8List? image,
     required double marginTop,
     required double marginRight,
     required double marginBot,
     required double marginLeft,
   });
+
+  /// Sets the map's compass icon
+  Future<void> setMapCompassIcon({Uint8List? image});
 
   /// Dispose the map sdk
   Future<void> disposeSDK();
