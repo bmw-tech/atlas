@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.13 (2023-11-17)
+
+- Added support for map styles
+
 ## v1.0.12 (2023-11-14)
 
 - Added new function `updateMapCompassProperties`
