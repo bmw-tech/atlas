@@ -6,7 +6,7 @@ issue_tracker: https://github.com/bmw-tech/atlas/issues
 homepage: https://bmw-tech.github.io/atlas
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <4.0.0'
 
 dependencies:
   flutter:

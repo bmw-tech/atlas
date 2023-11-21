@@ -1,8 +1,7 @@
-import 'package:flutter/animation.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 class MockState extends Mock implements State<TestWidget> {
   @override
@@ -26,10 +25,8 @@ main() {
   group('Move Camera Animation', () {
     test('should override == properly', () {
       var controller = AnimationController(vsync: MockStateTicker());
-      var panSequence = TweenSequence<LatLng>(
-          [TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]);
-      var zoomSequence = TweenSequence<double>(
-          [TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]);
+      var panSequence = TweenSequence<LatLng>([TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]);
+      var zoomSequence = TweenSequence<double>([TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]);
 
       expect(
         MoveCameraAnimation(
@@ -48,10 +45,8 @@ main() {
     test('should override hashCode properly', () {
       final moveCameraAnimation = MoveCameraAnimation(
         controller: AnimationController(vsync: MockStateTicker()),
-        panSequence: TweenSequence<LatLng>(
-            [TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]),
-        zoomSequence: TweenSequence<double>(
-            [TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]),
+        panSequence: TweenSequence<LatLng>([TweenSequenceItem(tween: MockLatLngTween(), weight: 100.0)]),
+        zoomSequence: TweenSequence<double>([TweenSequenceItem(tween: MockDoubleTween(), weight: 100.0)]),
       );
       expect(
           moveCameraAnimation.hashCode,
