@@ -1,6 +1,6 @@
 # atlas
 
-## v1.0.13 (2023-11-17)
+## v1.0.13 (2023-11-21)
 
 - Added support for map styles
 
