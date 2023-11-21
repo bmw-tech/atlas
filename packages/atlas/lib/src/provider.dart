@@ -1,5 +1,4 @@
 import 'package:atlas/atlas.dart';
-import 'package:atlas/src/map_language.dart';
 import 'package:flutter/widgets.dart';
 
 /// Callback function taking a single argument.
@@ -17,35 +16,37 @@ abstract class Provider {
   /// [Atlas.mapType] property.
   Set<MapType>? supportedMapTypes;
 
-  Widget build(
-      {final CameraPosition? initialCameraPosition,
-      final Set<Marker>? markers,
-      final Set<Callout>? callouts,
-      final Set<Circle>? circles,
-      final Set<Polygon>? polygons,
-      final Set<Polyline>? polylines,
-      final Set<Cluster>? clusters,
-      final TrackPlayback? trackPlayback,
-      final ArgumentCallback<LatLng>? onTap,
-      final ArgumentCallback<Poi>? onPoiTap,
-      final ArgumentCallback<Polyline>? onPolylineTap,
-      final ArgumentCallback<LatLng>? onLongPress,
-      final ArgumentCallback<AtlasController>? onMapCreated,
-      final ArgumentCallback<CameraPosition>? onCameraPositionChanged,
-      final ArgumentCallback<LatLng>? onLocationChanged,
-      final VoidCallback? onPan,
-      final bool? showMyLocation,
-      final bool? showMyLocationButton,
-      final bool? followMyLocation,
-      final MapType? mapType,
-      final bool? showTraffic,
-      final MapLanguage? mapLanguage,
-      final DeviceLocation? deviceLocation,
-      final String? deviceLocationIconAsset,
-      final String? country,
-      final bool? setPoliticalViews,
-      final double? zoom,
-      final double? minZoom,
-      final double? maxZoom,
-      });
+  Widget build({
+    final CameraPosition? initialCameraPosition,
+    final Set<Marker>? markers,
+    final Set<Callout>? callouts,
+    final Set<Circle>? circles,
+    final Set<Polygon>? polygons,
+    final Set<Polyline>? polylines,
+    final Set<Cluster>? clusters,
+    final TrackPlayback? trackPlayback,
+    final ArgumentCallback<LatLng>? onTap,
+    final ArgumentCallback<Poi>? onPoiTap,
+    final ArgumentCallback<Polyline>? onPolylineTap,
+    final ArgumentCallback<LatLng>? onLongPress,
+    final ArgumentCallback<AtlasController>? onMapCreated,
+    final ArgumentCallback<CameraPosition>? onCameraPositionChanged,
+    final ArgumentCallback<LatLng>? onLocationChanged,
+    final VoidCallback? onPan,
+    final bool? showMyLocation,
+    final bool? showMyLocationButton,
+    final bool? followMyLocation,
+    final MapType? mapType,
+    final String? style,
+    final String? darkStyle,
+    final bool? showTraffic,
+    final MapLanguage? mapLanguage,
+    final DeviceLocation? deviceLocation,
+    final String? deviceLocationIconAsset,
+    final String? country,
+    final bool? setPoliticalViews,
+    final double? zoom,
+    final double? minZoom,
+    final double? maxZoom,
+  });
 }
