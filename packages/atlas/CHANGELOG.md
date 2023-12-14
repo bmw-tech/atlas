@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.14 (2023-12-14)
+
+- Added new traffic level menu 
+
 ## v1.0.13 (2023-11-21)
 
 - Added support for map styles
