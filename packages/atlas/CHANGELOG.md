@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.14 (2023-12-15)
+
+- Added new enum CongestionLevel  
+
 ## v1.0.13 (2023-11-21)
 
 - Added support for map styles

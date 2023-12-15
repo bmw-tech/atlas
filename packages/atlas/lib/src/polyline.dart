@@ -44,6 +44,9 @@ class Polyline {
   /// Order that the polyline is drawn
   final double zIndex;
 
+  /// Types of Congestion Levels
+  final CongestionLevel? congestionLevel;
+
   const Polyline({
     required this.id,
     required this.points,
@@ -55,6 +58,7 @@ class Polyline {
     this.outlineWidth = 0,
     this.intervals = const <double>[],
     this.zIndex = 0.0,
+    this.congestionLevel,
   });
 
   @override
@@ -88,5 +92,6 @@ class Polyline {
       isDottedLine.hashCode ^
       outlineWidth.hashCode ^
       intervals.hashCode ^
-      zIndex.hashCode;
+      zIndex.hashCode^
+      congestionLevel.hashCode;
 }
