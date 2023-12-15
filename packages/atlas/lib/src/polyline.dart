@@ -44,7 +44,7 @@ class Polyline {
   /// Order that the polyline is drawn
   final double zIndex;
 
-  /// Traffic level
+  /// Types of Congestion Levels
   final CongestionLevel? congestionLevel;
 
   const Polyline({

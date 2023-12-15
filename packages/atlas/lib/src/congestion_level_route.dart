@@ -1,13 +1,13 @@
 enum CongestionLevel {
-  /// Normal level traffic or no information.
+  /// Normal congestion or no information.
   normal,
 
-  /// Slow level traffic.
+  /// Slow congestion.
   slow,
 
-  /// Heavy level traffic.
+  /// Heavy congestion.
   heavy,
 
-  /// Congested level traffic.
+  /// Congested.
   congested,
 }
