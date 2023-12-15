@@ -45,7 +45,7 @@ class Polyline {
   final double zIndex;
 
   /// Traffic level
-  final TrafficLevel? trafficLevel;
+  final CongestionLevel? congestionLevel;
 
   const Polyline({
     required this.id,
@@ -58,7 +58,7 @@ class Polyline {
     this.outlineWidth = 0,
     this.intervals = const <double>[],
     this.zIndex = 0.0,
-    this.trafficLevel,
+    this.congestionLevel,
   });
 
   @override
@@ -92,5 +92,6 @@ class Polyline {
       isDottedLine.hashCode ^
       outlineWidth.hashCode ^
       intervals.hashCode ^
-      zIndex.hashCode;
+      zIndex.hashCode^
+      congestionLevel.hashCode;
 }

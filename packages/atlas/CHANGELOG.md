@@ -1,8 +1,8 @@
 # atlas
 
-## v1.0.14 (2023-12-14)
+## v1.0.14 (2023-12-15)
 
-- Added new traffic level  
+- Added new enum CongestionLevel  
 
 ## v1.0.13 (2023-11-21)
 
