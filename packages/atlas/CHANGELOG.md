@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.16 (2023-12-18)
+
+- update sdk version
+
 ## v1.0.15 (2023-12-18)
 
 - Added new codeowners
