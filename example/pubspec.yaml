@@ -3,7 +3,7 @@ description: Atlas + Google Atlas example project
 publish_to: none
 
 environment:
-  sdk: ">=2.10.2 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
   flutter:
