@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.15 (2023-12-18)
+
+- Added new codeowners
+
 ## v1.0.14 (2023-12-15)
 
 - Added new enum CongestionLevel  
