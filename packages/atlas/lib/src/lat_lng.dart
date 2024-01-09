@@ -1,6 +1,8 @@
 /// A pair of latitude and longitude coordinates.
 /// The `latitude` and `longitude` are stored as degrees.
-class LatLng {
+import 'package:equatable/equatable.dart';
+
+class LatLng extends Equatable {
   /// The latitude in degrees between -90.0 and 90.0, both inclusive.
   final double latitude;
 
@@ -10,8 +12,7 @@ class LatLng {
   const LatLng({
     required double latitude,
     required double longitude,
-  })  : latitude =
-            (latitude < -90.0 ? -90.0 : (90.0 < latitude ? 90.0 : latitude)),
+  })  : latitude = (latitude < -90.0 ? -90.0 : (90.0 < latitude ? 90.0 : latitude)),
         longitude = (longitude + 180.0) % 360.0 - 180.0;
 
   @override
@@ -27,4 +28,13 @@ class LatLng {
 
   @override
   int get hashCode => latitude.hashCode ^ longitude.hashCode;
+
+  @override
+  List<Object?> get props => [
+        latitude,
+        longitude,
+      ];
+
+  @override
+  bool get stringify => true;
 }

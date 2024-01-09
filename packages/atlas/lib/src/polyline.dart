@@ -1,8 +1,10 @@
 import 'package:atlas/atlas.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:equatable/equatable.dart';
 
 /// A `Polyline` made up of multiple points on the map
-class Polyline {
+class Polyline extends Equatable {
   /// Uniquely identifies a `Polyline`.
   final String id;
 
@@ -67,7 +69,7 @@ class Polyline {
     if (other.runtimeType != runtimeType) return false;
     if (other is Polyline) {
       return id == other.id &&
-          points == other.points &&
+          listEquals(other.points, points) &&
           onTap == other.onTap &&
           color == other.color &&
           width == other.width &&
@@ -75,7 +77,8 @@ class Polyline {
           isDottedLine == other.isDottedLine &&
           outlineWidth == other.outlineWidth &&
           intervals == other.intervals &&
-          zIndex == other.zIndex;
+          zIndex == other.zIndex &&
+          congestionLevel == other.congestionLevel;
     } else {
       return false;
     }
@@ -92,6 +95,24 @@ class Polyline {
       isDottedLine.hashCode ^
       outlineWidth.hashCode ^
       intervals.hashCode ^
-      zIndex.hashCode^
+      zIndex.hashCode ^
       congestionLevel.hashCode;
+
+  @override
+  List<Object?> get props => [
+        id,
+        points,
+        onTap,
+        color,
+        width,
+        outlineColor,
+        isDottedLine,
+        outlineWidth,
+        intervals,
+        zIndex,
+        congestionLevel,
+      ];
+
+  @override
+  bool get stringify => true;
 }
