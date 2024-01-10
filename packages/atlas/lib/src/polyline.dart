@@ -1,10 +1,9 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:equatable/equatable.dart';
 
 /// A `Polyline` made up of multiple points on the map
-class Polyline extends Equatable {
+class Polyline {
   /// Uniquely identifies a `Polyline`.
   final String id;
 
@@ -83,36 +82,4 @@ class Polyline extends Equatable {
       return false;
     }
   }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      points.hashCode ^
-      onTap.hashCode ^
-      color.hashCode ^
-      width.hashCode ^
-      outlineColor.hashCode ^
-      isDottedLine.hashCode ^
-      outlineWidth.hashCode ^
-      intervals.hashCode ^
-      zIndex.hashCode ^
-      congestionLevel.hashCode;
-
-  @override
-  List<Object?> get props => [
-        id,
-        points,
-        onTap,
-        color,
-        width,
-        outlineColor,
-        isDottedLine,
-        outlineWidth,
-        intervals,
-        zIndex,
-        congestionLevel,
-      ];
-
-  @override
-  bool get stringify => true;
 }
