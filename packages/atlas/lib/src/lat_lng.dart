@@ -1,5 +1,6 @@
 /// A pair of latitude and longitude coordinates.
 /// The `latitude` and `longitude` are stored as degrees.
+
 class LatLng {
   /// The latitude in degrees between -90.0 and 90.0, both inclusive.
   final double latitude;
@@ -10,8 +11,7 @@ class LatLng {
   const LatLng({
     required double latitude,
     required double longitude,
-  })  : latitude =
-            (latitude < -90.0 ? -90.0 : (90.0 < latitude ? 90.0 : latitude)),
+  })  : latitude = (latitude < -90.0 ? -90.0 : (90.0 < latitude ? 90.0 : latitude)),
         longitude = (longitude + 180.0) % 360.0 - 180.0;
 
   @override
