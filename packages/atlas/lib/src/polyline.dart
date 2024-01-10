@@ -82,4 +82,18 @@ class Polyline {
       return false;
     }
   }
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      points.hashCode ^
+      onTap.hashCode ^
+      color.hashCode ^
+      width.hashCode ^
+      outlineColor.hashCode ^
+      isDottedLine.hashCode ^
+      outlineWidth.hashCode ^
+      intervals.hashCode ^
+      zIndex.hashCode ^
+      congestionLevel.hashCode;
 }
