@@ -11,12 +11,15 @@ class CameraPosition {
   final double zoom;
 
   /// Optional is the `CameraPosition` generated from a user interaction with the map
-  final bool? isUserUpdate;
+  final bool? bearingisUserUpdate;
+
+  final double? bearing;
 
   const CameraPosition({
     required this.target,
     this.zoom = 0.0,
     this.isUserUpdate,
+    this.bearing,
   });
 
   @override
@@ -24,12 +27,16 @@ class CameraPosition {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
     if (other is CameraPosition) {
-      return target == other.target && zoom == other.zoom && isUserUpdate == other.isUserUpdate;
+      return target == other.target &&
+          zoom == other.zoom &&
+          isUserUpdate == other.isUserUpdate &&
+          bearing == other.isUserUpdate;
     } else {
       return false;
     }
   }
 
   @override
-  int get hashCode => target.hashCode ^ zoom.hashCode ^ isUserUpdate.hashCode;
+  int get hashCode =>
+      target.hashCode ^ zoom.hashCode ^ bearing.hashCode ^ bearing.hashCode;
 }
