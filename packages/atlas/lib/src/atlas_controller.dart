@@ -63,4 +63,8 @@ abstract class AtlasController {
 
   /// Return a [LatLngBounds] corresponding to [Rectangle2D] the in the map view - Async method
   Future<LatLngBounds>? getLatLngBounds(Rectangle2D rectangle2d);
+
+  /// Set the compass bearing of the map
+  /// [bearing] is the value that the bearing will become
+  Future<void> SetMapBearing(double bearing);
 }
