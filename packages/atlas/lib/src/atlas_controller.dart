@@ -66,5 +66,5 @@ abstract class AtlasController {
 
   /// Set the compass bearing of the map
   /// [bearing] is the value that the bearing will become
-  Future<void> SetMapBearing(double bearing);
+  Future<void> setMapBearing(double bearing);
 }
