@@ -30,7 +30,7 @@ class CameraPosition {
       return target == other.target &&
           zoom == other.zoom &&
           isUserUpdate == other.isUserUpdate &&
-          bearing == other.isUserUpdate;
+          bearing == other.bearing;
     } else {
       return false;
     }
@@ -38,5 +38,5 @@ class CameraPosition {
 
   @override
   int get hashCode =>
-      target.hashCode ^ zoom.hashCode ^ bearing.hashCode ^ bearing.hashCode;
+      target.hashCode ^ zoom.hashCode ^ isUserUpdate.hashCode ^ bearing.hashCode;
 }
