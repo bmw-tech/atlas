@@ -11,7 +11,7 @@ class CameraPosition {
   final double zoom;
 
   /// Optional is the `CameraPosition` generated from a user interaction with the map
-  final bool? bearingisUserUpdate;
+  final bool? isUserUpdate;
 
   final double? bearing;
 
