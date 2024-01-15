@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.17 (2024-01-15)
+
+- Add `setBearing` to atlas controller
+  
 ## v1.0.16 (2024-01-10)
 
 - Update polyline properties 
