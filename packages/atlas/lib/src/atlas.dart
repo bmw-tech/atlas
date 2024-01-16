@@ -1,5 +1,4 @@
 import 'package:atlas/atlas.dart';
-import 'package:atlas/src/map_style.dart';
 import 'package:flutter/widgets.dart';
 
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider

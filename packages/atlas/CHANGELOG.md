@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.19 (2024-01-16)
+
+- Exported class `MapStyle`
+
 ## v1.0.18 (2024-01-16)
 
 - Added new class `MapStyle`
