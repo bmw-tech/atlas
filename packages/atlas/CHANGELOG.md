@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.18 (2024-01-16)
+
+- Added new class `MapStyle`
+
 ## v1.0.17 (2024-01-15)
 
 - Add `setBearing` to atlas controller

@@ -1,4 +1,5 @@
 import 'package:atlas/atlas.dart';
+import 'package:atlas/src/map_style.dart';
 import 'package:flutter/widgets.dart';
 
 /// Callback function taking a single argument.
@@ -37,8 +38,7 @@ abstract class Provider {
     final bool? showMyLocationButton,
     final bool? followMyLocation,
     final MapType? mapType,
-    final String? style,
-    final String? darkStyle,
+    final MapStyle? style,
     final bool? showTraffic,
     final MapLanguage? mapLanguage,
     final DeviceLocation? deviceLocation,
