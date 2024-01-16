@@ -1,5 +1,4 @@
 import 'package:atlas/atlas.dart';
-import 'package:atlas/src/map_style.dart';
 import 'package:flutter/widgets.dart';
 
 /// Callback function taking a single argument.
