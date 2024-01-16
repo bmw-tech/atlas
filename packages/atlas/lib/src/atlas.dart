@@ -1,4 +1,5 @@
 import 'package:atlas/atlas.dart';
+import 'package:atlas/src/map_style.dart';
 import 'package:flutter/widgets.dart';
 
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider
@@ -104,11 +105,8 @@ class Atlas extends StatelessWidget {
   ///   * [Provider.supportedMapTypes] parameter.
   final MapType? mapType;
 
-  /// Sets the light map style to be displayed.
-  final String? style;
-
-  /// Sets the dark map style to be displayed.
-  final String? darkStyle;
+  /// Sets the map style to be displayed.
+  final MapStyle? style;
 
   /// Enable real-time traffic information status
   final bool? showTraffic;
@@ -157,7 +155,6 @@ class Atlas extends StatelessWidget {
     bool? followMyLocation,
     MapType? mapType,
     this.style,
-    this.darkStyle,
     bool? showTraffic,
     MapLanguage? mapLanguage,
     this.onTap,
@@ -210,7 +207,6 @@ class Atlas extends StatelessWidget {
       followMyLocation: followMyLocation,
       mapType: mapType,
       style: style,
-      darkStyle: darkStyle,
       showTraffic: showTraffic,
       mapLanguage: mapLanguage,
       onMapCreated: onMapCreated,
