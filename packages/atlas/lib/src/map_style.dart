@@ -3,10 +3,10 @@
 class MapStyle {
   final String? light;
   final String? dark;
-  final String? satellite;
+  final String? lightSatellite;
   final String? darkSatellite;
 
-  MapStyle({this.light, this.dark, this.satellite, this.darkSatellite});
+  MapStyle({this.light, this.dark, this.lightSatellite, this.darkSatellite});
 
   @override
   bool operator ==(Object other) {
@@ -15,10 +15,10 @@ class MapStyle {
     if (other is! MapStyle) return false;
     return light == other.light &&
         dark == other.dark &&
-        satellite == other.satellite &&
+        lightSatellite == other.lightSatellite &&
         darkSatellite == other.darkSatellite;
   }
 
   @override
-  int get hashCode => light.hashCode ^ dark.hashCode ^ satellite.hashCode ^ darkSatellite.hashCode;
+  int get hashCode => light.hashCode ^ dark.hashCode ^ lightSatellite.hashCode ^ darkSatellite.hashCode;
 }
