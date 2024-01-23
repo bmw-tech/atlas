@@ -1,5 +1,10 @@
 # atlas
 
+## v1.0.20 (2024-01-23)
+
+- Renamed `satellite` parameter to `lightSatellite` in `MapStyle`
+- Added `darkSatellite` parameter to `MapStyle`
+
 ## v1.0.19 (2024-01-16)
 
 - Exported class `MapStyle`
