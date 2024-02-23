@@ -47,5 +47,6 @@ abstract class Provider {
     final double? zoom,
     final double? minZoom,
     final double? maxZoom,
+    final VoidCallback? onMapLoaded,
   });
 }

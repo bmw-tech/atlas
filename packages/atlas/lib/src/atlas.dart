@@ -139,6 +139,9 @@ class Atlas extends StatelessWidget {
   /// [Double] To indicate the maximum zoom level
   final double? maxZoom;
 
+  /// Callback executed when the map is loaded and is on the screen
+  final VoidCallback? onMapLoaded;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -171,6 +174,7 @@ class Atlas extends StatelessWidget {
     this.minZoom,
     this.maxZoom,
     this.onPolylineTap,
+    this.onMapLoaded,
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -219,6 +223,7 @@ class Atlas extends StatelessWidget {
       minZoom: minZoom,
       maxZoom: maxZoom,
       onPolylineTap: onPolylineTap,
+      onMapLoaded: onMapLoaded,
     );
   }
 }
