@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.21 (2024-02-23)
+
+- Added `onMapLoaded` parameter on `Provider`
+
 ## v1.0.20 (2024-01-23)
 
 - Renamed `satellite` parameter to `lightSatellite` in `MapStyle`
