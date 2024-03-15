@@ -17,13 +17,13 @@ abstract class AtlasController {
   /// Updates the camera bounds based on the provided `BoundingBoxData`
   Future<void> updateBounds(BoundingBoxData boundingBoxData);
 
-  /// Return a [ScreenCoordinate] corresponding to the [LatLng] in the map view.
+  /// Return a [LatLng] corresponding to the [ScreenCoordinates] in the map view.
   Future<LatLng> getLatLng(ScreenCoordinates screenCoordinates);
 
   /// Return a [LatLngBounds] corresponding to [Rectangle2D] the in the map view
   LatLngBounds getBounds(Rectangle2D rectangle2d);
 
-  /// Returns a [LatLng] corresponding to the [ScreenCoordinate] in the map view.
+  /// Returns a [ScreenCoordinates] corresponding to the [LatLng] in the map view.
   Future<ScreenCoordinates> getScreenCoordinate(LatLng latLng);
 
   /// Return a [BoundingBox] corresponding to the currently visible area in the map view.
