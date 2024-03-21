@@ -48,5 +48,6 @@ abstract class Provider {
     final double? minZoom,
     final double? maxZoom,
     final VoidCallback? onMapLoaded,
+    final Heatmap? heatmap,
   });
 }

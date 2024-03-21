@@ -1,5 +1,9 @@
 # atlas
 
+## v1.0.22 (2024-03-21)
+
+- Added support for `Heatmaps`
+
 ## v1.0.21 (2024-02-23)
 
 - Added `onMapLoaded` parameter on `Provider`
