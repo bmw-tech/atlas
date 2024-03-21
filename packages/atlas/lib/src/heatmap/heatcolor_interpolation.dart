@@ -1,6 +1,6 @@
 /// Produces continuous, smooth results by interpolating between pairs of input and output value
 
-sealed class HeatcolorInterpolation {
+abstract class HeatcolorInterpolation {
   String toProperty();
 }
 
