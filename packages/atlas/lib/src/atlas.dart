@@ -142,6 +142,9 @@ class Atlas extends StatelessWidget {
   /// Callback executed when the map is loaded and is on the screen
   final VoidCallback? onMapLoaded;
 
+  /// Callback executed when the map is loaded and is on the screen
+  final Heatmap? heatmap;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -175,6 +178,7 @@ class Atlas extends StatelessWidget {
     this.maxZoom,
     this.onPolylineTap,
     this.onMapLoaded,
+    this.heatmap,
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -224,6 +228,7 @@ class Atlas extends StatelessWidget {
       maxZoom: maxZoom,
       onPolylineTap: onPolylineTap,
       onMapLoaded: onMapLoaded,
+      heatmap: heatmap,
     );
   }
 }
