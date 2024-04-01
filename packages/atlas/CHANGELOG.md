@@ -1,5 +1,11 @@
 # atlas
 
+## v1.1.0 (2024-04-01)
+
+- Added parameter `opacity` for `Heatmaps`
+- Changed parameters `heatpoints` to `points` for `Heatmaps`
+- Changed parameters `heatcolor` to `color` for `Heatmaps`
+
 ## v1.0.22 (2024-03-21)
 
 - Added support for `Heatmaps`
