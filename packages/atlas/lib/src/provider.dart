@@ -49,5 +49,7 @@ abstract class Provider {
     final double? maxZoom,
     final VoidCallback? onMapLoaded,
     final Heatmap? heatmap,
+    final bool cluster,
+    final ValueChanged<Set<Marker>>? onClusterTap,
   });
 }

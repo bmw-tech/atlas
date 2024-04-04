@@ -145,6 +145,13 @@ class Atlas extends StatelessWidget {
   /// Callback executed when the map is loaded and is on the screen
   final Heatmap? heatmap;
 
+  /// Clusters the markers into groups
+  final bool cluster;
+
+  /// Called when a cluster is tapped.
+  /// The Markers of the pressed cluster are passed as an argument.
+  final ValueChanged<Set<Marker>>? onClusterTap;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -179,6 +186,8 @@ class Atlas extends StatelessWidget {
     this.onPolylineTap,
     this.onMapLoaded,
     this.heatmap,
+    this.cluster = false,
+    this.onClusterTap,
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -229,6 +238,8 @@ class Atlas extends StatelessWidget {
       onPolylineTap: onPolylineTap,
       onMapLoaded: onMapLoaded,
       heatmap: heatmap,
+      cluster: cluster,
+      onClusterTap: onClusterTap,
     );
   }
 }
