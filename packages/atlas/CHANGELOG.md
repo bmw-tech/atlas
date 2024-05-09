@@ -1,5 +1,10 @@
 # atlas
 
+## v1.2.0 (2024-05-09)
+
+- Added enum value `threeDimensional` for `MapType`
+
+
 ## v1.1.0 (2024-04-01)
 
 - Added parameter `opacity` for `Heatmaps`
