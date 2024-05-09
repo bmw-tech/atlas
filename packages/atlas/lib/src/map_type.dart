@@ -18,4 +18,7 @@ enum MapType {
 
   /// Hybrid tiles (satellite images with some labels/overlays)
   hybrid,
+
+  // 3D Buildings
+  threeDimensional,
 }
