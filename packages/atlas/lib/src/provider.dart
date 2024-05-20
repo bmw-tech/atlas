@@ -1,6 +1,8 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/widgets.dart';
 
+import 'cluster_options.dart';
+
 /// Callback function taking a single argument.
 typedef void ArgumentCallback<T>(T argument);
 
@@ -49,7 +51,6 @@ abstract class Provider {
     final double? maxZoom,
     final VoidCallback? onMapLoaded,
     final Heatmap? heatmap,
-    final bool cluster,
-    final ValueChanged<Set<Marker>>? onClusterTap,
+    final ClusterOptions? clusterOptions,
   });
 }

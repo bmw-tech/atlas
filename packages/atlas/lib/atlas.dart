@@ -10,6 +10,7 @@ export 'src/camera_position.dart';
 export 'src/circle.dart';
 export 'src/cluster.dart';
 export 'src/cluster_icon.dart';
+export 'src/cluster_options.dart';
 export 'src/congestion_level_route.dart';
 export 'src/device_location.dart';
 export 'src/heatmap/heatcolor.dart';
