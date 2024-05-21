@@ -1,4 +1,5 @@
 import 'package:atlas/atlas.dart';
+import 'package:atlas/src/cluster_options.dart';
 import 'package:flutter/widgets.dart';
 
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider
@@ -145,6 +146,9 @@ class Atlas extends StatelessWidget {
   /// Callback executed when the map is loaded and is on the screen
   final Heatmap? heatmap;
 
+  /// Clusters the markers into groups
+  final ClusterOptions? clusterOptions;
+
   Atlas({
     Key? key,
     required this.initialCameraPosition,
@@ -179,6 +183,7 @@ class Atlas extends StatelessWidget {
     this.onPolylineTap,
     this.onMapLoaded,
     this.heatmap,
+    this.clusterOptions,
   })  : markers = markers ?? Set<Marker>(),
         callouts = callouts ?? Set<Callout>(),
         circles = circles ?? Set<Circle>(),
@@ -229,6 +234,7 @@ class Atlas extends StatelessWidget {
       onPolylineTap: onPolylineTap,
       onMapLoaded: onMapLoaded,
       heatmap: heatmap,
+      clusterOptions: clusterOptions,
     );
   }
 }

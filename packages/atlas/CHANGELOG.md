@@ -1,5 +1,9 @@
 # atlas
 
+## v1.3.0 (2024-05-21)
+
+- Added support for `Clustering`
+
 ## v1.2.0 (2024-05-09)
 
 - Added enum value `threeDimensional` for `MapType`
