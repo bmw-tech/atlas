@@ -1,5 +1,9 @@
 # atlas
 
+## v1.4.0 (2024-06-27)
+
+- Added `polylineDottedIconAsset`
+
 ## v1.3.0 (2024-05-21)
 
 - Added support for `Clustering`

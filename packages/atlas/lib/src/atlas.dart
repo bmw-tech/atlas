@@ -1,5 +1,4 @@
 import 'package:atlas/atlas.dart';
-import 'package:atlas/src/cluster_options.dart';
 import 'package:flutter/widgets.dart';
 
 /// `Atlas` is a Flutter [Widget] which abstracts the underlying map provider
@@ -125,6 +124,9 @@ class Atlas extends StatelessWidget {
   /// Sets the device location icon asset path.
   final String? deviceLocationIconAsset;
 
+  /// Sets the dotted line icon asset path.
+  final String? polylineDottedIconAsset;
+
   /// Sets the country name.
   final String? country;
 
@@ -175,6 +177,7 @@ class Atlas extends StatelessWidget {
     this.onPan,
     this.deviceLocation,
     this.deviceLocationIconAsset,
+    this.polylineDottedIconAsset,
     this.country,
     this.setPoliticalViews,
     this.zoom,
@@ -226,6 +229,7 @@ class Atlas extends StatelessWidget {
       onPan: onPan,
       deviceLocation: deviceLocation,
       deviceLocationIconAsset: deviceLocationIconAsset,
+      polylineDottedIconAsset: polylineDottedIconAsset,
       country: country,
       setPoliticalViews: setPoliticalViews,
       zoom: zoom,
