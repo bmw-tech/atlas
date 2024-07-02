@@ -1,5 +1,10 @@
 # atlas
 
+## v2.0.0 (2024-06-01)
+
+- Added support for `Snapshots`
+- Created new object `ViewportOptions`
+
 ## v1.3.0 (2024-05-21)
 
 - Added support for `Clustering`
