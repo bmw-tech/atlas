@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:atlas/atlas.dart';
+import 'package:flutter/widgets.dart';
 
 /// `AtlasController` allows developers to manipulate `Atlas` after the map has been initialized.
 abstract class AtlasController {
@@ -67,4 +68,18 @@ abstract class AtlasController {
   /// Set the compass bearing of the map
   /// [bearing] is the value that the bearing will become
   Future<void> setBearing(double bearing);
+
+  Future<Uint8List?> takeSnapshot({
+    required BuildContext context,
+    required Size size,
+    required ViewportOptions viewportOptions,
+    MapType mapType = MapType.normal,
+    bool showUserLocation = false,
+    Set<Marker> markers = const {},
+    Set<Polyline> polylines = const {},
+    Set<Callout> callouts = const {},
+    Set<Circle> circles = const {},
+    Heatmap? heatmap,
+    bool traffic = false,
+  });
 }
