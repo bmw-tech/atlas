@@ -1,5 +1,9 @@
 # atlas
 
+## v2.0.1 (2024-07-05)
+
+- Added `bearingImageAsset` parameter to `Atlas`
+
 ## v2.0.0 (2024-06-01)
 
 - Added support for `Snapshots`
