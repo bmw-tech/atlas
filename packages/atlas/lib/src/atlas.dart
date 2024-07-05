@@ -125,6 +125,9 @@ class Atlas extends StatelessWidget {
   /// Sets the device location icon asset path.
   final String? deviceLocationIconAsset;
 
+  /// Sets the device bearing image asset path.
+  final String? bearingImageAsset;
+
   /// Sets the country name.
   final String? country;
 
