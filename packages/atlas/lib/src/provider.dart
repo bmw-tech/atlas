@@ -44,6 +44,7 @@ abstract class Provider {
     final MapLanguage? mapLanguage,
     final DeviceLocation? deviceLocation,
     final String? deviceLocationIconAsset,
+    final String? bearingImageAsset,
     final String? country,
     final bool? setPoliticalViews,
     final double? zoom,
