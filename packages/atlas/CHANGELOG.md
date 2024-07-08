@@ -1,5 +1,10 @@
 # atlas
 
+## v3.0.0 (2024-06-01)
+
+- Merged `getScreenShot` and `takeSnapshot` methods of the `AtlasController`
+- Renamed `ViewportOptions` to `Viewpoint`
+
 ## v2.0.0 (2024-06-01)
 
 - Added support for `Snapshots`
