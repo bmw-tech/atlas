@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:atlas/atlas.dart';
-import 'package:atlas/src/screen_shot/screen_shot_options.dart';
 import 'package:flutter/widgets.dart';
 
 /// `AtlasController` allows developers to manipulate `Atlas` after the map has been initialized.
