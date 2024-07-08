@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:atlas/atlas.dart';
+import 'package:atlas/src/screen_shot/screen_shot_options.dart';
 import 'package:flutter/widgets.dart';
 
 /// `AtlasController` allows developers to manipulate `Atlas` after the map has been initialized.
@@ -32,17 +33,9 @@ abstract class AtlasController {
 
   /// Return a [Uint8List] to the screenshot of the specified range of the current screen
   Future<Uint8List> getScreenShot({
-    required BuildContext context,
-    required Size size,
     required Viewpoint viewpoint,
-    MapType mapType = MapType.normal,
-    bool showUserLocation = false,
-    Set<Marker> markers = const {},
-    Set<Polyline> polylines = const {},
-    Set<Callout> callouts = const {},
-    Set<Circle> circles = const {},
-    Heatmap? heatmap,
-    bool traffic = false,
+    required Size size,
+    ScreenShotOptions? options,
   });
 
   /// Updates the map's logo bottom padding
