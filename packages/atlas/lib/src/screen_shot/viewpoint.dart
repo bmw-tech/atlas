@@ -6,8 +6,8 @@ import 'package:flutter/widgets.dart';
 ///
 /// Anchor and center points are mutually exclusive, with preference for the
 /// center point when both are set.
-class ViewportOptions {
-  ViewportOptions({
+class Viewpoint {
+  Viewpoint({
     this.center,
     this.padding,
     this.anchor,
@@ -41,7 +41,7 @@ class ViewportOptions {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    if (other is ViewportOptions) {
+    if (other is Viewpoint) {
       return center == other.center &&
           padding == other.padding &&
           anchor == other.anchor &&
