@@ -2,7 +2,7 @@
 
 ## v3.0.1 (2024-07-08)
 
-- Set `ScreenShotOptions` as a const constructor
+- Set `ScreenShotOptions` constructor as const
 
 ## v3.0.0 (2024-07-08)
 
