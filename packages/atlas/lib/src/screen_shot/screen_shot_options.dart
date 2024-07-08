@@ -10,7 +10,7 @@ class ScreenShotOptions {
   final Heatmap? heatmap;
   final bool traffic;
 
-  ScreenShotOptions({
+  const ScreenShotOptions({
     this.mapType = MapType.normal,
     this.showUserLocation = false,
     this.markers = const {},

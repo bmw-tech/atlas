@@ -1,11 +1,15 @@
 # atlas
 
-## v3.0.0 (2024-06-01)
+## v3.0.1 (2024-07-08)
+
+- Set `ScreenShotOptions` constructor as const
+
+## v3.0.0 (2024-07-08)
 
 - Merged `getScreenShot` and `takeSnapshot` methods of the `AtlasController`
 - Renamed `ViewportOptions` to `Viewpoint`
 
-## v2.0.0 (2024-06-01)
+## v2.0.0 (2024-07-01)
 
 - Added support for `Snapshots`
 - Created new object `ViewportOptions`
